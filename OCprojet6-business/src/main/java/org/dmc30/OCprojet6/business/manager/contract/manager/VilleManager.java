@@ -32,7 +32,7 @@ public interface VilleManager {
 
     /**
      * Supprimer un objet de type Ville
-     * @param pVille : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteVille (Ville pVille);
+    void deleteVille (int pId);
 }

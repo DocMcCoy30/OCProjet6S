@@ -28,6 +28,6 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
     }
 
     @Override
-    public void deleteSite(Site pSite) {
+    public void deleteSite(int pId) {
     }
 }

@@ -30,7 +30,7 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager {
     }
 
     @Override
-    public void deleteVoie(Voie pVoie) {
+    public void deleteVoie(int pId) {
 
     }
 }

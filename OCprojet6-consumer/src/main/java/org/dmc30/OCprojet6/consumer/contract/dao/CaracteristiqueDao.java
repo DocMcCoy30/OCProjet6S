@@ -10,5 +10,6 @@ public interface CaracteristiqueDao {
     Caracteristique readCaracteristique (int pId);
     List<Caracteristique> readAllCaracteristiques ();
     void updateCaracteristique (Caracteristique pCaracteristique);
+    void deleteCaracteristique(int pId);
 }
 

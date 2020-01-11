@@ -32,7 +32,7 @@ public interface TopoManager {
 
     /**
      * Supprimer un objet de type Topo
-     * @param pTopo : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteTopo (Topo pTopo);
+    void deleteTopo (int pId);
 }

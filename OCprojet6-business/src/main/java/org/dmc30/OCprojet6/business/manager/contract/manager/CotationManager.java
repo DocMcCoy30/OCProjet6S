@@ -32,7 +32,7 @@ public interface CotationManager {
 
     /**
      * Supprimer un objet de type Cotation
-     * @param pCotation : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteCotation (Cotation pCotation);
+    void deleteCotation (int pId);
 }

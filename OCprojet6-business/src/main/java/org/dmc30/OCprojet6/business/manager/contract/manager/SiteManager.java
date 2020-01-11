@@ -32,7 +32,7 @@ public interface SiteManager {
 
     /**
      * Supprimer un objet de type Site
-     * @param pSite : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteSite (Site pSite);
+    void deleteSite (int pId);
 }

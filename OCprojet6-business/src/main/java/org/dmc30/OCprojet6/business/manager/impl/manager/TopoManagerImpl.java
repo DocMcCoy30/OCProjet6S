@@ -30,7 +30,7 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager {
     }
 
     @Override
-    public void deleteTopo(Topo pTopo) {
+    public void deleteTopo(int pId) {
 
     }
 }

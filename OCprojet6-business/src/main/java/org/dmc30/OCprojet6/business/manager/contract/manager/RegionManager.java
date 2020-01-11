@@ -32,7 +32,7 @@ public interface RegionManager {
 
     /**
      * Supprimer un objet de type Region
-     * @param pRegion : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteRegion (Region pRegion);
+    void deleteRegion (int pId);
 }

@@ -30,7 +30,7 @@ public class CotationManagerImpl extends AbstractManager implements CotationMana
     }
 
     @Override
-    public void deleteCotation(Cotation pCotation) {
+    public void deleteCotation(int pId) {
 
     }
 }

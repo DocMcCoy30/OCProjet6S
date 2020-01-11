@@ -32,7 +32,7 @@ public interface LieuManager {
 
     /**
      * Supprimer un objet de type Lieu
-     * @param pLieu : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteLieu (Lieu pLieu);
+    void deleteLieu (int pId);
 }

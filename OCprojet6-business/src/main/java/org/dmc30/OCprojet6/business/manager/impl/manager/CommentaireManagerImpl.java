@@ -30,7 +30,7 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
     }
 
     @Override
-    public void deleteCommentaire(Commentaire pCommentaire) {
+    public void deleteCommentaire(int pId) {
 
     }
 }

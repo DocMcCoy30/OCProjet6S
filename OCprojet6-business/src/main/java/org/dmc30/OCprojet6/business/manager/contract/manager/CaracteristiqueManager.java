@@ -32,8 +32,8 @@ public interface CaracteristiqueManager {
 
     /**
      * Supprimer un objet de type Caracteristique
-     * @param pCaracteristique : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteCaracteristique (Caracteristique pCaracteristique);
+    void deleteCaracteristique (int pId);
 
 }

@@ -32,7 +32,7 @@ public interface VoieManager {
 
     /**
      * Supprimer un objet de type Voie
-     * @param pVoie : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteVoie (Voie pVoie);
+    void deleteVoie (int pId);
 }

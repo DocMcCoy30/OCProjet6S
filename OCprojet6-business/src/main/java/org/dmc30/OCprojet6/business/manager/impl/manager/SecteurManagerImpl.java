@@ -30,7 +30,7 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
     }
 
     @Override
-    public void deleteSecteur(Secteur pSecteur) {
+    public void deleteSecteur(int pId) {
 
     }
 }

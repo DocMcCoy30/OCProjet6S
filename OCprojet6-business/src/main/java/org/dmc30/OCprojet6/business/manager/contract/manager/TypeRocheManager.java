@@ -32,7 +32,7 @@ public interface TypeRocheManager {
 
     /**
      * Supprimer un objet de type TypeRoche
-     * @param pTypeRoche : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void  deleteTypeRoche (TypeRoche pTypeRoche);
+    void  deleteTypeRoche (int pId);
 }

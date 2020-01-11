@@ -30,7 +30,7 @@ public class TypeRocheManagerImpl extends AbstractManager implements TypeRocheMa
     }
 
     @Override
-    public void deleteTypeRoche(TypeRoche pTypeRoche) {
+    public void deleteTypeRoche(int pId) {
 
     }
 }

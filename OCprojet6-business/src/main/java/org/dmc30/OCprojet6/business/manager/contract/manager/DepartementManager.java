@@ -32,7 +32,7 @@ public interface DepartementManager {
 
     /**
      * Supprimer un objet de type Departement
-     * @param pDepartement : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void  deleteDepartement (Departement pDepartement);
+    void  deleteDepartement (int pId);
 }

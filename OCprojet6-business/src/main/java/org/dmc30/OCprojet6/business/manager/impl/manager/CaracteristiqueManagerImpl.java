@@ -30,11 +30,12 @@ public class CaracteristiqueManagerImpl extends AbstractManager implements Carac
 
     @Override
     public void updateCaracteristique(Caracteristique pCaracteristique) {
-
+        getDaoFactory().getCaracteristiqueDao().updateCaracteristique(pCaracteristique);
     }
 
     @Override
-    public void deleteCaracteristique(Caracteristique pCaracteristique) {
+    public void deleteCaracteristique(int pId) {
+        getDaoFactory().getCaracteristiqueDao().deleteCaracteristique(pId);
 
     }
 }

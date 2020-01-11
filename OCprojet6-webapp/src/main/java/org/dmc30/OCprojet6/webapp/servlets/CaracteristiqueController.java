@@ -17,10 +17,9 @@ public class CaracteristiqueController {
     private CaracteristiqueResource caracteristiqueResource;
 
     @GetMapping("/liste")
-    public String listCaracteristique (Model theModel) {
+    public String listCaracteristique(Model theModel) {
         List<Caracteristique> vCaracteristique = caracteristiqueResource.getListCaracteristique();
         theModel.addAttribute("caracteristiques", vCaracteristique);
-        System.out.println(theModel.toString());
         return "liste-caracteristique";
     }
 
@@ -28,20 +27,32 @@ public class CaracteristiqueController {
     public String showFormForAdd(Model theModel) {
         Caracteristique vCaracteristique = new Caracteristique();
         theModel.addAttribute("caracteristique", vCaracteristique);
-        return "formulaire";
+        return "formulaire-ajout";
     }
 
     @PostMapping("/ajoutCaracteristique")
-    public String saveCustomer (@ModelAttribute("caracteristique") Caracteristique pCaracteristique) {
-        System.out.println(pCaracteristique.getNom());
+    public String saveCaracteristique(@ModelAttribute("caracteristique") Caracteristique pCaracteristique) {
         caracteristiqueResource.createCaracteristique(pCaracteristique);
         return "redirect:/caracteristique/liste";
     }
-//
-//    @GetMapping("/delete")
-//    public String deleteCustomer (@RequestParam("customerId") int theId) {
-//        // delete the customer using our service
-//        customerService.deleteCustomer(theId);
-//        return "redirect:/customer/list";
-//    }
+
+    @GetMapping("/formulaireUpdate")
+    public String showFormForUpdate(@RequestParam("caracteristiqueId") int pId, Model theModel) {
+        Caracteristique vCaracteristique = caracteristiqueResource.getCracteristiqueById(pId);
+        theModel.addAttribute(vCaracteristique);
+        return "formulaire-update";
+    }
+
+    @PostMapping("/updateCaracteristique")
+    public String updateCaracteristique(@ModelAttribute("caracteristique") Caracteristique pCaracteristique) {
+        caracteristiqueResource.updateCaracteristique(pCaracteristique);
+        return "redirect:/caracteristique/liste";
+    }
+
+    @GetMapping("/delete")
+    public String deleteCustomer(@RequestParam("caracteristiqueId") int pId) {
+        caracteristiqueResource.deleteCarateristique(pId);
+        return "redirect:/caracteristique/liste";
+    }
 }
+

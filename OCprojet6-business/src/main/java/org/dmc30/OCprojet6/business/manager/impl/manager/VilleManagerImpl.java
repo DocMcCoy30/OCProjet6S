@@ -30,7 +30,7 @@ public class VilleManagerImpl extends AbstractManager implements VilleManager {
     }
 
     @Override
-    public void deleteVille(Ville pVille) {
+    public void deleteVille(int pId) {
 
     }
 }

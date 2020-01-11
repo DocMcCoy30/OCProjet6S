@@ -13,8 +13,20 @@ public class CaracteristiqueResource extends AbstractResource{
         getManagerFactory().getCaracteristiqueManager().createCaractéristique(pCaracteristique);
     }
 
+    public Caracteristique getCracteristiqueById (int pId) {
+        return getManagerFactory().getCaracteristiqueManager().getCaracteristique(pId);
+    }
+
     public List<Caracteristique> getListCaracteristique() {
         return getManagerFactory().getCaracteristiqueManager().getListCaracteristiques();
+    }
+
+    public void updateCaracteristique (Caracteristique pCaracteristique) {
+        getManagerFactory().getCaracteristiqueManager().updateCaracteristique(pCaracteristique);
+    }
+
+    public void deleteCarateristique (int pId) {
+        getManagerFactory().getCaracteristiqueManager().deleteCaracteristique(pId);
     }
 
 

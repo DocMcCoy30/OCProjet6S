@@ -31,7 +31,7 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
     }
 
     @Override
-    public void deleteDepartement(Departement pDepartement) {
+    public void deleteDepartement(int pId) {
 
     }
 }

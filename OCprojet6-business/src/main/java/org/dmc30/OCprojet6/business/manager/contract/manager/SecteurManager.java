@@ -32,7 +32,7 @@ public interface SecteurManager {
 
     /**
      * Supprimer un objet de type Secteur
-     * @param pSecteur : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteSecteur (Secteur secteur);
+    void deleteSecteur (int pId);
 }

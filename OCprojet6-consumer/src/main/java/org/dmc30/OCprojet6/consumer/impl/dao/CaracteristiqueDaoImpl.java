@@ -5,6 +5,10 @@ import org.dmc30.OCprojet6.consumer.impl.rowmapper.CaracteristiqueRM;
 import org.dmc30.OCprojet6.model.bean.Caracteristique;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,7 +32,7 @@ public class CaracteristiqueDaoImpl extends AbstractDao implements Caracteristiq
     @Override
     public Caracteristique readCaracteristique(int pId) {
 
-        String vSQL = "SELECT * FROM caracteristique WHERE caracteristique_id="+pId;
+        String vSQL = "SELECT * FROM caracteristique WHERE id="+pId;
 
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
 
@@ -55,7 +59,20 @@ public class CaracteristiqueDaoImpl extends AbstractDao implements Caracteristiq
 
     @Override
     public void updateCaracteristique(Caracteristique pCaracteristique) {
+        String vSQL = "UPDATE caracteristique SET nom= :nom, definition= :definition WHERE id= :id";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("nom", pCaracteristique.getNom());
+        vParams.addValue("definition", pCaracteristique.getDefinition());
+        vParams.addValue("id", pCaracteristique.getId());
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL, vParams);
+    }
 
+    @Override
+    public void deleteCaracteristique(int pId) {
+        String vSQL = "DELETE  FROM caracteristique WHERE id="+pId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.execute(vSQL);
     }
 
 }

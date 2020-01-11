@@ -32,9 +32,9 @@ public interface CommentaireManager {
 
     /**
      * Supprimer un objet de type Commentaire
-     * @param pCommentaire : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteCommentaire(Commentaire pCommentaire);
+    void deleteCommentaire(int pId);
 
 
 

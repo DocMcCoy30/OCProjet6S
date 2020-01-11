@@ -30,7 +30,7 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
     }
 
     @Override
-    public void deleteUtilisateur(Utilisateur pUtilisateur) {
+    public void deleteUtilisateur(int pId) {
 
     }
 }

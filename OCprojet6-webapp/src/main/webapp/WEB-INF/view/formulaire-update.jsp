@@ -10,13 +10,13 @@
 
 <div id="wrapper">
     <div id="header">
-        <h2>CRM - Customer Relationship Manager</h2>
+        <h2>Ajout Caracteristique</h2>
     </div>
 </div>
 <div id="container">
-    <h3>SAVE CUSTOMER</h3>
 
-    <form:form action="ajoutCaracteristique" modelAttribute="caracteristique" method="POST">
+    <form:form action="updateCaracteristique" modelAttribute="caracteristique" method="POST">
+        <form:hidden path="id" />
         <table>
             <tbody>
             <tr>
@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td><label></label></td>
-                <td><input type="submit" value="Save" class="save"/></td>
+                <td><input type="submit" value="Update"/></td>
             </tr>
             </tbody>
         </table>

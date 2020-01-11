@@ -30,7 +30,7 @@ public class PhotoManagerImpl extends AbstractManager implements PhotoManager {
     }
 
     @Override
-    public void deletePhoto(Photo pPhoto) {
+    public void deletePhoto(int pId) {
 
     }
 }

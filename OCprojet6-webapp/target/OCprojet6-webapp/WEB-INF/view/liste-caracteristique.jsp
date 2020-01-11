@@ -24,9 +24,22 @@
                 <th>Definition</th>
             </tr>
             <c:forEach var="tempCarac" items="${caracteristiques}">
+                <c:url var="updateLink" value="/caracteristique/formulaireUpdate">
+                    <c:param name="caracteristiqueId" value="${tempCarac.id}" />
+                </c:url>
+                <c:url var="deleteLink" value="/caracteristique/delete">
+                    <c:param name="caracteristiqueId" value="${tempCarac.id}" />
+                </c:url>
                 <tr>
                     <td>${tempCarac.nom}</td>
                     <td>${tempCarac.definition}</td>
+                    <td>
+                        <a href="${updateLink}">Update</a>
+                        |
+                    </td>
+                    <td>
+                        <a href="${deleteLink}">Delete</a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

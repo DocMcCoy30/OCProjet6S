@@ -32,7 +32,7 @@ public interface PhotoManager {
 
     /**
      * Supprimer un objet de type Photo
-     * @param pPhoto : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deletePhoto (Photo pPhoto);
+    void deletePhoto (int pId);
 }

@@ -30,7 +30,7 @@ public class RegionManagerImpl extends AbstractManager implements RegionManager 
     }
 
     @Override
-    public void deleteRegion(Region pRegion) {
+    public void deleteRegion(int pId) {
 
     }
 }

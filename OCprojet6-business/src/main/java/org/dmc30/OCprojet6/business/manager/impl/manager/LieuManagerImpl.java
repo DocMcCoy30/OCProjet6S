@@ -30,7 +30,7 @@ public class LieuManagerImpl extends AbstractManager implements LieuManager {
     }
 
     @Override
-    public void deleteLieu(Lieu pLieu) {
+    public void deleteLieu(int pId) {
 
     }
 }

@@ -32,7 +32,7 @@ public interface UtilisateurManager {
 
     /**
      * Supprimer un objet de type Utilisateur
-     * @param pUtilisateur : l'objet à supprimer
+     * @param pId : l'identifiant de l'objet à supprimer
      */
-    void deleteUtilisateur (Utilisateur pUtilisateur);
+    void deleteUtilisateur (int pId);
 }
