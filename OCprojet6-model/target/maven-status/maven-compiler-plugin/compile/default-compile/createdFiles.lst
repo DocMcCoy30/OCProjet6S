@@ -1,0 +1,14 @@
+org\dmc30\OCprojet6\model\bean\Ville.class
+org\dmc30\OCprojet6\model\bean\Voie.class
+org\dmc30\OCprojet6\model\bean\Departement.class
+org\dmc30\OCprojet6\model\bean\Site.class
+org\dmc30\OCprojet6\model\bean\Commentaire.class
+org\dmc30\OCprojet6\model\bean\TypeRoche.class
+org\dmc30\OCprojet6\model\bean\Region.class
+org\dmc30\OCprojet6\model\bean\Topo.class
+org\dmc30\OCprojet6\model\bean\Lieu.class
+org\dmc30\OCprojet6\model\bean\Cotation.class
+org\dmc30\OCprojet6\model\bean\Photo.class
+org\dmc30\OCprojet6\model\bean\Utilisateur.class
+org\dmc30\OCprojet6\model\bean\Caracteristique.class
+org\dmc30\OCprojet6\model\bean\Secteur.class

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.dmc30.OCprojet6.model.bean</OriginalElement>
+  <nodes>
+    <node x="62.07663690476198" y="528.0">org.dmc30.OCprojet6.model.bean.Lieu</node>
+    <node x="100.35342261904759" y="125.0">org.dmc30.OCprojet6.model.bean.Departement</node>
+    <node x="648.6383928571428" y="136.0">org.dmc30.OCprojet6.model.bean.Photo</node>
+    <node x="637.8675595238095" y="738.0">org.dmc30.OCprojet6.model.bean.Site</node>
+    <node x="872.1666666666666" y="1105.0">org.dmc30.OCprojet6.model.bean.Utilisateur</node>
+    <node x="546.4575892857142" y="517.0">org.dmc30.OCprojet6.model.bean.Secteur</node>
+    <node x="30.437499999999886" y="316.0">org.dmc30.OCprojet6.model.bean.Region</node>
+    <node x="304.4374999999999" y="125.0">org.dmc30.OCprojet6.model.bean.Caracteristique</node>
+    <node x="751.8675595238094" y="550.0">org.dmc30.OCprojet6.model.bean.TypeRoche</node>
+    <node x="1050.8675595238096" y="517.0">org.dmc30.OCprojet6.model.bean.Topo</node>
+    <node x="400.25074404761904" y="272.0">org.dmc30.OCprojet6.model.bean.Voie</node>
+    <node x="480.4374999999999" y="136.0">org.dmc30.OCprojet6.model.bean.Cotation</node>
+    <node x="881.8675595238094" y="550.0">org.dmc30.OCprojet6.model.bean.Commentaire</node>
+    <node x="128.4590773809524" y="0.0">org.dmc30.OCprojet6.model.bean.Ville</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.dmc30.OCprojet6.model.bean.Site" target="org.dmc30.OCprojet6.model.bean.TypeRoche">
+      <point x="10.208333333333258" y="-158.5" />
+      <point x="770.5758928571428" y="718.0" />
+      <point x="779.3675595238094" y="718.0" />
+      <point x="-27.5" y="37.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Site" target="org.dmc30.OCprojet6.model.bean.Topo">
+      <point x="112.29166666666663" y="-158.5" />
+      <point x="872.6592261904761" y="718.0" />
+      <point x="1109.3675595238096" y="718.0" />
+      <point x="-19.5" y="70.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Lieu" target="org.dmc30.OCprojet6.model.bean.Departement">
+      <point x="-46.5" y="-59.5" />
+      <point x="108.57663690476198" y="487.0" />
+      <point x="19.9375" y="487.0" />
+      <point x="19.9375" y="242.0" />
+      <point x="118.72842261904759" y="242.0" />
+      <point x="-55.125" y="48.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Lieu" target="org.dmc30.OCprojet6.model.bean.Ville">
+      <point x="-77.5" y="-59.5" />
+      <point x="77.57663690476198" y="497.0" />
+      <point x="0.0" y="497.0" />
+      <point x="0.0" y="95.0" />
+      <point x="141.3340773809524" y="95.0" />
+      <point x="-38.625" y="37.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Site" target="org.dmc30.OCprojet6.model.bean.Lieu">
+      <point x="-91.87500000000011" y="-158.5" />
+      <point x="668.4925595238094" y="708.0" />
+      <point x="201.57663690476198" y="708.0" />
+      <point x="46.5" y="59.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Secteur" target="org.dmc30.OCprojet6.model.bean.Voie">
+      <point x="-61.125" y="-70.5" />
+      <point x="566.8325892857142" y="497.0" />
+      <point x="465.00074404761904" y="497.0" />
+      <point x="-64.75" y="92.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Site" target="org.dmc30.OCprojet6.model.bean.Secteur">
+      <point x="-71.45833333333348" y="-158.5" />
+      <point x="688.909226190476" y="698.0" />
+      <point x="587.2075892857142" y="698.0" />
+      <point x="-40.75" y="70.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Utilisateur" target="org.dmc30.OCprojet6.model.bean.Topo">
+      <point x="21.0" y="-92.5" />
+      <point x="977.1666666666666" y="1075.0" />
+      <point x="1162.3675595238096" y="1075.0" />
+      <point x="1162.3675595238096" y="718.0" />
+      <point x="1148.3675595238096" y="718.0" />
+      <point x="19.5" y="70.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Lieu" target="org.dmc30.OCprojet6.model.bean.Region">
+      <point x="-15.5" y="-59.5" />
+      <point x="139.57663690476198" y="477.0" />
+      <point x="90.93749999999989" y="477.0" />
+      <point x="-60.5" y="48.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Voie" target="org.dmc30.OCprojet6.model.bean.Caracteristique">
+      <point x="-64.75" y="-92.5" />
+      <point x="465.00074404761904" y="242.0" />
+      <point x="421.4374999999999" y="242.0" />
+      <point x="39.0" y="48.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Voie" target="org.dmc30.OCprojet6.model.bean.Photo">
+      <point x="107.91666666666663" y="-92.5" />
+      <point x="637.6674107142857" y="252.0" />
+      <point x="674.3883928571428" y="252.0" />
+      <point x="-25.75" y="37.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Site" target="org.dmc30.OCprojet6.model.bean.Photo">
+      <point x="-30.625" y="-158.5" />
+      <point x="730.3675595238094" y="252.0" />
+      <point x="725.8883928571428" y="252.0" />
+      <point x="25.75" y="37.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Secteur" target="org.dmc30.OCprojet6.model.bean.Photo">
+      <point x="20.375" y="-70.5" />
+      <point x="648.3325892857142" y="497.0" />
+      <point x="681.9374999999999" y="497.0" />
+      <point x="681.9374999999999" y="252.0" />
+      <point x="691.5550595238094" y="252.0" />
+      <point x="-8.583333333333371" y="37.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Site" target="org.dmc30.OCprojet6.model.bean.Commentaire">
+      <point x="71.45833333333337" y="-158.5" />
+      <point x="831.8258928571429" y="698.0" />
+      <point x="993.6175595238094" y="698.0" />
+      <point x="37.25" y="37.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Departement" target="org.dmc30.OCprojet6.model.bean.Ville">
+      <point x="36.75" y="-48.5" />
+      <point x="210.6034226190476" y="105.0" />
+      <point x="192.8340773809524" y="105.0" />
+      <point x="12.875" y="37.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Utilisateur" target="org.dmc30.OCprojet6.model.bean.Site">
+      <point x="-63.0" y="-92.5" />
+      <point x="893.1666666666666" y="1085.0" />
+      <point x="699.1175595238095" y="1085.0" />
+      <point x="-61.25" y="158.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Voie" target="org.dmc30.OCprojet6.model.bean.Cotation">
+      <point x="-21.58333333333337" y="-92.5" />
+      <point x="508.16741071428567" y="252.0" />
+      <point x="511.1874999999999" y="252.0" />
+      <point x="-30.75" y="37.5" />
+    </edge>
+    <edge source="org.dmc30.OCprojet6.model.bean.Region" target="org.dmc30.OCprojet6.model.bean.Departement">
+      <point x="-60.5" y="-48.5" />
+      <point x="90.93749999999989" y="252.0" />
+      <point x="155.4784226190476" y="252.0" />
+      <point x="-18.375" y="48.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.49389312977099237" x="615.5" y="645.0" />
+  <SelectedNodes>
+    <node>org.dmc30.OCprojet6.model.bean.Lieu</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
