@@ -18,7 +18,4 @@ public abstract class AbstractManager {
         daoFactory = pDaoFactory;
     }
 
-    public void createCaractéristique(Caracteristique pCracteristique) {
-
-    }
 }

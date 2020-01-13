@@ -45,13 +45,4 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>Test</servlet-name>
-        <servlet-class>org.dmc30.OCprojet6.webapp.servlets.CaracTestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
-
 </web-app>

@@ -1,4 +1,4 @@
-package org.dmc30.OCprojet6.webapp.servlets;
+package org.dmc30.OCprojet6.webapp.controller;
 
 import org.dmc30.OCprojet6.model.bean.Caracteristique;
 import org.dmc30.OCprojet6.webapp.resource.CaracteristiqueResource;

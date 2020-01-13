@@ -45,13 +45,17 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>Test</servlet-name>
-        <servlet-class>org.dmc30.OCprojet6.webapp.servlets.CaracTestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
+    <!--
+    DelegatingFilterProxy looks for a Spring bean by the name of filter (springSecurityFilterChain) and delegates
+    all work to that Bean. This is how the Servlet Container can a Spring Bean to act as a Servlet Filter.
+-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

@@ -1,16 +1,22 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+
 <html>
 <head>
-    <title>Save Customer</title>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-    <link type="text/css" rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/css/add-customer-style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Modifier une caracteristique</title>
 </head>
 <body>
 
-<div id="wrapper">
+<div id="wrapper"class="col-md-10 col-offset-2">
     <div id="header">
-        <h2>Ajout Caracteristique</h2>
+        <h2>Modification d'une Caracteristique</h2>
     </div>
 </div>
 <div id="container">
@@ -20,6 +26,7 @@
         <table>
             <tbody>
             <tr>
+
                 <td><label>Nom :</label></td>
                 <td><form:input path="nom"/></td>
             </tr>
@@ -34,9 +41,8 @@
             </tbody>
         </table>
     </form:form>
-    <div style="clear:both"></div>
     <p>
-        <a href="${pageContext.request.contextPath}/caracteristique/liste">Back to list</a>
+        <a href="${pageContext.request.contextPath}/caracteristique/liste">Retour à la liste</a>
     </p>
 </div>
 </body>
