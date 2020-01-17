@@ -11,26 +11,29 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager {
 
     @Override
     public void createTopo(Topo pTopo) {
+        getDaoFactory().getTopoDao().createTopo(pTopo);
 
     }
 
     @Override
     public Topo getTopoById(int pId) {
-        return null;
+        Topo vTopo = getDaoFactory().getTopoDao().readTopo(pId);
+        return vTopo;
     }
 
     @Override
     public List<Topo> getListTopos() {
-        return null;
+        List<Topo> vListTopo = getDaoFactory().getTopoDao().readAllTopos();
+        return vListTopo;
     }
 
     @Override
     public void updateTopo(Topo pTopo) {
-
+        getDaoFactory().getTopoDao().updateTopo(pTopo);
     }
 
     @Override
     public void deleteTopo(int pId) {
-
+        getDaoFactory().getTopoDao().deleteTopo(pId);
     }
 }

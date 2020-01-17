@@ -10,11 +10,11 @@ import java.util.List;
 public class CaracteristiqueResource extends AbstractResource{
 
     public void createCaracteristique (Caracteristique pCaracteristique) {
-        getManagerFactory().getCaracteristiqueManager().createCaractéristique(pCaracteristique);
+        getManagerFactory().getCaracteristiqueManager().createCaracteristique(pCaracteristique);
     }
 
     public Caracteristique getCracteristiqueById (int pId) {
-        return getManagerFactory().getCaracteristiqueManager().getCaracteristique(pId);
+        return getManagerFactory().getCaracteristiqueManager().getCaracteristiqueById(pId);
     }
 
     public List<Caracteristique> getListCaracteristique() {

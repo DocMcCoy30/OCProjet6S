@@ -1,7 +1,8 @@
 package org.dmc30.OCprojet6.consumer.impl;
 
 import org.dmc30.OCprojet6.consumer.contract.DaoFactory;
-import org.dmc30.OCprojet6.consumer.contract.dao.CaracteristiqueDao;
+import org.dmc30.OCprojet6.consumer.contract.dao.*;
+import org.dmc30.OCprojet6.model.bean.Commentaire;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,16 +11,183 @@ import javax.inject.Named;
 public class DaoFactoryImpl implements DaoFactory {
 
     @Inject
+    AuthoritiesDao authoritiesDao;
+    @Inject
     CaracteristiqueDao caracteristiqueDao;
+    @Inject
+    CommentaireDao commentaireDao;
+    @Inject
+    CotationDao cotationDao;
+    @Inject
+    DepartementDao departementDao;
+    @Inject
+    LieuDao lieuDao;
+    @Inject
+    PhotoDao photoDao;
+    @Inject
+    RegionDao regionDao;
+    @Inject
+    SecteurDao secteurDao;
+    @Inject
+    SiteDao siteDao;
+    @Inject
+    TopoDao topoDao;
+    @Inject
+    TypeRocheDao typeRocheDao;
+    @Inject
+    UsersDao usersDao;
+    @Inject
+    VilleDao villeDao;
+    @Inject
+    VoieDao voieDao;
+
+    @Override
+    public AuthoritiesDao getAuthoritiesDao() {
+        return authoritiesDao;
+    }
+
+    @Override
+    public void setAuthoritiesDao(AuthoritiesDao authoritiesDao) {
+        this.authoritiesDao = authoritiesDao;
+    }
 
     @Override
     public CaracteristiqueDao getCaracteristiqueDao() {
-
         return caracteristiqueDao;
     }
 
     @Override
     public void setCaracteristiqueDao(CaracteristiqueDao caracteristiqueDao) {
+        this.caracteristiqueDao = caracteristiqueDao;
+    }
 
+    @Override
+    public CommentaireDao getCommentaireDao() {
+        return commentaireDao;
+    }
+
+    @Override
+    public void setCommentaireDao(CommentaireDao commentaireDao) {
+        this.commentaireDao = commentaireDao;
+    }
+
+    @Override
+    public CotationDao getCotationDao() {
+        return cotationDao;
+    }
+
+    @Override
+    public void setCotationDao(CotationDao cotationDao) {
+        this.cotationDao = cotationDao;
+    }
+
+    @Override
+    public DepartementDao getDepartementDao() {
+        return departementDao;
+    }
+
+    @Override
+    public void setDepartementDao(DepartementDao departementDao) {
+        this.departementDao = departementDao;
+    }
+
+    @Override
+    public LieuDao getLieuDao() {
+        return lieuDao;
+    }
+
+    @Override
+    public void setLieuDao(LieuDao lieuDao) {
+        this.lieuDao = lieuDao;
+    }
+
+    @Override
+    public PhotoDao getPhotoDao() {
+        return photoDao;
+    }
+
+    @Override
+    public void setPhotoDao(PhotoDao photoDao) {
+        this.photoDao = photoDao;
+    }
+
+    @Override
+    public RegionDao getRegionDao() {
+        return regionDao;
+    }
+
+    @Override
+    public void setRegionDao(RegionDao regionDao) {
+        this.regionDao = regionDao;
+    }
+
+    @Override
+    public SecteurDao getSecteurDao() {
+        return secteurDao;
+    }
+
+    @Override
+    public void setSecteurDao(SecteurDao secteurDao) {
+        this.secteurDao = secteurDao;
+    }
+
+    @Override
+    public SiteDao getSiteDao() {
+        return siteDao;
+    }
+
+    @Override
+    public void setSiteDao(SiteDao siteDao) {
+        this.siteDao = siteDao;
+    }
+
+    @Override
+    public TopoDao getTopoDao() {
+        return topoDao;
+    }
+
+    @Override
+    public void setTopoDao(TopoDao topoDao) {
+        this.topoDao = topoDao;
+    }
+
+    @Override
+    public TypeRocheDao getTypeRocheDao() {
+        return typeRocheDao;
+    }
+
+    @Override
+    public void setTypeRocheDao(TypeRocheDao typeRocheDao) {
+        this.typeRocheDao = typeRocheDao;
+    }
+
+    @Override
+    public UsersDao getUsersDao() {
+        return usersDao;
+    }
+
+    @Override
+    public void setUsersDao(UsersDao usersDao) {
+        this.usersDao = usersDao;
+    }
+
+    @Override
+    public VilleDao getVilleDao() {
+        return villeDao;
+    }
+
+    @Override
+    public void setVilleDao(VilleDao villeDao) {
+        this.villeDao = villeDao;
+    }
+
+    @Override
+    public VoieDao getVoieDao() {
+        return voieDao;
+    }
+
+    @Override
+    public void setVoieDao(VoieDao voieDao) {
+        this.voieDao = voieDao;
     }
 }

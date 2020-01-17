@@ -9,14 +9,14 @@ public interface CaracteristiqueManager {
     /**
      * Enregistre un objet de type Caracteristique dans la database
      */
-    void createCaractéristique (Caracteristique pCaracteristique);
+    void createCaracteristique (Caracteristique pCaracteristique);
 
     /**
      * Cherche et renvoie un objet de type Caracteristique dans la database
      * @param pId l'identifiant de l'objet recherché
      * @return l'objet recherché
      */
-    Caracteristique getCaracteristique (int pId);
+    Caracteristique getCaracteristiqueById (int pId);
 
     /**
      * Cherche et renvoie la liste des objets de type Caracteristique

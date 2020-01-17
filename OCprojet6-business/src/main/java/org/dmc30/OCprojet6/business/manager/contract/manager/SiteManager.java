@@ -22,7 +22,7 @@ public interface SiteManager {
      * Cherche et renvoie la liste des objets de type Site stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Site> getlistSites ();
+    List<Site> getListSites ();
 
     /**
      * Modifie un objet de type Site

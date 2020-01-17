@@ -8,8 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"" rel="stylesheet" crossorigin="anonymous">
     <title>Page de connection</title>
 </head>
 
@@ -51,7 +50,7 @@
                         <div class="col-sm-6 controls">
                             <button type="submit" class="btn btn-primary">Se connecter</button>
                             <br><br>
-                            <a href="${pageContext.request.contextPath}/user/creation">Vous n'avez pas de compte</a>
+                            <a href="${pageContext.request.contextPath}/users/creation">Vous n'avez pas de compte</a>
                         </div>
                     </div>
                 </form>

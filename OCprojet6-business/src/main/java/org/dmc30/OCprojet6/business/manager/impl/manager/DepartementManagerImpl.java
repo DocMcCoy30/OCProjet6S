@@ -1,7 +1,6 @@
 package org.dmc30.OCprojet6.business.manager.impl.manager;
 
 import org.dmc30.OCprojet6.business.manager.contract.manager.DepartementManager;
-import org.dmc30.OCprojet6.business.manager.impl.manager.AbstractManager;
 import org.dmc30.OCprojet6.model.bean.Departement;
 
 import javax.inject.Named;
@@ -12,26 +11,29 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
 
     @Override
     public void createDepartement(Departement pDepartement) {
+        getDaoFactory().getDepartementDao().createDepartement(pDepartement);
 
     }
 
     @Override
     public Departement getDepartementByCode(String pCode) {
-        return null;
+        Departement vDepartement = getDaoFactory().getDepartementDao().readDepartement(pCode);
+        return vDepartement;
     }
 
     @Override
     public List<Departement> getListDepartements() {
-        return null;
+        List<Departement> vListDepartement = getDaoFactory().getDepartementDao().readAllDepartements();
+        return vListDepartement;
     }
 
     @Override
     public void updateDepartement(Departement pDepartement) {
-
+        getDaoFactory().getDepartementDao().updateDepartement(pDepartement);
     }
 
     @Override
     public void deleteDepartement(int pId) {
-
+        getDaoFactory().getDepartementDao().deleteDepartement(pId);
     }
 }

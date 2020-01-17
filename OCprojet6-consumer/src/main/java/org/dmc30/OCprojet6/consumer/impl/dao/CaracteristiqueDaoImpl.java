@@ -25,12 +25,13 @@ public class CaracteristiqueDaoImpl extends AbstractDao implements Caracteristiq
         String vSQL = "INSERT INTO caracteristique (nom, definition) VALUES (?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, vNom, vDefinition);
+
     }
 
     @Override
     public Caracteristique readCaracteristique(int pId) {
 
-        String vSQL = "SELECT * FROM caracteristique WHERE id="+pId;
+        String vSQL = "SELECT * FROM caracteristique WHERE caracteristique_id="+pId;
 
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
 
@@ -57,7 +58,7 @@ public class CaracteristiqueDaoImpl extends AbstractDao implements Caracteristiq
 
     @Override
     public void updateCaracteristique(Caracteristique pCaracteristique) {
-        String vSQL = "UPDATE caracteristique SET nom= :nom, definition= :definition WHERE id= :id";
+        String vSQL = "UPDATE caracteristique SET nom= :nom, definition= :definition WHERE caracteristique_id= :id";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("nom", pCaracteristique.getNom());
         vParams.addValue("definition", pCaracteristique.getDefinition());
@@ -68,7 +69,7 @@ public class CaracteristiqueDaoImpl extends AbstractDao implements Caracteristiq
 
     @Override
     public void deleteCaracteristique(int pId) {
-        String vSQL = "DELETE  FROM caracteristique WHERE id="+pId;
+        String vSQL = "DELETE  FROM caracteristique WHERE caracteristique_id="+pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         vJdbcTemplate.execute(vSQL);
     }

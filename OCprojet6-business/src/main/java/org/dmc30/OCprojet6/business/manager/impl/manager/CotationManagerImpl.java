@@ -11,26 +11,29 @@ public class CotationManagerImpl extends AbstractManager implements CotationMana
 
     @Override
     public void createCotation(Cotation pCotation) {
+        getDaoFactory().getCotationDao().createCotation(pCotation);
 
     }
 
     @Override
     public Cotation getCotationById(int pId) {
-        return null;
+        Cotation vCotation = getDaoFactory().getCotationDao().readCotation(pId);
+        return vCotation;
     }
 
     @Override
     public List<Cotation> getListCotations() {
-        return null;
+        List<Cotation> vListCotation = getDaoFactory().getCotationDao().readAllCotations();
+        return vListCotation;
     }
 
     @Override
     public void updateCotation(Cotation pCotation) {
-
+        getDaoFactory().getCotationDao().updateCotation(pCotation);
     }
 
     @Override
     public void deleteCotation(int pId) {
-
+        getDaoFactory().getCotationDao().deleteCotation(pId);
     }
 }

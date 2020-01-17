@@ -11,26 +11,29 @@ public class LieuManagerImpl extends AbstractManager implements LieuManager {
 
     @Override
     public void createLieu(Lieu pLieu) {
+        getDaoFactory().getLieuDao().createLieu(pLieu);
 
     }
 
     @Override
     public Lieu getLieuById(int pId) {
-        return null;
+        Lieu vLieu = getDaoFactory().getLieuDao().readLieu(pId);
+        return vLieu;
     }
 
     @Override
     public List<Lieu> getListLieux() {
-        return null;
+        List<Lieu> vListLieu = getDaoFactory().getLieuDao().readAllLieux();
+        return vListLieu;
     }
 
     @Override
     public void updateLieu(Lieu pLieu) {
-
+        getDaoFactory().getLieuDao().updateLieu(pLieu);
     }
 
     @Override
     public void deleteLieu(int pId) {
-
+        getDaoFactory().getLieuDao().deleteLieu(pId);
     }
 }

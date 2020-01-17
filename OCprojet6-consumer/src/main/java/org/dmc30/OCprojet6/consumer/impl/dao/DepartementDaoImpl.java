@@ -11,12 +11,27 @@ import java.util.List;
 public class DepartementDaoImpl extends AbstractDao implements DepartementDao {
 
     @Override
+    public void createDepartement(Departement pDepartement) {
+
+    }
+
+    @Override
     public Departement readDepartement(String code) {
         return null;
     }
 
     @Override
     public List<Departement> readAllDepartements() {
-            return null;
+        return null;
+    }
+
+    @Override
+    public void updateDepartement(Departement pDepartement) {
+
+    }
+
+    @Override
+    public void deleteDepartement(int pId) {
+
     }
 }

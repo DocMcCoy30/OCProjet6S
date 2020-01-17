@@ -12,7 +12,7 @@ public class CaracteristiqueRM implements RowMapper<Caracteristique> {
 
     @Override
     public Caracteristique mapRow(ResultSet resultSet, int i) throws SQLException {
-        Caracteristique vCaracteristique = new Caracteristique(resultSet.getInt("id"));
+        Caracteristique vCaracteristique = new Caracteristique(resultSet.getInt("caracteristique_id"));
         vCaracteristique.setNom(resultSet.getString("nom"));
         vCaracteristique.setDefinition(resultSet.getString("definition"));
         return vCaracteristique;

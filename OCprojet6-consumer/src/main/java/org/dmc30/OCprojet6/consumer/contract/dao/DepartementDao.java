@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface DepartementDao {
 
+    void createDepartement (Departement pDepartement);
     Departement readDepartement (String code);
     List<Departement> readAllDepartements ();
+    void updateDepartement (Departement pDepartement);
+    void deleteDepartement(int pId);
 }
+

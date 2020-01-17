@@ -8,8 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <title>Page de création de compte</title>
 </head>
 
@@ -23,15 +22,29 @@
                 <div class="panel-title">Créer un compte</div>
             </div>
             <div style="padding-top: 30px" class="panel-body">
-                <form action="${pageContext.request.contextPath}/compte"
+                <form:form action="creationCompte" modelAttribute="users"
                       method="POST" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-xs-15">
+                            <div>
+                                <c:if test="${ !empty error}">
+                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                        <c:out value="${error}" />
+                                    </div>
+                                </c:if>
+                            </div>
+                            <div>
+                                <c:if test="${ !empty message}">
+                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                        <c:out value="${message}" />
+                                    </div>
+                                </c:if>
+                            </div>
                         </div>
                     </div>
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" name="identifiant" placeholder="identifiant" class="form-control">
+                        <input type="text" name="username" placeholder="identifiant" class="form-control">
                     </div>
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -46,10 +59,10 @@
                         <div class="col-sm-6 controls">
                             <button type="submit" class="btn btn-primary">Creer un compte</button>
                             <br><br>
-                            <a href="${pageContext.request.contextPath}/user/connection">Vous avez déjà un compte</a>
+                            <a href="${pageContext.request.contextPath}/users/connection">Vous avez déjà un compte</a>
                         </div>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>

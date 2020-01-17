@@ -11,13 +11,13 @@ public class CaracteristiqueManagerImpl extends AbstractManager implements Carac
 
 
     @Override
-    public void createCaractéristique(Caracteristique pCaracteristique) {
+    public void createCaracteristique(Caracteristique pCaracteristique) {
         getDaoFactory().getCaracteristiqueDao().createCaracteristique(pCaracteristique);
 
     }
 
     @Override
-    public Caracteristique getCaracteristique(int pId) {
+    public Caracteristique getCaracteristiqueById(int pId) {
         Caracteristique vCaracteristique = getDaoFactory().getCaracteristiqueDao().readCaracteristique(pId);
         return vCaracteristique;
     }

@@ -17,16 +17,16 @@ public class CaracteristiqueController {
     private CaracteristiqueResource caracteristiqueResource;
 
     @GetMapping("/liste")
-    public String listCaracteristique(Model theModel) {
+    public String listCaracteristique(Model pModel) {
         List<Caracteristique> vCaracteristique = caracteristiqueResource.getListCaracteristique();
-        theModel.addAttribute("caracteristiques", vCaracteristique);
+        pModel.addAttribute("caracteristiques", vCaracteristique);
         return "liste-caracteristique";
     }
 
     @GetMapping("/formulaireAjout")
-    public String showFormForAdd(Model theModel) {
+    public String showFormForAdd(Model pModel) {
         Caracteristique vCaracteristique = new Caracteristique();
-        theModel.addAttribute("caracteristique", vCaracteristique);
+        pModel.addAttribute("caracteristique", vCaracteristique);
         return "formulaire-ajout";
     }
 
@@ -37,9 +37,9 @@ public class CaracteristiqueController {
     }
 
     @GetMapping("/formulaireUpdate")
-    public String showFormForUpdate(@RequestParam("caracteristiqueId") int pId, Model theModel) {
+    public String showFormForUpdate(@RequestParam("caracteristiqueId") int pId, Model pModel) {
         Caracteristique vCaracteristique = caracteristiqueResource.getCracteristiqueById(pId);
-        theModel.addAttribute(vCaracteristique);
+        pModel.addAttribute(vCaracteristique);
         return "formulaire-update";
     }
 
