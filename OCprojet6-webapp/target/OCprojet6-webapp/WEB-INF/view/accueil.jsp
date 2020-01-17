@@ -20,7 +20,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/">Accueil<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/accueil">Accueil<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Sites</a>
         </div>
     </div>
     <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/users/connection">Se connecter</a>

@@ -11,8 +11,6 @@ import javax.inject.Named;
 public class DaoFactoryImpl implements DaoFactory {
 
     @Inject
-    AuthoritiesDao authoritiesDao;
-    @Inject
     CaracteristiqueDao caracteristiqueDao;
     @Inject
     CommentaireDao commentaireDao;
@@ -35,21 +33,13 @@ public class DaoFactoryImpl implements DaoFactory {
     @Inject
     TypeRocheDao typeRocheDao;
     @Inject
+    UserRoleDao userRoleDao;
+    @Inject
     UsersDao usersDao;
     @Inject
     VilleDao villeDao;
     @Inject
     VoieDao voieDao;
-
-    @Override
-    public AuthoritiesDao getAuthoritiesDao() {
-        return authoritiesDao;
-    }
-
-    @Override
-    public void setAuthoritiesDao(AuthoritiesDao authoritiesDao) {
-        this.authoritiesDao = authoritiesDao;
-    }
 
     @Override
     public CaracteristiqueDao getCaracteristiqueDao() {
@@ -159,6 +149,16 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setTypeRocheDao(TypeRocheDao typeRocheDao) {
         this.typeRocheDao = typeRocheDao;
+    }
+
+    @Override
+    public UserRoleDao getUserRoleDao() {
+        return userRoleDao;
+    }
+
+    @Override
+    public void setUserRoleDao(UserRoleDao userRoleDao) {
+        this.userRoleDao = userRoleDao;
     }
 
     @Override

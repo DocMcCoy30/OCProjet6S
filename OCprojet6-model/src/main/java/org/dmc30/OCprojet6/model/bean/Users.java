@@ -8,7 +8,6 @@ public class Users {
     private String password;
     private String email;
     private int enabled;
-    private Authorities authorities;
     private List<Site> listSites;
     private List<Topo> listTopos;
 
@@ -46,14 +45,6 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Authorities getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(Authorities authorities) {
-        this.authorities = authorities;
     }
 
     public List<Site> getListSites() {

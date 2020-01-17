@@ -10,8 +10,6 @@ import javax.inject.Named;
 public class ManagerFactoryImpl implements ManagerFactory {
 
     @Inject
-    AuthoritiesManager authoritiesManager;
-    @Inject
     CaracteristiqueManager caracteristiqueManager;
     @Inject
     CommentaireManager commentaireManager;
@@ -39,17 +37,6 @@ public class ManagerFactoryImpl implements ManagerFactory {
     VilleManager villeManager;
     @Inject
     VoieManager voieManager;
-
-
-    @Override
-    public AuthoritiesManager getAuthoritiesManager() {
-        return authoritiesManager;
-    }
-
-    @Override
-    public void setAuthoritiesManager(AuthoritiesManager authoritiesManager) {
-        this.authoritiesManager = authoritiesManager;
-    }
 
     @Override
     public CaracteristiqueManager getCaracteristiqueManager() {

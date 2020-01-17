@@ -4,13 +4,9 @@ import org.dmc30.OCprojet6.consumer.contract.dao.*;
 
 public interface DaoFactory {
 
-    AuthoritiesDao getAuthoritiesDao();
+    CaracteristiqueDao getCaracteristiqueDao();
 
-    void setAuthoritiesDao(AuthoritiesDao authoritiesDao);
-
-    abstract CaracteristiqueDao getCaracteristiqueDao();
-
-    abstract void setCaracteristiqueDao(CaracteristiqueDao caracteristiqueDao);
+    void setCaracteristiqueDao(CaracteristiqueDao caracteristiqueDao);
 
     CommentaireDao getCommentaireDao();
 
@@ -51,6 +47,10 @@ public interface DaoFactory {
     TypeRocheDao getTypeRocheDao();
 
     void setTypeRocheDao(TypeRocheDao typeRocheDao);
+
+    UserRoleDao getUserRoleDao();
+
+    void setUserRoleDao(UserRoleDao userRoleDao);
 
     UsersDao getUsersDao();
 

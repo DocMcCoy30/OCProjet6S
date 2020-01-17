@@ -2,13 +2,11 @@ package org.dmc30.OCprojet6.webapp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
 public class Accueil {
 
-    @GetMapping
+    @GetMapping(value = {"/", "/accueil"})
     public String showWelcomePage() {
         return "accueil";
     }

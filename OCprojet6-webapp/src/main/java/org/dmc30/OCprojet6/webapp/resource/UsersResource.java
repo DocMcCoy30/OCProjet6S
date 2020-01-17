@@ -17,18 +17,6 @@ public class UsersResource extends AbstractResource{
         return getManagerFactory().getUsersManager().getUsersByName(pUsername);
     }
 
-    public List<Users> getListUsers() {
-        return getManagerFactory().getUsersManager().getListUsers();
-    }
-
-    public void updateUsers (Users pUsers) {
-        getManagerFactory().getUsersManager().updateUsers(pUsers);
-    }
-
-    public void deleteCarateristique (int pId) {
-        getManagerFactory().getUsersManager().deleteUsers(pId);
-    }
-
     public Boolean rechercheDoublon (String pUsername) {
         return getManagerFactory().getUsersManager().rechercheDoublon(pUsername);
     }
