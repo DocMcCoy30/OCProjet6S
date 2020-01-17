@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -30,21 +31,21 @@ public class UsersController {
     }
 
     @PostMapping("creationCompte")
-    public String saveUsers(@ModelAttribute("users") Users pUsers, HttpServletRequest request) {
-        String vMessage, vError;
-        String vPath;
-        boolean vDoublon = usersResource.rechercheDoublon(pUsers.getUsername());
-        if (!vDoublon) {
-            usersResource.createUsers(pUsers);
-            vMessage = "Votre compte est créé !";
-            vPath = "formulaire-creation-compte";
-            request.setAttribute("message", vMessage);
+    public ModelAndView saveUsers(@ModelAttribute("users") Users pUsers, HttpServletRequest request) {
+        ModelAndView vModel = new ModelAndView();
+        int [] vResult = usersResource.rechercheDoublon(pUsers);
+        if (vResult[0] != 0) {
+            vModel.addObject("error", "Cet identifiant existe déjà !");
+            vModel.setViewName("formulaire-creation-compte");
+        }
+        else if (vResult[1] != 0){
+            vModel.addObject("error", "Cet email existe déjà !");
+            vModel.setViewName("formulaire-creation-compte");
         }
         else {
-            vError = "L'identifiant existe déjà !";
-            vPath = "formulaire-creation-compte";
-            request.setAttribute("error", vError);
+            vModel.addObject("message", "Votre compte est créé !");
+            vModel.setViewName("formulaire-creation-compte");
         }
-        return vPath;
+        return vModel;
 }
 }

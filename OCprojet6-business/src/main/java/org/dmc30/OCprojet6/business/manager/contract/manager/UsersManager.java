@@ -38,8 +38,8 @@ public interface UsersManager {
 
     /**
      * Recherche de doublon pour creation de compte
-     * @param pUsername le username entré dans le formulaire de création de compte
+     * @param pUsers le Users renseigné dans le formulaire de creéation de compte
      * @return false ou true
      */
-    boolean rechercheDoublon (String pUsername);
+    int[] rechercheDoublon (Users pUsers);
 }

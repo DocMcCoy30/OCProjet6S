@@ -17,8 +17,8 @@ public class UsersResource extends AbstractResource{
         return getManagerFactory().getUsersManager().getUsersByName(pUsername);
     }
 
-    public Boolean rechercheDoublon (String pUsername) {
-        return getManagerFactory().getUsersManager().rechercheDoublon(pUsername);
+    public int[] rechercheDoublon (Users pUsers) {
+        return getManagerFactory().getUsersManager().rechercheDoublon(pUsers);
     }
 
 

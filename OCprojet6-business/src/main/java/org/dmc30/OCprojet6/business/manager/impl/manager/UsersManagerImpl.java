@@ -44,18 +44,20 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
     }
 
-    public boolean rechercheDoublon (String pUsername) {
+    public int[] rechercheDoublon (Users pUser) {
         List<Users> vListUsers = getDaoFactory().getUsersDao().readAllUsers();
-        int i = 0;
-        Boolean vDoublon = false;
+        int vUsernameMarker = 0;
+        int vEmailMarker = 0;
         for (Users vUsers:vListUsers) {
-            if (pUsername.equals(vUsers.getUsername())) {
-                i++;
+            if ((pUser.getUsername()).equals(vUsers.getUsername())) {
+                vUsernameMarker ++;
+            }
+            else if ((pUser.getEmail()).equals(vUsers.getEmail())) {
+                vEmailMarker ++;
+
             }
         }
-        if (i != 0) {
-            vDoublon=true;
-        }
-        return vDoublon;
+        int [] vResult = {vUsernameMarker, vEmailMarker};
+        return vResult;
     }
 }

@@ -7,7 +7,7 @@ public class Users {
     private String username;
     private String password;
     private String email;
-    private int enabled;
+    private boolean enabled;
     private List<Site> listSites;
     private List<Topo> listTopos;
 
@@ -31,11 +31,11 @@ public class Users {
         this.password = password;
     }
 
-    public int getEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(int enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 

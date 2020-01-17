@@ -23,7 +23,7 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
         String vEmail = pUsers.getEmail();
         String vSQL = "INSERT INTO users (username, password, email, enabled) VALUES (?,?,?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        vJdbcTemplate.update(vSQL, vUserName, vPassword, vEmail, 1);
+        vJdbcTemplate.update(vSQL, vUserName, vPassword, vEmail, true);
     }
 
     @Override

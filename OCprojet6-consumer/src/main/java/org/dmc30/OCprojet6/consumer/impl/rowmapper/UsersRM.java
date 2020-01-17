@@ -15,7 +15,7 @@ public class UsersRM implements RowMapper<Users> {
         Users vUsers = new Users(resultSet.getString("username"));
         vUsers.setPassword(resultSet.getString("password"));
         vUsers.setEmail(resultSet.getString("email"));
-        vUsers.setEnabled(resultSet.getInt("enabled"));
+        vUsers.setEnabled(resultSet.getBoolean("enabled"));
         return vUsers;
     }
 }
