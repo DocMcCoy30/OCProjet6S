@@ -8,65 +8,75 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title>Page de création de compte</title>
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="${pageContext.request.contextPath}">Les amis de l'escalade</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/">Accueil<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/users/connection">Se connecter</a>
+</nav>
 
-<div>
-    <div id="loginbox" style="margin-top: 50px;"
-         class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title">Créer un compte</div>
-            </div>
-            <div style="padding-top: 30px" class="panel-body">
-                <form:form action="creationCompte" modelAttribute="users"
-                      method="POST" class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-xs-15">
-                            <div>
-                                <c:if test="${ !empty error}">
-                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
-                                        <c:out value="${error}" />
-                                    </div>
-                                </c:if>
-                            </div>
-                            <div>
-                                <c:if test="${ !empty message}">
-                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
-                                        <c:out value="${message}" />
-                                    </div>
-                                </c:if>
-                            </div>
+<div class="container" id="signinbox">
+    <div class="card col-md-4 mx-auto" style="margin-top: 100px;">
+        <div class="card-header bg-primary text-white">
+            <div class="card-title">Créer un compte</div>
+        </div>
+        <div class="card-body" style="padding-top: 30px">
+            <form:form action="creationCompte" modelAttribute="users"
+                       method="POST" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-xs-15">
+                        <div>
+                            <c:if test="${ !empty error}">
+                                <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                    <c:out value="${error}"/>
+                                </div>
+                            </c:if>
+                        </div>
+                        <div>
+                            <c:if test="${ !empty message}">
+                                <div class="alert alert-success col-xs-offset-1 col-xs-10">
+                                    <c:out value="${message}"/>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" name="username" placeholder="identifiant" class="form-control">
+                </div>
+                <div style="margin-bottom: 25px" class="input-group">
+                    <input type="text" name="username" placeholder="identifiant" class="form-control" required>
+                </div>
+                <div style="margin-bottom: 25px" class="input-group">
+                    <input type="email" name="email" placeholder="email" class="form-control" required>
+                </div>
+                <div style="margin-bottom: 25px" class="input-group">
+                    <input type="password" name="password" placeholder="mot de passe" class="form-control" required>
+                </div>
+                <!-- Login/Submit Button -->
+                <div style="margin-top: 10px" class="form-group">
+                    <div class="col-sm-8 controls">
+                        <button type="submit" class="btn btn-primary">Creer un compte</button>
                     </div>
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input type="email" name="email" placeholder="email" class="form-control">
+                    <br>
+                    <div class="col-sm-12">
+                        <a href="${pageContext.request.contextPath}/users/connection">Vous avez déjà un compte</a>
                     </div>
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i> </span>
-                        <input type="password" name="password" placeholder="mot de passe" class="form-control">
-                    </div>
-                    <!-- Login/Submit Button -->
-                    <div style="margin-top: 10px" class="form-group">
-                        <div class="col-sm-6 controls">
-                            <button type="submit" class="btn btn-primary">Creer un compte</button>
-                            <br><br>
-                            <a href="${pageContext.request.contextPath}/users/connection">Vous avez déjà un compte</a>
-                        </div>
-                    </div>
-                </form:form>
-            </div>
+                </div>
+            </form:form>
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

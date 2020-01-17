@@ -8,28 +8,39 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title>Page de connection</title>
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="${pageContext.request.contextPath}">Les amis de l'escalade</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/">Accueil<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/users/connection">Se connecter</a>
+</nav>
 
-<div>
-    <div id="loginbox" style="margin-top: 50px;"
-         class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title">Se connecter</div>
+<div class="container" id="loginbox">
+        <div class="card col-md-4 mx-auto" style="margin-top: 100px;">
+            <div class="card-header bg-primary text-white">
+                <div class="card-title">Se connecter</div>
             </div>
-            <div style="padding-top: 30px" class="panel-body">
-                <form action="${pageContext.request.contextPath}/authenticateTheUser"
+            <div style="padding-top: 30px" class="card-body">
+                <form:form action="${pageContext.request.contextPath}/authenticateTheUser"
                       method="POST" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-xs-15">
                             <div>
-                                <c:if test="${param.error != null}">
+                                <c:if test="${ !empty error}">
                                     <div class="alert alert-danger col-xs-offset-1 col-xs-10">
-                                        Identifiant ou Mot de Passe invalide !
+                                        <c:out value="${error}" />
                                     </div>
                                 </c:if>
                             </div>
@@ -43,21 +54,23 @@
                     <!-- Password -->
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" name="password" placeholder="mot de passe" class="form-control">
+                        <input type="password" name="password" placeholder="mot de passe" class="form-control required">
                     </div>
                     <!-- Login/Submit Button -->
                     <div style="margin-top: 10px" class="form-group">
-                        <div class="col-sm-6 controls">
+                        <div class="col-sm-8 controls">
                             <button type="submit" class="btn btn-primary">Se connecter</button>
-                            <br><br>
+                        </div>
+                        <br>
+                        <div class="col-sm-12">
                             <a href="${pageContext.request.contextPath}/users/creation">Vous n'avez pas de compte</a>
                         </div>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
-    </div>
 </div>
+
 
 </body>
 </html>
