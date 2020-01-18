@@ -1,16 +1,47 @@
-<b:beans xmlns="http://www.springframework.org/schema/security"
-         xmlns:b="http://www.springframework.org/schema/beans"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+			 xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http />
+	<!-- enable use-expressions -->
+	<http auto-config="true" use-expressions="true">
 
+		<headers>
+			<cache-control />
+		</headers>
 
-    <user-service>
-        <user name="user" password="password" authorities="ROLE_USER" />
-    </user-service>
+		<intercept-url pattern="/user**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
 
-</b:beans>
+		<form-login login-page="/users/connection"
+		    default-target-url="/accueil"
+			authentication-failure-url="/users/connection?error"
+			username-parameter="username"
+			password-parameter="password" 
+			login-processing-url="/auth/login_check" />
 
+		<logout logout-success-url="/users/connection?logout" delete-cookies="JSESSIONID" />
+		<csrf />
 
+	</http>
+
+	<!-- Select users and user_roles from database -->
+	<authentication-manager>
+
+	    
+		<authentication-provider>
+		    <password-encoder ref="encoder" />
+			<jdbc-user-service data-source-ref="dataSourceOCprojet6"
+				users-by-username-query="select username,password, enabled from users where username=?"
+				authorities-by-username-query="select username, role from user_roles where username =?" />
+		</authentication-provider>
+		
+	</authentication-manager>
+ 
+	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<beans:constructor-arg name="strength" value="10" />
+	</beans:bean>
+
+</beans:beans>

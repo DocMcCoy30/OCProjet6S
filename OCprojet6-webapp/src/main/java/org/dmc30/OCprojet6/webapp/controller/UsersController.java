@@ -43,6 +43,7 @@ public class UsersController {
             vModel.setViewName("formulaire-creation-compte");
         }
         else {
+            usersResource.createUsers(pUsers);
             vModel.addObject("message", "Votre compte est créé !");
             vModel.setViewName("formulaire-creation-compte");
         }

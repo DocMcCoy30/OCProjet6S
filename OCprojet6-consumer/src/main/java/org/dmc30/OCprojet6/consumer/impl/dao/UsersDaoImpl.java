@@ -15,11 +15,13 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
 
     @Inject
     UsersRM usersRM;
+    PasswordEncoderGenerator passwordEncoderGenerator;
 
     @Override
     public void createUsers(Users pUsers) {
         String vUserName = pUsers.getUsername();
-        String vPassword = pUsers.getPassword();
+        PasswordEncoderGenerator encoder = new PasswordEncoderGenerator();
+        String vPassword = encoder.passwordEncoder(pUsers.getPassword());
         String vEmail = pUsers.getEmail();
         String vSQL = "INSERT INTO users (username, password, email, enabled) VALUES (?,?,?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());

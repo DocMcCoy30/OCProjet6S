@@ -9,7 +9,7 @@
     <import resource="classpath:/org.dmc30.OCprojet6.consumer/consumerContext.xml" />
     <import resource="classpath:/org.dmc30.OCprojet6.webapp/webappContext.xml" />
     <import resource="classpath:/org.dmc30.OCprojet6.business/businessContext.xml" />
-<!--    Spring Security config file-->
-<!--    <import resource="classpath:/org.dmc30.OCprojet6.webapp/spring-security.xml" />-->
+    <!--    Spring Security config file-->
+    <import resource="classpath:/org.dmc30.OCprojet6.webapp/spring-security.xml" />
 
 </beans>
