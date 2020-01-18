@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -9,10 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <title>Page de création de compte</title>
+    <title>SignIn</title>
 </head>
 
 <body>
+<sec:authorize access="permitAll()">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="${pageContext.request.contextPath}">Les amis de l'escalade</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -25,16 +27,16 @@
             <a class="nav-item nav-link" href="#">Sites</a>
         </div>
     </div>
-    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/users/connection">Se connecter</a>
+    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/login">Se connecter</a>
 </nav>
-
 <div class="container" id="signinbox">
     <div class="card col-md-4 mx-auto" style="margin-top: 100px;">
         <div class="card-header bg-primary text-white">
             <div class="card-title">Créer un compte</div>
         </div>
         <div class="card-body" style="padding-top: 30px">
-            <form:form action="creationCompte" modelAttribute="users"
+
+            <form action="creationCompte" modelAttribute="users"
                        method="POST" class="form-horizontal">
                 <div class="form-group">
                     <div class="col-xs-15">
@@ -70,14 +72,14 @@
                     </div>
                     <br>
                     <div class="col-sm-12">
-                        <a href="${pageContext.request.contextPath}/users/connection">Vous avez déjà un compte</a>
+                        <a href="${pageContext.request.contextPath}/login">Vous avez déjà un compte</a>
                     </div>
                 </div>
-            </form:form>
+            </form>
         </div>
     </div>
 </div>
-
+</sec:authorize>
 
 </body>
 </html>

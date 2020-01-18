@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page session="true"%>
 <!DOCTYPE html>
 
 <html>
@@ -9,10 +10,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <title>Page de connection</title>
+    <title>LogIn</title>
 </head>
 
-<body>
+<body onload='document.loginForm.username.focus();'>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="${pageContext.request.contextPath}">Les amis de l'escalade</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -25,7 +26,7 @@
             <a class="nav-item nav-link" href="#">Sites</a>
         </div>
     </div>
-    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/users/connection">Se connecter</a>
+    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/login">Se connecter</a>
 </nav>
 
 <div class="container" id="loginbox">
@@ -34,23 +35,29 @@
                 <div class="card-title">Se connecter</div>
             </div>
             <div style="padding-top: 30px" class="card-body">
-                <form:form action="${pageContext.request.contextPath}/authenticateTheUser"
+                <form name="loginForm" action="<c:url value='/auth/login_check?targetUrl=${targetUrl}' />"
                       method="POST" class="form-horizontal">
                     <div class="form-group">
-                        <div class="col-xs-15">
-                            <div>
-                                <c:if test="${ !empty error}">
-                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
-                                        <c:out value="${error}" />
-                                    </div>
-                                </c:if>
+                        <c:if test="${ !empty error}">
+                            <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                <c:out value="${error}"/>
                             </div>
-                        </div>
+                        </c:if>
+                        <c:if test="${ !empty msg}">
+                            <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                <c:out value="${msg}"/>
+                            </div>
+                        </c:if>
+<%--                        <c:if test="${ !empty match}">--%>
+<%--                            <div class="alert alert-success col-xs-offset-1 col-xs-10">--%>
+<%--                                <c:out value="${match}"/>--%>
+<%--                            </div>--%>
+<%--                        </c:if>--%>
                     </div>
                     <!-- User name -->
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" name="identifiant" placeholder="identifiant" class="form-control">
+                        <input type="text" name="username" placeholder="identifiant" class="form-control">
                     </div>
                     <!-- Password -->
                     <div style="margin-bottom: 25px" class="input-group">
@@ -64,10 +71,12 @@
                         </div>
                         <br>
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/users/creation">Vous n'avez pas de compte</a>
+                            <a href="${pageContext.request.contextPath}/signin">Vous n'avez pas de compte</a>
                         </div>
                     </div>
-                </form:form>
+                    <input type="hidden" name="${_csrf.parameterName}"
+                           value="${_csrf.token}" />
+                </form>
             </div>
         </div>
 </div>

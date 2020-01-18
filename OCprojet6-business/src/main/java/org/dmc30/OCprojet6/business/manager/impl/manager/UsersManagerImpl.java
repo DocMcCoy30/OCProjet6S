@@ -26,7 +26,7 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
     @Override
     public Users getUsersByName(String pUsername) {
-        return null;
+        return getDaoFactory().getUsersDao().readUsers(pUsername);
     }
 
     @Override

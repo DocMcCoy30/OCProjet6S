@@ -12,25 +12,27 @@
 			<cache-control />
 		</headers>
 
-		<intercept-url pattern="/user**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/OCprojet6_webapp/creationCompte" access="permitAll()" />
 		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
 
-		<form-login login-page="/users/connection"
-		    default-target-url="/accueil"
-			authentication-failure-url="/users/connection?error"
+		<form-login login-page="/login"
+		    default-target-url="/userPage"
+			authentication-failure-url="/login?error"
 			username-parameter="username"
 			password-parameter="password" 
-			login-processing-url="/auth/login_check" />
+			login-processing-url="/auth/login_check"
+					/>
+<!--			authentication-success-forward-url="/login?match"-->
+<!--		/>-->
 
-		<logout logout-success-url="/users/connection?logout" delete-cookies="JSESSIONID" />
-		<csrf />
+		<logout logout-success-url="/users/login?logout" delete-cookies="JSESSIONID" />
+		<csrf disabled="false"/>
 
 	</http>
 
 	<!-- Select users and user_roles from database -->
 	<authentication-manager>
 
-	    
 		<authentication-provider>
 		    <password-encoder ref="encoder" />
 			<jdbc-user-service data-source-ref="dataSourceOCprojet6"

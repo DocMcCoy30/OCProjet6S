@@ -24,7 +24,7 @@
             <a class="nav-item nav-link" href="#">Sites</a>
         </div>
     </div>
-    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/users/connection">Se connecter</a>
+    <a class="btn btn-outline-primary" href="#">Se déconnecter</a>
 </nav>
 
 <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">

@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.consumer.impl.dao;
 
 import org.dmc30.OCprojet6.consumer.contract.dao.UsersDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.UsersRM;
+import org.dmc30.OCprojet6.consumer.securityResource.PasswordEncoderHelper;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -15,12 +16,12 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
 
     @Inject
     UsersRM usersRM;
-    PasswordEncoderGenerator passwordEncoderGenerator;
+    PasswordEncoderHelper passwordEncoderHelper;
 
     @Override
     public void createUsers(Users pUsers) {
         String vUserName = pUsers.getUsername();
-        PasswordEncoderGenerator encoder = new PasswordEncoderGenerator();
+        PasswordEncoderHelper encoder = new PasswordEncoderHelper();
         String vPassword = encoder.passwordEncoder(pUsers.getPassword());
         String vEmail = pUsers.getEmail();
         String vSQL = "INSERT INTO users (username, password, email, enabled) VALUES (?,?,?,?)";
