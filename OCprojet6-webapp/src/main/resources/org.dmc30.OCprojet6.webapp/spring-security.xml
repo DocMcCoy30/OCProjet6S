@@ -13,7 +13,7 @@
 		</headers>
 
 		<intercept-url pattern="/OCprojet6_webapp/creationCompte" access="permitAll()" />
-		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/userPage" access="hasRole('ROLE_USER')" />
 
 		<form-login login-page="/login"
 		    default-target-url="/userPage"
@@ -25,7 +25,7 @@
 <!--			authentication-success-forward-url="/login?match"-->
 <!--		/>-->
 
-		<logout logout-success-url="/users/login?logout" delete-cookies="JSESSIONID" />
+		<logout logout-success-url="/login?logout" delete-cookies="JSESSIONID" />
 		<csrf disabled="false"/>
 
 	</http>

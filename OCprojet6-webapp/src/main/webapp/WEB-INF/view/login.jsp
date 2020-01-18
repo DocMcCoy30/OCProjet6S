@@ -48,13 +48,8 @@
                                 <c:out value="${msg}"/>
                             </div>
                         </c:if>
-<%--                        <c:if test="${ !empty match}">--%>
-<%--                            <div class="alert alert-success col-xs-offset-1 col-xs-10">--%>
-<%--                                <c:out value="${match}"/>--%>
-<%--                            </div>--%>
-<%--                        </c:if>--%>
                     </div>
-                    <!-- User name -->
+                    <!-- Username -->
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input type="text" name="username" placeholder="identifiant" class="form-control">
