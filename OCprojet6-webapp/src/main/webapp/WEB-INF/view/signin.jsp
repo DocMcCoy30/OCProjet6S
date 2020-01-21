@@ -14,9 +14,8 @@
 </head>
 
 <body>
-<sec:authorize access="permitAll()">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}">Les amis de l'escalade</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}"><h2>Les amis de l'escalade</h2></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/accueil">Accueil<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Sites</a>
+            <a class="nav-item nav-link" href="${pageContext.request.contextPath}/sites">Sites</a>
         </div>
     </div>
     <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/login">Se connecter</a>
@@ -36,7 +35,7 @@
         </div>
         <div class="card-body" style="padding-top: 30px">
 
-            <form action="creationCompte" modelAttribute="users"
+            <form action="signup" modelAttribute="users"
                        method="POST" class="form-horizontal">
                 <div class="form-group">
                     <div class="col-xs-15">
@@ -79,7 +78,6 @@
         </div>
     </div>
 </div>
-</sec:authorize>
 
 </body>
 </html>

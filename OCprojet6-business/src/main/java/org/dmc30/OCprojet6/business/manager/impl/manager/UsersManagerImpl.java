@@ -51,9 +51,11 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
         for (Users vUsers:vListUsers) {
             if ((pUser.getUsername()).equals(vUsers.getUsername())) {
                 vUsernameMarker ++;
+                break;
             }
             else if ((pUser.getEmail()).equals(vUsers.getEmail())) {
                 vEmailMarker ++;
+                break;
             }
         }
         int [] vResult = {vUsernameMarker, vEmailMarker};

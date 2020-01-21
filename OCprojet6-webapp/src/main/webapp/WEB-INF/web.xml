@@ -15,6 +15,7 @@
     </filter-mapping>
 
     <welcome-file-list>
+        <welcome-file>/auth/accueil.jsp</welcome-file>
         <welcome-file>accueil.html</welcome-file>
         <welcome-file>accueil.htm</welcome-file>
         <welcome-file>accueil.jsp</welcome-file>

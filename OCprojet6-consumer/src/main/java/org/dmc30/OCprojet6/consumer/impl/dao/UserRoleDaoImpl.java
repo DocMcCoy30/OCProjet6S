@@ -12,6 +12,6 @@ public class UserRoleDaoImpl extends AbstractDao implements UserRoleDao {
     public void createUserRole(String pUsername) {
         String vSQL = "INSERT INTO user_roles (username, role) VALUES (?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        vJdbcTemplate.update(vSQL, pUsername, "ROLE_USER");
+        vJdbcTemplate.update(vSQL, pUsername, "ROLE_ADMIN");
     }
 }
