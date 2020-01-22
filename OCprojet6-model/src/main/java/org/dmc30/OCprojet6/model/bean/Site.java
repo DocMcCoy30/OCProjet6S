@@ -7,7 +7,6 @@ public class Site {
     private int id;
     private String nom;
     private String description;
-    private Lieu lieu;
     private int nbDeSecteurs;
     private List<Secteur> listSecteurs;
     private int nbDeVoies;
@@ -17,6 +16,9 @@ public class Site {
     private boolean officiel;
     private List<Photo> listPhotos;
     private List<Topo> listTopos;
+    private Region region;
+    private Departement departement;
+    private Ville ville;
 
     public Site() {
     }
@@ -43,14 +45,6 @@ public class Site {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Lieu getLieu() {
-        return lieu;
-    }
-
-    public void setLieu(Lieu lieu) {
-        this.lieu = lieu;
     }
 
     public int getNbDeSecteurs() {
@@ -123,5 +117,29 @@ public class Site {
 
     public void setListTopos(List<Topo> listTopos) {
         this.listTopos = listTopos;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+    public Departement getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
+    }
+
+    public Ville getVille() {
+        return ville;
+    }
+
+    public void setVille(Ville ville) {
+        this.ville = ville;
     }
 }

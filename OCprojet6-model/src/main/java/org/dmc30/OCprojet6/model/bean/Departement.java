@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Departement {
 
-    private int numero;
+    private String code;
     private String nom;
     private List<Ville> listVilles;
 
@@ -12,12 +12,12 @@ public class Departement {
     public Departement() {
     }
 
-    public int getNumero() {
-        return numero;
+    public String getCode() {
+        return code;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getNom() {

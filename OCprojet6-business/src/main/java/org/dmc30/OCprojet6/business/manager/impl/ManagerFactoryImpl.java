@@ -18,8 +18,6 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Inject
     DepartementManager departementManager;
     @Inject
-    LieuManager lieuManager;
-    @Inject
     PhotoManager photoManager;
     @Inject
     RegionManager regionManager;
@@ -76,16 +74,6 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public void setDepartementManager(DepartementManager departementManager) {
         this.departementManager = departementManager;
-    }
-
-    @Override
-    public LieuManager getLieuManager() {
-        return lieuManager;
-    }
-
-    @Override
-    public void setLieuManager(LieuManager lieuManager) {
-        this.lieuManager = lieuManager;
     }
 
     @Override
