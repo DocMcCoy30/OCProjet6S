@@ -6,9 +6,12 @@ public class Region {
 
     private int id;
     private String nom;
-    private List<Departement> listDepartements;
+
 
     public Region() {
+    }
+
+    public Region(int region_id) {
     }
 
     public int getId() {
@@ -27,11 +30,4 @@ public class Region {
         this.nom = nom;
     }
 
-    public List<Departement> getListDepartements() {
-        return listDepartements;
-    }
-
-    public void setListDepartements(List<Departement> listDepartements) {
-        this.listDepartements = listDepartements;
-    }
 }

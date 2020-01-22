@@ -14,10 +14,7 @@ public class AuthenticationController {
     @Inject
     private AuthenticationResource authenticationResource;
 
-    @GetMapping({"/", "/accueil"})
-    public String welcomePage() {
-        return "accueil";
-    }
+
 
     @GetMapping("/signin")
     public String showUserAccountForm() {

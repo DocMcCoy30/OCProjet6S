@@ -21,19 +21,21 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/accueil">Accueil<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="${pageContext.request.contextPath}/sites">Sites</a>
-        </div>
+<%--        <div class="navbar-nav">--%>
+<%--            <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/accueil">Accueil<span class="sr-only">(current)</span></a>--%>
+<%--            <a class="nav-item nav-link" href="${pageContext.request.contextPath}/sites">Sites</a>--%>
+<%--        </div>--%>
     </div>
+    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/signin">Creer un compte</a>
+    &nbsp
     <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/login">Se connecter</a>
 </nav>
 
 <div class="container" id="loginbox">
-        <div class="card col-md-4 mx-auto" style="margin-top: 100px;">
+        <div class="card mx-auto" style="margin-top: 10em; width: 25em">
             <div class="card-header bg-primary text-white">
-                <div class="card-title">Se connecter</div>
-            </div>
+                <div class="card-title"><h3>Se connecter</h3></div>
+              </div>
             <div style="padding-top: 30px" class="card-body">
                 <form name="loginForm" action="<c:url value='/auth/login_check?targetUrl=${targetUrl}' />"
                       method="POST" class="form-horizontal">
@@ -84,7 +86,6 @@
             </div>
         </div>
 </div>
-
 
 </body>
 </html>
