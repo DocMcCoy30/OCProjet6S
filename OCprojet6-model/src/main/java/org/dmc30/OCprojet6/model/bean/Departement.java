@@ -6,10 +6,16 @@ public class Departement {
 
     private String code;
     private String nom;
-    private List<Ville> listVilles;
+    private Region region;
 
 
     public Departement() {
+    }
+
+    public Departement(String code) {
+    }
+
+    public Departement(int regionId) {
     }
 
     public String getCode() {
@@ -28,11 +34,11 @@ public class Departement {
         this.nom = nom;
     }
 
-    public List<Ville> getListVilles() {
-        return listVilles;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setListVilles(List<Ville> listVilles) {
-        this.listVilles = listVilles;
+    public void setRegion(Region region) {
+        this.region = region;
     }
 }

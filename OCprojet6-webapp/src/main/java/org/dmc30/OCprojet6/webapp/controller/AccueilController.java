@@ -1,7 +1,7 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
 import org.dmc30.OCprojet6.model.bean.Region;
-import org.dmc30.OCprojet6.webapp.resource.RegionResource;
+import org.dmc30.OCprojet6.webapp.resource.GeographicResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +15,11 @@ import java.util.List;
 public class AccueilController {
 
     @Inject
-    RegionResource regionResource;
+    GeographicResource geographicResource;
 
     @GetMapping
     public String welcomePage(Model model) {
-        List<Region> vListRegions = regionResource.getListRegions();
+        List<Region> vListRegions = geographicResource.getListRegions();
         model.addAttribute("regions", vListRegions);
         return "accueil";
     }

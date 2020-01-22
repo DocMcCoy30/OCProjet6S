@@ -22,6 +22,11 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
     }
 
     @Override
+    public List<Departement> getDepartementsByRegion(int pRegionId) {
+        return getDaoFactory().getDepartementDao().readDepartementsByRegion(pRegionId);
+    }
+
+    @Override
     public List<Departement> getListDepartements() {
         List<Departement> vListDepartement = getDaoFactory().getDepartementDao().readAllDepartements();
         return vListDepartement;

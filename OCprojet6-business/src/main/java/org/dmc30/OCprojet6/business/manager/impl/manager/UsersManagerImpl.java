@@ -44,6 +44,11 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
     }
 
+    /**
+     * Recherche les doublons (username et email) dans la DB
+     * @param pUser Le nouvel utilisateur à créer et dont on souhaite comparer les données
+     * @return un tableau de 2 chiffres analysé dans le controller : si différent de 0 => existence d'un doublon
+     */
     public int[] rechercheDoublon (Users pUser) {
         List<Users> vListUsers = getDaoFactory().getUsersDao().readAllUsers();
         int vUsernameMarker = 0;

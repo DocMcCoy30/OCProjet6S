@@ -4,8 +4,12 @@ public class Ville {
 
     private int id;
     private String nom;
+    private Departement departement;
 
     public Ville() {
+    }
+
+    public Ville(int id) {
     }
 
     public int getId() {
@@ -22,5 +26,13 @@ public class Ville {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Departement getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
     }
 }

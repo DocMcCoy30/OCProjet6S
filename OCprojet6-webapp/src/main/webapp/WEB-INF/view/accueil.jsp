@@ -54,12 +54,12 @@
     <form action="searchSite" method="post">
         <div class="row">
             <div class="input-group col-sm">
-                <select class="custom-select" id="sites">
+                <select class="custom-select" name="sites" id="sites">
                     <option selected disabled>Site</option>
                 </select>
             </div>
             <div class="input-group col-sm">
-                <select class="custom-select" id="regions">
+                <select class="custom-select" name="regions" id="regions">
                     <option selected disabled>Région</option>
                     <c:forEach var="region" items="${regions}">
                         <option value="${region.nom}">${region.nom}</option>
@@ -67,22 +67,22 @@
                 </select>
             </div>
             <div class="input-group col-sm">
-                <select class="custom-select" id="departements">
+                <select class="custom-select" name="departements" id="departements">
                     <option selected disabled>Département</option>
                 </select>
             </div>
             <div class="input-group col-sm">
-                <select class="custom-select" id="villes">
+                <select class="custom-select" name="villes" id="villes">
                     <option selected disabled>Villes</option>
                 </select>
             </div>
             <div class="input-group col-sm">
-                <select class="custom-select" id="nbSecteurs">
+                <select class="custom-select" name="nbSecteurs" id="nbSecteurs">
                     <option selected disabled>Nombre de secteurs</option>
                 </select>
             </div>
             <div class="input-group col-sm">
-                <select class="custom-select" id="nbVoies">
+                <select class="custom-select" name="nbVoies" id="nbVoies">
                     <option selected disabled>Nombre de voies</option>
                 </select>
             </div>

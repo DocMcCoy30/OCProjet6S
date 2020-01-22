@@ -25,6 +25,13 @@ public interface VilleManager {
     List<Ville> getListVilles ();
 
     /**
+     * Cherche et renvoie la liste des Villes d'un département dans la database
+     * @param pCode le code du departement concerné
+     * @return la liste d'objets recherchée
+     */
+    List<Ville> getListVillesByDepartement(String pCode);
+
+    /**
      * Modifie un objet de type Ville
      * @param pVille : l'objet à modifier
      */
@@ -35,4 +42,5 @@ public interface VilleManager {
      * @param pId : l'identifiant de l'objet à supprimer
      */
     void deleteVille (int pId);
+
 }

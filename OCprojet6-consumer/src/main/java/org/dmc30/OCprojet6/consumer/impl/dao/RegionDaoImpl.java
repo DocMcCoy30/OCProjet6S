@@ -23,7 +23,12 @@ public class RegionDaoImpl extends AbstractDao implements RegionDao {
 
     @Override
     public Region readRegion(int pId) {
-        return null;
+        String vSQL = "SELECT * FROM region WHERE region_id="+pId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        RowMapper<Region> regionRowMapper = new RegionRM();
+        List<Region> vListRegion = vJdbcTemplate.query(vSQL, regionRowMapper);
+        Region vRegion = vListRegion.get(0);
+        return vRegion;
     }
 
     @Override

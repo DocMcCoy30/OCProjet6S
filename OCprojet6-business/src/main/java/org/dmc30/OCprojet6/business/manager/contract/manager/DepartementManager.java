@@ -19,6 +19,13 @@ public interface DepartementManager {
     Departement getDepartementByCode (String pCode);
 
     /**
+     * Cherche et renvoie la liste des Département par région stockée dans la database
+     * @param pRegionId l'identifiant de la region
+     * @return la liste d'objets recherchée
+     */
+    List<Departement> getDepartementsByRegion (int pRegionId);
+
+    /**
      * Cherche et renvoie la liste des objets de type Departement stockés dans la database
      * @return la liste d'objets recherchée
      */

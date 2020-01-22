@@ -28,6 +28,11 @@ public class VilleManagerImpl extends AbstractManager implements VilleManager {
     }
 
     @Override
+    public List<Ville> getListVillesByDepartement(String pCode) {
+        return getDaoFactory().getVilleDao().readVillesByDepartement(pCode);
+    }
+
+    @Override
     public void updateVille(Ville pVille) {
         getDaoFactory().getVilleDao().updateVille(pVille);
     }

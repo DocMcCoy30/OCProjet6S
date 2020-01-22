@@ -7,7 +7,8 @@ import java.util.List;
 public interface DepartementDao {
 
     void createDepartement (Departement pDepartement);
-    Departement readDepartement (String code);
+    Departement readDepartement (String pCode);
+    List<Departement> readDepartementsByRegion (int pRegionId);
     List<Departement> readAllDepartements ();
     void updateDepartement (Departement pDepartement);
     void deleteDepartement(int pId);

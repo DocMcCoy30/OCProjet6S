@@ -8,7 +8,10 @@ public interface VilleDao {
 
     void createVille (Ville pVille);
     Ville readVille (int pId);
+    List<Ville> readVillesByDepartement(String pCode);
     List<Ville> readAllVilles ();
     void updateVille (Ville pVille);
     void deleteVille(int pId);
+
+
 }
