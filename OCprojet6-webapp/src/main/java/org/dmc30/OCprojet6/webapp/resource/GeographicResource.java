@@ -14,11 +14,25 @@ public class GeographicResource extends AbstractResource {
         return getManagerFactory().getRegionManager().getListRegions();
     }
 
+    //debug
+    public Region getRegionById (int pId) {
+        return getManagerFactory().getRegionManager().getRegionById(pId);
+    }
+
+    public List<Departement> getListDepartements () {
+        return getManagerFactory().getDepartementManager().getListDepartements();
+    }
+
+    public List<Ville> getListVilles () {
+        return getManagerFactory().getVilleManager().getListVilles();
+    }
+
     public List<Departement> getDepartementsByRegion (int pRegionId) {
         return getManagerFactory().getDepartementManager().getDepartementsByRegion(pRegionId);
     }
 
-    public List<Ville> getListVillesByDepartement (String pCode) {
+    public List<Ville> getVillesByDepartement (String pCode) {
         return getManagerFactory().getVilleManager().getListVillesByDepartement(pCode);
     }
+
 }
