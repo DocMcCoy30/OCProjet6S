@@ -2,7 +2,9 @@ package org.dmc30.OCprojet6.business.manager.impl.manager;
 
 import org.dmc30.OCprojet6.business.manager.contract.manager.UsersManager;
 import org.dmc30.OCprojet6.model.bean.Users;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -12,16 +14,53 @@ import java.util.List;
 @Named
 public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
+    // transaction => pilule bleu
+//    @Override
+//    public void createUsers(Users pUsers) {
+//        TransactionTemplate vTransactionTemplate = new TransactionTemplate(getPlatformTransactionManager());
+//        vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
+//            @Override
+//            protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
+//                getDaoFactory().getUsersDao().createUsers(pUsers);
+//                getDaoFactory().getUserRoleDao().createUserRole(pUsers.getUsername());
+//            }
+//        });
+//    }
+
+    // transaction => pilule bleu avec rollback
+//    @Override
+//    public void createUsers (Users pUsers) {
+//        TransactionTemplate vTransactionTemplate = new TransactionTemplate(getPlatformTransactionManager());
+//        vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
+//            @Override
+//            protected void doInTransactionWithoutResult(TransactionStatus pTransactionStatus) {
+//           try {
+//               getDaoFactory().getUsersDao().createUsers(pUsers);
+//               getDaoFactory().getUserRoleDao().createUserRole(pUsers.getUsername());
+//           }
+//           catch (TechnicalException vEx ) {
+//               pTransactionStatus.setRollbackOnly();
+//           }
+//            }
+//        });
+//    }
+
+    // transaction => pilule rouge
     @Override
-    public void createUsers(Users pUsers) {
-        TransactionTemplate vTransactionTemplate = new TransactionTemplate(getPlatformTransactionManager());
-        vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
-                getDaoFactory().getUsersDao().createUsers(pUsers);
-                getDaoFactory().getUserRoleDao().createUserRole(pUsers.getUsername());
+    public void createUsers(Users pUsers) throws TechnicalException {
+        TransactionStatus vTransactionStatus
+                = getPlatformTransactionManager().getTransaction(new DefaultTransactionDefinition());
+        try {
+            getDaoFactory().getUsersDao().createUsers(pUsers);
+            getDaoFactory().getUserRoleDao().createUserRole(pUsers.getUsername());
+            TransactionStatus vTScommit = vTransactionStatus;
+            vTransactionStatus = null;
+            getPlatformTransactionManager().commit(vTScommit);
+        } finally {
+            if (vTransactionStatus != null) {
+                getPlatformTransactionManager().rollback(vTransactionStatus);
             }
-        });
+        }
     }
 
     @Override
@@ -46,24 +85,24 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
     /**
      * Recherche les doublons (username et email) dans la DB
+     *
      * @param pUser Le nouvel utilisateur à créer et dont on souhaite comparer les données
      * @return un tableau de 2 chiffres analysé dans le controller : si différent de 0 => existence d'un doublon
      */
-    public int[] rechercheDoublon (Users pUser) {
+    public int[] rechercheDoublon(Users pUser) {
         List<Users> vListUsers = getDaoFactory().getUsersDao().readAllUsers();
         int vUsernameMarker = 0;
         int vEmailMarker = 0;
-        for (Users vUsers:vListUsers) {
+        for (Users vUsers : vListUsers) {
             if ((pUser.getUsername()).equals(vUsers.getUsername())) {
-                vUsernameMarker ++;
+                vUsernameMarker++;
                 break;
-            }
-            else if ((pUser.getEmail()).equals(vUsers.getEmail())) {
-                vEmailMarker ++;
+            } else if ((pUser.getEmail()).equals(vUsers.getEmail())) {
+                vEmailMarker++;
                 break;
             }
         }
-        int [] vResult = {vUsernameMarker, vEmailMarker};
+        int[] vResult = {vUsernameMarker, vEmailMarker};
         return vResult;
     }
 }

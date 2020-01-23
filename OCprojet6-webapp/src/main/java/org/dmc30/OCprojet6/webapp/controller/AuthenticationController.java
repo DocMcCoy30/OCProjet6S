@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
 import org.dmc30.OCprojet6.model.bean.Users;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.dmc30.OCprojet6.webapp.resource.AuthenticationResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public ModelAndView saveUsers(@ModelAttribute("users") Users pUsers) {
+    public ModelAndView saveUsers(@ModelAttribute("users") Users pUsers) throws TechnicalException {
         ModelAndView vModel = new ModelAndView();
         int[] vResult = authenticationResource.rechercheDoublon(pUsers);
         if (vResult[0] != 0) {

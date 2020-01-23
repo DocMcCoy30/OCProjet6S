@@ -99,6 +99,7 @@
                     <option selected disabled>Nombre de voies</option>
                 </select>
             </div>
+
             <div class="col-sm-1 offset-10 ">
                 <button type="submit" class="btn btn-primary">Rechercher</button>
             </div>

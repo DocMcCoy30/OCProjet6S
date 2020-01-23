@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.business.manager.contract.manager;
 
 import org.dmc30.OCprojet6.model.bean.Users;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface UsersManager {
     /**
      * Enregistre un objet de type Users dans la database
      */
-    void createUsers (Users pUsers);
+    void createUsers (Users pUsers) throws TechnicalException;
 
     /**
      * Cherche et renvoie un objet de type Users stocké dans la database

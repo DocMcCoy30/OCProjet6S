@@ -26,8 +26,8 @@ http://www.springframework.org/schema/context ">
     <bean id="txManagerOCprojet6" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSourceOCprojet6"/>
     </bean>
-    <bean id="txManagerVersion" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSourceOCprojet6"/>
-    </bean>
+<!--    <bean id="txManagerVersion" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        <property name="dataSource" ref="dataSourceOCprojet6"/>-->
+<!--    </bean>-->
 
 </beans>
