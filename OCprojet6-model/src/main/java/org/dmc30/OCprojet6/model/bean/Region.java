@@ -1,7 +1,5 @@
 package org.dmc30.OCprojet6.model.bean;
 
-import java.util.List;
-
 public class Region {
 
     private int id;

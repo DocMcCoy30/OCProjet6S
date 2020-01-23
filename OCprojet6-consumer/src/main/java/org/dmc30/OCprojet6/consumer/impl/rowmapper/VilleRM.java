@@ -6,9 +6,11 @@ import org.dmc30.OCprojet6.model.bean.Ville;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Named
 public class VilleRM implements RowMapper<Ville> {
 
     @Inject
@@ -19,8 +21,8 @@ public class VilleRM implements RowMapper<Ville> {
         Ville vVille = new Ville(resultSet.getInt("ville_id"));
         vVille.setNom(resultSet.getString("nom"));
         // utilisation de departementDao avec departement_code
-//        Departement vDepartement = departementDao.readDepartement(resultSet.getString("departement_code"));
-//        vVille.setDepartement(vDepartement);
+        Departement vDepartement = departementDao.readDepartement(resultSet.getString("departement_code"));
+        vVille.setDepartement(vDepartement);
         return vVille;
     }
 }
