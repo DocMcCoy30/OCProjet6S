@@ -29,30 +29,19 @@ public class CaracteristiqueDaoImpl extends AbstractDao implements Caracteristiq
     }
 
     @Override
-    public Caracteristique readCaracteristique(int pId) {
-
+    public Caracteristique getCaracteristiqueById(int pId) {
         String vSQL = "SELECT * FROM caracteristique WHERE caracteristique_id="+pId;
-
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-
-        RowMapper<Caracteristique> caracteristiqueRM = new CaracteristiqueRM();
-
         List<Caracteristique> vListCaracteristique = vJdbcTemplate.query(vSQL, caracteristiqueRM);
         Caracteristique vCaracteristique = vListCaracteristique.get(0);
-
         return vCaracteristique;
     }
 
     @Override
-    public List<Caracteristique> readAllCaracteristiques() {
+    public List<Caracteristique> getAllCaracteristiques() {
         String vSQL = "SELECT * FROM caracteristique";
-
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-
-        RowMapper<Caracteristique> caracteristiqueRM = new CaracteristiqueRM();
-
         List<Caracteristique> vListCaracteristique = vJdbcTemplate.query(vSQL, caracteristiqueRM);
-
         return vListCaracteristique;
     }
 

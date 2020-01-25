@@ -7,8 +7,8 @@ import java.util.List;
 public interface CotationDao {
 
     void createCotation (Cotation pCotation);
-    Cotation readCotation (int pId);
-    List<Cotation> readAllCotations ();
+    Cotation getCotationById(int pId);
+    List<Cotation> getAllCotations();
     void updateCotation (Cotation pCotation);
     void deleteCotation(int pId);
 }

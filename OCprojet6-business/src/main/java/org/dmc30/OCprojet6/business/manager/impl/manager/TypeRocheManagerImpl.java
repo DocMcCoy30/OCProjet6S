@@ -17,13 +17,13 @@ public class TypeRocheManagerImpl extends AbstractManager implements TypeRocheMa
 
     @Override
     public TypeRoche getTypeRocheById(int pId) {
-        TypeRoche vTypeRoche = getDaoFactory().getTypeRocheDao().readTypeRoche(pId);
+        TypeRoche vTypeRoche = getDaoFactory().getTypeRocheDao().getTypeRocheById(pId);
         return vTypeRoche;
     }
 
     @Override
-    public List<TypeRoche> getListTypeRoches() {
-        List<TypeRoche> vListTypeRoche = getDaoFactory().getTypeRocheDao().readAllTypeRoches();
+    public List<TypeRoche> getAllTypeRoches() {
+        List<TypeRoche> vListTypeRoche = getDaoFactory().getTypeRocheDao().getAllTypeRoches();
         return vListTypeRoche;
     }
 

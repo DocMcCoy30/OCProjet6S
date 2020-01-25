@@ -7,8 +7,8 @@ import java.util.List;
 public interface VoieDao {
 
     void createVoie (Voie pVoie);
-    Voie readVoie (int pId);
-    List<Voie> readAllVoies ();
+    Voie getVoieById(int pId);
+    List<Voie> getAllVoies();
     void updateVoie (Voie pVoie);
     void deleteVoie(int pId);
 }

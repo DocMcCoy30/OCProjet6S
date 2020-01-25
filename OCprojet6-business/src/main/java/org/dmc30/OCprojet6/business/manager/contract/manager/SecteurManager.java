@@ -22,7 +22,7 @@ public interface SecteurManager {
      * Cherche et renvoie la liste des objets de type Secteur stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Secteur> getListSecteurs ();
+    List<Secteur> getAllSecteurs();
 
     /**
      * Modifie un objet de type Secteur

@@ -18,10 +18,10 @@ public class DepartementRM implements RowMapper<Departement> {
 
     @Override
     public Departement mapRow(ResultSet resultSet, int i) throws SQLException {
-        Departement vDepartement = new Departement(resultSet.getString("code"));
+        Departement vDepartement = new Departement(resultSet.getInt("code"));
         vDepartement.setNom(resultSet.getString("nom"));
         // utilisation de regionDao avec region_id
-        Region vRegion = regionDao.readRegion(resultSet.getInt("region_id"));
+        Region vRegion = regionDao.getRegionById(resultSet.getInt("region_id"));
         vDepartement.setRegion(vRegion);
         return vDepartement;
     }

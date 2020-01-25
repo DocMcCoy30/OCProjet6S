@@ -7,8 +7,8 @@ import java.util.List;
 public interface RegionDao {
 
     void createRegion (Region pRegion);
-    Region readRegion (int pId);
-    List<Region> readAllRegions ();
+    Region getRegionById(int pId);
+    List<Region> getAllRegions();
     void updateRegion (Region pRegion);
     void deleteRegion(int pId);
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class GeographicResource extends AbstractResource {
 
     public List<Region> getListRegions () {
-        return getManagerFactory().getRegionManager().getListRegions();
+        return getManagerFactory().getRegionManager().getAllRegions();
     }
 
     //debug
@@ -20,11 +20,11 @@ public class GeographicResource extends AbstractResource {
     }
 
     public List<Departement> getListDepartements () {
-        return getManagerFactory().getDepartementManager().getListDepartements();
+        return getManagerFactory().getDepartementManager().getAllDepartements();
     }
 
     public List<Ville> getListVilles () {
-        return getManagerFactory().getVilleManager().getListVilles();
+        return getManagerFactory().getVilleManager().getAllVilles();
     }
 
     public List<Departement> getDepartementsByRegion (int pRegionId) {

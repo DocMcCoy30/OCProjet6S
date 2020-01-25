@@ -22,7 +22,7 @@ public interface CaracteristiqueManager {
      * Cherche et renvoie la liste des objets de type Caracteristique
      * @return la liste d'objets recherchée
      */
-    List<Caracteristique> getListCaracteristiques ();
+    List<Caracteristique> getAllCaracteristiques();
 
     /**
      * Modifie un objet de type Caracteristique

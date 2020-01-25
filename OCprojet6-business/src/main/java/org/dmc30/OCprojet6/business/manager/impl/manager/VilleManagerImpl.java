@@ -17,19 +17,19 @@ public class VilleManagerImpl extends AbstractManager implements VilleManager {
 
     @Override
     public Ville getVilleById(int pId) {
-        Ville vVille = getDaoFactory().getVilleDao().readVille(pId);
+        Ville vVille = getDaoFactory().getVilleDao().getVilleById(pId);
         return vVille;
     }
 
     @Override
-    public List<Ville> getListVilles() {
-        List<Ville> vListVille = getDaoFactory().getVilleDao().readAllVilles();
+    public List<Ville> getAllVilles() {
+        List<Ville> vListVille = getDaoFactory().getVilleDao().getAllVilles();
         return vListVille;
     }
 
     @Override
     public List<Ville> getListVillesByDepartement(String pCode) {
-        return getDaoFactory().getVilleDao().readVillesByDepartement(pCode);
+        return getDaoFactory().getVilleDao().getVillesByDepartement(pCode);
     }
 
     @Override

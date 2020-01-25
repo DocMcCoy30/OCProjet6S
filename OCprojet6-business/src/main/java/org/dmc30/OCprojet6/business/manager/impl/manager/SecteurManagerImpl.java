@@ -17,13 +17,13 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
 
     @Override
     public Secteur getSecteurById(int pId) {
-        Secteur vSecteur = getDaoFactory().getSecteurDao().readSecteur(pId);
+        Secteur vSecteur = getDaoFactory().getSecteurDao().getSecteurById(pId);
         return vSecteur;
     }
 
     @Override
-    public List<Secteur> getListSecteurs() {
-        List<Secteur> vListSecteur = getDaoFactory().getSecteurDao().readAllSecteurs();
+    public List<Secteur> getAllSecteurs() {
+        List<Secteur> vListSecteur = getDaoFactory().getSecteurDao().getAllSecteurs();
         return vListSecteur;
     }
 

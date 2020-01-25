@@ -22,7 +22,7 @@ public interface CommentaireManager {
      * Cherche et renvoie la liste des objets de type Commentaire stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Commentaire> getListCommentaires ();
+    List<Commentaire> getAllCommentaires();
 
     /**
      * Modifie un objet de type Commentaire

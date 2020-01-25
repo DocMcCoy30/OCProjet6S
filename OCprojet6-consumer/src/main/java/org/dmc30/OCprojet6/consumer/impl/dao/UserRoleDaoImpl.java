@@ -9,9 +9,9 @@ import javax.inject.Named;
 public class UserRoleDaoImpl extends AbstractDao implements UserRoleDao {
 
     @Override
-    public void createUserRole(String pUsername) {
+    public void createUserRole(String pUsername, String pRole) {
         String vSQL = "INSERT INTO user_roles (username, role) VALUES (?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        vJdbcTemplate.update(vSQL, pUsername, "ROLE_ADMIN");
+        vJdbcTemplate.update(vSQL, pUsername, pRole);
     }
 }

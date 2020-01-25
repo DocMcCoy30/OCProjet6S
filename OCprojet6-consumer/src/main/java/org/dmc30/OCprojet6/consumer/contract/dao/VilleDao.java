@@ -7,9 +7,9 @@ import java.util.List;
 public interface VilleDao {
 
     void createVille (Ville pVille);
-    Ville readVille (int pId);
-    List<Ville> readVillesByDepartement(String pCode);
-    List<Ville> readAllVilles ();
+    Ville getVilleById(int pId);
+    List<Ville> getVillesByDepartement(String pCode);
+    List<Ville> getAllVilles();
     void updateVille (Ville pVille);
     void deleteVille(int pId);
 

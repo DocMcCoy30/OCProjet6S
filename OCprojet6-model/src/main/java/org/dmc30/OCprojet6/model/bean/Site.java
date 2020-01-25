@@ -23,6 +23,9 @@ public class Site {
     public Site() {
     }
 
+    public Site(int site_id) {
+    }
+
     public int getId() {
         return id;
     }

@@ -7,10 +7,14 @@ public class Secteur {
     private int id;
     private String nom;
     private int nbDeVoies;
+    private Site site;
     private List<Voie> listVoies;
     private List<Photo> listPhotos;
 
     public Secteur() {
+    }
+
+    public Secteur(int secteur_id) {
     }
 
     public int getId() {
@@ -35,6 +39,14 @@ public class Secteur {
 
     public void setNbDeVoies(int nbDeVoies) {
         this.nbDeVoies = nbDeVoies;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
     }
 
     public List<Voie> getListVoies() {

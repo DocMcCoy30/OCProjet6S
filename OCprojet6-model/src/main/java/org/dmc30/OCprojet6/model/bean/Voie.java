@@ -9,11 +9,15 @@ public class Voie {
     private Cotation cotation;
     private int hauteur;
     private int nbDePoints;
+    private Secteur secteur;
     private List<Caracteristique> listCaracteristiques;
     private List<Photo> listPhotos;
 
 
     public Voie() {
+    }
+
+    public Voie(int voie_id) {
     }
 
     public int getId() {
@@ -54,6 +58,14 @@ public class Voie {
 
     public void setNbDePoints(int nbDePoints) {
         this.nbDePoints = nbDePoints;
+    }
+
+    public Secteur getSecteur() {
+        return secteur;
+    }
+
+    public void setSecteur(Secteur secteur) {
+        this.secteur = secteur;
     }
 
     public List<Caracteristique> getListCaracteristiques() {

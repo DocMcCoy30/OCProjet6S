@@ -10,6 +10,9 @@ public class TypeRoche {
     public TypeRoche() {
     }
 
+    public TypeRoche(int type_roche_id) {
+    }
+
     public int getId() {
         return id;
     }

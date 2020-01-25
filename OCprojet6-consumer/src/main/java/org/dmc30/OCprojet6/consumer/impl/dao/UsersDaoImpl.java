@@ -30,16 +30,19 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
     }
 
     @Override
-    public Users readUsers(String pUsername) {
-        return null;
+    public Users getUsersByName(String pUsername) {
+        String vSQL = "SELECT * FROM users WHERE username="+pUsername;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Users> vListUsers = vJdbcTemplate.query(vSQL, usersRM);
+        Users vUsers = vListUsers.get(0);
+        return vUsers;
     }
 
     @Override
-    public List<Users> readAllUsers() {
+    public List<Users> getAllUsers() {
         String vSQL = "SELECT * FROM users";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        RowMapper<Users> vRowMapper = new UsersRM();
-        List<Users> vListUsers = vJdbcTemplate.query(vSQL, vRowMapper);
+        List<Users> vListUsers = vJdbcTemplate.query(vSQL, usersRM);
         return vListUsers;
     }
 

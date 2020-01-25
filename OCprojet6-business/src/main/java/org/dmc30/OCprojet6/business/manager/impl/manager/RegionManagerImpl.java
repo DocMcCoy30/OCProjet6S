@@ -17,13 +17,13 @@ public class RegionManagerImpl extends AbstractManager implements RegionManager 
 
     @Override
     public Region getRegionById(int pId) {
-        Region vRegion = getDaoFactory().getRegionDao().readRegion(pId);
+        Region vRegion = getDaoFactory().getRegionDao().getRegionById(pId);
         return vRegion;
     }
 
     @Override
-    public List<Region> getListRegions() {
-        List<Region> vListRegion = getDaoFactory().getRegionDao().readAllRegions();
+    public List<Region> getAllRegions() {
+        List<Region> vListRegion = getDaoFactory().getRegionDao().getAllRegions();
         return vListRegion;
     }
 

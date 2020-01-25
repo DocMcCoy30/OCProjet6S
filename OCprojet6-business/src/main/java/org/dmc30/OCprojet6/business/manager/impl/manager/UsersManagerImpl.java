@@ -5,8 +5,6 @@ import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.inject.Named;
 import java.util.List;
@@ -48,11 +46,19 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
     // transaction => pilule rouge
     @Override
     public void createUsers(Users pUsers) throws TechnicalException {
+
         TransactionStatus vTransactionStatus
                 = getPlatformTransactionManager().getTransaction(new DefaultTransactionDefinition());
         try {
+            String vRole;
+            List<Users> vListUsers = getDaoFactory().getUsersDao().getAllUsers();
+            if (vListUsers.isEmpty()) {
+                vRole = "ROLE_ADMIN";
+            } else {
+                vRole = "ROLE_USER";
+            }
             getDaoFactory().getUsersDao().createUsers(pUsers);
-            getDaoFactory().getUserRoleDao().createUserRole(pUsers.getUsername());
+            getDaoFactory().getUserRoleDao().createUserRole(pUsers.getUsername(), vRole);
             TransactionStatus vTScommit = vTransactionStatus;
             vTransactionStatus = null;
             getPlatformTransactionManager().commit(vTScommit);
@@ -65,11 +71,11 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
     @Override
     public Users getUsersByName(String pUsername) {
-        return getDaoFactory().getUsersDao().readUsers(pUsername);
+        return getDaoFactory().getUsersDao().getUsersByName(pUsername);
     }
 
     @Override
-    public List<Users> getListUsers() {
+    public List<Users> getAllUsers() {
         return null;
     }
 
@@ -90,7 +96,7 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
      * @return un tableau de 2 chiffres analysé dans le controller : si différent de 0 => existence d'un doublon
      */
     public int[] rechercheDoublon(Users pUser) {
-        List<Users> vListUsers = getDaoFactory().getUsersDao().readAllUsers();
+        List<Users> vListUsers = getDaoFactory().getUsersDao().getAllUsers();
         int vUsernameMarker = 0;
         int vEmailMarker = 0;
         for (Users vUsers : vListUsers) {

@@ -7,8 +7,8 @@ import java.util.List;
 public interface CaracteristiqueDao {
 
     void createCaracteristique (Caracteristique pCaracteristique);
-    Caracteristique readCaracteristique (int pId);
-    List<Caracteristique> readAllCaracteristiques ();
+    Caracteristique getCaracteristiqueById(int pId);
+    List<Caracteristique> getAllCaracteristiques();
     void updateCaracteristique (Caracteristique pCaracteristique);
     void deleteCaracteristique(int pId);
 }

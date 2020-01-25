@@ -1,10 +1,13 @@
 package org.dmc30.OCprojet6.model.bean;
 
+import java.util.List;
+
 public class Caracteristique {
 
     private int id;
     private String nom;
     private String definition;
+    private List<Voie> listVoies;
 
     public Caracteristique() {
     }
@@ -35,5 +38,13 @@ public class Caracteristique {
 
     public void setDefinition(String definition) {
         this.definition = definition;
+    }
+
+    public List<Voie> getListVoies() {
+        return listVoies;
+    }
+
+    public void setListVoies(List<Voie> listVoies) {
+        this.listVoies = listVoies;
     }
 }

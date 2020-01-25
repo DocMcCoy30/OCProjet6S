@@ -2,10 +2,15 @@ package org.dmc30.OCprojet6.model.bean;
 
 public class Commentaire {
 
-    private int Id;
+    private int id;
     private String commentaire;
+    private Site site;
+    private Users users;
 
     public Commentaire() {
+    }
+
+    public Commentaire(int commentaire_id) {
     }
 
     public String getCommentaire() {
@@ -17,10 +22,26 @@ public class Commentaire {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        id = id;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }

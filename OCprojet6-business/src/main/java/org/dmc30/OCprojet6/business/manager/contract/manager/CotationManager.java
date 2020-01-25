@@ -22,7 +22,7 @@ public interface CotationManager {
      * Cherche et renvoie la liste des objets de type Cotation stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Cotation> getListCotations ();
+    List<Cotation> getAllCotations();
 
     /**
      * Modifie un objet de type Cotation

@@ -56,6 +56,9 @@
             <div class="input-group col-sm">
                 <select class="custom-select" name="sites" id="sites">
                     <option selected disabled>Site</option>
+                    <c:forEach var="site" items="${sites}">
+                        <option value="${site.nom}">${site.nom}</option>
+                    </c:forEach>
                 </select>
             </div>
             <div class="input-group col-sm">
@@ -89,22 +92,24 @@
                     </c:forEach>
                 </select>
             </div>
-            <div class="input-group col-sm">
-                <select class="custom-select" name="nbSecteurs" id="nbSecteurs">
-                    <option selected disabled>Nombre de secteurs</option>
-                </select>
-            </div>
-            <div class="input-group col-sm">
-                <select class="custom-select" name="nbVoies" id="nbVoies">
-                    <option selected disabled>Nombre de voies</option>
-                </select>
-            </div>
+<%--            <div class="input-group col-sm">--%>
+<%--                <select class="custom-select" name="nbSecteurs" id="nbSecteurs">--%>
+<%--                    <option selected disabled>Nombre de secteurs</option>--%>
+<%--                </select>--%>
+<%--            </div>--%>
+<%--            <div class="input-group col-sm">--%>
+<%--                <select class="custom-select" name="nbVoies" id="nbVoies">--%>
+<%--                    <option selected disabled>Nombre de voies</option>--%>
+<%--                </select>--%>
+<%--            </div>--%>
 
             <div class="col-sm-1 offset-10 ">
                 <button type="submit" class="btn btn-primary">Rechercher</button>
             </div>
         </div>
     </form>
+    <br><br>
+    <a href="${pageContext.request.contextPath}/caracteristique/liste">caracteristiques / ADMIN TEST</a>
 </div>
 
 </body>

@@ -22,7 +22,7 @@ public interface VilleManager {
      * Cherche et renvoie la liste des objets de type Ville stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Ville> getListVilles ();
+    List<Ville> getAllVilles();
 
     /**
      * Cherche et renvoie la liste des Villes d'un département dans la database

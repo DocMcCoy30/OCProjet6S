@@ -18,7 +18,7 @@ public class CaracteristiqueResource extends AbstractResource{
     }
 
     public List<Caracteristique> getListCaracteristique() {
-        return getManagerFactory().getCaracteristiqueManager().getListCaracteristiques();
+        return getManagerFactory().getCaracteristiqueManager().getAllCaracteristiques();
     }
 
     public void updateCaracteristique (Caracteristique pCaracteristique) {

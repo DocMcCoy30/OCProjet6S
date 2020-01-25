@@ -23,7 +23,7 @@ public interface UsersManager {
      * Cherche et renvoie la liste des objets de type Users stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Users> getListUsers ();
+    List<Users> getAllUsers();
 
     /**
      * Modifie un objet de type Users

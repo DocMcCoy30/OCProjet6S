@@ -7,8 +7,9 @@ import java.util.List;
 public interface SecteurDao {
 
     void createSecteur (Secteur pSecteur);
-    Secteur readSecteur (int pId);
-    List<Secteur> readAllSecteurs ();
+    Secteur getSecteurById(int pId);
+    List<Secteur> getSecteursBySite (int pSiteId);
+    List<Secteur> getAllSecteurs();
     void updateSecteur (Secteur pSecteur);
     void deleteSecteur(int pId);
 }

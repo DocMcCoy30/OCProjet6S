@@ -3,9 +3,12 @@ package org.dmc30.OCprojet6.model.bean;
 public class Cotation {
 
     private int id;
-    private String cotation;
+    private String valeur;
 
     public Cotation() {
+    }
+
+    public Cotation(int cotation_id) {
     }
 
     public int getId() {
@@ -16,11 +19,11 @@ public class Cotation {
         this.id = id;
     }
 
-    public String getCotation() {
-        return cotation;
+    public String getValeur() {
+        return valeur;
     }
 
-    public void setCotation(String cotation) {
-        this.cotation = cotation;
+    public void setValeur(String valeur) {
+        this.valeur = valeur;
     }
 }

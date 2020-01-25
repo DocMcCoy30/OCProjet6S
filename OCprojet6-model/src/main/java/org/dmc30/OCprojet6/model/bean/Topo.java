@@ -9,8 +9,12 @@ public class Topo {
     private String description;
     private boolean disponible;
     private Date dateDeParution;
+    private Site site;
 
     public Topo() {
+    }
+
+    public Topo(int topo_id) {
     }
 
     public int getId() {
@@ -53,4 +57,11 @@ public class Topo {
         this.dateDeParution = dateDeParution;
     }
 
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
 }

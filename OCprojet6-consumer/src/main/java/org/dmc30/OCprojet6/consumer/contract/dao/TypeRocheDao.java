@@ -7,8 +7,8 @@ import java.util.List;
 public interface TypeRocheDao {
 
     void createTypeRoche (TypeRoche pTypeRoche);
-    TypeRoche readTypeRoche (int pId);
-    List<TypeRoche> readAllTypeRoches ();
+    TypeRoche getTypeRocheById(int pId);
+    List<TypeRoche> getAllTypeRoches();
     void updateTypeRoche (TypeRoche pTypeRoche);
     void deleteTypeRoche(int pId);
 }

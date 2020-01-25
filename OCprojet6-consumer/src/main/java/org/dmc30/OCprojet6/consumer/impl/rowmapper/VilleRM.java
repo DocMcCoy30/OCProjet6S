@@ -21,7 +21,7 @@ public class VilleRM implements RowMapper<Ville> {
         Ville vVille = new Ville(resultSet.getInt("ville_id"));
         vVille.setNom(resultSet.getString("nom"));
         // utilisation de departementDao avec departement_code
-        Departement vDepartement = departementDao.readDepartement(resultSet.getString("departement_code"));
+        Departement vDepartement = departementDao.getDepartementByCode(resultSet.getInt("departement_code"));
         vVille.setDepartement(vDepartement);
         return vVille;
     }

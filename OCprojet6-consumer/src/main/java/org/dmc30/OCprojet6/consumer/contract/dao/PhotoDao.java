@@ -7,8 +7,8 @@ import java.util.List;
 public interface PhotoDao {
 
     void createPhoto (Photo pPhoto);
-    Photo readPhoto (int pId);
-    List<Photo> readAllPhotos ();
+    Photo getPhotoById(int pId);
+    List<Photo> getAllPhotos();
     void updatePhoto (Photo pPhoto);
     void deletePhoto(int pId);
 }

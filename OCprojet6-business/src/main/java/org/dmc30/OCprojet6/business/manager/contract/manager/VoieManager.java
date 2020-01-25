@@ -22,7 +22,7 @@ public interface VoieManager {
      * Cherche et renvoie la liste des objets de type Voie stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Voie> getListVoies ();
+    List<Voie> getAllVoies();
 
     /**
      * Modifie un objet de type Voie

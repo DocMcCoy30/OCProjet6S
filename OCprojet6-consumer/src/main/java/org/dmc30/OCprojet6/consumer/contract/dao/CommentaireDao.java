@@ -7,8 +7,8 @@ import java.util.List;
 public interface CommentaireDao {
 
     void createCommentaire (Commentaire pCommentaire);
-    Commentaire readCommentaire (int pId);
-    List<Commentaire> readAllCommentaires ();
+    Commentaire getCommentaireById(int pId);
+    List<Commentaire> getAllCommentaires();
     void updateCommentaire (Commentaire pCommentaire);
     void deleteCommentaire(int pId);
 }

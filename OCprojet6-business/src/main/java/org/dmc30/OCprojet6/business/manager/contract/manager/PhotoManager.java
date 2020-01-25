@@ -22,7 +22,7 @@ public interface PhotoManager {
      * Cherche et renvoie la liste des objets de type Photo stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Photo> getListPhotos ();
+    List<Photo> getAllPhotos();
 
     /**
      * Modifie un objet de type Photo

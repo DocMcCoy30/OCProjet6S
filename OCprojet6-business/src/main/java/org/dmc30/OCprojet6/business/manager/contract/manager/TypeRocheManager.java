@@ -22,7 +22,7 @@ public interface TypeRocheManager {
      * Cherche et renvoie la liste des objets de type TypeRoche stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<TypeRoche> getListTypeRoches ();
+    List<TypeRoche> getAllTypeRoches();
 
     /**
      * Modifie un objet de type TypeRoche

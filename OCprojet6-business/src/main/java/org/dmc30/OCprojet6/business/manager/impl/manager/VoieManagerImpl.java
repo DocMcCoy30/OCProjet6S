@@ -17,13 +17,13 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager {
 
     @Override
     public Voie getVoieById(int pId) {
-        Voie vVoie = getDaoFactory().getVoieDao().readVoie(pId);
+        Voie vVoie = getDaoFactory().getVoieDao().getVoieById(pId);
         return vVoie;
     }
 
     @Override
-    public List<Voie> getListVoies() {
-        List<Voie> vListVoie = getDaoFactory().getVoieDao().readAllVoies();
+    public List<Voie> getAllVoies() {
+        List<Voie> vListVoie = getDaoFactory().getVoieDao().getAllVoies();
         return vListVoie;
     }
 

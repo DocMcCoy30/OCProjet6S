@@ -22,7 +22,7 @@ public interface TopoManager {
      * Cherche et renvoie la liste des objets de type Topo stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Topo> getListTopos ();
+    List<Topo> getAllTopos();
 
     /**
      * Modifie un objet de type Topo

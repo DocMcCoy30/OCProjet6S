@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Departement {
 
-    private String code;
+    private int code;
     private String nom;
     private Region region;
 
@@ -12,17 +12,14 @@ public class Departement {
     public Departement() {
     }
 
-    public Departement(String code) {
+    public Departement(int code) {
     }
 
-    public Departement(int regionId) {
-    }
-
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

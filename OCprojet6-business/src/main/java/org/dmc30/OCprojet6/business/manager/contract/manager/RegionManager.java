@@ -22,7 +22,7 @@ public interface RegionManager {
      * Cherche et renvoie la liste des objets de type Region stockés dans la database
      * @return la liste d'objets recherchée
      */
-    List<Region> getListRegions ();
+    List<Region> getAllRegions();
 
     /**
      * Modifie un objet de type Region
