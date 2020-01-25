@@ -33,7 +33,7 @@ public interface SiteManager {
      * @param pCode le code du département
      * @return la liste d'objets recherchée
      */
-    List<Site> getSitesByDepartement(String pCode);
+    List<Site> getSitesByDepartement(int pCode);
 
     /**
      * Cherche et renvoie la liste des Sites stockée dans la database par région

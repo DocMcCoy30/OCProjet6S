@@ -35,6 +35,7 @@ public class SiteRM implements RowMapper<Site> {
     @Override
     public Site mapRow(ResultSet resultSet, int i) throws SQLException {
         Site vSite = new Site(resultSet.getInt("site_id"));
+        vSite.setId(resultSet.getInt("site_id"));
         vSite.setNom(resultSet.getString("nom"));
         vSite.setDescription(resultSet.getString("description"));
         vSite.setNbDeSecteurs(resultSet.getInt("nb_de_secteurs"));

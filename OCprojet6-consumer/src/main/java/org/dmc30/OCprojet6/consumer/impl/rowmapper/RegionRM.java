@@ -13,6 +13,7 @@ public class RegionRM implements RowMapper<Region> {
     @Override
     public Region mapRow(ResultSet resultSet, int i) throws SQLException {
         Region vRegion = new Region(resultSet.getInt("region_id"));
+        vRegion.setId(resultSet.getInt("region_id"));
         vRegion.setNom(resultSet.getString("nom"));
         return vRegion;
     }

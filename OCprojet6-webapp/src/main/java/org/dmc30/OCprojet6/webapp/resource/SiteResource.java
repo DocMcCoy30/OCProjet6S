@@ -12,6 +12,18 @@ public class SiteResource extends AbstractResource {
         return getManagerFactory().getSiteManager().getSiteById(pId);
     }
 
+    public List<Site> getSitesByRegion (int pRegionId) {
+        return getManagerFactory().getSiteManager().getSitesByRegion(pRegionId);
+    }
+
+    public List<Site> getSitesByDepartement (int pDepartementCode) {
+        return getManagerFactory().getSiteManager().getSitesByDepartement(pDepartementCode);
+    }
+
+    public List<Site> getSitesByVille (int pVilleId) {
+        return getManagerFactory().getSiteManager().getSitesByVille(pVilleId);
+    }
+
 
     public List<Site> getListSites() {
         return getManagerFactory().getSiteManager().getAllSites();

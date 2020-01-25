@@ -9,7 +9,7 @@ public interface SiteDao {
     void createSite (Site pSite);
     Site getSiteById(int pId);
     List<Site> getSitesByRegion (int pRegionId);
-    List<Site> getSitesByDepartement (String pCode);
+    List<Site> getSitesByDepartement (int pCode);
     List<Site> getSitesByVille (int pVilleId);
     List<Site> getAllSites();
     void updateSite (Site pSite);

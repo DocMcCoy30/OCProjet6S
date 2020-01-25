@@ -51,21 +51,21 @@
 
 <br><br>
 <div class="container">
-    <form action="searchSite" method="post">
+    <form action="searchSites" method="post">
         <div class="row">
             <div class="input-group col-sm">
-                <select class="custom-select" name="sites" id="sites">
+                <select class="custom-select" name="site" id="site">
                     <option selected disabled>Site</option>
                     <c:forEach var="site" items="${sites}">
-                        <option value="${site.nom}">${site.nom}</option>
+                        <option value="${site.id}">${site.nom}</option>
                     </c:forEach>
                 </select>
             </div>
             <div class="input-group col-sm">
-                <select class="custom-select" name="regions" id="regions">
+                <select class="custom-select" name="region" id="region">
                     <option selected disabled>Région</option>
                     <c:forEach var="region" items="${regions}">
-                        <option value="${region.nom}">${region.nom}</option>
+                        <option value="${region.id}">${region.nom}</option>
                     </c:forEach>
                 </select>
             </div>
@@ -77,18 +77,18 @@
 <%--                </select>--%>
 <%--            </div>--%>
             <div class="input-group col-sm">
-                <select class="custom-select" name="departements" id="departements">
+                <select class="custom-select" name="departement" id="departement">
                     <option selected disabled>Département</option>
                     <c:forEach var="departement" items="${departements}">
-                        <option value="${departement.nom}">${departement.nom}</option>
+                        <option value="${departement.code}">${departement.nom}</option>
                     </c:forEach>
                 </select>
             </div>
             <div class="input-group col-sm">
-                <select class="custom-select" name="villes" id="villes">
+                <select class="custom-select" name="ville" id="ville">
                     <option selected disabled>Villes</option>
                     <c:forEach var="ville" items="${villes}">
-                        <option value="${ville.nom}">${ville.nom}</option>
+                        <option value="${ville.id}">${ville.nom}</option>
                     </c:forEach>
                 </select>
             </div>
@@ -103,13 +103,60 @@
 <%--                </select>--%>
 <%--            </div>--%>
 
-            <div class="col-sm-1 offset-10 ">
+            <div class="col-sm-1 offset-10">
                 <button type="submit" class="btn btn-primary">Rechercher</button>
             </div>
         </div>
     </form>
     <br><br>
     <a href="${pageContext.request.contextPath}/caracteristique/liste">caracteristiques / ADMIN TEST</a>
+    <br><br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>description</th>
+            <th>nb de secteurs</th>
+            <th>nb de voies</th>
+            <th>hauteur max</th>
+            <th>type de roche</th>
+            <th>region</th>
+            <th>departement</th>
+            <th>ville</th>
+        </tr>
+        </thead>
+        <tbody>
+<%--        <c:if test="${ !empty siteSearchResult}">--%>
+<%--            <c:param name="result" value="${siteSearchResult}"/>--%>
+<%--            <tr>--%>
+<%--                <td>${result.nom}</td>--%>
+<%--                <td>${result.description}</td>--%>
+<%--                <td>${result.nbDeSecteurs}</td>--%>
+<%--                <td>${result.nbDeVoies}</td>--%>
+<%--                <td>${result.hauteur}</td>--%>
+<%--                <td>${result.typeRoche}</td>--%>
+<%--                <td>${result.region.nom}</td>--%>
+<%--                <td>${result.departement.nom}</td>--%>
+<%--                <td>${result.ville.nom}</td>--%>
+<%--            </tr>--%>
+<%--        </c:if>--%>
+<%--        <c:if test="${ empty siteSearchResult}">--%>
+<%--        <c:forEach var="result" items="${listeSitesSearchResult}">--%>
+<%--            <tr>--%>
+<%--                <td>${result.nom}</td>--%>
+<%--                <td>${result.description}</td>--%>
+<%--                <td>${result.nbDeSecteurs}</td>--%>
+<%--                <td>${result.nbDeVoies}</td>--%>
+<%--                <td>${result.hauteur}</td>--%>
+<%--                <td>${result.typeRoche}</td>--%>
+<%--                <td>${result.region.nom}</td>--%>
+<%--                <td>${result.departement.nom}</td>--%>
+<%--                <td>${result.ville.nom}</td>--%>
+<%--            </tr>--%>
+<%--        </c:forEach>--%>
+<%--        </c:if>--%>
+        </tbody>
+    </table>
 </div>
 
 </body>

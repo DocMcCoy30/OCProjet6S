@@ -39,7 +39,7 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
     }
 
     @Override
-    public List<Site> getSitesByDepartement(String pCode) {
+    public List<Site> getSitesByDepartement(int pCode) {
         String vSQL = "SELECT * FROM site WHERE departement_code="+pCode;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Site> vListSites = vJdbcTemplate.query(vSQL, siteRM);

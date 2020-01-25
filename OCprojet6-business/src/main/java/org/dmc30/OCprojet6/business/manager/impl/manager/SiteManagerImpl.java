@@ -26,7 +26,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
         return getDaoFactory().getSiteDao().getSitesByRegion(pRegionId);
     }
 
-    public List<Site> getSitesByDepartement (String pCode) {
+    public List<Site> getSitesByDepartement (int pCode) {
         return getDaoFactory().getSiteDao().getSitesByDepartement(pCode);
     }
 
