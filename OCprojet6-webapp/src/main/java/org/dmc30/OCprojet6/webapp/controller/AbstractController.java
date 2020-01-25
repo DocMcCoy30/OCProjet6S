@@ -18,7 +18,7 @@ public class AbstractController {
     @Inject
     GeographicResource geographicResource;
 
-    protected void afficherListeCommune(Model model) {
+    protected void afficherListe(Model model) {
         List<Site> vListSites = siteResource.getListSites();
         model.addAttribute("sites", vListSites);
         List<Region> vListRegions = geographicResource.getListRegions();

@@ -43,7 +43,7 @@ public class SiteController extends AbstractController{
         vModel.addObject("siteSearchResult", vSite);
         vModel.addObject("listeSitesSearchResult", vListSite);
         vModel.setViewName("accueil");
-        afficherListeCommune(model);
+        afficherListe(model);
         return vModel;
     }
 }
