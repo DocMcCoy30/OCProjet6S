@@ -69,13 +69,13 @@
                     </c:forEach>
                 </select>
             </div>
-<%--            DEBUG DEPARTEMENT RM => TEST REGION BY ID OK!--%>
-<%--            <div class="input-group col-sm">--%>
-<%--                <select class="custom-select" name="region" id="region">--%>
-<%--                    <option selected disabled>Debug</option>--%>
-<%--                        <option value="${region.nom}">${region.nom}</option>--%>
-<%--                </select>--%>
-<%--            </div>--%>
+            <%--            DEBUG DEPARTEMENT RM => TEST REGION BY ID OK!--%>
+            <%--            <div class="input-group col-sm">--%>
+            <%--                <select class="custom-select" name="region" id="region">--%>
+            <%--                    <option selected disabled>Debug</option>--%>
+            <%--                        <option value="${region.nom}">${region.nom}</option>--%>
+            <%--                </select>--%>
+            <%--            </div>--%>
             <div class="input-group col-sm">
                 <select class="custom-select" name="departement" id="departement">
                     <option selected disabled>Département</option>
@@ -92,16 +92,16 @@
                     </c:forEach>
                 </select>
             </div>
-<%--            <div class="input-group col-sm">--%>
-<%--                <select class="custom-select" name="nbSecteurs" id="nbSecteurs">--%>
-<%--                    <option selected disabled>Nombre de secteurs</option>--%>
-<%--                </select>--%>
-<%--            </div>--%>
-<%--            <div class="input-group col-sm">--%>
-<%--                <select class="custom-select" name="nbVoies" id="nbVoies">--%>
-<%--                    <option selected disabled>Nombre de voies</option>--%>
-<%--                </select>--%>
-<%--            </div>--%>
+            <%--            <div class="input-group col-sm">--%>
+            <%--                <select class="custom-select" name="nbSecteurs" id="nbSecteurs">--%>
+            <%--                    <option selected disabled>Nombre de secteurs</option>--%>
+            <%--                </select>--%>
+            <%--            </div>--%>
+            <%--            <div class="input-group col-sm">--%>
+            <%--                <select class="custom-select" name="nbVoies" id="nbVoies">--%>
+            <%--                    <option selected disabled>Nombre de voies</option>--%>
+            <%--                </select>--%>
+            <%--            </div>--%>
 
             <div class="col-sm-1 offset-10">
                 <button type="submit" class="btn btn-primary">Rechercher</button>
@@ -125,38 +125,43 @@
             <th>ville</th>
         </tr>
         </thead>
+        <c:if test="${ !empty siteSearchResult}">
         <tbody>
-<%--        <c:if test="${ !empty siteSearchResult}">--%>
-<%--            <c:param name="result" value="${siteSearchResult}"/>--%>
-<%--            <tr>--%>
-<%--                <td>${result.nom}</td>--%>
-<%--                <td>${result.description}</td>--%>
-<%--                <td>${result.nbDeSecteurs}</td>--%>
-<%--                <td>${result.nbDeVoies}</td>--%>
-<%--                <td>${result.hauteur}</td>--%>
-<%--                <td>${result.typeRoche}</td>--%>
-<%--                <td>${result.region.nom}</td>--%>
-<%--                <td>${result.departement.nom}</td>--%>
-<%--                <td>${result.ville.nom}</td>--%>
-<%--            </tr>--%>
-<%--        </c:if>--%>
-<%--        <c:if test="${ empty siteSearchResult}">--%>
-<%--        <c:forEach var="result" items="${listeSitesSearchResult}">--%>
-<%--            <tr>--%>
-<%--                <td>${result.nom}</td>--%>
-<%--                <td>${result.description}</td>--%>
-<%--                <td>${result.nbDeSecteurs}</td>--%>
-<%--                <td>${result.nbDeVoies}</td>--%>
-<%--                <td>${result.hauteur}</td>--%>
-<%--                <td>${result.typeRoche}</td>--%>
-<%--                <td>${result.region.nom}</td>--%>
-<%--                <td>${result.departement.nom}</td>--%>
-<%--                <td>${result.ville.nom}</td>--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
-<%--        </c:if>--%>
+        <tr>
+            <c:set var="result" value="${siteSearchResult}" />
+            <td>${result.nom}</td>
+            <td>${result.description}</td>
+            <td>${result.nbDeSecteurs}</td>
+            <td>${result.nbDeVoies}</td>
+            <td>${result.hauteur}</td>
+            <td>${result.typeRoche}</td>
+            <td>${result.region.nom}</td>
+            <td>${result.departement.nom}</td>
+            <td>${result.ville.nom}</td>
+        </tr>
         </tbody>
+<%--    </table>--%>
+    </c:if>
+
+    <c:if test="${ !empty listeSitesSearchResult}">
+        <tbody>
+        <tr>
+            <c:forEach var="result" items="${listeSitesSearchResult}">
+                <td>${result.nom}</td>
+                <td>${result.description}</td>
+                <td>${result.nbDeSecteurs}</td>
+                <td>${result.nbDeVoies}</td>
+                <td>${result.hauteur}</td>
+                <td>${result.typeRoche}</td>
+                <td>${result.region.nom}</td>
+                <td>${result.departement.nom}</td>
+                <td>${result.ville.nom}</td>
+            </c:forEach>
+        </tr>
+        </tbody>
+    </c:if>
     </table>
+
 </div>
 
 </body>

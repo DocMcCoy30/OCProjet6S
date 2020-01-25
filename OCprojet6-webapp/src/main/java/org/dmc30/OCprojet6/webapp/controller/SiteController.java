@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Controller
-public class SiteController extends AbstractController{
+public class SiteController extends AbstractController {
 
     @Inject
     SiteResource siteResource;
@@ -27,18 +27,39 @@ public class SiteController extends AbstractController{
         List<Site> vListSite = null;
         Site vSite = null;
         //DEBUG
-        System.out.println("VilleId = "+pVilleId);
-        System.out.println("DepartementCode = "+pDepartementCode);
-        System.out.println("RegionId = "+pRegionId);
-        System.out.println("SiteId = " +pSiteId);
+        System.out.println("VilleId = " + pVilleId);
+        System.out.println("DepartementCode = " + pDepartementCode);
+        System.out.println("RegionId = " + pRegionId);
+        System.out.println("SiteId = " + pSiteId);
         if (pVilleId != null) {
             vListSite = siteResource.getSitesByVille(pVilleId);
+            //DEBUG
+            for (Site site : vListSite
+            ) {
+                System.out.println("Dans getSitesByVille : " + site.getNom());
+                System.out.println(site.getDescription());
+            }
         } else if (pDepartementCode != null) {
             vListSite = siteResource.getSitesByDepartement(pDepartementCode);
+            //DEBUG
+            for (Site site : vListSite
+            ) {
+                System.out.println("Dans getSitesByDepartement : " + site.getNom());
+                System.out.println(site.getDescription());
+            }
         } else if (pRegionId != null) {
             vListSite = siteResource.getSitesByRegion(pRegionId);
+            //DEBUG
+            for (Site site : vListSite
+            ) {
+                System.out.println("Dans getSitesByRegion : " + site.getNom());
+                System.out.println(site.getDescription());
+            }
         } else if (pSiteId != null) {
             vSite = siteResource.getSiteById(pSiteId);
+            //DEBUG
+            System.out.println("Dans getSiteById : " + vSite.getNom());
+            System.out.println(vSite.getDescription());
         }
         vModel.addObject("siteSearchResult", vSite);
         vModel.addObject("listeSitesSearchResult", vListSite);
