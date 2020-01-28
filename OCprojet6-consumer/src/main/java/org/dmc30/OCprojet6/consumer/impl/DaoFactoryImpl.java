@@ -19,6 +19,8 @@ public class DaoFactoryImpl implements DaoFactory {
     @Inject
     DepartementDao departementDao;
     @Inject
+    DescriptionDao descriptionDao;
+    @Inject
     PhotoDao photoDao;
     @Inject
     RegionDao regionDao;
@@ -77,6 +79,16 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setDepartementDao(DepartementDao departementDao) {
         this.departementDao = departementDao;
+    }
+
+    @Override
+    public DescriptionDao getDescriptionDao() {
+        return descriptionDao;
+    }
+
+    @Override
+    public void setDescriptionDao(DescriptionDao descriptionDao) {
+        this.descriptionDao = descriptionDao;
     }
 
     @Override

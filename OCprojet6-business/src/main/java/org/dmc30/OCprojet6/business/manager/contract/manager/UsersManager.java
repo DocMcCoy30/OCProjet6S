@@ -8,7 +8,7 @@ import java.util.List;
 public interface UsersManager {
 
     /**
-     * Enregistre un objet de type Users dans la database
+     * Enregistre un objet de type Users dans la DB (table)users et son rôle dans (table)users_role
      */
     void createUsers (Users pUsers) throws TechnicalException;
 
@@ -38,9 +38,9 @@ public interface UsersManager {
     void deleteUsers (int pId);
 
     /**
-     * Recherche de doublon pour creation de compte
-     * @param pUsers le Users renseigné dans le formulaire de creéation de compte
-     * @return false ou true
+     * Verifie que le nouveau user n'existe pas déjà dans la database
+     * @param pUsers le Users renseigné dans le formulaire de création de compte
+     * @return vrai ou faux
      */
     int[] rechercheDoublon (Users pUsers);
 }

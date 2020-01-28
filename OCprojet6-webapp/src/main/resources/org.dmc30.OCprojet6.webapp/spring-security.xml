@@ -14,8 +14,8 @@
         </headers>
 
         <intercept-url pattern="/signup" access="permitAll()"/>
-        <intercept-url pattern="/sites" access="permitAll()"/>
-        <intercept-url pattern="/sites/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/searchSites" access="permitAll()"/>
+        <intercept-url pattern="/showCreationSiteForm" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <intercept-url pattern="/caracteristique/liste" access="hasRole('ROLE_ADMIN')" />
 
         <form-login login-page="/login"

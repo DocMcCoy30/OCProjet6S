@@ -17,6 +17,10 @@ public interface ManagerFactory {
 
     void setDepartementManager(DepartementManager departementManager);
 
+    DescriptionManager getDescriptionManager();
+
+    void setDescriptionManager(DescriptionManager descriptionManager);
+
     PhotoManager getPhotoManager();
 
     void setPhotoManager(PhotoManager photoManager);

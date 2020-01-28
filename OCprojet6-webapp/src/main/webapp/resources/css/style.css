@@ -2,3 +2,12 @@ div
 {
     border: black 1px solid;
 }
+.input-group
+{
+    border: red 1px solid;
+    margin-left: 10px;
+}
+.input-group-text
+{
+    width: 8em;
+}

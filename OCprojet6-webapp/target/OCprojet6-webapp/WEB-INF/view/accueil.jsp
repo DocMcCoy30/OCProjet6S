@@ -27,11 +27,6 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <%--        <div class="navbar-nav">--%>
-        <%--            <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/accueil">Accueil<span--%>
-        <%--                    class="sr-only">(current)</span></a>--%>
-        <%--            <a class="nav-item nav-link" href="${pageContext.request.contextPath}/sites">Sites</a>--%>
-        <%--        </div>--%>
     </div>
     <c:if test="${pageContext.request.userPrincipal.name == null}">
         <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/signin">Creer un compte</a>
@@ -52,16 +47,16 @@
 <br><br>
 <div class="container">
     <form action="searchSites" method="post">
-        <div class="row">
-            <div class="input-group col-sm">
+        <div class="row col-md-12 no-gutters">
+            <div class="input-group col-md">
                 <select class="custom-select" name="site" id="site">
-                    <option selected disabled>Site</option>
+                    <option selected disabled >Site</option>
                     <c:forEach var="site" items="${sites}">
                         <option value="${site.id}">${site.nom}</option>
                     </c:forEach>
                 </select>
             </div>
-            <div class="input-group col-sm">
+            <div class="input-group col-md">
                 <select class="custom-select" name="region" id="region">
                     <option selected disabled>Région</option>
                     <c:forEach var="region" items="${regions}">
@@ -69,14 +64,7 @@
                     </c:forEach>
                 </select>
             </div>
-            <%--            DEBUG DEPARTEMENT RM => TEST REGION BY ID OK!--%>
-            <%--            <div class="input-group col-sm">--%>
-            <%--                <select class="custom-select" name="region" id="region">--%>
-            <%--                    <option selected disabled>Debug</option>--%>
-            <%--                        <option value="${region.nom}">${region.nom}</option>--%>
-            <%--                </select>--%>
-            <%--            </div>--%>
-            <div class="input-group col-sm">
+            <div class="input-group col-md">
                 <select class="custom-select" name="departement" id="departement">
                     <option selected disabled>Département</option>
                     <c:forEach var="departement" items="${departements}">
@@ -84,7 +72,7 @@
                     </c:forEach>
                 </select>
             </div>
-            <div class="input-group col-sm">
+            <div class="input-group col-md">
                 <select class="custom-select" name="ville" id="ville">
                     <option selected disabled>Villes</option>
                     <c:forEach var="ville" items="${villes}">
@@ -92,76 +80,73 @@
                     </c:forEach>
                 </select>
             </div>
-            <%--            <div class="input-group col-sm">--%>
-            <%--                <select class="custom-select" name="nbSecteurs" id="nbSecteurs">--%>
-            <%--                    <option selected disabled>Nombre de secteurs</option>--%>
-            <%--                </select>--%>
-            <%--            </div>--%>
-            <%--            <div class="input-group col-sm">--%>
-            <%--                <select class="custom-select" name="nbVoies" id="nbVoies">--%>
-            <%--                    <option selected disabled>Nombre de voies</option>--%>
-            <%--                </select>--%>
-            <%--            </div>--%>
-
-            <div class="col-sm-1 offset-10">
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-            </div>
+        </div>
+        <br><br>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
         </div>
     </form>
     <br><br>
     <a href="${pageContext.request.contextPath}/caracteristique/liste">caracteristiques / ADMIN TEST</a>
     <br><br>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Nom</th>
-            <th>description</th>
-            <th>nb de secteurs</th>
-            <th>nb de voies</th>
-            <th>hauteur max</th>
-            <th>type de roche</th>
-            <th>region</th>
-            <th>departement</th>
-            <th>ville</th>
-        </tr>
-        </thead>
-        <c:if test="${ !empty siteSearchResult}">
-        <tbody>
-        <tr>
-            <c:set var="result" value="${siteSearchResult}" />
-            <td>${result.nom}</td>
-            <td>${result.description}</td>
-            <td>${result.nbDeSecteurs}</td>
-            <td>${result.nbDeVoies}</td>
-            <td>${result.hauteur}</td>
-            <td>${result.typeRoche}</td>
-            <td>${result.region.nom}</td>
-            <td>${result.departement.nom}</td>
-            <td>${result.ville.nom}</td>
-        </tr>
-        </tbody>
-<%--    </table>--%>
-    </c:if>
 
-    <c:if test="${ !empty listeSitesSearchResult}">
-        <tbody>
-        <tr>
+    <%--        Afficher les résultats de recherche     --%>
+    <div class="row">
+        <c:if test="${ !empty listeSitesSearchResult}">
             <c:forEach var="result" items="${listeSitesSearchResult}">
-                <td>${result.nom}</td>
-                <td>${result.description}</td>
-                <td>${result.nbDeSecteurs}</td>
-                <td>${result.nbDeVoies}</td>
-                <td>${result.hauteur}</td>
-                <td>${result.typeRoche}</td>
-                <td>${result.region.nom}</td>
-                <td>${result.departement.nom}</td>
-                <td>${result.ville.nom}</td>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <a href="#"><img src="..." class="card-img" alt="..."></a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a href="#"><h5 class="card-title">${result.nom}</h5></a>
+                                    <p class="card-text">${result.description.description}</p>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </c:forEach>
-        </tr>
-        </tbody>
-    </c:if>
-    </table>
+        </c:if>
+    </div>
 
+    <%--        Afficher le message et le nouveau site     --%>
+    <c:if test="${ !empty messageCreationSite}">
+        <div class="alert alert-success" role="alert">
+            <c:out value="${messageCreationSite}"/>
+        </div>
+        <div>
+            <c:set var="newSite" scope="session" value="${newSite}"/>
+            <c:set var="description" scope="session" value="${description}"/>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <a href="#"><img src="..." class="card-img" alt="..."></a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a href="#"><h5 class="card-title"><c:out value="${newSite.nom}"/></h5></a>
+                                    <p class="card-text"><c:out value="${description}"/></p>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:if>
+
+    <div class="text-right">
+        <a href="${pageContext.request.contextPath}/showCreationSiteForm" type="button" class="btn btn-primary">Créer
+            un site</a>
+    </div>
 </div>
 
 </body>

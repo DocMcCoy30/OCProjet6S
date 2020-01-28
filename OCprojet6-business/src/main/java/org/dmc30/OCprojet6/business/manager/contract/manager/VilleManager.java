@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.business.manager.contract.manager;
 
 import org.dmc30.OCprojet6.model.bean.Ville;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface VilleManager {
@@ -43,4 +44,11 @@ public interface VilleManager {
      */
     void deleteVille (int pId);
 
+    /**
+     * Vérifie que la nouvelle ville n'existe pas déjà dans le database
+     * @param pVille la nouvelle ville renseignée dans le formulaire de création
+     * @return un tableau contenant les résultats de recherche sous forme de 2 Integer :
+     * [vrai ou faux / 0 ou villeId]
+     */
+    ArrayList<Integer> rechercheDoublon(Ville pVille);
 }

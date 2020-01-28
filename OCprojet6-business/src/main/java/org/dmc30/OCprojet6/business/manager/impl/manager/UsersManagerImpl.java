@@ -4,6 +4,7 @@ import org.dmc30.OCprojet6.business.manager.contract.manager.UsersManager;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.inject.Named;
@@ -45,6 +46,7 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
     // transaction => pilule rouge
     @Override
+    @Transactional
     public void createUsers(Users pUsers) throws TechnicalException {
 
         TransactionStatus vTransactionStatus

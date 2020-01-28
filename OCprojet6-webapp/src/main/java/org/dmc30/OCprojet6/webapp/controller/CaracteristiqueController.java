@@ -1,7 +1,7 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
 import org.dmc30.OCprojet6.model.bean.Caracteristique;
-import org.dmc30.OCprojet6.webapp.resource.CaracteristiqueResource;
+import org.dmc30.OCprojet6.webapp.resource.AllCaracteristiqueResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +14,11 @@ import java.util.List;
 public class CaracteristiqueController {
 
     @Inject
-    private CaracteristiqueResource caracteristiqueResource;
+    private AllCaracteristiqueResource allCaracteristiqueResource;
 
     @GetMapping("/liste")
     public String listCaracteristique(Model pModel) {
-        List<Caracteristique> vCaracteristique = caracteristiqueResource.getListCaracteristique();
+        List<Caracteristique> vCaracteristique = allCaracteristiqueResource.getListCaracteristique();
         pModel.addAttribute("caracteristiques", vCaracteristique);
         return "liste-caracteristique";
     }
@@ -32,26 +32,26 @@ public class CaracteristiqueController {
 
     @PostMapping("/ajoutCaracteristique")
     public String saveCaracteristique(@ModelAttribute("caracteristique") Caracteristique pCaracteristique) {
-        caracteristiqueResource.createCaracteristique(pCaracteristique);
+        allCaracteristiqueResource.createCaracteristique(pCaracteristique);
         return "redirect:/caracteristique/liste";
     }
 
     @GetMapping("/formulaireUpdate")
     public String showFormForUpdate(@RequestParam("caracteristiqueId") int pId, Model pModel) {
-        Caracteristique vCaracteristique = caracteristiqueResource.getCracteristiqueById(pId);
+        Caracteristique vCaracteristique = allCaracteristiqueResource.getCaracteristiqueById(pId);
         pModel.addAttribute(vCaracteristique);
         return "formulaire-update";
     }
 
     @PostMapping("/updateCaracteristique")
     public String updateCaracteristique(@ModelAttribute("caracteristique") Caracteristique pCaracteristique) {
-        caracteristiqueResource.updateCaracteristique(pCaracteristique);
+        allCaracteristiqueResource.updateCaracteristique(pCaracteristique);
         return "redirect:/caracteristique/liste";
     }
 
     @GetMapping("/delete")
     public String deleteCustomer(@RequestParam("caracteristiqueId") int pId) {
-        caracteristiqueResource.deleteCarateristique(pId);
+        allCaracteristiqueResource.deleteCarateristique(pId);
         return "redirect:/caracteristique/liste";
     }
 }

@@ -23,12 +23,12 @@ public class GeographicResource extends AbstractResource {
         return getManagerFactory().getDepartementManager().getAllDepartements();
     }
 
-    public List<Ville> getListVilles () {
-        return getManagerFactory().getVilleManager().getAllVilles();
-    }
-
     public List<Departement> getDepartementsByRegion (int pRegionId) {
         return getManagerFactory().getDepartementManager().getDepartementsByRegion(pRegionId);
+    }
+
+    public List<Ville> getListVilles () {
+        return getManagerFactory().getVilleManager().getAllVilles();
     }
 
     public List<Ville> getVillesByDepartement (String pCode) {

@@ -11,6 +11,10 @@ public interface SiteDao {
     List<Site> getSitesByRegion (int pRegionId);
     List<Site> getSitesByDepartement (int pCode);
     List<Site> getSitesByVille (int pVilleId);
+    List<Site> searchSites (int pSiteId,
+                            int pRegionId,
+                            int pDepartementCode,
+                            int pVilleId);
     List<Site> getAllSites();
     void updateSite (Site pSite);
     void deleteSite(int pId);

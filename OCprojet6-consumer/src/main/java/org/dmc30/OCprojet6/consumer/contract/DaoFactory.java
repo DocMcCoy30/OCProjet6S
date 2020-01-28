@@ -20,6 +20,10 @@ public interface DaoFactory {
 
     void setDepartementDao(DepartementDao departementDao);
 
+    DescriptionDao getDescriptionDao();
+
+    void setDescriptionDao(DescriptionDao descriptionDao);
+
     PhotoDao getPhotoDao();
 
     void setPhotoDao(PhotoDao photoDao);

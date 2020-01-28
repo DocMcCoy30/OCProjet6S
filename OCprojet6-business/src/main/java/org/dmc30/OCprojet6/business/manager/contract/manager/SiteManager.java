@@ -9,7 +9,7 @@ public interface SiteManager {
     /**
      * Enregistre un objet de type Site dans la database
      */
-    void createSite(Site pSite);
+    Site createSite(Site pSite);
 
     /**
      * Cherche et renvoie un objet de type Site stocké dans la database
@@ -42,6 +42,19 @@ public interface SiteManager {
      * @return la liste d'objets recherchée
      */
     List<Site> getSitesByVille(int pVilleId);
+
+    /**
+     * Effectue un recherche multicritère et renvoie la liste des sites correspondants
+     * @param pSiteId l'identifiant du site recherché
+     * @param pRegionId l'identifiant de la région du site recherché
+     * @param pDepartementCode le code du département du site recherché
+     * @param pVilleId l'identifiant de la ville du site recherché
+     * @return la liste des sites correspondants aux citères de recherche
+     */
+    List<Site> searchSites (int pSiteId,
+                            int pRegionId,
+                            int pDepartementCode,
+                            int pVilleId);
 
 
     /**

@@ -25,7 +25,6 @@
         <table>
             <tbody>
             <tr>
-
                 <td><label>Nom :</label></td>
                 <td><form:input path="nom"/></td>
             </tr>

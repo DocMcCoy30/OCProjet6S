@@ -4,6 +4,7 @@ import org.dmc30.OCprojet6.business.manager.contract.manager.VilleManager;
 import org.dmc30.OCprojet6.model.bean.Ville;
 
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -41,4 +42,24 @@ public class VilleManagerImpl extends AbstractManager implements VilleManager {
     public void deleteVille(int pId) {
         getDaoFactory().getVilleDao().deleteVille(pId);
     }
+
+    @Override
+    public ArrayList<Integer> rechercheDoublon(Ville pVille) {
+        int i = 0;
+        int j = 0;
+        ArrayList<Integer> vListResult = new ArrayList<>();
+        List<Ville> vListVille = getDaoFactory().getVilleDao().getAllVilles();
+        for (Ville vVille: vListVille) {
+            if (vVille.getNom().equalsIgnoreCase(pVille.getNom())) {
+                if (vVille.getDepartement().getCode() == (pVille.getDepartement().getCode())) {
+                    i++;
+                    j = vVille.getId();
+                }
+            }
+        }
+        vListResult.add(i);
+        vListResult.add(j);
+        return vListResult;
+    }
 }
+

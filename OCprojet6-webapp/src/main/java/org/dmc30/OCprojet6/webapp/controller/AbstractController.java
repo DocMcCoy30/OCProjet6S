@@ -1,9 +1,7 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
-import org.dmc30.OCprojet6.model.bean.Departement;
-import org.dmc30.OCprojet6.model.bean.Region;
-import org.dmc30.OCprojet6.model.bean.Site;
-import org.dmc30.OCprojet6.model.bean.Ville;
+import org.dmc30.OCprojet6.model.bean.*;
+import org.dmc30.OCprojet6.webapp.resource.AllCaracteristiqueResource;
 import org.dmc30.OCprojet6.webapp.resource.GeographicResource;
 import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.springframework.ui.Model;
@@ -17,6 +15,8 @@ public class AbstractController {
     SiteResource siteResource;
     @Inject
     GeographicResource geographicResource;
+    @Inject
+    AllCaracteristiqueResource allCaracteristiqueResource;
 
     protected void afficherListe(Model model) {
         List<Site> vListSites = siteResource.getListSites();
@@ -27,5 +27,8 @@ public class AbstractController {
         model.addAttribute("departements", vListDepartements);
         List<Ville> vListVilles = geographicResource.getListVilles();
         model.addAttribute("villes", vListVilles);
+        List<TypeRoche> vListTypeRoches = allCaracteristiqueResource.getListTypeRoche();
+        model.addAttribute("typeRoche", vListTypeRoches);
+
     }
 }
