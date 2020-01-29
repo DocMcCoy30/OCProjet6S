@@ -19,9 +19,10 @@ public class DescriptionDaoImpl extends AbstractDao implements DescriptionDao {
     DescriptionRM descriptionRM;
     @Override
     public void createDescription(Description pDescription) {
-        String vSQL = "INSERT INTO description (description) VALUES (:vDescription)";
+        String vSQL = "INSERT INTO description (description, info) VALUES (:description, :info)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
-        vParams.addValue("vDescription", pDescription.getDescription());
+        vParams.addValue("description", pDescription.getDescription());
+        vParams.addValue("info", pDescription.getInfo());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, vParams);
     }

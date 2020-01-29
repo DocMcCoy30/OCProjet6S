@@ -109,7 +109,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <a href="#"><h5 class="card-title">${result.nom}</h5></a>
-                                <p class="card-text">${result.description.description}</p>
+                                <p class="card-text">${result.description.info}</p>
                                 <p class="card-text"><small class="text-muted">${result.region.nom} - ${result.departement.nom}</small></p>
                             </div>
                         </div>

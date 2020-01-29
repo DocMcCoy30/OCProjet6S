@@ -7,7 +7,7 @@ public interface DescriptionManager {
     /**
      * Enregistre un objet de type Description dans la database
      */
-    void createCaracteristique (Description pDescription);
+     void createDescription(Description pDescription);
 
     /**
      * Cherche et renvoie un objet de type Description dans la database

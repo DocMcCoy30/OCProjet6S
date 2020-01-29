@@ -38,15 +38,6 @@ public class SiteResource extends AbstractResource {
         Site vNewSite = new Site();
         //fixation de l'attribut nom
         vNewSite.setNom(pNomSite);
-        //création de la description et fixation de l'attribut
-        Description vNewDescription = new Description();
-        if (pDescription.isEmpty()) {
-            pDescription = "Ajouter une description pour ce site.";
-            vNewDescription.setDescription(pDescription);
-        }else{
-            vNewDescription.setDescription(pDescription);
-        }
-        vNewSite.setDescription(vNewDescription);
         //recuperation de la Region et fixation de l'attribut
         Region vRegion = getManagerFactory().getRegionManager().getRegionById(pRegionId);
         vNewSite.setRegion(vRegion);
@@ -64,6 +55,19 @@ public class SiteResource extends AbstractResource {
         vNewSite.setTypeRoche(vTypeRoche);
         //fixation de l'attribut officiel
         vNewSite.setOfficiel(false);
+        //création de la description et fixation de l'attribut
+        Description vNewDescription = new Description();
+        if (pDescription.isEmpty()) {
+            pDescription = "Ajouter une description pour ce site.";
+            vNewDescription.setDescription(pDescription);
+        } else {
+            vNewDescription.setDescription(pDescription);
+        }
+        String vInfo = pNomSite + " est un site d'escalade de type " + vTypeRoche.getNom() + ", situé à " + pNomSite +
+                ", dans le département du " + vDepartement.getNom() + " (" + vRegion.getNom() + ")." +
+                "\nTODO : info nbsecteurs et nbvoies + hauteur + cotation...";
+        vNewDescription.setInfo(vInfo);
+        vNewSite.setDescription(vNewDescription);
 
         getManagerFactory().getSiteManager().createSite(vNewSite);
 

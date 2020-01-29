@@ -15,6 +15,7 @@ public class DescriptionRM implements RowMapper<Description> {
         Description vDescription = new Description(resultSet.getInt("description_id"));
         vDescription.setId(resultSet.getInt("description_id"));
         vDescription.setDescription(resultSet.getString("description"));
+        vDescription.setInfo(resultSet.getString("info"));
         return vDescription;
     }
 }

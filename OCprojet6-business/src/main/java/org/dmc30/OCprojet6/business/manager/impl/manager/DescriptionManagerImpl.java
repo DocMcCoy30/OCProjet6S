@@ -9,7 +9,7 @@ import javax.inject.Named;
 public class DescriptionManagerImpl extends AbstractManager implements DescriptionManager {
 
     @Override
-    public void createCaracteristique(Description pDescription) {
+    public void createDescription(Description pDescription) {
 
     }
 

@@ -4,6 +4,7 @@ public class Description {
 
     private int id;
     private String description;
+    private String info;
 
     public Description() {
     }
@@ -25,5 +26,13 @@ public class Description {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }
