@@ -1,6 +1,10 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
+import org.dmc30.OCprojet6.model.bean.Description;
+import org.dmc30.OCprojet6.model.bean.Secteur;
 import org.dmc30.OCprojet6.model.bean.Site;
+import org.dmc30.OCprojet6.webapp.resource.DescriptionResource;
+import org.dmc30.OCprojet6.webapp.resource.SecteurResource;
 import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +22,8 @@ public class SiteController extends AbstractController {
 
     @Inject
     SiteResource siteResource;
+    @Inject
+    SecteurResource secteurResource;
 
     @PostMapping("/searchSites")
     public ModelAndView searchSites(Model pModel,
@@ -90,7 +96,7 @@ public class SiteController extends AbstractController {
                                    @RequestParam(value = "typeRoche", required = false) Integer pTypeRocheId) {
 
         Site vNewSite = null;
-        List<Site>vListSites = new ArrayList<>();
+        List<Site> vListSites = new ArrayList<>();
         ModelAndView vMaV = new ModelAndView();
         try {
             vNewSite = siteResource.createSite(pNomSite, pDescription, pNomVille, pRegionId, pDepartementCode, pTypeRocheId);
@@ -104,6 +110,17 @@ public class SiteController extends AbstractController {
             vMaV.setViewName("accueil");
             afficherListe(pModel);
         }
+        return vMaV;
+    }
+
+    @GetMapping("/showSitePage")
+    public ModelAndView showSitePage(@RequestParam("siteId") int pSiteId) {
+        ModelAndView vMaV = new ModelAndView();
+        Site vSite = siteResource.getSiteById(pSiteId);
+        List<Secteur> vListSecteurs = secteurResource.getSecteursBySiteId(pSiteId);
+        vMaV.addObject("listSecteurs", vListSecteurs);
+        vMaV.addObject("site", vSite);
+        vMaV.setViewName("sites");
         return vMaV;
     }
 

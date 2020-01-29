@@ -29,6 +29,5 @@ public class AbstractController {
         model.addAttribute("villes", vListVilles);
         List<TypeRoche> vListTypeRoches = allCaracteristiqueResource.getListTypeRoche();
         model.addAttribute("typeRoche", vListTypeRoches);
-
     }
 }

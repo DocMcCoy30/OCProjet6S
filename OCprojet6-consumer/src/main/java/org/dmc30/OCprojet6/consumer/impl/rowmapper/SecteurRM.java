@@ -20,7 +20,7 @@ public class SecteurRM implements RowMapper<Secteur> {
     public Secteur mapRow(ResultSet resultSet, int i) throws SQLException {
         Secteur vSecteur = new Secteur(resultSet.getInt("secteur_id"));
         vSecteur.setNom(resultSet.getString("nom"));
-        vSecteur.setNbDeVoies(resultSet.getInt("nb_de_voies"));
+        vSecteur.setDescription(resultSet.getString("description"));
         // utilisation de siteDao
         Site vSite = siteDao.getSiteById(resultSet.getInt("site_id"));
         vSecteur.setSite(vSite);

@@ -20,6 +20,13 @@ public class SecteurDaoImpl extends AbstractDao implements SecteurDao {
 
     @Override
     public void createSecteur(Secteur pSecteur) {
+        String vSQL = "INSERT INTO secteur (nom, description, site_id) VALUES (:nom, :description, :siteId)";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("nom", pSecteur.getNom());
+        vParams.addValue("description", pSecteur.getDescription());
+        vParams.addValue("siteId", pSecteur.getSite().getId());
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL,vParams);
     }
 
     @Override
@@ -34,7 +41,7 @@ public class SecteurDaoImpl extends AbstractDao implements SecteurDao {
     }
 
     @Override
-    public List<Secteur> getSecteursBySite(int pSiteId) {
+    public List<Secteur> getSecteursBySiteId(int pSiteId) {
         String vSQL = "SELECT * FROM secteur WHERE site_id= :vSiteId";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("vSiteId", pSiteId);

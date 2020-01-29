@@ -8,7 +8,7 @@ public interface SecteurDao {
 
     void createSecteur (Secteur pSecteur);
     Secteur getSecteurById(int pId);
-    List<Secteur> getSecteursBySite (int pSiteId);
+    List<Secteur> getSecteursBySiteId (int pSiteId);
     List<Secteur> getAllSecteurs();
     void updateSecteur (Secteur pSecteur);
     void deleteSecteur(int pId);

@@ -19,6 +19,12 @@ public interface SecteurManager {
     Secteur getSecteurById (int pId);
 
     /**
+     * Cherche et renvoie la liste des secteurs d'un même site stockée dans la database
+     * @return la liste des secteurs
+     */
+    List<Secteur> getSecteursBySiteId(int pSiteId);
+
+    /**
      * Cherche et renvoie la liste des objets de type Secteur stockés dans la database
      * @return la liste d'objets recherchée
      */

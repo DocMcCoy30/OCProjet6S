@@ -32,9 +32,9 @@ public class VilleDaoImpl extends AbstractDao implements VilleDao {
 
     @Override
     public Ville getVilleById(int pId) {
-        String vSQL = "SELECT * FROM ville WHERE ville_id= :vId ORDER BY nom";
+        String vSQL = "SELECT * FROM ville WHERE ville_id= :id ORDER BY nom";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
-        vParams.addValue("vId", pId);
+        vParams.addValue("id", pId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         List<Ville> vListVilles = vJdbcTemplate.query(vSQL, vParams, villeRM);
         Ville vVille = vListVilles.get(0);
@@ -43,9 +43,9 @@ public class VilleDaoImpl extends AbstractDao implements VilleDao {
 
     @Override
     public List<Ville> getVillesByDepartement(String pCode) {
-        String vSQL = "SELECT * FROM ville WHERE departement_code= :vCode";
+        String vSQL = "SELECT * FROM ville WHERE departement_code= :departementCode";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
-        vParams.addValue("vCode", pCode);
+        vParams.addValue("departementCode", pCode);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         List<Ville> vListVilles = vJdbcTemplate.query(vSQL, vParams, villeRM);
         return vListVilles;

@@ -46,85 +46,89 @@
 
 <br><br>
 <div class="container">
-<form action="searchSites" method="post">
-    <div class="row col-md-12 no-gutters">
-        <div class="input-group col-md">
-            <select class="custom-select" name="site" id="site">
-                <option selected disabled>Site</option>
-                <c:forEach var="site" items="${sites}">
-                    <option value="${site.id}">${site.nom}</option>
-                </c:forEach>
-            </select>
+    <form action="searchSites" method="post">
+        <div class="row col-md-12 no-gutters">
+            <div class="input-group col-md">
+                <select class="custom-select" name="site" id="site">
+                    <option selected disabled>Site</option>
+                    <c:forEach var="site" items="${sites}">
+                        <option value="${site.id}">${site.nom}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="input-group col-md">
+                <select class="custom-select" name="region" id="region">
+                    <option selected disabled>Région</option>
+                    <c:forEach var="region" items="${regions}">
+                        <option value="${region.id}">${region.nom}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="input-group col-md">
+                <select class="custom-select" name="departement" id="departement">
+                    <option selected disabled>Département</option>
+                    <c:forEach var="departement" items="${departements}">
+                        <option value="${departement.code}">${departement.nom}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="input-group col-md">
+                <select class="custom-select" name="ville" id="ville">
+                    <option selected disabled>Villes</option>
+                    <c:forEach var="ville" items="${villes}">
+                        <option value="${ville.id}">${ville.nom}</option>
+                    </c:forEach>
+                </select>
+            </div>
         </div>
-        <div class="input-group col-md">
-            <select class="custom-select" name="region" id="region">
-                <option selected disabled>Région</option>
-                <c:forEach var="region" items="${regions}">
-                    <option value="${region.id}">${region.nom}</option>
-                </c:forEach>
-            </select>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
         </div>
-        <div class="input-group col-md">
-            <select class="custom-select" name="departement" id="departement">
-                <option selected disabled>Département</option>
-                <c:forEach var="departement" items="${departements}">
-                    <option value="${departement.code}">${departement.nom}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div class="input-group col-md">
-            <select class="custom-select" name="ville" id="ville">
-                <option selected disabled>Villes</option>
-                <c:forEach var="ville" items="${villes}">
-                    <option value="${ville.id}">${ville.nom}</option>
-                </c:forEach>
-            </select>
-        </div>
-    </div>
-    <div class="text-right">
-        <button type="submit" class="btn btn-primary">Rechercher</button>
-    </div>
-</form>
-<br><br>
-<a href="${pageContext.request.contextPath}/caracteristique/liste">caracteristiques / ADMIN TEST</a>
-<br><br>
+    </form>
+    <br><br>
+    <a href="${pageContext.request.contextPath}/caracteristique/liste">caracteristiques / ADMIN TEST</a>
+    <br><br>
 
-<%--        Afficher les résultats de recherche     --%>
-<div>
-    <c:if test="${ !empty messageCreationSite}">
-        <div class="alert alert-success" role="alert">
-            <c:out value="${messageCreationSite}"/>
-        </div>
-    </c:if>
-</div>
-<div class="row">
-    <c:if test="${ !empty listSites}">
-        <c:forEach var="result" items="${listSites}">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <a href="#"><img src="..." class="card-img" alt="..."></a>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <a href="#"><h5 class="card-title">${result.nom}</h5></a>
-                                <p class="card-text">${result.description.info}</p>
-                                <p class="card-text"><small class="text-muted">${result.region.nom} - ${result.departement.nom}</small></p>
+    <%--        Afficher les résultats de recherche     --%>
+    <div>
+        <c:if test="${ !empty messageCreationSite}">
+            <div class="alert alert-success" role="alert">
+                <c:out value="${messageCreationSite}"/>
+            </div>
+        </c:if>
+    </div>
+    <div class="row">
+        <c:if test="${ !empty listSites}">
+            <c:forEach var="result" items="${listSites}">
+                <c:url var="sitePageLink" value="/showSitePage">
+                    <c:param name="siteId" value="${result.id}"/>
+                </c:url>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <a href="#"><img src="..." class="card-img" alt="..."></a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a href="${sitePageLink}"><h5 class="card-title">${result.nom}</h5></a>
+                                    <p class="card-text">${result.description.info}</p>
+                                    <p class="card-text"><small class="text-muted">${result.region.nom}
+                                        - ${result.departement.nom}</small></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
-    </c:if>
-</div>
+            </c:forEach>
+        </c:if>
+    </div>
 
-<%--        Afficher le message et le nouveau site     --%>
-<%--<c:if test="${ !empty messageCreationSite}">--%>
-<%--    <div class="alert alert-success" role="alert">--%>
-<%--    <c:out value="${messageCreationSite}"/>--%>
-<%--    </div>--%>
+    <%--        Afficher le message et le nouveau site     --%>
+    <%--<c:if test="${ !empty messageCreationSite}">--%>
+    <%--    <div class="alert alert-success" role="alert">--%>
+    <%--    <c:out value="${messageCreationSite}"/>--%>
+    <%--    </div>--%>
     <%--        <div>--%>
     <%--            <c:set var="newSite" scope="session" value="${newSite}"/>--%>
     <%--            <c:set var="description" scope="session" value="${description}"/>--%>
@@ -149,10 +153,10 @@
     <%--        </div>--%>
     <%--    </c:if>--%>
     <div class="text-right">
-    <a href="${pageContext.request.contextPath}/showCreationSiteForm" type="button" class="btn btn-primary">Créer
-    un site</a>
+        <a href="${pageContext.request.contextPath}/showCreationSiteForm" type="button" class="btn btn-primary">Créer
+            un site</a>
     </div>
-    </div>
+</div>
 
-    </body>
-    </html>
+</body>
+</html>

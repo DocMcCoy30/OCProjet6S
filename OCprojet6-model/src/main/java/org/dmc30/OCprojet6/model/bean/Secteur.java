@@ -6,7 +6,7 @@ public class Secteur {
 
     private int id;
     private String nom;
-    private int nbDeVoies;
+    private String description;
     private Site site;
     private List<Voie> listVoies;
     private List<Photo> listPhotos;
@@ -33,12 +33,12 @@ public class Secteur {
         this.nom = nom;
     }
 
-    public int getNbDeVoies() {
-        return nbDeVoies;
+    public String getDescription() {
+        return description;
     }
 
-    public void setNbDeVoies(int nbDeVoies) {
-        this.nbDeVoies = nbDeVoies;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Site getSite() {
