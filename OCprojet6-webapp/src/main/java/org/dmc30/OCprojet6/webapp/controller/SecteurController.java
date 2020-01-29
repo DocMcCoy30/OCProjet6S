@@ -22,6 +22,17 @@ public class SecteurController extends AbstractController {
     SecteurResource secteurResource;
 
 
+    @GetMapping("/showSecteurPage")
+    public ModelAndView showSecteurPage(@RequestParam("siteId") int pSiteId) {
+        ModelAndView vMaV = new ModelAndView();
+        Site vSite = siteResource.getSiteById(pSiteId);
+        List<Secteur> vListSecteurs = secteurResource.getSecteursBySiteId(pSiteId);
+        vMaV.addObject("listSecteurs", vListSecteurs);
+        vMaV.addObject("site", vSite);
+        vMaV.setViewName("secteurs");
+        return vMaV;
+    }
+
     @GetMapping("/showCreationSecteurForm")
     public ModelAndView showCreationSiteForm(@RequestParam(value = "siteId") Integer pSiteId) {
         ModelAndView vMaV = new ModelAndView();
@@ -50,7 +61,7 @@ public class SecteurController extends AbstractController {
             vMaV.addObject("site", vSite);
             vMaV.addObject("messageCreationSecteur", vMessageCreationSecteur);
             vMaV.addObject("listSecteurs", vListSecteurs);
-            vMaV.setViewName("sites");
+            vMaV.setViewName("secteurs");
         }
         return vMaV;
     }

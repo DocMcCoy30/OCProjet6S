@@ -44,5 +44,45 @@
 </table>
 <br><br>
 
+<div class="card-body">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>nb de voies</th>
+                <th>hauteur max</th>
+                <th>cotation</th>
+            </tr>
+            </thead>
+            <c:if test="${ !empty listSecteurs}">
+                <tbody>
+                <c:forEach var="secteur" items="${listSecteurs}">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="#"><h3 class="card-title">${secteur.nom}</h3></a>
+                    </div>
+                    <div class="card-body">
+                        <td>nb de voies</td>
+                        <td>hauteur max</td>
+                        <td>cotation</td>
+                        <div>
+                            <img src="..." class="card-img-top" alt="...">
+                        </div>
+                        <div id="descriptionBlock">
+                            <p>Description :</p>
+                            <div id="descriptionText">
+                                    ${secteur.description}
+                            </div>
+                        </div>
+                    </div>
+
+                    </c:forEach>
+                </tbody>
+            </c:if>
+        </table>
+    </div>
+
 </body>
 </html>

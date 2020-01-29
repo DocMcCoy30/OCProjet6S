@@ -50,127 +50,106 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h2 class="card-title">${site.nom}</h2><h5 class="text-muted text-right">${site.ville.nom}
-            - ${site.departement.nom}</h5>
-            <h5></h5>
+            <h2 class="card-title">${site.nom}</h2>
+            <h5 class="text-muted text-right">${site.ville.nom} - ${site.departement.nom}</h5>
         </div>
-        <div class="card-body">
+    </div>
+    <div class="card-body">
+        <div>
             <img src="..." class="card-img-top" alt="...">
-            <div>
-                ${site.description.description}
+        </div>
+        <div id="descriptionBlock">
+            <p>Description :</p>
+            <div id="descriptionText">
+            ${site.description.description}
             </div>
         </div>
+        <div class="card-footer">
+            <c:url var="secteurPage" value="/showSecteurPage">
+                <c:param name="siteId" value="${site.id}"/>
+            </c:url>
+            <div class="row" id="buttonLinkBar">
+                <div class="col-md-2 offset-1">
+                    <a class="btn btn-outline-primary" href="${secteurPage}">Voir les secteurs</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Voir les topos</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Ajouter une photo</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Enregistrer</a>
+                </div>
+            </div>
+        </div>
+        <br><br>
+
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Secteurs</h3>
-                <c:if test="${ !empty messageCreationSecteur}">
-                    <div class="alert alert-success" role="alert">
-                        <c:out value="${messageCreationSecteur}"/>
-                    </div>
-                </c:if>
+            <div class="card-header>">
+                <h3 class="card-title">Commentaires</h3>
             </div>
             <div class="card-body">
-                <div>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Description</th>
-                            <th>nb de voies</th>
-                            <th>hauteur max</th>
-                            <th>cotation</th>
-                        </tr>
-                        </thead>
-                        <c:if test="${ !empty listSecteurs}">
-                            <tbody>
-                            <c:forEach var="secteur" items="${listSecteurs}">
-                                <tr>
-                                    <td><a href="#">${secteur.nom}</a></td>
-                                    <td>${secteur.description}</td>
-                                    <td>nb de voies</td>
-                                    <td>hauteur max</td>
-                                    <td>cotation</td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </c:if>
-                    </table>
-                </div>
-                <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-                    <div class="text-right">
-                        <c:url var="creationSecteurForm" value="/showCreationSecteurForm">
-                            <c:param name="siteId" value="${site.id}"/>
-                        </c:url>
-
-                        <a href="${creationSecteurForm}" type="button" class="btn btn-primary">Créer un secteur</a>
-                    </div>
+                <ul class="list-unstyled">
+                    <li class="media">
+                        <img src="..." class="mr-3" alt="...">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">titre commentaire</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                            sollicitudin.
+                            Cras
+                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+                            nisi
+                            vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <button type="button" class="btn btn-outline-primary">Modifier</button>
+                            <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                        </sec:authorize>
+                    </li>
+                    <li class="media">
+                        <img src="..." class="mr-3" alt="...">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">titre commentaire</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                            sollicitudin.
+                            Cras
+                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+                            nisi
+                            vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <button type="button" class="btn btn-outline-primary">Modifier</button>
+                            <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                        </sec:authorize>
+                    </li>
+                    <li class="media">
+                        <img src="..." class="mr-3" alt="...">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">titre commentaire</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                            sollicitudin.
+                            Cras
+                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+                            nisi
+                            vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <button type="button" class="btn btn-outline-primary">Modifier</button>
+                            <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                        </sec:authorize>
+                    </li>
+                </ul>
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <button type="button" class="btn btn-outline-primary">Ajouter un commentaire</button>
                 </sec:authorize>
             </div>
-            <br><br>
-
-            <div class="card">
-                <div class="card-header>">
-                    <h3 class="card-title">Commentaires</h3>
-                </div>
-                <div class="card-body">
-                    <ul class="list-unstyled">
-                        <li class="media">
-                            <img src="..." class="mr-3" alt="...">
-                            <div class="media-body">
-                                <h5 class="mt-0 mb-1">titre commentaire</h5>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                sollicitudin.
-                                Cras
-                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                                nisi
-                                vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                <button type="button" class="btn btn-outline-primary">Modifier</button>
-                                <button type="button" class="btn btn-outline-primary">Supprimer</button>
-                            </sec:authorize>
-                        </li>
-                        <li class="media">
-                            <img src="..." class="mr-3" alt="...">
-                            <div class="media-body">
-                                <h5 class="mt-0 mb-1">titre commentaire</h5>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                sollicitudin.
-                                Cras
-                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                                nisi
-                                vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                <button type="button" class="btn btn-outline-primary">Modifier</button>
-                                <button type="button" class="btn btn-outline-primary">Supprimer</button>
-                            </sec:authorize>
-                        </li>
-                        <li class="media">
-                            <img src="..." class="mr-3" alt="...">
-                            <div class="media-body">
-                                <h5 class="mt-0 mb-1">titre commentaire</h5>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                sollicitudin.
-                                Cras
-                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                                nisi
-                                vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                <button type="button" class="btn btn-outline-primary">Modifier</button>
-                                <button type="button" class="btn btn-outline-primary">Supprimer</button>
-                            </sec:authorize>
-                        </li>
-                    </ul>
-                    <sec:authorize access="hasRole('ROLE_USER')">
-                        <button type="button" class="btn btn-outline-primary">Ajouter un commentaire</button>
-                    </sec:authorize>
-                </div>
-            </div>
-
-
         </div>
+    </div>
+</div>
 
 
 </body>
