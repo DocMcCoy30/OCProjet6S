@@ -30,32 +30,14 @@ public class SiteController extends AbstractController {
         Site vSite;
         if (pVilleId != null) {
             vListSite = siteResource.getSitesByVille(pVilleId);
-            //DEBUG
-            for (Site site : vListSite
-            ) {
-                System.out.println("Dans getSitesByVille : " + site.getNom());
-                System.out.println(site.getDescription());
-            }
         } else if (pDepartementCode != null) {
             vListSite = siteResource.getSitesByDepartement(pDepartementCode);
-            //DEBUG
-            for (Site site : vListSite
-            ) {
-                System.out.println("Dans getSitesByDepartement : " + site.getNom());
-                System.out.println(site.getDescription());
-            }
         } else if (pRegionId != null) {
             vListSite = siteResource.getSitesByRegion(pRegionId);
-            //DEBUG
-            for (Site site : vListSite
-            ) {
-                System.out.println("Dans getSitesByRegion : " + site.getNom());
-                System.out.println(site.getDescription());
-            }
         } else if (pSiteId != null) {
             vListSite.add(siteResource.getSiteById(pSiteId));
         }
-        vMaV.addObject("listeSitesSearchResult", vListSite);
+        vMaV.addObject("listSites", vListSite);
         vMaV.setViewName("accueil");
         afficherListe(pModel);
         return vMaV;
@@ -108,6 +90,7 @@ public class SiteController extends AbstractController {
                                    @RequestParam(value = "typeRoche", required = false) Integer pTypeRocheId) {
 
         Site vNewSite = null;
+        List<Site>vListSites = new ArrayList<>();
         ModelAndView vMaV = new ModelAndView();
         try {
             vNewSite = siteResource.createSite(pNomSite, pDescription, pNomVille, pRegionId, pDepartementCode, pTypeRocheId);
@@ -115,12 +98,9 @@ public class SiteController extends AbstractController {
             e.printStackTrace();
         } finally {
             String vMessageCreationSite = "Le nouveau site " + pNomSite + " est créé !";
-            String vDescription =vNewSite.getDescription().getDescription();
-            vMaV.addObject("description", vDescription);
+            vListSites.add(vNewSite);
             vMaV.addObject("messageCreationSite", vMessageCreationSite);
-            vMaV.addObject("newSite", vNewSite);
-            //DEBUG
-            System.out.println(vNewSite.getDescription().getDescription());
+            vMaV.addObject("listSites", vListSites);
             vMaV.setViewName("accueil");
             afficherListe(pModel);
         }

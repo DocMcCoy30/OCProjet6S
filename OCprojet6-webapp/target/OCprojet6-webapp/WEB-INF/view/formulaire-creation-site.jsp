@@ -57,21 +57,21 @@
         </h2>
         <form action="creationSite" method="post">
             <div class="row col-md-12 no-gutters">
-                <div class="input-group col-md">
+                <div class="input-group col-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="nom">Nom du site : </span>
                     </div>
                     <input type="text" name="nom" required class="form-control" aria-label="nom"
                            aria-describedby="nom">
                 </div>
-                <div class="input-group col-md">
+                <div class="input-group col-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="ville">Ville : </span>
                     </div>
                     <input type="text" name="ville" required class="form-control" aria-label="ville"
                            aria-describedby="ville">
                 </div>
-                <div class="input-group col-md">
+                <div class="input-group col-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="regions">Region :</span>
                     </div>
@@ -82,7 +82,7 @@
                         </c:forEach>
                     </select>
                 </div>
-                <div class="input-group col-md">
+                <div class="input-group col-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="departements">Departement :</span>
                     </div>
@@ -93,10 +93,7 @@
                         </c:forEach>
                     </select>
                 </div>
-            </div>
-            <br>
-            <div class="row col-md-12 no-gutters">
-                <div class="input-group col-md">
+                <div class="input-group col-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="typeRoches">Type de roche : </span>
                     </div>
@@ -107,7 +104,7 @@
                         </c:forEach>
                     </select>
                 </div>
-                <div class="row col-md-12 no-gutters">
+                <div class="row col-lg-12 no-gutters">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Description : </span>

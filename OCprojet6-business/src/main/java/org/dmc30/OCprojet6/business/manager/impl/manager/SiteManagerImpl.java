@@ -3,7 +3,6 @@ package org.dmc30.OCprojet6.business.manager.impl.manager;
 import org.dmc30.OCprojet6.business.manager.contract.manager.SiteManager;
 import org.dmc30.OCprojet6.business.manager.contract.manager.VilleManager;
 import org.dmc30.OCprojet6.model.bean.Description;
-import org.dmc30.OCprojet6.model.bean.Region;
 import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.model.bean.Ville;
 import org.springframework.transaction.TransactionStatus;

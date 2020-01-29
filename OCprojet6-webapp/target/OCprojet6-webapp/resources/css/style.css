@@ -1,13 +1,25 @@
-div
-{
-    border: black 1px solid;
+div {
+    /*border: black 1px solid;*/
 }
-.input-group
-{
-    border: red 1px solid;
-    margin-left: 10px;
+
+.input-group {
+    /*border: red 1px solid;*/
+    margin-left: 1em;
+    margin-top: 2em;
 }
-.input-group-text
-{
+
+.input-group-text {
     width: 8em;
+}
+
+.btn {
+    width: 10em;
+}
+.btn-primary
+{
+    margin-top: 2em;
+}
+
+.card {
+    margin-top: 1em;
 }
