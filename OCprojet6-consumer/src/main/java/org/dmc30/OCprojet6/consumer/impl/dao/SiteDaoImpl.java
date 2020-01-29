@@ -70,6 +70,14 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
     }
 
     @Override
+    public int getLastId() {
+        String vSQL = "SELECT MAX(site_id) FROM site";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        Integer vLastId = vJdbcTemplate.queryForObject(vSQL, Integer.TYPE);
+        return vLastId;
+    }
+
+    @Override
     public List<Site> searchSites(int pSiteId,
                                   int pRegionId,
                                   int pDepartementCode,

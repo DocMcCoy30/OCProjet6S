@@ -43,6 +43,8 @@ public interface SiteManager {
      */
     List<Site> getSitesByVille(int pVilleId);
 
+    int getLastId();
+
     /**
      * Effectue un recherche multicritère et renvoie la liste des sites correspondants
      * @param pSiteId l'identifiant du site recherché

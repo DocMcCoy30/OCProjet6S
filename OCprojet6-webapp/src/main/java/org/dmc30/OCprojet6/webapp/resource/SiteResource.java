@@ -32,6 +32,10 @@ public class SiteResource extends AbstractResource {
         return getManagerFactory().getSiteManager().getAllSites();
     }
 
+    public int getLastId () {
+        return getManagerFactory().getSiteManager().getLastId();
+    }
+
     public Site createSite(String pNomSite, String pDescription, String pNomVille,
                            int pRegionId, int pDepartementCode, int pTypeRocheId) {
         //creation d'un objet site

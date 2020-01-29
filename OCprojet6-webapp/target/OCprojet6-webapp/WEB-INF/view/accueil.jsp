@@ -123,35 +123,6 @@
             </c:forEach>
         </c:if>
     </div>
-
-    <%--        Afficher le message et le nouveau site     --%>
-    <%--<c:if test="${ !empty messageCreationSite}">--%>
-    <%--    <div class="alert alert-success" role="alert">--%>
-    <%--    <c:out value="${messageCreationSite}"/>--%>
-    <%--    </div>--%>
-    <%--        <div>--%>
-    <%--            <c:set var="newSite" scope="session" value="${newSite}"/>--%>
-    <%--            <c:set var="description" scope="session" value="${description}"/>--%>
-    <%--            <div class="col-sm-6">--%>
-    <%--                <div class="card">--%>
-    <%--                    <div class="card">--%>
-    <%--                        <div class="row no-gutters">--%>
-    <%--                            <div class="col-md-4">--%>
-    <%--                                <a href="#"><img src="..." class="card-img" alt="..."></a>--%>
-    <%--                            </div>--%>
-    <%--                            <div class="col-md-8">--%>
-    <%--                                <div class="card-body">--%>
-    <%--                                    <a href="#"><h5 class="card-title"><c:out value="${newSite.nom}"/></h5></a>--%>
-    <%--                                    <p class="card-text"><c:out value="${description}"/></p>--%>
-    <%--                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--%>
-    <%--                                </div>--%>
-    <%--                            </div>--%>
-    <%--                        </div>--%>
-    <%--                    </div>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--    </c:if>--%>
     <div class="text-right">
         <a href="${pageContext.request.contextPath}/showCreationSiteForm" type="button" class="btn btn-primary">Créer
             un site</a>

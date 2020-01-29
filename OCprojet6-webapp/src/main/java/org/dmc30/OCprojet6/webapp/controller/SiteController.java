@@ -104,6 +104,8 @@ public class SiteController extends AbstractController {
             e.printStackTrace();
         } finally {
             String vMessageCreationSite = "Le nouveau site " + pNomSite + " est créé !";
+            // debug
+            vNewSite.setId(siteResource.getLastId());
             vListSites.add(vNewSite);
             vMaV.addObject("messageCreationSite", vMessageCreationSite);
             vMaV.addObject("listSites", vListSites);
