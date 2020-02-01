@@ -1,10 +1,11 @@
 package org.dmc30.OCprojet6.consumer.impl.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.consumer.contract.dao.DepartementDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.DepartementRM;
 import org.dmc30.OCprojet6.model.bean.Departement;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -15,6 +16,9 @@ import java.util.List;
 
 @Named
 public class DepartementDaoImpl extends AbstractDao implements DepartementDao {
+
+Logger logger = LogManager.getLogger(DepartementDaoImpl.class);
+
 
     @Inject
     DepartementRM departementRM;
@@ -46,6 +50,10 @@ public class DepartementDaoImpl extends AbstractDao implements DepartementDao {
 
     @Override
     public List<Departement> getAllDepartements() {
+        //log test message
+        logger.info("Info : Into departementDaoImpl !! ");
+        logger.trace("Trace : Into departementDaoImpl !! ");
+
         String vSQL = "SELECT * FROM departement ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Departement> vListDepartements = vJdbcTemplate.query(vSQL, departementRM);

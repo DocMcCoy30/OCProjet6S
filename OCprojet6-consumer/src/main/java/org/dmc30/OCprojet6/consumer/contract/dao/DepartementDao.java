@@ -5,7 +5,6 @@ import org.dmc30.OCprojet6.model.bean.Departement;
 import javax.inject.Named;
 import java.util.List;
 
-@Named
 public interface DepartementDao {
 
     void createDepartement (Departement pDepartement);

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <File name="logFile" fileName="C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\logs\app.log" immediateFlush="true" append="true">
+            <PatternLayout
+                    pattern="%d{dd MMM yyyy HH:mm:ss,SSS} %c{1} %p %m%n"/>
+        </File>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{dd MMM yyyy HH:mm:ss,SSS} %c{1} %p %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!--        <Logger name="org.dmc30.OCprojet6.consumer.impl" level="DEBUG" additivity="true">-->
+        <!--            <AppenderRef ref="console" level="DEBUG"/>-->
+        <!--            <AppenderRef ref="logFile" level="INFO"/>-->
+        <!--        </Logger>-->
+        <!--        <Logger name="org.dmc30.OCprojet6.business.impl" level="DEBUG" additivity="false">-->
+        <!--            <AppenderRef ref="console" level="DEBUG"/>-->
+        <!--            <AppenderRef ref="logFile" level="INFO"/>-->
+        <!--        </Logger>-->
+        <!--        <Logger name="org.dmc30.OCprojet6.webapp.controller" level="DEBUG" additivity="true">-->
+        <!--            <AppenderRef ref="console" level="DEBUG"/>-->
+        <!--            <AppenderRef ref="logFile" level="INFO"/>-->
+        <!--        </Logger>-->
+        <Root level="WARN">
+            <AppenderRef ref="logFile" level="DEBUG"/>
+            <AppenderRef ref="console" level="DEBUG"/>
+        </Root>
+    </Loggers>
+</Configuration>

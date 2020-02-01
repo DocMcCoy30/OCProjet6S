@@ -16,12 +16,12 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
 
     @Inject
     UsersRM usersRM;
-    PasswordEncoderHelper passwordEncoderHelper;
+    @Inject
+    PasswordEncoderHelper encoder;
 
     @Override
     public void createUsers(Users pUsers) {
         String vUserName = pUsers.getUsername();
-        PasswordEncoderHelper encoder = new PasswordEncoderHelper();
         String vPassword = encoder.passwordEncoder(pUsers.getPassword());
         String vEmail = pUsers.getEmail();
         String vSQL = "INSERT INTO users (username, password, email, enabled) VALUES (?,?,?,?)";

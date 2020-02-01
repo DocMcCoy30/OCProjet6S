@@ -1,6 +1,6 @@
 package org.dmc30.OCprojet6.webapp.resource;
 
-import org.dmc30.OCprojet6.business.manager.contract.ManagerFactory;
+import org.dmc30.OCprojet6.business.contract.ManagerFactory;
 
 public abstract class AbstractResource {
 

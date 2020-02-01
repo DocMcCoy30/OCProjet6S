@@ -1,6 +1,6 @@
 package org.dmc30.OCprojet6.batch;
 
-import org.dmc30.OCprojet6.business.manager.contract.ManagerFactory;
+import org.dmc30.OCprojet6.business.contract.ManagerFactory;
 
 /**
  * Classe abstraite en charge de récupérer L'objet ManagerFactory.

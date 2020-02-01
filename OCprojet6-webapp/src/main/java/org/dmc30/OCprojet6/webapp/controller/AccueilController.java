@@ -1,26 +1,33 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
-import org.dmc30.OCprojet6.webapp.resource.GeographicResource;
-import org.dmc30.OCprojet6.webapp.resource.SiteResource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.inject.Inject;
 
 @Controller
-@RequestMapping({"/", "/accueil"})
 public class AccueilController extends AbstractController{
 
-    @Inject
-    GeographicResource geographicResource;
-    @Inject
-    SiteResource siteResource;
+    Logger logger = LogManager.getLogger();
 
-    @GetMapping
-    public String welcomePage(Model model) {
+
+    @RequestMapping({"/", "/accueil"})
+    public ModelAndView welcomePage(Model model) {
+
+        //log test message
+        logger.trace("Trace : Into AccueilController");
+        logger.debug("Debug : Into AccueilController");
+        logger.info("Info : Into AccueilController");
+        logger.warn("Warn : Into AccueilController");
+        logger.error("Error : Into AccueilController");
+        logger.fatal("Fatal : Into AccueilController");
+
+        ModelAndView vMaV = new ModelAndView("accueil");
         afficherListe(model);
-        return "accueil";
+        return vMaV;
     }
 }
 
