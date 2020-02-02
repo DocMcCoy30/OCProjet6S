@@ -43,10 +43,10 @@ public class AuthenticationController {
         int[] vResult = authenticationResource.rechercheDoublon(pUsers);
         if (vResult[0] != 0) {
             vModel.addObject("error", "Cet identifiant existe déjà !");
-            vModel.setViewName("signinP");
+            vModel.setViewName("signin");
         } else if (vResult[1] != 0) {
             vModel.addObject("error", "Cet email existe déjà !");
-            vModel.setViewName("signinP");
+            vModel.setViewName("signin");
         } else {
             authenticationResource.createUsers(pUsers);
             vModel.addObject("message", "Votre compte est créé !");

@@ -21,6 +21,7 @@
         document.getElementById("logoutForm").submit();
     }
 </script>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="${pageContext.request.contextPath}"><h2>Les amis de l'escalade</h2></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -61,96 +62,126 @@
         <div id="descriptionBlock">
             <p>Description :</p>
             <div id="descriptionText">
-            ${site.description.description}
-            </div>
-        </div>
-        <div class="card-footer">
-            <c:url var="secteurPage" value="/showSecteurPage">
-                <c:param name="siteId" value="${site.id}"/>
-            </c:url>
-            <div class="row" id="buttonLinkBar">
-                <div class="col-md-2 offset-1">
-                    <a class="btn btn-outline-primary" href="${secteurPage}">Voir les secteurs</a>
-                </div>
-                <div class="col-md-2">
-                    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Voir les topos</a>
-                </div>
-                <div class="col-md-2">
-                    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>
-                </div>
-                <div class="col-md-2">
-                    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Ajouter une photo</a>
-                </div>
-                <div class="col-md-2">
-                    <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Enregistrer</a>
-                </div>
-            </div>
-        </div>
-        <br><br>
-
-        <div class="card">
-            <div class="card-header>">
-                <h3 class="card-title">Commentaires</h3>
-            </div>
-            <div class="card-body">
-                <ul class="list-unstyled">
-                    <li class="media">
-                        <img src="..." class="mr-3" alt="...">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1">titre commentaire</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                            sollicitudin.
-                            Cras
-                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                            nisi
-                            vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <button type="button" class="btn btn-outline-primary">Modifier</button>
-                            <button type="button" class="btn btn-outline-primary">Supprimer</button>
-                        </sec:authorize>
-                    </li>
-                    <li class="media">
-                        <img src="..." class="mr-3" alt="...">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1">titre commentaire</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                            sollicitudin.
-                            Cras
-                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                            nisi
-                            vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <button type="button" class="btn btn-outline-primary">Modifier</button>
-                            <button type="button" class="btn btn-outline-primary">Supprimer</button>
-                        </sec:authorize>
-                    </li>
-                    <li class="media">
-                        <img src="..." class="mr-3" alt="...">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1">titre commentaire</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                            sollicitudin.
-                            Cras
-                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                            nisi
-                            vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <button type="button" class="btn btn-outline-primary">Modifier</button>
-                            <button type="button" class="btn btn-outline-primary">Supprimer</button>
-                        </sec:authorize>
-                    </li>
-                </ul>
-                <sec:authorize access="hasRole('ROLE_USER')">
-                    <button type="button" class="btn btn-outline-primary">Ajouter un commentaire</button>
-                </sec:authorize>
+                ${site.description.description}
             </div>
         </div>
     </div>
+    <div class="card-footer">
+        <c:url var="secteurPage" value="/showSecteurPage">
+            <c:param name="siteId" value="${site.id}"/>
+        </c:url>
+        <div class="row" id="buttonLinkBar">
+            <div class="col-md-2 offset-1">
+                <a class="btn btn-outline-primary" href="${secteurPage}">Voir les secteurs</a>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Voir les topos</a>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>
+            </div>
+            <div class="col-md-2">
+                <input class="btn btn-outline-primary" type="submit" onclick="showFormUpload(1)"
+                       value="Ajouter une photo"><br/>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Enregistrer</a>
+            </div>
+        </div>
+        <br>
+        <form class="row" method="POST" action="uploadFile" id="formUpload" enctype="multipart/form-data">
+            <input type="hidden" value="${site.id}" name="siteId">
+            <div class="input-group col-md-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon">Image</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="file " id="inputGroupFile"
+                           aria-describedby="inputGroupFileAddon">
+                    <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>
+                </div>
+                <div class="input-group-prepend offset-1">
+                    <span class="input-group-text" id="nameLabel">Nom : </span>
+                </div>
+                <input type="text" class="form-control" name="nomPhoto" aria-label="nomPhoto" aria-describedby="nameLabel">
+                <button class="btn btn-outline-primary offset-1" id="uploadButton" type="submit"
+                        onclick="showFormUpload(0)">Ajouter
+                </button>
+            </div>
+        </form>
+        <br>
+        <div>
+            <c:if test="${ !empty uploadMsg}">
+                <div class="alert alert-success" role="alert">
+                    <c:out value="${uploadMsg}"/>
+                </div>
+            </c:if>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header>">
+            <h3 class="card-title">Commentaires</h3>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled">
+                <li class="media">
+                    <img src="..." class="mr-3" alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">titre commentaire</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                        sollicitudin.
+                        Cras
+                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+                        nisi
+                        vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <button type="button" class="btn btn-outline-primary">Modifier</button>
+                        <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                    </sec:authorize>
+                </li>
+                <li class="media">
+                    <img src="..." class="mr-3" alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">titre commentaire</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                        sollicitudin.
+                        Cras
+                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+                        nisi
+                        vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <button type="button" class="btn btn-outline-primary">Modifier</button>
+                        <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                    </sec:authorize>
+                </li>
+                <li class="media">
+                    <img src="..." class="mr-3" alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">titre commentaire</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                        sollicitudin.
+                        Cras
+                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+                        nisi
+                        vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <button type="button" class="btn btn-outline-primary">Modifier</button>
+                        <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                    </sec:authorize>
+                </li>
+            </ul>
+            <sec:authorize access="hasRole('ROLE_USER')">
+                <button type="button" class="btn btn-outline-primary">Ajouter un commentaire</button>
+            </sec:authorize>
+        </div>
+    </div>
+</div>
 </div>
 
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/webappJsFunctions.js"></script>
 </body>
 </html>

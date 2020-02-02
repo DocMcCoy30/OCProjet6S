@@ -17,24 +17,14 @@ import java.sql.SQLException;
 @Named
 public class PhotoRM implements RowMapper<Photo> {
 
-    @Inject
-    SiteDao siteDao;
-    @Inject
-    SecteurDao secteurDao;
-    @Inject
-    VoieDao voieDao;
-
     @Override
     public Photo mapRow(ResultSet resultSet, int i) throws SQLException {
         Photo vPhoto = new Photo(resultSet.getInt("photo_id"));
+        vPhoto.setId(resultSet.getInt("photo_id"));
         vPhoto.setNom(resultSet.getString("nom"));
-        // utilisation de dao
-        Site vSite = siteDao.getSiteById(resultSet.getInt("site_id"));
-        vPhoto.setSite(vSite);
-        Secteur vSecteur = secteurDao.getSecteurById(resultSet.getInt("secteur_id"));
-        vPhoto.setSecteur(vSecteur);
-        Voie vVoie = voieDao.getVoieById(resultSet.getInt("voie_id"));
-        vPhoto.setVoie(vVoie);
+        vPhoto.setSiteId(resultSet.getInt("site_id"));
+        vPhoto.setSecteurId(resultSet.getInt("secteur_id"));
+        vPhoto.setVoieId(resultSet.getInt("voie_id"));
         return vPhoto;
     }
 }

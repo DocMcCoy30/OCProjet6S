@@ -33,3 +33,9 @@ div {
     margin-top: 1em;
     margin-bottom: 1em;
 }
+#uploadButton {
+    height: 2.5em;
+}
+#formUpload {
+    display: none;
+}
