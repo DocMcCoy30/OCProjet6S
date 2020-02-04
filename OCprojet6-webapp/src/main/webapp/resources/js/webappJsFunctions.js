@@ -9,6 +9,19 @@ function showFormUpload(a) {
         document.getElementById("formUpload").style.display = "none";
     }
 }
+
+/**
+ * Affiche le message d'upload
+ * @param msg
+ */
 function showUploadMsg (msg) {
-document.getElementById('uploadMsg').innerHTML=msg;
+    document.getElementById('uploadMsg').innerHTML=msg;
     setTimeout(function() {document.getElementById('uploadMsg').innerHTML='';},5000);}
+
+/**
+ *
+ */
+function showFileName() {
+    var fileName = (this).val();
+    this.next('.custom-file-label').html(fileName);
+}

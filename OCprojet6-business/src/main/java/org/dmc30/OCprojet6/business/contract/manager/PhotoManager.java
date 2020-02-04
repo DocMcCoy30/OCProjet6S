@@ -19,6 +19,14 @@ public interface PhotoManager {
     Photo getPhotoById (int pId);
 
     /**
+     * Cherche et renvoie la liste des photos correspondant à un site
+     * @param pRefId l'identifiant du référent
+     * @param pRef le referent : site, secteur, ou voie
+     * @return la liste des photos
+     */
+    List<Photo> getPhotosByRefId(int pRefId, String pRef);
+
+    /**
      * Cherche et renvoie la liste des objets de type Photo stockés dans la database
      * @return la liste d'objets recherchée
      */
@@ -35,4 +43,6 @@ public interface PhotoManager {
      * @param pId : l'identifiant de l'objet à supprimer
      */
     void deletePhoto (int pId);
+
+
 }

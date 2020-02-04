@@ -1,10 +1,22 @@
-div {
-    /*border: black 1px solid;*/
+.navbar {
+    background: #2C2559;
+    /*height: 8em;*/
 }
-
+body {
+    background: #2C2559;
+    color: #FFE854;
+}
+/*h2 {*/
+/*    color: cornflowerblue;*/
+/*}*/
+#testbt {
+    margin-top: 10em;
+    color: #FFE854;
+}
 .input-group {
     /*border: red 1px solid;*/
-    margin-left: 1em;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 2em;
 }
 
@@ -15,20 +27,38 @@ div {
 .btn {
     width: 10em;
 }
-
-.btn-primary {
+#searchSiteButton {
     margin-top: 2em;
 }
-
+#createSiteButton {
+    margin-top: 2em;
+}
 .card {
     margin-top: 1em;
+    background: #2C2559;
+    border : 3px solid #6C63A6;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 10px 5px 5px rgb(23, 17, 53);
 }
-
+#siteCard {
+    height: 15em;
+    margin-top: 1em;
+    background: #2C2559;
+    border : 3px solid #6C63A6;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 10px 5px 5px rgb(23, 17, 53);
+}
+#userCard {
+    background: #ffcc00;
+    color: #2C2559;
+}
 #buttonLinkBar {
     margin-top: 1em;
-    text-align: center;
 }
-
 #descriptionBlock {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -38,4 +68,14 @@ div {
 }
 #formUpload {
     display: none;
+}
+.carousel-item {
+    height: 40em;
+    width: auto;
+}
+h5 {
+    color: #FFE854;
+}
+#footer {
+    margin-top: 5em;
 }

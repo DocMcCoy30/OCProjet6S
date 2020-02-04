@@ -2,32 +2,38 @@ package org.dmc30.OCprojet6.webapp.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.dmc30.OCprojet6.model.bean.Photo;
+import org.dmc30.OCprojet6.webapp.resource.PhotoResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.inject.Inject;
+import java.util.List;
+
 
 @Controller
 public class AccueilController extends AbstractController{
 
+    @Inject
+    PhotoResource photoResource;
+
     Logger logger = LogManager.getLogger();
 
-
-    @RequestMapping({"/", "/accueil"})
+    @GetMapping({"/", "/accueil"})
     public ModelAndView welcomePage(Model model) {
-
-        //log test message
-        logger.trace("Trace : Into AccueilController");
-        logger.debug("Debug : Into AccueilController");
-        logger.info("Info : Into AccueilController");
-        logger.warn("Warn : Into AccueilController");
-        logger.error("Error : Into AccueilController");
-        logger.fatal("Fatal : Into AccueilController");
+        List<Photo> vListPhotos = photoResource.getAllPhotos();
 
         ModelAndView vMaV = new ModelAndView("accueil");
+        vMaV.addObject("listPhotos", vListPhotos);
         afficherListe(model);
         return vMaV;
+    }
+
+    @GetMapping("/tb")
+    public String testBootstrap () {
+        return "testBootstrap";
     }
 }
 

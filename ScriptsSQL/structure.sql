@@ -994,7 +994,7 @@ ALTER TABLE ONLY public.caracteristique_voie
 --
 
 ALTER TABLE ONLY public.photo
-    ADD CONSTRAINT voie_photo_fk FOREIGN KEY (voie_id) REFERENCES public.voie(voie_id);
+    ADD CONSTRAINT voie_photo_fk FOREIGN KEY (ref_id) REFERENCES public.voie(voie_id);
 
 
 -- Completed on 2020-01-25 19:28:29

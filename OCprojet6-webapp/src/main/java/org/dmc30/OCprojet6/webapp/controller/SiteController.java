@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -101,9 +102,13 @@ public class SiteController extends AbstractController {
     @GetMapping("/showSitePage")
     public ModelAndView showSitePage(@RequestParam("siteId") int pSiteId) {
         ModelAndView vMaV = new ModelAndView();
+        // création du site à retourner
         Site vSite = siteResource.getSiteById(pSiteId);
-//        List<Secteur> vListSecteurs = secteurResource.getSecteursBySiteId(pSiteId);
-//        vMaV.addObject("listSecteurs", vListSecteurs);
+        // création de la liste de photo correspondantes au site
+        if (photoResource.getPhotoByRefId(pSiteId, "site") != null) {
+            List<Photo> vListPhotos = photoResource.getPhotoByRefId(pSiteId, "site");
+            vMaV.addObject("listPhotos", vListPhotos);
+        }
         vMaV.addObject("site", vSite);
         vMaV.setViewName("sites");
         return vMaV;
@@ -111,17 +116,20 @@ public class SiteController extends AbstractController {
 
     /**
      * Upload une image sur le serveur et la référence dans la base de données
+     *
      * @param pNomPhoto : le nom de l'image renseigné dans le formulaire
-     * @param pFile : le fichier à uploader
-     * @param pSiteId : l'identifiant de site correspondant
+     * @param pFile     : le fichier à uploader
+     * @param pSiteId   : l'identifiant de site correspondant
      * @return
      */
     @PostMapping("/uploadFile")
-    public ModelAndView uploadFileHandler(@RequestParam("nomPhoto") String pNomPhoto,
+    public ModelAndView uploadPhoto(@RequestParam("nomPhoto") String pNomPhoto,
                                           @RequestParam("file") MultipartFile pFile,
-                                          @RequestParam("siteId") int pSiteId) {
+                                          @RequestParam("siteId") int pSiteId,
+                                          HttpServletRequest request) {
 
-        String vNomPhoto="";
+        String vRef = "site";
+        String vNomPhoto = "";
         String vUploadMsg;
         ModelAndView vMaV = new ModelAndView();
 
@@ -130,16 +138,17 @@ public class SiteController extends AbstractController {
                 byte[] bytes = pFile.getBytes();
 
                 // Crée le repertoire de stockage des images
-                String rootPath = System.getProperty("catalina.home");
-                File dir = new File(rootPath + File.separator + "OCprojet6tmpFiles");
+                String rootPath = request.getSession().getServletContext().getRealPath("/");
+                File dir = new File(rootPath + File.separator + "resources/img");
 
                 if (!dir.exists())
                     dir.mkdirs();
 
-                // crée le nom du fichier (avec une référence aléatoire pour diminuer le risque de non concordance entre la BD et le répertoire
+                // crée le nom du fichier (avec une référence aléatoire pour diminuer
+                // le risque de non concordance entre la BD et le répertoire
                 Random rand = new Random();
                 int vRandomRef = rand.nextInt(1000000);
-                vNomPhoto = pSiteId+vRandomRef+pNomPhoto+"Site"+pSiteId+".jpeg";
+                vNomPhoto ="Site" + pSiteId + "_" + vRandomRef + "_" + pNomPhoto + ".jpeg";
                 // crée le fichier dans le repertoire
                 File serverFile = new File(dir.getAbsolutePath()
                         + File.separator + vNomPhoto);
@@ -158,15 +167,22 @@ public class SiteController extends AbstractController {
         } else {
             vUploadMsg = "Il n'y a pas d'image à charger";
         }
-        int vSecteurId = 0;
-        int vVoieId = 0;
-        Photo vPhoto = new Photo(vNomPhoto,pSiteId,vSecteurId,vVoieId);
+
+        Photo vPhoto = new Photo(vNomPhoto, vRef, pSiteId);
         photoResource.createPhoto(vPhoto);
+
+//        vMaV = showSitePage(pSiteId);
+//        vMaV.addObject("uploadMessage", vUploadMsg);
+
+        // création du site à retourner
         Site vSite = siteResource.getSiteById(pSiteId);
+        // création de la liste de photo correspondantes au site
+        List<Photo> vListPhotos = photoResource.getPhotoByRefId(vPhoto.getRefId(), vPhoto.getRef());
+
         vMaV.addObject("site", vSite);
+        vMaV.addObject("listPhotos", vListPhotos);
         vMaV.addObject("uploadMsg", vUploadMsg);
         vMaV.setViewName("sites");
-
         return vMaV;
     }
 

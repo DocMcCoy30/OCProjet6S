@@ -8,7 +8,10 @@ public interface PhotoDao {
 
     void createPhoto (Photo pPhoto);
     Photo getPhotoById(int pId);
+    List<Photo> getPhotosByRefId(int pRefId, String pRef);
     List<Photo> getAllPhotos();
     void updatePhoto (Photo pPhoto);
     void deletePhoto(int pId);
+
+
 }

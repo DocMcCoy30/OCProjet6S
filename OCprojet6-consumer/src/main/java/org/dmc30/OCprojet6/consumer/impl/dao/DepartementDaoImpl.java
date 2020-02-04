@@ -50,10 +50,6 @@ Logger logger = LogManager.getLogger(DepartementDaoImpl.class);
 
     @Override
     public List<Departement> getAllDepartements() {
-        //log test message
-        logger.info("Info : Into departementDaoImpl !! ");
-        logger.trace("Trace : Into departementDaoImpl !! ");
-
         String vSQL = "SELECT * FROM departement ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Departement> vListDepartements = vJdbcTemplate.query(vSQL, departementRM);

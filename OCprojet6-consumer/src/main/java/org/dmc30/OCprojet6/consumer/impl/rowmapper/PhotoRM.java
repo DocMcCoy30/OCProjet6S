@@ -1,15 +1,10 @@
 package org.dmc30.OCprojet6.consumer.impl.rowmapper;
 
-import org.dmc30.OCprojet6.consumer.contract.dao.SecteurDao;
-import org.dmc30.OCprojet6.consumer.contract.dao.SiteDao;
-import org.dmc30.OCprojet6.consumer.contract.dao.VoieDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.model.bean.Photo;
-import org.dmc30.OCprojet6.model.bean.Secteur;
-import org.dmc30.OCprojet6.model.bean.Site;
-import org.dmc30.OCprojet6.model.bean.Voie;
 import org.springframework.jdbc.core.RowMapper;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,14 +12,15 @@ import java.sql.SQLException;
 @Named
 public class PhotoRM implements RowMapper<Photo> {
 
+    Logger logger = LogManager.getLogger(PhotoRM.class);
+
     @Override
     public Photo mapRow(ResultSet resultSet, int i) throws SQLException {
         Photo vPhoto = new Photo(resultSet.getInt("photo_id"));
         vPhoto.setId(resultSet.getInt("photo_id"));
         vPhoto.setNom(resultSet.getString("nom"));
-        vPhoto.setSiteId(resultSet.getInt("site_id"));
-        vPhoto.setSecteurId(resultSet.getInt("secteur_id"));
-        vPhoto.setVoieId(resultSet.getInt("voie_id"));
+        vPhoto.setRef(resultSet.getString("ref"));
+        vPhoto.setRefId(resultSet.getInt("ref_id"));
         return vPhoto;
     }
 }

@@ -21,33 +21,34 @@
         document.getElementById("logoutForm").submit();
     }
 </script>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}"><h2>Les amis de l'escalade</h2></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    </div>
-    <c:if test="${pageContext.request.userPrincipal.name == null}">
-        <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/signin">Creer un compte</a>
-        &nbsp
-        <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/login">Se connecter</a>
-    </c:if>
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <div>Bonjour ${pageContext.request.userPrincipal.name}</div>
-        &emsp;
-        <form action="${logoutUrl}" method="post" id="logoutForm">
-            <input type="hidden" name="${_csrf.parameterName}"
-                   value="${_csrf.token}"/>
-            <a class="btn btn-outline-primary" href="javascript:formSubmit()">Se déconnecter</a>
-        </form>
-    </c:if>
-</nav>
-
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}"><h2>Les amis de l'escalade</h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        </div>
+        <c:if test="${pageContext.request.userPrincipal.name == null}">
+            <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/signin">Creer un compte</a>
+            &nbsp
+            <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/login">Se connecter</a>
+        </c:if>
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <div>Bonjour ${pageContext.request.userPrincipal.name}</div>
+            &emsp;
+            <form action="${logoutUrl}" method="post" id="logoutForm">
+                <input type="hidden" name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+                <a class="btn btn-outline-warning" href="javascript:formSubmit()">Se déconnecter</a>
+            </form>
+        </c:if>
+    </nav>
+</header>
 <br><br>
-
+<main role="main">
+    <br><br>
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -72,20 +73,20 @@
         </c:url>
         <div class="row" id="buttonLinkBar">
             <div class="col-md-2 offset-1">
-                <a class="btn btn-outline-primary" href="${secteurPage}">Voir les secteurs</a>
+                <a class="btn btn-outline-warning" href="${secteurPage}">Voir les secteurs</a>
             </div>
             <div class="col-md-2">
-                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Voir les topos</a>
+                <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/#">Voir les topos</a>
             </div>
             <div class="col-md-2">
-                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>
+                <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>
             </div>
             <div class="col-md-2">
-                <input class="btn btn-outline-primary" type="submit" onclick="showFormUpload(1)"
+                <input class="btn btn-outline-warning" type="submit" onclick="showFormUpload(1)"
                        value="Ajouter une photo"><br/>
             </div>
             <div class="col-md-2">
-                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/#">Enregistrer</a>
+                <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
             </div>
         </div>
         <br>
@@ -96,7 +97,7 @@
                     <span class="input-group-text" id="inputGroupFileAddon">Image</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="file " id="inputGroupFile"
+                    <input type="file" class="custom-file-input" name="file " onchange="showFileName()" id="inputGroupFile"
                            aria-describedby="inputGroupFileAddon">
                     <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>
                 </div>
@@ -104,7 +105,7 @@
                     <span class="input-group-text" id="nameLabel">Nom : </span>
                 </div>
                 <input type="text" class="form-control" name="nomPhoto" aria-label="nomPhoto" aria-describedby="nameLabel">
-                <button class="btn btn-outline-primary offset-1" id="uploadButton" type="submit"
+                <button class="btn btn-outline-warning offset-1" id="uploadButton" type="submit"
                         onclick="showFormUpload(0)">Ajouter
                 </button>
             </div>
@@ -137,8 +138,8 @@
                         vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <button type="button" class="btn btn-outline-primary">Modifier</button>
-                        <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                        <button type="button" class="btn btn-outline-warning">Modifier</button>
+                        <button type="button" class="btn btn-outline-warning">Supprimer</button>
                     </sec:authorize>
                 </li>
                 <li class="media">
@@ -153,8 +154,8 @@
                         vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <button type="button" class="btn btn-outline-primary">Modifier</button>
-                        <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                        <button type="button" class="btn btn-outline-warning">Modifier</button>
+                        <button type="button" class="btn btn-outline-warning">Supprimer</button>
                     </sec:authorize>
                 </li>
                 <li class="media">
@@ -169,19 +170,34 @@
                         vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <button type="button" class="btn btn-outline-primary">Modifier</button>
-                        <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                        <button type="button" class="btn btn-outline-warning">Modifier</button>
+                        <button type="button" class="btn btn-outline-warning">Supprimer</button>
                     </sec:authorize>
                 </li>
             </ul>
             <sec:authorize access="hasRole('ROLE_USER')">
-                <button type="button" class="btn btn-outline-primary">Ajouter un commentaire</button>
+                <button type="button" class="btn btn-outline-warning">Ajouter un commentaire</button>
             </sec:authorize>
         </div>
     </div>
 </div>
 </div>
+    <!-- FOOTER -->
+    <footer id="footer" class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2017-{{ site.time | date: "%Y" }} Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+        </p>
+    </footer>
+</main>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/webappJsFunctions.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

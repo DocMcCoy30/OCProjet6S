@@ -4,9 +4,8 @@ public class Photo {
 
     private int id;
     private String nom;
-    private int siteId;
-    private int secteurId;
-    private int voieId;
+    private String ref;
+    private int refId;
 
     public Photo() {
     }
@@ -14,11 +13,10 @@ public class Photo {
     public Photo(int photo_id) {
     }
 
-    public Photo(String nom, int siteId, int secteurId, int voieId) {
+    public Photo(String nom, String ref, int refId) {
         this.nom = nom;
-        this.siteId = siteId;
-        this.secteurId = secteurId;
-        this.voieId = voieId;
+        this.ref = ref;
+        this.refId = refId;
     }
 
     public int getId() {
@@ -37,27 +35,19 @@ public class Photo {
         this.nom = nom;
     }
 
-    public int getSiteId() {
-        return siteId;
+    public String getRef() {
+        return ref;
     }
 
-    public void setSiteId(int siteId) {
-        this.siteId = siteId;
+    public void setRef(String ref) {
+        this.ref = ref;
     }
 
-    public int getSecteurId() {
-        return secteurId;
+    public int getRefId() {
+        return refId;
     }
 
-    public void setSecteurId(int secteurId) {
-        this.secteurId = secteurId;
-    }
-
-    public int getVoieId() {
-        return voieId;
-    }
-
-    public void setVoieId(int voieId) {
-        this.voieId = voieId;
+    public void setRefId(int refId) {
+        this.refId = refId;
     }
 }

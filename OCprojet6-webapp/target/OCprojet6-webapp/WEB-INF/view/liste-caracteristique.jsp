@@ -20,7 +20,7 @@
 </div>
 <div id="container" class="col-md-10 col-offset-2">
     <div id="content">
-        <input type="button" class="btn btn-primary" value="Ajout Caracteristique"
+        <input type="button" class="btn btn-outline-warning" value="Ajout Caracteristique"
                onclick="window.location.href='formulaireAjout' ; return false;"
                class="add-button"
         />
