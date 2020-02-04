@@ -24,10 +24,17 @@ public class AccueilController extends AbstractController{
     @GetMapping({"/", "/accueil"})
     public ModelAndView welcomePage(Model model) {
         List<Photo> vListPhotos = photoResource.getAllPhotos();
-
         ModelAndView vMaV = new ModelAndView("accueil");
         vMaV.addObject("listPhotos", vListPhotos);
         afficherListe(model);
+        return vMaV;
+    }
+
+    @GetMapping("/showSearchSitePage")
+    public ModelAndView showSearchSitePage (Model pModel) {
+        afficherListe(pModel);
+        ModelAndView vMaV = new ModelAndView();
+        vMaV.setViewName("recherche-site");
         return vMaV;
     }
 

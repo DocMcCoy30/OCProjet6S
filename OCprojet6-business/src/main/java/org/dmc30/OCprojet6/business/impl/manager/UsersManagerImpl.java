@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.business.contract.manager.UsersManager;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -17,70 +18,41 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
     Logger logger = LogManager.getLogger(UsersManagerImpl.class);
 
-    // transaction => pilule bleu
-//    @Override
-//    public void createUsers(Users pUsers) {
-//        TransactionTemplate vTransactionTemplate = new TransactionTemplate(getPlatformTransactionManager());
-//        vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
-//            @Override
-//            protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
-//                getDaoFactory().getUsersDao().createUsers(pUsers);
-//                getDaoFactory().getUserRoleDao().createUserRole(pUsers.getUsername());
-//            }
-//        });
-//    }
-
-    // transaction => pilule bleu avec rollback
-//    @Override
-//    public void createUsers (Users pUsers) {
-//        TransactionTemplate vTransactionTemplate = new TransactionTemplate(getPlatformTransactionManager());
-//        vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
-//            @Override
-//            protected void doInTransactionWithoutResult(TransactionStatus pTransactionStatus) {
-//           try {
-//               getDaoFactory().getUsersDao().createUsers(pUsers);
-//               getDaoFactory().getUserRoleDao().createUserRole(pUsers.getUsername());
-//           }
-//           catch (TechnicalException vEx ) {
-//               pTransactionStatus.setRollbackOnly();
-//           }
-//            }
-//        });
-//    }
-
     // transaction => pilule rouge
     @Override
     @Transactional
     public void createUsers(Users pUsers) throws TechnicalException {
 
-        logger.trace("Création du PlatformTransactionManager");
+        logger.info("Création du PlatformTransactionManager");
         TransactionStatus vTransactionStatus
                 = getPlatformTransactionManager().getTransaction(new DefaultTransactionDefinition());
-        logger.trace("PlatformTransactionManager créé");
+        logger.info("PlatformTransactionManager créé");
         try {
             String vRole;
             List<Users> vListUsers = getDaoFactory().getUsersDao().getAllUsers();
             if (vListUsers.isEmpty()) {
                 vRole = "ROLE_ADMIN";
-                logger.debug("C'est le premier user créé : ROLE_ADMIN");
+                logger.info("C'est le premier user créé : ROLE_ADMIN");
 
             } else {
                 vRole = "ROLE_USER";
-                logger.debug("Ce n'est pas le premier user créé : ROLE_USER");
+                logger.info("Ce n'est pas le premier user créé : ROLE_USER");
             }
             getDaoFactory().getUsersDao().createUsers(pUsers);
-            logger.debug("User créé : "+pUsers.getUsername());
+            logger.info("User créé : " + pUsers.getUsername());
             getDaoFactory().getUserRoleDao().createUserRole(pUsers.getUsername(), vRole);
-            logger.debug("UserRole créé : TODO => bean UserRole + getUserRoleById methode");
+            logger.info("UserRole créé : TODO => bean UserRole + getUserRoleById methode");
             TransactionStatus vTScommit = vTransactionStatus;
             vTransactionStatus = null;
             getPlatformTransactionManager().commit(vTScommit);
-            logger.debug("Commit OK");
+            logger.info("Commit OK");
+        }catch (BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
 
         } finally {
             if (vTransactionStatus != null) {
                 getPlatformTransactionManager().rollback(vTransactionStatus);
-                logger.debug("Commit KO : rollback");
+                logger.info("Commit KO : rollback");
             }
         }
     }
@@ -109,7 +81,7 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
      * Recherche les doublons (username et email) dans la DB
      *
      * @param pUser Le nouvel utilisateur à créer et dont on souhaite comparer les données
-     * @return un tableau de 2 chiffres analysé dans le controller : si différent de 0 => existence d'un doublon
+     * @return un tableau de 2 chiffres analysés dans le controller : si différents de 0 => existence d'un doublon
      */
     public int[] rechercheDoublon(Users pUser) {
         List<Users> vListUsers = getDaoFactory().getUsersDao().getAllUsers();
@@ -124,7 +96,6 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
                 break;
             }
         }
-        int[] vResult = {vUsernameMarker, vEmailMarker};
-        return vResult;
+        return new int[]{vUsernameMarker, vEmailMarker};
     }
 }

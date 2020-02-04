@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 
@@ -28,6 +29,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/accueil">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/showSearchSitePage">Recherche</a>
+                </li>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link disabled" href="#">Disabled</a>--%>
+<%--                </li>--%>
+            </ul>
         </div>
         <c:if test="${pageContext.request.userPrincipal.name == null}">
             <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/signin">Creer un compte</a>
@@ -101,7 +113,7 @@
     <!-- FOOTER -->
     <footer id="footer" class="container">
         <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017-{{ site.time | date: "%Y" }} Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+        <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
         </p>
     </footer>
 </main>
@@ -115,5 +127,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script rel="script" src="${pageContext.request.contextPath}/resources/js/webappJsFunctions.js"></script>
+
 </body>
 </html>

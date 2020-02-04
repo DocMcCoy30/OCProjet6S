@@ -47,7 +47,8 @@ public class SiteController extends AbstractController {
                                     @RequestParam(value = "ville", required = false) Integer pVilleId) {
         ModelAndView vMaV = new ModelAndView();
         List<Site> vListSite = new ArrayList<>();
-        Site vSite;
+        List<Photo> vListPhotos = new ArrayList<>();
+        Photo vPhotoDuSite = null;
         if (pVilleId != null) {
             vListSite = siteResource.getSitesByVille(pVilleId);
         } else if (pDepartementCode != null) {
@@ -57,16 +58,27 @@ public class SiteController extends AbstractController {
         } else if (pSiteId != null) {
             vListSite.add(siteResource.getSiteById(pSiteId));
         }
+
+        // création de la liste des photos correspondantes aux sites recherchés
+//        for (Site vSite:vListSite){
+//            logger.info(vSite.getNom() + vSite.getId());
+//            List<Photo> vListPhotosDuSite = photoResource.getPhotoByRefId(vSite.getId(), "site");
+//            if (!vListPhotosDuSite.isEmpty()) {
+//                vPhotoDuSite = vListPhotosDuSite.get(0);
+//                vListPhotos.add(vPhotoDuSite);
+//            }
+//        }
         vMaV.addObject("listSites", vListSite);
-        vMaV.setViewName("accueil");
+        vMaV.addObject("listPhotos", vListPhotos);
+        vMaV.setViewName("recherche-site");
         afficherListe(pModel);
         return vMaV;
     }
 
 
     @GetMapping("/showCreationSiteForm")
-    public String showCreationSiteForm(Model model) {
-        afficherListe(model);
+    public String showCreationSiteForm(Model pModel) {
+        afficherListe(pModel);
         return "formulaire-creation-site";
     }
 
@@ -93,7 +105,7 @@ public class SiteController extends AbstractController {
             vListSites.add(vNewSite);
             vMaV.addObject("messageCreationSite", vMessageCreationSite);
             vMaV.addObject("listSites", vListSites);
-            vMaV.setViewName("accueil");
+            vMaV.setViewName("showSearchSitePage");
             afficherListe(pModel);
         }
         return vMaV;

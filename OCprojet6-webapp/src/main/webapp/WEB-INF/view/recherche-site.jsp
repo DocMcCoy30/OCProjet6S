@@ -59,77 +59,96 @@
 </header>
 <br><br>
 <main role="main">
-<br><br>
-<div class="container-fluid">
-    <div class="card">
-        <h2>
-            <div class="card-title">Ajouter un nouveau site</div>
-        </h2>
-        <form action="creationSite" method="post">
-            <div class="row col-md-12 no-gutters">
-                <div class="input-group col-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="nom">Nom du site : </span>
-                    </div>
-                    <input type="text" name="nom" required class="form-control" aria-label="nom"
-                           aria-describedby="nom">
+    <br><br>
+    <div class="container">
+        <form action="searchSites" method="post">
+            <div class="row col-md-12 no-gutters" id="buttonSearchSiteBar">
+                <div class="input-group col-md">
+                    <select class="custom-select" name="site" id="site">
+                        <option selected disabled>Site</option>
+                        <c:forEach var="site" items="${sites}">
+                            <option value="${site.id}">${site.nom}</option>
+                        </c:forEach>
+                    </select>
                 </div>
-                <div class="input-group col-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="ville">Ville : </span>
-                    </div>
-                    <input type="text" name="ville" required class="form-control" aria-label="ville"
-                           aria-describedby="ville">
-                </div>
-                <div class="input-group col-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="regions">Region :</span>
-                    </div>
-                    <select class="custom-select" name="region" required id="region">
-                        <option selected disabled></option>
+                &nbsp
+                <div class="input-group col-md">
+                    <select class="custom-select" name="region" id="region">
+                        <option selected disabled>Région</option>
                         <c:forEach var="region" items="${regions}">
                             <option value="${region.id}">${region.nom}</option>
                         </c:forEach>
                     </select>
                 </div>
-                <div class="input-group col-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="departements">Departement :</span>
-                    </div>
-                    <select class="custom-select" name="departement" required id="departement">
-                        <option selected disabled></option>
+                &nbsp
+                <div class="input-group col-md">
+                    <select class="custom-select" name="departement" id="departement">
+                        <option selected disabled>Département</option>
                         <c:forEach var="departement" items="${departements}">
                             <option value="${departement.code}">${departement.nom}</option>
                         </c:forEach>
                     </select>
                 </div>
-                <div class="input-group col-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="typeRoches">Type de roche : </span>
-                    </div>
-                    <select class="custom-select" name="typeRoche" required id="typeRoche">
-                        <option selected disabled></option>
-                        <c:forEach var="typeRoche" items="${typeRoche}">
-                            <option value="${typeRoche.id}">${typeRoche.nom}</option>
+                &nbsp
+                <div class="input-group col-md">
+                    <select class="custom-select" name="ville" id="ville">
+                        <option selected disabled>Villes</option>
+                        <c:forEach var="ville" items="${villes}">
+                            <option value="${ville.id}">${ville.nom}</option>
                         </c:forEach>
                     </select>
                 </div>
-                <div class="row col-lg-12 no-gutters">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Description : </span>
-                        </div>
-                        <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
-                    </div>
-                </div>
             </div>
-            <br><br>
             <div class="text-right">
-                <button type="submit" class="btn btn-outline-warning">Ajouter</button>
+                <button type="submit" class="btn btn-outline-warning" id="searchSiteButton">Rechercher</button>
             </div>
         </form>
+        <br><br>
+        <%--        Afficher les résultats de recherche     --%>
+        <div>
+            <c:if test="${ !empty messageCreationSite}">
+                <div class="alert alert-success" role="alert">
+                    <c:out value="${messageCreationSite}"/>
+                </div>
+            </c:if>
+        </div>
+        <div class="row">
+            <c:if test="${ !empty listSites}">
+<%--                <c:set var="photo" value="${listPhotos}"/>--%>
+                <c:forEach var="site" items="${listSites}">
+                    <c:url var="sitePageLink" value="/showSitePage">
+                        <c:param name="siteId" value="${site.id}"/>
+                    </c:url>
+                    <div class="col-sm-6">
+                        <div class="card" id="siteCard">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+<%--                                    <a href="#"><img src="${pageContext.request.contextPath}/resources/img/${photo.nom}"--%>
+<%--                                                     class="card-img" alt="${photo.nom}"></a>--%>
+                                    <img src="#" alt="#">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <a href="${sitePageLink}"><h5 class="card-title">${site.nom}</h5></a>
+                                        <p class="card-text">${site.description.info}</p>
+                                        <p class="card-text"><small class="text-muted">${site.region.nom}
+                                            - ${site.departement.nom}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </c:if>
+        </div>
+        <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
+            <div class="text-right">
+                <a href="${pageContext.request.contextPath}/showCreationSiteForm" type="button"
+                   class="btn btn-outline-warning" id="createSiteButton">Créer
+                    un site</a>
+            </div>
+        </sec:authorize>
     </div>
-</div>
     <!-- FOOTER -->
     <footer id="footer" class="container">
         <p class="float-right"><a href="#">Back to top</a></p>

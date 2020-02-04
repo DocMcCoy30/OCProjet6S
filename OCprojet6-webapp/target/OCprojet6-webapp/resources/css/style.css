@@ -19,11 +19,9 @@ body {
     margin-left: auto;
     margin-top: 2em;
 }
-
 .input-group-text {
     width: 8em;
 }
-
 .btn {
     width: 10em;
 }
@@ -53,7 +51,7 @@ body {
     box-shadow: 10px 5px 5px rgb(23, 17, 53);
 }
 #userCard {
-    background: #ffcc00;
+    background: #FDFFB5;
     color: #2C2559;
 }
 #buttonLinkBar {
@@ -69,13 +67,19 @@ body {
 #formUpload {
     display: none;
 }
+#carouselAccueil {
+    display: block;
+}
 .carousel-item {
-    height: 40em;
-    width: auto;
+    height: 60em;
+    /*width: auto;*/
 }
 h5 {
     color: #FFE854;
 }
 #footer {
     margin-top: 5em;
+}
+th {
+    color: #FFE854;
 }

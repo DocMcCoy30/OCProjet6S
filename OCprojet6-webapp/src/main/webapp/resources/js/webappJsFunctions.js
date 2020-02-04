@@ -3,13 +3,12 @@
  * @param a
  */
 function showFormUpload(a) {
-    if (a == 1) {
+    if (a === 1) {
         document.getElementById("formUpload").style.display = "block";
     } else {
         document.getElementById("formUpload").style.display = "none";
     }
 }
-
 /**
  * Affiche le message d'upload
  * @param msg

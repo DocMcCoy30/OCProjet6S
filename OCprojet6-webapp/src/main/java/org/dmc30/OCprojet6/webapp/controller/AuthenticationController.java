@@ -3,18 +3,19 @@ package org.dmc30.OCprojet6.webapp.controller;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.dmc30.OCprojet6.webapp.resource.AuthenticationResource;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import java.sql.SQLException;
 
 @Controller
 public class AuthenticationController {
 
     @Inject
     private AuthenticationResource authenticationResource;
-
 
 
     @GetMapping("/signin")
@@ -48,30 +49,11 @@ public class AuthenticationController {
             vModel.addObject("error", "Cet email existe déjà !");
             vModel.setViewName("signin");
         } else {
-            authenticationResource.createUsers(pUsers);
-            vModel.addObject("message", "Votre compte est créé !");
-            vModel.setViewName("login");
+                authenticationResource.createUsers(pUsers);
+                vModel.addObject("message", "Votre compte est créé !");
+                vModel.setViewName("login");
         }
         return vModel;
     }
-
-//    @PostMapping("/signup")
-//    public String saveUsers2(@ModelAttribute("users") Users pUsers, Model model) {
-//        int[] vResult = authenticationResource.rechercheDoublon(pUsers);
-//        String path;
-//        if (vResult[0] != 0) {
-//            model.addAttribute("error", "Cet identifiant existe déjà !");
-//            path = "signin";
-//        } else if (vResult[1] != 0) {
-//            model.addAttribute("error", "Cet email existe déjà !");
-//            path = "signin";
-//        } else {
-//            authenticationResource.createUsers(pUsers);
-//            model.addAttribute("userRecall", pUsers);
-//            model.addAttribute("message", "Votre compte est créé !");
-//            path = "login";
-//        }
-//        return path;
-//    }
 
 }
