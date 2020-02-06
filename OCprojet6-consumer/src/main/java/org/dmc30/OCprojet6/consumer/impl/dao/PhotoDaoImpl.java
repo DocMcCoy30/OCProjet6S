@@ -1,5 +1,7 @@
 package org.dmc30.OCprojet6.consumer.impl.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.consumer.contract.dao.PhotoDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.PhotoRM;
 import org.dmc30.OCprojet6.model.bean.Photo;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Named
 public class PhotoDaoImpl extends AbstractDao implements PhotoDao {
+
+    Logger logger = LogManager.getLogger(PhotoDaoImpl.class);
 
     @Inject
     PhotoRM photoRM;

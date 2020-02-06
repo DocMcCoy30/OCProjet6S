@@ -46,34 +46,33 @@ public class SiteController extends AbstractController {
                                     @RequestParam(value = "departement", required = false) Integer pDepartementCode,
                                     @RequestParam(value = "ville", required = false) Integer pVilleId) {
         ModelAndView vMaV = new ModelAndView();
-        List<Site> vListSite = new ArrayList<>();
+        List<Site> vListSites = new ArrayList<>();
         List<Photo> vListPhotos = new ArrayList<>();
         Photo vPhotoDuSite = null;
         if (pVilleId != null) {
-            vListSite = siteResource.getSitesByVille(pVilleId);
+            vListSites = siteResource.getSitesByVille(pVilleId);
         } else if (pDepartementCode != null) {
-            vListSite = siteResource.getSitesByDepartement(pDepartementCode);
+            vListSites = siteResource.getSitesByDepartement(pDepartementCode);
         } else if (pRegionId != null) {
-            vListSite = siteResource.getSitesByRegion(pRegionId);
+            vListSites = siteResource.getSitesByRegion(pRegionId);
         } else if (pSiteId != null) {
-            vListSite.add(siteResource.getSiteById(pSiteId));
+            vListSites.add(siteResource.getSiteById(pSiteId));
+        }
+        // création de la liste des photos correspondant aux sites recherchés
+        for (Site vSite : vListSites) {
+            logger.info(vSite.getNom() + vSite.getId());
+            vListPhotos = photoResource.getPhotoByRefId(vSite.getId(), "site");
+            if (!vListPhotos.isEmpty()) {
+                logger.info("La liste de photos pour " + vSite.getNom() + " contient " + vListPhotos.size() + " photos");
+                vSite.setListPhotos(vListPhotos);
+            }
+        }
+            vMaV.addObject("listSites", vListSites);
+            vMaV.setViewName("recherche-site");
+            afficherListe(pModel);
+            return vMaV;
         }
 
-        // création de la liste des photos correspondantes aux sites recherchés
-//        for (Site vSite:vListSite){
-//            logger.info(vSite.getNom() + vSite.getId());
-//            List<Photo> vListPhotosDuSite = photoResource.getPhotoByRefId(vSite.getId(), "site");
-//            if (!vListPhotosDuSite.isEmpty()) {
-//                vPhotoDuSite = vListPhotosDuSite.get(0);
-//                vListPhotos.add(vPhotoDuSite);
-//            }
-//        }
-        vMaV.addObject("listSites", vListSite);
-        vMaV.addObject("listPhotos", vListPhotos);
-        vMaV.setViewName("recherche-site");
-        afficherListe(pModel);
-        return vMaV;
-    }
 
 
     @GetMapping("/showCreationSiteForm")
@@ -136,9 +135,9 @@ public class SiteController extends AbstractController {
      */
     @PostMapping("/uploadFile")
     public ModelAndView uploadPhoto(@RequestParam("nomPhoto") String pNomPhoto,
-                                          @RequestParam("file") MultipartFile pFile,
-                                          @RequestParam("siteId") int pSiteId,
-                                          HttpServletRequest request) {
+                                    @RequestParam("file") MultipartFile pFile,
+                                    @RequestParam("siteId") int pSiteId,
+                                    HttpServletRequest request) {
 
         String vRef = "site";
         String vNomPhoto = "";
@@ -160,7 +159,7 @@ public class SiteController extends AbstractController {
                 // le risque de non concordance entre la BD et le répertoire
                 Random rand = new Random();
                 int vRandomRef = rand.nextInt(1000000);
-                vNomPhoto ="Site" + pSiteId + "_" + vRandomRef + "_" + pNomPhoto + ".jpeg";
+                vNomPhoto = "Site" + pSiteId + "_" + vRandomRef + "_" + pNomPhoto + ".jpeg";
                 // crée le fichier dans le repertoire
                 File serverFile = new File(dir.getAbsolutePath()
                         + File.separator + vNomPhoto);

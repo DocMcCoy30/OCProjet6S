@@ -91,7 +91,7 @@
                         <input type="text" name="username" placeholder="identifiant" class="form-control" required>
                     </div>
                     <div style="margin-bottom: 25px" class="input-group">
-                        <input type="email" name="email" placeholder="email" class="form-control" required>
+                        <input type="email" name="email" placeholder="email" class="form-control" >
                     </div>
                     <div style="margin-bottom: 25px" class="input-group">
                         <input type="password" name="password" placeholder="mot de passe" class="form-control" required>

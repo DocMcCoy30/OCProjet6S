@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UsersDao {
 
-    void createUsers (Users pUsers) throws TechnicalException;
+    void createUsers (Users pUsers);
     Users getUsersByName(String pUsername);
     List<Users> getAllUsers();
     void updateUsers (Users pUsers);

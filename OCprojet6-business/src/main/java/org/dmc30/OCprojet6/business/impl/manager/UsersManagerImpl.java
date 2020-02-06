@@ -4,13 +4,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.business.contract.manager.UsersManager;
 import org.dmc30.OCprojet6.model.bean.Users;
+import org.dmc30.OCprojet6.model.exception.OCP6Error;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.inject.Named;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Named
@@ -30,10 +33,10 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
         try {
             String vRole;
             List<Users> vListUsers = getDaoFactory().getUsersDao().getAllUsers();
+            // si c'est le premier user créé, on lui attribue automatiquement le ROLE_ADMIN
             if (vListUsers.isEmpty()) {
                 vRole = "ROLE_ADMIN";
                 logger.info("C'est le premier user créé : ROLE_ADMIN");
-
             } else {
                 vRole = "ROLE_USER";
                 logger.info("Ce n'est pas le premier user créé : ROLE_USER");
@@ -46,9 +49,12 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
             vTransactionStatus = null;
             getPlatformTransactionManager().commit(vTScommit);
             logger.info("Commit OK");
-        }catch (BadSqlGrammarException e) {
+        } catch (BadSqlGrammarException e) {
             logger.error("Problème de syntaxe dans la requète SQL");
-
+            throw new TechnicalException(OCP6Error.OCP_6_400.getMessagesError().getMessage401());
+        } catch (Exception e) {
+            logger.error("Problème technique");
+            throw new TechnicalException(OCP6Error.OCP_6_100.getMessagesError().getMessage101());
         } finally {
             if (vTransactionStatus != null) {
                 getPlatformTransactionManager().rollback(vTransactionStatus);

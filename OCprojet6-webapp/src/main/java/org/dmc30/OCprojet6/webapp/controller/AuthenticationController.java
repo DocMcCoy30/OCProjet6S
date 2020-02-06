@@ -39,20 +39,26 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public ModelAndView saveUsers(@ModelAttribute("users") Users pUsers) throws TechnicalException {
+    public ModelAndView saveUsers(@ModelAttribute("users") Users pUsers) {
         ModelAndView vModel = new ModelAndView();
-        int[] vResult = authenticationResource.rechercheDoublon(pUsers);
-        if (vResult[0] != 0) {
-            vModel.addObject("error", "Cet identifiant existe déjà !");
-            vModel.setViewName("signin");
-        } else if (vResult[1] != 0) {
-            vModel.addObject("error", "Cet email existe déjà !");
-            vModel.setViewName("signin");
-        } else {
+//        int[] vResult = authenticationResource.rechercheDoublon(pUsers);
+//        if (vResult[0] != 0) {
+//            vModel.addObject("error", "Cet identifiant existe déjà !");
+//            vModel.setViewName("signin");
+//        } else if (vResult[1] != 0) {
+//            vModel.addObject("error", "Cet email existe déjà !");
+//            vModel.setViewName("signin");
+//        } else {
+            try {
                 authenticationResource.createUsers(pUsers);
                 vModel.addObject("message", "Votre compte est créé !");
                 vModel.setViewName("login");
-        }
+            }
+            catch (TechnicalException e) {
+                vModel.addObject("message", e.getMessage());
+                vModel.setViewName("login");
+            }
+//        }
         return vModel;
     }
 

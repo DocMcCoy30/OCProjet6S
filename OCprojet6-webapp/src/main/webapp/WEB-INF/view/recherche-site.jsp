@@ -114,7 +114,6 @@
         </div>
         <div class="row">
             <c:if test="${ !empty listSites}">
-<%--                <c:set var="photo" value="${listPhotos}"/>--%>
                 <c:forEach var="site" items="${listSites}">
                     <c:url var="sitePageLink" value="/showSitePage">
                         <c:param name="siteId" value="${site.id}"/>
@@ -123,9 +122,8 @@
                         <div class="card" id="siteCard">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-<%--                                    <a href="#"><img src="${pageContext.request.contextPath}/resources/img/${photo.nom}"--%>
-<%--                                                     class="card-img" alt="${photo.nom}"></a>--%>
-                                    <img src="#" alt="#">
+                                    <a href="${sitePageLink}"><img src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
+                                                     class="card-img" alt="${site.listPhotos[0].nom}"></a>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">

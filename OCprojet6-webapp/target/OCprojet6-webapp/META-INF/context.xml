@@ -6,8 +6,8 @@
 
               url="jdbc:postgresql://localhost:5432/DB_OCprojet6S"
               driverClassName="org.postgresql.Driver"
-              username="postgres"
-              password="postgres"
+              username="dmc30"
+              password="dmcTr3nt3"
               defaultAutoCommit="true"
               defaultTransactionIsolation="READ_COMMITTED"
 
