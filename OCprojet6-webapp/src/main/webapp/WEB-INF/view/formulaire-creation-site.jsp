@@ -62,9 +62,7 @@
 <br><br>
 <div class="container-fluid">
     <div class="card">
-        <h2>
-            <div class="card-title">Ajouter un nouveau site</div>
-        </h2>
+        <div class="card-title"><h2>Ajouter un nouveau site</h2></div>
         <form action="creationSite" method="post">
             <div class="row col-md-12 no-gutters">
                 <div class="input-group col-lg">

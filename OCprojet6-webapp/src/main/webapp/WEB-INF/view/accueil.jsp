@@ -1,3 +1,5 @@
+<%--suppress ALL --%>
+<%--suppress Annotator --%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -58,6 +60,9 @@
     </nav>
 </header>
 <br><br>
+<%--suppress Annotator --%>
+<%--suppress Annotator --%>
+<%--suppress Annotator --%>
 <main role="main">
         <br><br>
         <a id="testbt" href="${pageContext.request.contextPath}/tb">test bootstrap</a>
@@ -82,7 +87,6 @@
 <%--        </div>--%>
     </div>
 
-    </div>
     <!-- FOOTER -->
     <footer id="footer" class="container">
         <p class="float-right"><a href="#">Back to top</a></p>

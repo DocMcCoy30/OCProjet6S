@@ -4,7 +4,6 @@ import org.dmc30.OCprojet6.consumer.contract.dao.TypeRocheDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.TypeRocheRM;
 import org.dmc30.OCprojet6.model.bean.TypeRoche;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,16 +25,14 @@ public class TypeRocheDaoImpl extends AbstractDao implements TypeRocheDao {
         String vSQL="SELECT * FROM type_roche WHERE type_roche_id="+pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<TypeRoche> vListTypeRoches = vJdbcTemplate.query(vSQL, typeRocheRM);
-        TypeRoche vTypeRoche = vListTypeRoches.get(0);
-        return vTypeRoche;
+        return vListTypeRoches.get(0);
     }
 
     @Override
     public List<TypeRoche> getAllTypeRoches() {
         String vSQL="SELECT * FROM type_roche";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<TypeRoche> vListTypeRoches = vJdbcTemplate.query(vSQL, typeRocheRM);
-        return vListTypeRoches;
+        return vJdbcTemplate.query(vSQL, typeRocheRM);
     }
 
     @Override

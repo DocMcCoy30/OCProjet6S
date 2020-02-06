@@ -4,7 +4,6 @@ import org.dmc30.OCprojet6.consumer.contract.dao.SecteurDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.SecteurRM;
 import org.dmc30.OCprojet6.model.bean.Secteur;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -36,8 +35,7 @@ public class SecteurDaoImpl extends AbstractDao implements SecteurDao {
         vParams.addValue("vId", pId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         List<Secteur> vListSecteurs = vJdbcTemplate.query(vSQL, vParams, secteurRM);
-        Secteur vSecteur = vListSecteurs.get(0);
-        return vSecteur;
+        return vListSecteurs.get(0);
     }
 
     @Override
@@ -46,16 +44,14 @@ public class SecteurDaoImpl extends AbstractDao implements SecteurDao {
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("vSiteId", pSiteId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        List<Secteur> vListSecteurs = vJdbcTemplate.query(vSQL, vParams, secteurRM);
-        return vListSecteurs;
+        return vJdbcTemplate.query(vSQL, vParams, secteurRM);
     }
 
     @Override
     public List<Secteur> getAllSecteurs() {
         String vSQL = "SELECT * FROM secteur ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Secteur> vListSecteurs = vJdbcTemplate.query(vSQL, secteurRM);
-        return vListSecteurs;
+        return vJdbcTemplate.query(vSQL, secteurRM);
     }
 
     @Override

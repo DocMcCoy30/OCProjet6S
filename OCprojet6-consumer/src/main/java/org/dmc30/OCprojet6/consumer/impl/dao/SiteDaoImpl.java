@@ -4,7 +4,6 @@ import org.dmc30.OCprojet6.consumer.contract.dao.SiteDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.SiteRM;
 import org.dmc30.OCprojet6.model.bean.Site;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlParameterValue;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -41,40 +40,35 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
         String vSQL = "SELECT * FROM site WHERE site_id=" + pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Site> vListSites = vJdbcTemplate.query(vSQL, siteRM);
-        Site vSite = vListSites.get(0);
-        return vSite;
+        return vListSites.get(0);
     }
 
     @Override
     public List<Site> getSitesByRegion(int pRegionId) {
         String vSQL = "SELECT * FROM site WHERE region_id=" + pRegionId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Site> vListSites = vJdbcTemplate.query(vSQL, siteRM);
-        return vListSites;
+        return vJdbcTemplate.query(vSQL, siteRM);
     }
 
     @Override
     public List<Site> getSitesByDepartement(int pCode) {
         String vSQL = "SELECT * FROM site WHERE departement_code=" + pCode;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Site> vListSites = vJdbcTemplate.query(vSQL, siteRM);
-        return vListSites;
+        return vJdbcTemplate.query(vSQL, siteRM);
     }
 
     @Override
     public List<Site> getSitesByVille(int pVilleId) {
         String vSQL = "SELECT * FROM site WHERE ville_id=" + pVilleId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Site> vListSites = vJdbcTemplate.query(vSQL, siteRM);
-        return vListSites;
+        return vJdbcTemplate.query(vSQL, siteRM);
     }
 
     @Override
     public int getLastId() {
         String vSQL = "SELECT MAX(site_id) FROM site";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        Integer vLastId = vJdbcTemplate.queryForObject(vSQL, Integer.TYPE);
-        return vLastId;
+        return vJdbcTemplate.queryForObject(vSQL, Integer.TYPE);
     }
 
     @Override
@@ -89,17 +83,14 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
         vParams.addValue("vDepartementCode", pDepartementCode);
         vParams.addValue("vVilleID", pVilleId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        List<Site> vListSites = vJdbcTemplate.query(vSQL, vParams, siteRM);
-
-        return vListSites;
+        return vJdbcTemplate.query(vSQL, vParams, siteRM);
     }
 
     @Override
     public List<Site> getAllSites() {
         String vSQL = "SELECT * FROM site";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Site> vListSites = vJdbcTemplate.query(vSQL, siteRM);
-        return vListSites;
+        return vJdbcTemplate.query(vSQL, siteRM);
     }
 
     @Override

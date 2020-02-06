@@ -3,13 +3,11 @@ package org.dmc30.OCprojet6.webapp.controller;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.dmc30.OCprojet6.webapp.resource.AuthenticationResource;
-import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
-import java.sql.SQLException;
 
 @Controller
 public class AuthenticationController {

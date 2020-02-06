@@ -20,7 +20,6 @@
 
     <!-- ===== Informations générales ===== -->
     <name>${projectName} - Application web</name>
-    <groupId>org.dmc30.OCprojet6</groupId>
 
     <properties>
         <application.name>LesAmisDeLEscalade</application.name>

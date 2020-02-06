@@ -134,8 +134,7 @@
         </div>
         <br><br>
     </div>
-    </div>
-    </div>
+
     <!-- FOOTER -->
     <footer id="footer" class="container">
         <p class="float-right"><a href="#">Back to top</a></p>

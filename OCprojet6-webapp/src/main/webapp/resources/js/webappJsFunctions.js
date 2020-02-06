@@ -21,6 +21,6 @@ function showUploadMsg (msg) {
  *
  */
 function showFileName() {
-    var fileName = (this).val();
+    const fileName = (this).val();
     this.next('.custom-file-label').html(fileName);
 }

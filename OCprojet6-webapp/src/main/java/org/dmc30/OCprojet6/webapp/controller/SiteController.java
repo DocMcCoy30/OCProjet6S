@@ -2,13 +2,9 @@ package org.dmc30.OCprojet6.webapp.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.dmc30.OCprojet6.model.bean.Description;
 import org.dmc30.OCprojet6.model.bean.Photo;
-import org.dmc30.OCprojet6.model.bean.Secteur;
 import org.dmc30.OCprojet6.model.bean.Site;
-import org.dmc30.OCprojet6.webapp.resource.DescriptionResource;
 import org.dmc30.OCprojet6.webapp.resource.PhotoResource;
-import org.dmc30.OCprojet6.webapp.resource.SecteurResource;
 import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,11 +29,9 @@ public class SiteController extends AbstractController {
     @Inject
     SiteResource siteResource;
     @Inject
-    SecteurResource secteurResource;
-    @Inject
     PhotoResource photoResource;
 
-    Logger logger = LogManager.getLogger(SiteController.class);
+    final Logger logger = LogManager.getLogger(SiteController.class);
 
     @PostMapping("/searchSites")
     public ModelAndView searchSites(Model pModel,
@@ -47,8 +41,7 @@ public class SiteController extends AbstractController {
                                     @RequestParam(value = "ville", required = false) Integer pVilleId) {
         ModelAndView vMaV = new ModelAndView();
         List<Site> vListSites = new ArrayList<>();
-        List<Photo> vListPhotos = new ArrayList<>();
-        Photo vPhotoDuSite = null;
+        List<Photo> vListPhotos;
         if (pVilleId != null) {
             vListSites = siteResource.getSitesByVille(pVilleId);
         } else if (pDepartementCode != null) {
@@ -131,7 +124,7 @@ public class SiteController extends AbstractController {
      * @param pNomPhoto : le nom de l'image renseigné dans le formulaire
      * @param pFile     : le fichier à uploader
      * @param pSiteId   : l'identifiant de site correspondant
-     * @return
+     * @return le ModelAndView
      */
     @PostMapping("/uploadFile")
     public ModelAndView uploadPhoto(@RequestParam("nomPhoto") String pNomPhoto,

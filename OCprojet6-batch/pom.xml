@@ -87,7 +87,7 @@
                         <manifest>
                             <mainClass>App</mainClass>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix></classpathPrefix>
+                            <classpathPrefix/>
                         </manifest>
                     </archive>
                 </configuration>

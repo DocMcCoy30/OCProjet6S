@@ -17,14 +17,12 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
 
     @Override
     public Commentaire getCommentaireById(int pId) {
-        Commentaire vCommentaire = getDaoFactory().getCommentaireDao().getCommentaireById(pId);
-        return vCommentaire;
+        return getDaoFactory().getCommentaireDao().getCommentaireById(pId);
     }
 
     @Override
     public List<Commentaire> getAllCommentaires() {
-        List<Commentaire> vListCommentaire = getDaoFactory().getCommentaireDao().getAllCommentaires();
-        return vListCommentaire;
+        return getDaoFactory().getCommentaireDao().getAllCommentaires();
     }
 
     @Override

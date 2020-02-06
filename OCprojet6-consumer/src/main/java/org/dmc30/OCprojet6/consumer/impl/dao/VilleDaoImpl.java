@@ -4,14 +4,11 @@ import org.dmc30.OCprojet6.consumer.contract.dao.VilleDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.VilleRM;
 import org.dmc30.OCprojet6.model.bean.Ville;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Named
@@ -37,8 +34,7 @@ public class VilleDaoImpl extends AbstractDao implements VilleDao {
         vParams.addValue("id", pId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         List<Ville> vListVilles = vJdbcTemplate.query(vSQL, vParams, villeRM);
-        Ville vVille = vListVilles.get(0);
-        return vVille;
+        return vListVilles.get(0);
     }
 
     @Override
@@ -47,24 +43,21 @@ public class VilleDaoImpl extends AbstractDao implements VilleDao {
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("departementCode", pCode);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        List<Ville> vListVilles = vJdbcTemplate.query(vSQL, vParams, villeRM);
-        return vListVilles;
+        return vJdbcTemplate.query(vSQL, vParams, villeRM);
     }
 
     @Override
     public List<Ville> getAllVilles() {
         String vSQL = "SELECT * FROM ville ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Ville> vListVilles = vJdbcTemplate.query(vSQL, villeRM);
-        return vListVilles;
+        return vJdbcTemplate.query(vSQL, villeRM);
     }
 
     @Override
     public int getLastId() {
         String vSQL = "SELECT MAX(ville_id) FROM ville";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        Integer vLastId = vJdbcTemplate.queryForObject(vSQL, Integer.TYPE);
-        return vLastId;
+        return vJdbcTemplate.queryForObject(vSQL, Integer.TYPE);
     }
 
     @Override

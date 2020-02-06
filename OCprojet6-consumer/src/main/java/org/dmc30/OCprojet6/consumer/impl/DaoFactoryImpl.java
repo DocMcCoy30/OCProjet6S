@@ -2,7 +2,6 @@ package org.dmc30.OCprojet6.consumer.impl;
 
 import org.dmc30.OCprojet6.consumer.contract.DaoFactory;
 import org.dmc30.OCprojet6.consumer.contract.dao.*;
-import org.dmc30.OCprojet6.model.bean.Commentaire;
 
 import javax.inject.Inject;
 import javax.inject.Named;

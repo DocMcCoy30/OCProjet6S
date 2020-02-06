@@ -25,16 +25,14 @@ public class VoieDaoImpl extends AbstractDao implements VoieDao {
         String vSQL="SELECT * FROM voie WHERE voie_id="+pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Voie> vListVoies = vJdbcTemplate.query(vSQL, voieRM);
-        Voie vVoie = vListVoies.get(0);
-        return vVoie;
+        return vListVoies.get(0);
     }
 
     @Override
     public List<Voie> getAllVoies() {
         String vSQL="SELECT * FROM voie";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Voie> vListVoies = vJdbcTemplate.query(vSQL, voieRM);
-        return vListVoies;
+        return vJdbcTemplate.query(vSQL, voieRM);
     }
 
     @Override

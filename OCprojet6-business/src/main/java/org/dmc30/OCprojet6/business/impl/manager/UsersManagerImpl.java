@@ -6,20 +6,18 @@ import org.dmc30.OCprojet6.business.contract.manager.UsersManager;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.OCP6Error;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.inject.Named;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Named
 public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
-    Logger logger = LogManager.getLogger(UsersManagerImpl.class);
+    final Logger logger = LogManager.getLogger(UsersManagerImpl.class);
 
     // transaction => pilule rouge
     @Override

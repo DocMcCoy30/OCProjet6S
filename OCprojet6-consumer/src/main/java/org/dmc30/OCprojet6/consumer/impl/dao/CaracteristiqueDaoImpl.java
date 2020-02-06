@@ -4,7 +4,6 @@ import org.dmc30.OCprojet6.consumer.contract.dao.CaracteristiqueDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.CaracteristiqueRM;
 import org.dmc30.OCprojet6.model.bean.Caracteristique;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -25,7 +24,6 @@ public class CaracteristiqueDaoImpl extends AbstractDao implements Caracteristiq
         String vSQL = "INSERT INTO caracteristique (nom, definition) VALUES (?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, vNom, vDefinition);
-
     }
 
     @Override
@@ -33,16 +31,14 @@ public class CaracteristiqueDaoImpl extends AbstractDao implements Caracteristiq
         String vSQL = "SELECT * FROM caracteristique WHERE caracteristique_id="+pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Caracteristique> vListCaracteristique = vJdbcTemplate.query(vSQL, caracteristiqueRM);
-        Caracteristique vCaracteristique = vListCaracteristique.get(0);
-        return vCaracteristique;
+        return vListCaracteristique.get(0);
     }
 
     @Override
     public List<Caracteristique> getAllCaracteristiques() {
         String vSQL = "SELECT * FROM caracteristique";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Caracteristique> vListCaracteristique = vJdbcTemplate.query(vSQL, caracteristiqueRM);
-        return vListCaracteristique;
+        return vJdbcTemplate.query(vSQL, caracteristiqueRM);
     }
 
     @Override

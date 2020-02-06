@@ -57,7 +57,7 @@ public interface ManagerFactory {
 
     void setVoieManager(VoieManager voieManager);
 
-    abstract CaracteristiqueManager getCaracteristiqueManager();
+    CaracteristiqueManager getCaracteristiqueManager();
 
-    abstract void setCaracteristiqueManager(CaracteristiqueManager caracteristiqueManager);
+    void setCaracteristiqueManager(CaracteristiqueManager caracteristiqueManager);
 }

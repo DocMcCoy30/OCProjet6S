@@ -32,8 +32,7 @@ public class DescriptionDaoImpl extends AbstractDao implements DescriptionDao {
         String vSQL = "SELECT * FROM description where description_id="+pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Description> vListDescription = vJdbcTemplate.query(vSQL,descriptionRM);
-        Description vDescription = vListDescription.get(0);
-        return vDescription;
+        return vListDescription.get(0);
     }
 
     @Override
@@ -41,16 +40,14 @@ public class DescriptionDaoImpl extends AbstractDao implements DescriptionDao {
         String vSQL = "SELECT * FROM description";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         RowMapper<Description> descriptionRowMapper = new DescriptionRM();
-        List<Description> vListDescriptions = vJdbcTemplate.query(vSQL, descriptionRowMapper);
-        return vListDescriptions;
+        return vJdbcTemplate.query(vSQL, descriptionRowMapper);
     }
 
     @Override
     public int getLastId() {
         String vSQL = "SELECT MAX(description_id) FROM description";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        Integer vLastId = vJdbcTemplate.queryForObject(vSQL, Integer.TYPE);
-        return vLastId;
+        return vJdbcTemplate.queryForObject(vSQL, Integer.TYPE);
     }
 
 }

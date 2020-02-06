@@ -8,7 +8,6 @@ import javax.inject.Named;
 public class DescriptionResource extends AbstractResource {
 
     public Description getDescriptionById (int pId) {
-        Description vDescription = getManagerFactory().getDescriptionManager().getDescriptionById(pId);
-        return vDescription;
+        return getManagerFactory().getDescriptionManager().getDescriptionById(pId);
     }
 }

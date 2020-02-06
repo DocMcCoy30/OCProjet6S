@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 @Named
 public class CaracteristiqueRM implements RowMapper<Caracteristique> {

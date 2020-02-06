@@ -17,14 +17,12 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager {
 
     @Override
     public Topo getTopoById(int pId) {
-        Topo vTopo = getDaoFactory().getTopoDao().getTopoById(pId);
-        return vTopo;
+        return getDaoFactory().getTopoDao().getTopoById(pId);
     }
 
     @Override
     public List<Topo> getAllTopos() {
-        List<Topo> vListTopo = getDaoFactory().getTopoDao().getAllTopos();
-        return vListTopo;
+        return getDaoFactory().getTopoDao().getAllTopos();
     }
 
     @Override

@@ -1,7 +1,5 @@
 package org.dmc30.OCprojet6.batch;
 
-import org.dmc30.OCprojet6.model.bean.Caracteristique;
-
 /**
  * Hello world!
  *

@@ -1,7 +1,6 @@
 package org.dmc30.OCprojet6.business.impl.manager;
 
 import org.dmc30.OCprojet6.consumer.contract.DaoFactory;
-import org.dmc30.OCprojet6.model.bean.Caracteristique;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.inject.Inject;

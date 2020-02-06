@@ -10,16 +10,12 @@ public class PasswordEncoderHelper {
 
     public String passwordEncoder(String pPassword) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(pPassword);
-        return hashedPassword;
+        return passwordEncoder.encode(pPassword);
     }
 
     public boolean comparePassword (String candidatePassword, String hashedPassword) {
         boolean match;
-        if (BCrypt.checkpw(candidatePassword, hashedPassword))
-            match = true;
-        else
-            match = false;
+        match = BCrypt.checkpw(candidatePassword, hashedPassword);
         return match;
     }
 }

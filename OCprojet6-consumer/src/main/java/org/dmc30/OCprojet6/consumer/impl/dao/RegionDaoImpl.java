@@ -4,7 +4,6 @@ import org.dmc30.OCprojet6.consumer.contract.dao.RegionDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.RegionRM;
 import org.dmc30.OCprojet6.model.bean.Region;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -30,16 +29,14 @@ public class RegionDaoImpl extends AbstractDao implements RegionDao {
         vParams.addValue("vId", pId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         List<Region> vListRegion = vJdbcTemplate.query(vSQL, vParams, regionRM);
-        Region vRegion = vListRegion.get(0);
-        return vRegion;
+        return vListRegion.get(0);
     }
 
     @Override
     public List<Region> getAllRegions() {
         String vSQL = "SELECT * FROM region ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Region> vListRegion = vJdbcTemplate.query(vSQL, regionRM);
-        return vListRegion;
+        return vJdbcTemplate.query(vSQL, regionRM);
     }
 
     @Override

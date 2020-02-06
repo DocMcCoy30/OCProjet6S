@@ -3,9 +3,7 @@ package org.dmc30.OCprojet6.webapp.controller;
 import org.dmc30.OCprojet6.model.bean.Secteur;
 import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.webapp.resource.SecteurResource;
-import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,8 +45,8 @@ public class SecteurController extends AbstractController {
                                    @RequestParam(value = "description", required = false) String pDescription,
                                    @RequestParam(value = "siteId", required = false) int pSiteId) {
         Secteur vNewSecteur = null;
-        List<Secteur> vListSecteurs = new ArrayList<>();
-        Site vSite = null;
+        List<Secteur> vListSecteurs;
+        Site vSite;
         ModelAndView vMaV = new ModelAndView();
         try {
             secteurResource.createSecteur(pSecteurNom, pDescription, pSiteId);

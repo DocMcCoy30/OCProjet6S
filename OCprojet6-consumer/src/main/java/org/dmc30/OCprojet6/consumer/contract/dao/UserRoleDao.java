@@ -4,5 +4,5 @@ import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 public interface UserRoleDao {
 
-    void createUserRole (String pUsername, String pRole) throws TechnicalException;
+    void createUserRole (String pUsername, String pRole);
 }

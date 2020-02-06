@@ -34,8 +34,7 @@ Logger logger = LogManager.getLogger(DepartementDaoImpl.class);
         vParams.addValue("vCode", pCode);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         List<Departement> vListDepartements = vJdbcTemplate.query(vSQL, vParams, departementRM);
-        Departement vDepartement = vListDepartements.get(0);
-        return vDepartement;
+        return vListDepartements.get(0);
     }
 
     @Override
@@ -44,16 +43,14 @@ Logger logger = LogManager.getLogger(DepartementDaoImpl.class);
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("vRegionId", pRegionId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        List<Departement> vListDepartements = vJdbcTemplate.query(vSQL, vParams, departementRM);
-        return vListDepartements;
+        return vJdbcTemplate.query(vSQL, vParams, departementRM);
     }
 
     @Override
     public List<Departement> getAllDepartements() {
         String vSQL = "SELECT * FROM departement ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Departement> vListDepartements = vJdbcTemplate.query(vSQL, departementRM);
-        return vListDepartements;
+        return vJdbcTemplate.query(vSQL, departementRM);
     }
 
     @Override

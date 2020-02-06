@@ -26,7 +26,7 @@ public class Commentaire {
     }
 
     public void setId(int id) {
-        id = id;
+        this.id = id;
     }
 
     public Site getSite() {

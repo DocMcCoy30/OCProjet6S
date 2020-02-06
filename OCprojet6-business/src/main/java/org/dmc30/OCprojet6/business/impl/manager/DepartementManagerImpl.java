@@ -17,8 +17,7 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
 
     @Override
     public Departement getDepartementByCode(int pCode) {
-        Departement vDepartement = getDaoFactory().getDepartementDao().getDepartementByCode(pCode);
-        return vDepartement;
+        return getDaoFactory().getDepartementDao().getDepartementByCode(pCode);
     }
 
     @Override
@@ -28,8 +27,7 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
 
     @Override
     public List<Departement> getAllDepartements() {
-        List<Departement> vListDepartement = getDaoFactory().getDepartementDao().getAllDepartements();
-        return vListDepartement;
+        return getDaoFactory().getDepartementDao().getAllDepartements();
     }
 
     @Override

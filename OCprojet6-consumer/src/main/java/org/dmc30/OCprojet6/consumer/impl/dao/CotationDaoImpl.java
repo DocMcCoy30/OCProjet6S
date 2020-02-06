@@ -4,7 +4,6 @@ import org.dmc30.OCprojet6.consumer.contract.dao.CotationDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.CotationRM;
 import org.dmc30.OCprojet6.model.bean.Cotation;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,16 +25,14 @@ public class CotationDaoImpl extends AbstractDao implements CotationDao {
         String vSQL="SELECT * FROM cotation WHERE cotation_id="+pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Cotation> vListCotations = vJdbcTemplate.query(vSQL, cotationRM);
-        Cotation vCotation = vListCotations.get(0);
-        return vCotation;
+        return vListCotations.get(0);
     }
 
     @Override
     public List<Cotation> getAllCotations() {
         String vSQL="SELECT * FROM cotation";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Cotation> vListCotations = vJdbcTemplate.query(vSQL, cotationRM);
-        return vListCotations;
+        return vJdbcTemplate.query(vSQL, cotationRM);
     }
 
     @Override

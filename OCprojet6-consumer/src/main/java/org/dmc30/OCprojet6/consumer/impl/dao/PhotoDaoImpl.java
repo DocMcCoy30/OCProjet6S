@@ -6,7 +6,6 @@ import org.dmc30.OCprojet6.consumer.contract.dao.PhotoDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.PhotoRM;
 import org.dmc30.OCprojet6.model.bean.Photo;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -38,8 +37,7 @@ public class PhotoDaoImpl extends AbstractDao implements PhotoDao {
         String vSQL = "SELECT * FROM photo WHERE photo_id=" + pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Photo> vListPhotos = vJdbcTemplate.query(vSQL, photoRM);
-        Photo vPhoto = vListPhotos.get(0);
-        return vPhoto;
+        return vListPhotos.get(0);
     }
 
     @Override
@@ -49,16 +47,14 @@ public class PhotoDaoImpl extends AbstractDao implements PhotoDao {
         vParams.addValue("ref", pRef);
         vParams.addValue("refId", pRefId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        List<Photo> vListPhotos = vJdbcTemplate.query(vSQL, vParams, photoRM);
-        return vListPhotos;
+        return vJdbcTemplate.query(vSQL, vParams, photoRM);
     }
 
     @Override
     public List<Photo> getAllPhotos() {
         String vSQL = "SELECT * FROM photo";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Photo> vListPhotos = vJdbcTemplate.query(vSQL, photoRM);
-        return vListPhotos;
+        return vJdbcTemplate.query(vSQL, photoRM);
     }
 
     @Override

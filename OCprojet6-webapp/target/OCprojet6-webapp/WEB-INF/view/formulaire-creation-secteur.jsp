@@ -36,9 +36,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/showSearchSitePage">Recherche</a>
                 </li>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link disabled" href="#">Disabled</a>--%>
-<%--                </li>--%>
+                <%--                <li class="nav-item">--%>
+                <%--                    <a class="nav-link disabled" href="#">Disabled</a>--%>
+                <%--                </li>--%>
             </ul>
         </div>
         <c:if test="${pageContext.request.userPrincipal.name == null}">
@@ -60,47 +60,47 @@
 <br><br>
 <main role="main">
     <br><br>
-<div class="container-fluid">
-    <div class="card">
-        <h2>
-            <div class="card-title">Ajouter un nouveau secteur</div>
-        </h2>
-        <form action="creationSecteur" method="post">
-            <div class="row col-md-12 no-gutters">
-                <div class="input-group col-lg">
-                    <div class="input-group-prepend">
-                        <c:set var="site" value="${site}"/>
-                        <input id="siteId" name="siteId" type="hidden" value="${site.id}">
-                        <span class="input-group-text" id="siteNom">Nom du site : </span>
-                    </div>
-                    <input type="text" name="siteNom" disabled="disabled" value="${site.nom}" required
-                           class="form-control"
-                           aria-label="siteNom"
-                           aria-describedby="siteNom">
-                </div>
-                <div class="input-group col-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="secteurNom">Nom du secteur : </span>
-                    </div>
-                    <input type="text" name="secteurNom" required class="form-control" aria-label="secteurNom"
-                           aria-describedby="secteurNom">
-                </div>
-                <div class="row col-lg-12 no-gutters">
-                    <div class="input-group">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-title"><h2>Ajouter un nouveau secteur </h2></div>
+
+            <form action="creationSecteur" method="post">
+                <div class="row col-md-12 no-gutters">
+                    <div class="input-group col-lg">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="description">Description : </span>
+                            <c:set var="site" value="${site}"/>
+                            <input id="siteId" name="siteId" type="hidden" value="${site.id}">
+                            <span class="input-group-text" id="siteNom">Nom du site : </span>
                         </div>
-                        <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+                        <input type="text" name="siteNom" disabled="disabled" value="${site.nom}" required
+                               class="form-control"
+                               aria-label="siteNom"
+                               aria-describedby="siteNom">
+                    </div>
+                    <div class="input-group col-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="secteurNom">Nom du secteur : </span>
+                        </div>
+                        <input type="text" name="secteurNom" required class="form-control" aria-label="secteurNom"
+                               aria-describedby="secteurNom">
+                    </div>
+                    <div class="row col-lg-12 no-gutters">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="description">Description : </span>
+                            </div>
+                            <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br><br>
-            <div class="text-right">
-                <button type="submit" class="btn btn-outline-warning">Ajouter</button>
-            </div>
-        </form>
+                <br><br>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-outline-warning">Ajouter</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
     <!-- FOOTER -->
     <footer id="footer" class="container">
         <p class="float-right"><a href="#">Back to top</a></p>
@@ -120,4 +120,5 @@
         crossorigin="anonymous"></script>
 <script rel="script" src="${pageContext.request.contextPath}/resources/js/webappJsFunctions.js"></script>
 </body>
-</html>>
+</html>
+>

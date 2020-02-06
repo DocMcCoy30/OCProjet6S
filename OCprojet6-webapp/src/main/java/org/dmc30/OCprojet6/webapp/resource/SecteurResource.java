@@ -20,13 +20,11 @@ public class SecteurResource extends AbstractResource {
     }
 
     public List<Secteur> getSecteursBySiteId (int pSiteId) {
-        List<Secteur> vListSecteurs = getManagerFactory().getSecteurManager().getSecteursBySiteId(pSiteId);
-        return vListSecteurs;
+        return getManagerFactory().getSecteurManager().getSecteursBySiteId(pSiteId);
     }
 
     public List<Secteur> getAllSecteurs () {
-        List<Secteur> vListSecteurs = getManagerFactory().getSecteurManager().getAllSecteurs();
-        return vListSecteurs;
+        return getManagerFactory().getSecteurManager().getAllSecteurs();
     }
 
 
