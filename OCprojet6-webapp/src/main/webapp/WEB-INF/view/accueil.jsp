@@ -1,5 +1,3 @@
-<%--suppress ALL --%>
-<%--suppress Annotator --%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -18,11 +16,6 @@
 </head>
 <body>
 <c:url value="/logout" var="logoutUrl"/>
-<script>
-    function formSubmit() {
-        document.getElementById("logoutForm").submit();
-    }
-</script>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a class="navbar-brand" href="${pageContext.request.contextPath}"><h2>Les amis de l'escalade</h2></a>
@@ -54,20 +47,18 @@
             <form action="${logoutUrl}" method="post" id="logoutForm">
                 <input type="hidden" name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
-                <a class="btn btn-outline-warning" href="javascript:formSubmit()">Se déconnecter</a>
+                <a class="btn btn-outline-warning" href="javascript:lougOutFormSubmit()">Se déconnecter</a>
             </form>
         </c:if>
     </nav>
 </header>
 <br><br>
-<%--suppress Annotator --%>
-<%--suppress Annotator --%>
-<%--suppress Annotator --%>
 <main role="main">
         <br><br>
-        <a id="testbt" href="${pageContext.request.contextPath}/tb">test bootstrap</a>
+    <a id="testbt" href="${pageContext.request.contextPath}/tb">test bootstrap</a>
+    <a id="jsTestPage" href="${pageContext.request.contextPath}/jsTestPage">JjsTestPage</a>
         <div class="container-fluid">
-<%--        <div class="col-md-10">--%>
+        <div class="col-md-10 offset-1">
             <div id="carouselAccueil" class="carousel slide carousel-fade" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -84,7 +75,7 @@
                     </c:if>
                 </div>
             </div>
-<%--        </div>--%>
+        </div>
     </div>
 
     <!-- FOOTER -->

@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Controller
-public class AccueilController extends AbstractController{
+public class AccueilController extends AbstractController {
 
     @Inject
     PhotoResource photoResource;
@@ -22,16 +22,16 @@ public class AccueilController extends AbstractController{
     Logger logger = LogManager.getLogger();
 
     @GetMapping({"/", "/accueil"})
-    public ModelAndView welcomePage(Model model) {
+    public ModelAndView welcomePage(Model pModel) {
         List<Photo> vListPhotos = photoResource.getAllPhotos();
         ModelAndView vMaV = new ModelAndView("accueil");
         vMaV.addObject("listPhotos", vListPhotos);
-        afficherListe(model);
+        afficherListe(pModel);
         return vMaV;
     }
 
     @GetMapping("/showSearchSitePage")
-    public ModelAndView showSearchSitePage (Model pModel) {
+    public ModelAndView showSearchSitePage(Model pModel) {
         afficherListe(pModel);
         ModelAndView vMaV = new ModelAndView();
         vMaV.setViewName("recherche-site");
@@ -39,8 +39,9 @@ public class AccueilController extends AbstractController{
     }
 
     @GetMapping("/tb")
-    public String testBootstrap () {
+    public String testBootstrap() {
         return "testBootstrap";
     }
+
 }
 

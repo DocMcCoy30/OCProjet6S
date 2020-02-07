@@ -16,6 +16,7 @@
 </head>
 <body>
 <c:url value="/logout" var="logoutUrl"/>
+
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a class="navbar-brand" href="${pageContext.request.contextPath}"><h2>Les amis de l'escalade</h2></a>
@@ -53,55 +54,14 @@
     </nav>
 </header>
 <br><br>
-<main role="main">
-    <br><br>
-    <div class="container-fluid">
-        <div class="card">
 
-            <div class="card-title"><h2>Ajouter un nouveau secteur </h2></div>
 
-            <form action="creationSecteur" method="post">
-                <div class="row col-md-12 no-gutters">
-                    <div class="input-group col-lg">
-                        <div class="input-group-prepend">
-                            <c:set var="site" value="${site}"/>
-                            <input id="siteId" name="siteId" type="hidden" value="${site.id}">
-                            <span class="input-group-text" id="siteNom">Nom du site : </span>
-                        </div>
-                        <input type="text" name="siteNom" disabled="disabled" value="${site.nom}" required
-                               class="form-control"
-                               aria-label="siteNom"
-                               aria-describedby="siteNom">
-                    </div>
-                    <div class="input-group col-lg">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="secteurNom">Nom du secteur : </span>
-                        </div>
-                        <input type="text" name="secteurNom" required class="form-control" aria-label="secteurNom"
-                               aria-describedby="secteurNom">
-                    </div>
-                    <div class="row col-lg-12 no-gutters">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="description">Description : </span>
-                            </div>
-                            <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <br><br>
-                <div class="text-right">
-                    <button type="submit" class="btn btn-outline-warning">Ajouter</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- FOOTER -->
-    <footer id="footer" class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-        </p>
-    </footer>
+<!-- FOOTER -->
+<footer id="footer" class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+    </p>
+</footer>
 </main>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -116,4 +76,3 @@
 <script rel="script" src="${pageContext.request.contextPath}/resources/js/webappJsFunctions.js"></script>
 </body>
 </html>
->

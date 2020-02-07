@@ -33,38 +33,38 @@ public class SiteController extends AbstractController {
 
     final Logger logger = LogManager.getLogger(SiteController.class);
 
-    @PostMapping("/searchSites")
-    public ModelAndView searchSites(Model pModel,
-                                    @RequestParam(value = "site", required = false) Integer pSiteId,
-                                    @RequestParam(value = "region", required = false) Integer pRegionId,
-                                    @RequestParam(value = "departement", required = false) Integer pDepartementCode,
-                                    @RequestParam(value = "ville", required = false) Integer pVilleId) {
-        ModelAndView vMaV = new ModelAndView();
-        List<Site> vListSites = new ArrayList<>();
-        List<Photo> vListPhotos;
-        if (pVilleId != null) {
-            vListSites = siteResource.getSitesByVille(pVilleId);
-        } else if (pDepartementCode != null) {
-            vListSites = siteResource.getSitesByDepartement(pDepartementCode);
-        } else if (pRegionId != null) {
-            vListSites = siteResource.getSitesByRegion(pRegionId);
-        } else if (pSiteId != null) {
-            vListSites.add(siteResource.getSiteById(pSiteId));
-        }
-        // création de la liste des photos correspondant aux sites recherchés
-        for (Site vSite : vListSites) {
-            logger.info(vSite.getNom() + vSite.getId());
-            vListPhotos = photoResource.getPhotoByRefId(vSite.getId(), "site");
-            if (!vListPhotos.isEmpty()) {
-                logger.info("La liste de photos pour " + vSite.getNom() + " contient " + vListPhotos.size() + " photos");
-                vSite.setListPhotos(vListPhotos);
-            }
-        }
-            vMaV.addObject("listSites", vListSites);
-            vMaV.setViewName("recherche-site");
-            afficherListe(pModel);
-            return vMaV;
-        }
+//    @PostMapping("/searchSites")
+//    public ModelAndView searchSites(Model pModel,
+//                                    @RequestParam(value = "site", required = false) Integer pSiteId,
+//                                    @RequestParam(value = "region", required = false) Integer pRegionId,
+//                                    @RequestParam(value = "departement", required = false) Integer pDepartementCode,
+//                                    @RequestParam(value = "ville", required = false) Integer pVilleId) {
+//        ModelAndView vMaV = new ModelAndView();
+//        List<Site> vListSites = new ArrayList<>();
+//        List<Photo> vListPhotos;
+//        if (pVilleId != null) {
+//            vListSites = siteResource.getSitesByVille(pVilleId);
+//        } else if (pDepartementCode != null) {
+//            vListSites = siteResource.getSitesByDepartement(pDepartementCode);
+//        } else if (pRegionId != null) {
+//            vListSites = siteResource.getSitesByRegion(pRegionId);
+//        } else if (pSiteId != null) {
+//            vListSites.add(siteResource.getSiteById(pSiteId));
+//        }
+//        // création de la liste des photos correspondant aux sites recherchés
+//        for (Site vSite : vListSites) {
+//            logger.info(vSite.getNom() + vSite.getId());
+//            vListPhotos = photoResource.getPhotoByRefId(vSite.getId(), "site");
+//            if (!vListPhotos.isEmpty()) {
+//                logger.info("La liste de photos pour " + vSite.getNom() + " contient " + vListPhotos.size() + " photos");
+//                vSite.setListPhotos(vListPhotos);
+//            }
+//        }
+//            vMaV.addObject("listSites", vListSites);
+//            vMaV.setViewName("recherche-site");
+//            afficherListe(pModel);
+//            return vMaV;
+//        }
 
 
 

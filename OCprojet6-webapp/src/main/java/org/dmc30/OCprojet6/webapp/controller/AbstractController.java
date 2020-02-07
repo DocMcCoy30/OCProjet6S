@@ -18,16 +18,16 @@ public class AbstractController {
     @Inject
     AllCaracteristiqueResource allCaracteristiqueResource;
 
-    protected void afficherListe(Model model) {
+    protected void afficherListe(Model pModel) {
         List<Site> vListSites = siteResource.getListSites();
-        model.addAttribute("sites", vListSites);
+        pModel.addAttribute("sites", vListSites);
         List<Region> vListRegions = geographicResource.getListRegions();
-        model.addAttribute("regions", vListRegions);
+        pModel.addAttribute("regions", vListRegions);
         List<Departement> vListDepartements = geographicResource.getListDepartements();
-        model.addAttribute("departements", vListDepartements);
+        pModel.addAttribute("departements", vListDepartements);
         List<Ville> vListVilles = geographicResource.getListVilles();
-        model.addAttribute("villes", vListVilles);
+        pModel.addAttribute("villes", vListVilles);
         List<TypeRoche> vListTypeRoches = allCaracteristiqueResource.getListTypeRoche();
-        model.addAttribute("typeRoche", vListTypeRoches);
+        pModel.addAttribute("typeRoche", vListTypeRoches);
     }
 }

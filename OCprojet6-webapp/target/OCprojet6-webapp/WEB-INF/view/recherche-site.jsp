@@ -16,11 +16,6 @@
 </head>
 <body>
 <c:url value="/logout" var="logoutUrl"/>
-<script>
-    function formSubmit() {
-        document.getElementById("logoutForm").submit();
-    }
-</script>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a class="navbar-brand" href="${pageContext.request.contextPath}"><h2>Les amis de l'escalade</h2></a>
@@ -52,7 +47,7 @@
             <form action="${logoutUrl}" method="post" id="logoutForm">
                 <input type="hidden" name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
-                <a class="btn btn-outline-warning" href="javascript:formSubmit()">Se déconnecter</a>
+                <a class="btn btn-outline-warning" href="javascript:lougOutFormSubmit()">Se déconnecter</a>
             </form>
         </c:if>
     </nav>
