@@ -31,8 +31,12 @@ public class GeographicResource extends AbstractResource {
         return getManagerFactory().getVilleManager().getAllVilles();
     }
 
-    public List<Ville> getVillesByDepartement (String pCode) {
+    public List<Ville> getVillesByDepartement (int pCode) {
         return getManagerFactory().getVilleManager().getListVillesByDepartement(pCode);
+    }
+
+    public Ville getVilleById (int pId) {
+        return getManagerFactory().getVilleManager().getVilleById(pId);
     }
 
     public Departement getDepartementByCode(Integer pDepartementCode) {

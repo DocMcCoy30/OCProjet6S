@@ -30,7 +30,7 @@ public interface VilleManager {
      * @param pCode le code du departement concerné
      * @return la liste d'objets recherchée
      */
-    List<Ville> getListVillesByDepartement(String pCode);
+    List<Ville> getListVillesByDepartement(int pCode);
 
     /**
      * Modifie un objet de type Ville

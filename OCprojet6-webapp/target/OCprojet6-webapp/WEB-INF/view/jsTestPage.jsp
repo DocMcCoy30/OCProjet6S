@@ -59,7 +59,16 @@
     <form action="searchSites" method="post" id="searchSitesForm">
         <div class="row col-md-12 no-gutters" id="buttonSearchSiteBar">
             <div class="input-group col-md">
-                <select class="custom-select" name="region" id="region" onchange="searchSitePopulate(1)">
+                <select class="custom-select" name="site" id="site" onchange="searchSitePopulate(1)">
+                    <option selected disabled>Site</option>
+                    <c:forEach var="site" items="${sites}">
+                        <option value="${site.id}">${site.nom}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            &nbsp
+            <div class="input-group col-md">
+                <select class="custom-select" name="region" id="region" onchange="searchSitePopulate(2)">
                     <option selected disabled>Région</option>
                     <c:forEach var="region" items="${regions}">
                         <option value="${region.id}" name="refId">${region.nom}</option>
@@ -68,10 +77,19 @@
             </div>
             &nbsp
             <div class="input-group col-md">
-                <select class="custom-select" name="departement" id="departement" onchange="searchSitePopulate(2)">
+                <select class="custom-select" name="departement" id="departement" onchange="searchSitePopulate(3)">
                     <option selected disabled>Département</option>
                     <c:forEach var="departement" items="${departements}">
                         <option value="${departement.code}">${departement.nom}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            &nbsp
+            <div class="input-group col-md">
+                <select class="custom-select" name="ville" id="ville" onchange="searchSitePopulate(4)">
+                    <option selected disabled>Villes</option>
+                    <c:forEach var="ville" items="${villes}">
+                        <option value="${ville.id}">${ville.nom}</option>
                     </c:forEach>
                 </select>
             </div>

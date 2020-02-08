@@ -1,3 +1,6 @@
+/**
+ * deconnection :fonctionnel
+ */
 function lougOutFormSubmit() {
     document.getElementById("logoutForm").submit();
 }
@@ -12,6 +15,11 @@ function showFormUpload(a) {
         document.getElementById("formUpload").style.display = "none";
     }
 }
+
+/**
+ * Gère les liste de choix de recherche de sites : fonctionnel
+ * @param optionRef
+ */
 function searchSitePopulate(optionRef) {
     document.getElementById('optionRef').value=optionRef;
     document.getElementById('searchSitesForm').submit();

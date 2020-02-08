@@ -38,7 +38,7 @@ public class VilleDaoImpl extends AbstractDao implements VilleDao {
     }
 
     @Override
-    public List<Ville> getVillesByDepartement(String pCode) {
+    public List<Ville> getVillesByDepartement(int pCode) {
         String vSQL = "SELECT * FROM ville WHERE departement_code= :departementCode";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("departementCode", pCode);

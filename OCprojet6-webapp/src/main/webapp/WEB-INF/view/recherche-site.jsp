@@ -31,9 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/showSearchSitePage">Recherche</a>
                 </li>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link disabled" href="#">Disabled</a>--%>
-<%--                </li>--%>
+                <%--                <li class="nav-item">--%>
+                <%--                    <a class="nav-link disabled" href="#">Disabled</a>--%>
+                <%--                </li>--%>
             </ul>
         </div>
         <c:if test="${pageContext.request.userPrincipal.name == null}">
@@ -56,10 +56,10 @@
 <main role="main">
     <br><br>
     <div class="container">
-        <form action="searchSites" method="post">
+        <form action="searchSites" method="post" id="searchSitesForm">
             <div class="row col-md-12 no-gutters" id="buttonSearchSiteBar">
                 <div class="input-group col-md">
-                    <select class="custom-select" name="site" id="site">
+                    <select class="custom-select" name="site" id="site" onchange="searchSitePopulate(1)">
                         <option selected disabled>Site</option>
                         <c:forEach var="site" items="${sites}">
                             <option value="${site.id}">${site.nom}</option>
@@ -68,16 +68,16 @@
                 </div>
                 &nbsp
                 <div class="input-group col-md">
-                    <select class="custom-select" name="region" id="region">
+                    <select class="custom-select" name="region" id="region" onchange="searchSitePopulate(2)">
                         <option selected disabled>Région</option>
                         <c:forEach var="region" items="${regions}">
-                            <option value="${region.id}">${region.nom}</option>
+                            <option value="${region.id}" name="refId">${region.nom}</option>
                         </c:forEach>
                     </select>
                 </div>
                 &nbsp
                 <div class="input-group col-md">
-                    <select class="custom-select" name="departement" id="departement">
+                    <select class="custom-select" name="departement" id="departement" onchange="searchSitePopulate(3)">
                         <option selected disabled>Département</option>
                         <c:forEach var="departement" items="${departements}">
                             <option value="${departement.code}">${departement.nom}</option>
@@ -86,16 +86,17 @@
                 </div>
                 &nbsp
                 <div class="input-group col-md">
-                    <select class="custom-select" name="ville" id="ville">
+                    <select class="custom-select" name="ville" id="ville" onchange="searchSitePopulate(4)">
                         <option selected disabled>Villes</option>
                         <c:forEach var="ville" items="${villes}">
                             <option value="${ville.id}">${ville.nom}</option>
                         </c:forEach>
                     </select>
                 </div>
-            </div>
-            <div class="text-right">
-                <button type="submit" class="btn btn-outline-warning" id="searchSiteButton">Rechercher</button>
+                <input type="hidden" id="optionRef" name="optionRef" value=""/>
+                <%--            <div class="text-right">--%>
+                <%--                <button type="submit" class="btn btn-outline-warning" id="searchSiteButton">Rechercher</button>--%>
+                <%--            </div>--%>
             </div>
         </form>
         <br><br>
@@ -117,8 +118,9 @@
                         <div class="card" id="siteCard">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <a href="${sitePageLink}"><img src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
-                                                     class="card-img" alt="${site.listPhotos[0].nom}"></a>
+                                    <a href="${sitePageLink}"><img
+                                            src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
+                                            class="card-img" alt="${site.listPhotos[0].nom}"></a>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
