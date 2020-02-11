@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.consumer.impl.dao;
 
 import org.dmc30.OCprojet6.consumer.contract.dao.VilleDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.VilleRM;
+import org.dmc30.OCprojet6.model.bean.Region;
 import org.dmc30.OCprojet6.model.bean.Ville;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -44,6 +45,17 @@ public class VilleDaoImpl extends AbstractDao implements VilleDao {
         vParams.addValue("departementCode", pCode);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         return vJdbcTemplate.query(vSQL, vParams, villeRM);
+    }
+
+    @Override
+    public List<Ville> getMatchingVilles(String pMotCle) {
+        String vMotCle = pMotCle+"%";
+        String vSQL = "SELECT * FROM ville WHERE nom ILIKE :motCle";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("motCle", vMotCle);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        List<Ville> vListVilles = vJdbcTemplate.query(vSQL, vParams, villeRM);
+        return vListVilles;
     }
 
     @Override

@@ -33,6 +33,17 @@ public class RegionDaoImpl extends AbstractDao implements RegionDao {
     }
 
     @Override
+    public List<Region> getMatchingRegions(String pMotCle) {
+        String vMotCle = pMotCle+"%";
+        String vSQL = "SELECT * FROM region WHERE nom ILIKE :motCle";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("motCle", vMotCle);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        List<Region> vListRegions = vJdbcTemplate.query(vSQL, vParams, regionRM);
+        return vListRegions;
+    }
+
+    @Override
     public List<Region> getAllRegions() {
         String vSQL = "SELECT * FROM region ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());

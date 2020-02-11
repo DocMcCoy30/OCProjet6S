@@ -14,12 +14,24 @@ public class GeographicResource extends AbstractResource {
         return getManagerFactory().getRegionManager().getAllRegions();
     }
 
+    public List<Region> getMatchingRegions (String pMotCle) {
+        return getManagerFactory().getRegionManager().getMatchingRegions(pMotCle);
+    }
+
     public List<Departement> getListDepartements () {
         return getManagerFactory().getDepartementManager().getAllDepartements();
     }
 
     public List<Departement> getDepartementsByRegion (int pRegionId) {
         return getManagerFactory().getDepartementManager().getDepartementsByRegion(pRegionId);
+    }
+
+    public Departement getDepartementByCode(Integer pDepartementCode) {
+        return getManagerFactory().getDepartementManager().getDepartementByCode(pDepartementCode);
+    }
+
+    public List<Departement> getMatchingDepartements(String pMotCle) {
+        return getManagerFactory().getDepartementManager().getMatchingDepartements(pMotCle);
     }
 
     public List<Ville> getListVilles () {
@@ -30,7 +42,7 @@ public class GeographicResource extends AbstractResource {
         return getManagerFactory().getVilleManager().getListVillesByDepartement(pCode);
     }
 
-    public Departement getDepartementByCode(Integer pDepartementCode) {
-        return getManagerFactory().getDepartementManager().getDepartementByCode(pDepartementCode);
+    public List<Ville> getMatchingVilles(String pMotCle) {
+        return getManagerFactory().getVilleManager().getMatchingVilles(pMotCle);
     }
 }

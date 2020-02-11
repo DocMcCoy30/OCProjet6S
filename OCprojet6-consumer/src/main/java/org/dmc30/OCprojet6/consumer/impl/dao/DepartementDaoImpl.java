@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.consumer.contract.dao.DepartementDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.DepartementRM;
 import org.dmc30.OCprojet6.model.bean.Departement;
+import org.dmc30.OCprojet6.model.bean.Region;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -44,6 +45,17 @@ Logger logger = LogManager.getLogger(DepartementDaoImpl.class);
         vParams.addValue("vRegionId", pRegionId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         return vJdbcTemplate.query(vSQL, vParams, departementRM);
+    }
+
+    @Override
+    public List<Departement> getMatchingDepartements(String pMotCle) {
+        String vMotCle = pMotCle+"%";
+        String vSQL = "SELECT * FROM departement WHERE nom ILIKE :motCle";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("motCle", vMotCle);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        List<Departement> vListDepartement = vJdbcTemplate.query(vSQL, vParams, departementRM);
+        return vListDepartement;
     }
 
     @Override

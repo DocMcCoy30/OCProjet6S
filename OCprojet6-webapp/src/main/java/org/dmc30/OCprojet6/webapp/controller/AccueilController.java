@@ -38,11 +38,6 @@ public class AccueilController extends AbstractController {
         return vMaV;
     }
 
-    @GetMapping("/tb")
-    public String testBootstrap() {
-        return "testBootstrap";
-    }
-
     @GetMapping("/jsTestPage")
     public ModelAndView jsTestPage(Model pModel) {
         ModelAndView vMav = new ModelAndView();

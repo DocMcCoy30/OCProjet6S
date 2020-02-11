@@ -26,9 +26,15 @@ public class DepartementManagerImpl extends AbstractManager implements Departeme
     }
 
     @Override
+    public List<Departement> getMatchingDepartements(String pMotCle) {
+        return getDaoFactory().getDepartementDao().getMatchingDepartements(pMotCle);
+    }
+
+    @Override
     public List<Departement> getAllDepartements() {
         return getDaoFactory().getDepartementDao().getAllDepartements();
     }
+
 
     @Override
     public void updateDepartement(Departement pDepartement) {

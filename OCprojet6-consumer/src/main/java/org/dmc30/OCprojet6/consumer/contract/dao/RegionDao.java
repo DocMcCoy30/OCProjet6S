@@ -8,6 +8,7 @@ public interface RegionDao {
 
     void createRegion (Region pRegion);
     Region getRegionById(int pId);
+    List<Region> getMatchingRegions(String pMotCle);
     List<Region> getAllRegions();
     void updateRegion (Region pRegion);
     void deleteRegion(int pId);

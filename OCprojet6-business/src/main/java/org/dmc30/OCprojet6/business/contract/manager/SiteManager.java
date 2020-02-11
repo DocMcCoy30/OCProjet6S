@@ -44,17 +44,11 @@ public interface SiteManager {
     List<Site> getSitesByVille(int pVilleId);
 
     /**
-     * Cherche et renvoie la liste des sites dont le nom contient un terme de recherche
+     * Cherche et renvoie la liste des sites dont le nom correspond aux termes de recherche
      * @param pMotCle la sequence de caractères renseignée dans la zone de recherche
      * @return la liste des sites correspondants
      */
     List<Site> getMatchingSites (String pMotCle);
-
-    /**
-     * Renvoie l'identifiant du dernier site enregistré
-     * @return l'id du site
-     */
-    int getLastId();
 
     /**
      * Cherche et renvoie la liste des objets de type Site stockés dans la database
@@ -62,6 +56,12 @@ public interface SiteManager {
      * @return la liste d'objets recherchée
      */
     List<Site> getAllSites();
+
+    /**
+     * Renvoie l'identifiant du dernier site enregistré
+     * @return l'id du site
+     */
+    int getLastId();
 
     /**
      * Modifie un objet de type Site

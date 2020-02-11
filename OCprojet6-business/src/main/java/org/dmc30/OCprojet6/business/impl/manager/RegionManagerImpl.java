@@ -12,7 +12,11 @@ public class RegionManagerImpl extends AbstractManager implements RegionManager 
     @Override
     public void createRegion(Region pRegion) {
         getDaoFactory().getRegionDao().createRegion(pRegion);
+    }
 
+    @Override
+    public List<Region> getMatchingRegions(String pMotCle) {
+        return getDaoFactory().getRegionDao().getMatchingRegions(pMotCle);
     }
 
     @Override
@@ -24,6 +28,7 @@ public class RegionManagerImpl extends AbstractManager implements RegionManager 
     public List<Region> getAllRegions() {
         return getDaoFactory().getRegionDao().getAllRegions();
     }
+
 
     @Override
     public void updateRegion(Region pRegion) {

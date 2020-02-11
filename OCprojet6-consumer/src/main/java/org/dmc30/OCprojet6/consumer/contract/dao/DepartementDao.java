@@ -9,6 +9,7 @@ public interface DepartementDao {
     void createDepartement (Departement pDepartement);
     Departement getDepartementByCode(int pCode);
     List<Departement> getDepartementsByRegion(int pRegionId);
+    List<Departement> getMatchingDepartements(String pMotCle);
     List<Departement> getAllDepartements();
     void updateDepartement (Departement pDepartement);
     void deleteDepartement(int pId);

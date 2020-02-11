@@ -20,17 +20,24 @@ public interface VilleManager {
     Ville getVilleById (int pId);
 
     /**
-     * Cherche et renvoie la liste des objets de type Ville stockés dans la database
-     * @return la liste d'objets recherchée
-     */
-    List<Ville> getAllVilles();
-
-    /**
      * Cherche et renvoie la liste des Villes d'un département dans la database
      * @param pCode le code du departement concerné
      * @return la liste d'objets recherchée
      */
     List<Ville> getListVillesByDepartement(int pCode);
+
+    /**
+     * Cherche et renvoie la liste des villes dont le nom correspond aux termes de recherche
+     * @param pMotCle la sequence de caractères renseignée dans la zone de recherche
+     * @return la liste des villes correspondantes
+     */
+    List<Ville> getMatchingVilles(String pMotCle);
+
+    /**
+     * Cherche et renvoie la liste des objets de type Ville stockés dans la database
+     * @return la liste d'objets recherchée
+     */
+    List<Ville> getAllVilles();
 
     /**
      * Modifie un objet de type Ville
@@ -51,4 +58,5 @@ public interface VilleManager {
      * [vrai ou faux / 0 ou villeId]
      */
     ArrayList<Integer> rechercheDoublon(Ville pVille);
+
 }

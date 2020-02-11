@@ -23,7 +23,7 @@
     <c:url value="/logout" var="logoutUrl"/>
     <header id="header">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}"><h2>Les amis de l'escalade</h2></a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}"><h1>Les amis de l'escalade</h1></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -69,8 +69,7 @@
     </header>
 
     <div id="body">
-        <a id="testbt" href="${pageContext.request.contextPath}/tb">test bootstrap</a>
-        <a id="jsTestPage" href="${pageContext.request.contextPath}/jsTestPage">JjsTestPage</a>
+<%--        <a id="jsTestPage" href="${pageContext.request.contextPath}/jsTestPage">JjsTestPage</a>--%>
         <div class="container-fluid">
             <div id="carouselAccueil" class="carousel slide carousel-fade" data-ride="carousel">
                 <div class="carousel-inner">

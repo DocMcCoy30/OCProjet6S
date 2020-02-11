@@ -86,13 +86,13 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
     }
 
     @Override
-    public int getLastId() {
-        return getDaoFactory().getSiteDao().getLastId();
+    public List<Site> getAllSites() {
+        return getDaoFactory().getSiteDao().getAllSites();
     }
 
     @Override
-    public List<Site> getAllSites() {
-        return getDaoFactory().getSiteDao().getAllSites();
+    public int getLastId() {
+        return getDaoFactory().getSiteDao().getLastId();
     }
 
     @Override

@@ -1,20 +1,27 @@
+@font-face {
+    font-family: 'reqnad';
+    src: url('ReqnadGeometrikBeta0.1-Regular.otf');
+}
 body {
-    background: #2C2559;
-    color: #FFE854;
+    background: #1F4C73;
+    color: #402F11;
     margin:0;
     padding:0;
     height:100%;
+    font-family: 'reqnad', Arial, serif;
 }
-
-h5 {
-    color: #FFE854;
+h1 {
+    font-style: normal;
+    font-weight: bold;
+}
+h5{
+    color: #402F11;
 }
 th {
-    color: #FFE854;
+    color: #402F11;
 }
 .navbar {
-    background: #2C2559;
-    /*height: 8em;*/
+    background-color: transparent;
 }
 .carousel-item {
     height: 50em;
@@ -30,14 +37,14 @@ th {
     width: 8em;
 }
 .btn {
-    width: 10em;
+    width: 11em;
 }
 #carouselAccueil {
     display: block;
 }
 #testbt, #jsTestPage {
     margin-top: 10em;
-    color: #FFE854;
+    color: #F2E205;
 }
 #searchSiteButton {
     margin-top: 2em;
@@ -47,26 +54,26 @@ th {
 }
 .card {
     margin-top: 1em;
-    background: #2C2559;
-    border : 3px solid #6C63A6;
+    background: #F2E8C9;
+    /*border : 3px solid #222559;*/
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
-    box-shadow: 10px 5px 5px rgb(23, 17, 53);
+    /*box-shadow: 5px 3px 3px #402F11;*/
 }
 #siteCard {
     height: 15em;
     margin-top: 1em;
-    background: #2C2559;
-    border : 3px solid #6C63A6;
+    background: #F2E8C9;
+    /*border : 3px solid #222559;*/
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
-    box-shadow: 10px 5px 5px rgb(23, 17, 53);
+    /*box-shadow: 5px 3px 3px #402F11;*/
 }
 #userCard {
-    background: #FDFFB5;
-    color: #2C2559;
+    background: #F2E8C9;
+    /*border : 3px solid #222559;*/
 }
 #buttonLinkBar {
     margin-top: 1em;

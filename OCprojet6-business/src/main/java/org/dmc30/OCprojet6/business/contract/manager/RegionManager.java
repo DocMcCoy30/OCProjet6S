@@ -19,6 +19,13 @@ public interface RegionManager {
     Region getRegionById (int pId);
 
     /**
+     * Cherche et renvoie la liste des regions dont le nom correspond aux termes de recherche
+     * @param pMotCle la sequence de caractères renseignée dans la zone de recherche
+     * @return la liste des regions correspondantes
+     */
+    List<Region> getMatchingRegions(String pMotCle);
+
+    /**
      * Cherche et renvoie la liste des objets de type Region stockés dans la database
      * @return la liste d'objets recherchée
      */
