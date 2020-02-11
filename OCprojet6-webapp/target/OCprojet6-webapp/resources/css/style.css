@@ -1,17 +1,24 @@
+body {
+    background: #2C2559;
+    color: #FFE854;
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+h5 {
+    color: #FFE854;
+}
+th {
+    color: #FFE854;
+}
 .navbar {
     background: #2C2559;
     /*height: 8em;*/
 }
-body {
-    background: #2C2559;
-    color: #FFE854;
-}
-/*h2 {*/
-/*    color: cornflowerblue;*/
-/*}*/
-#testbt, #jsTestPage {
-    margin-top: 10em;
-    color: #FFE854;
+.carousel-item {
+    height: 50em;
+    width: auto;
 }
 .input-group {
     /*border: red 1px solid;*/
@@ -24,6 +31,13 @@ body {
 }
 .btn {
     width: 10em;
+}
+#carouselAccueil {
+    display: block;
+}
+#testbt, #jsTestPage {
+    margin-top: 10em;
+    color: #FFE854;
 }
 #searchSiteButton {
     margin-top: 2em;
@@ -67,19 +81,11 @@ body {
 #formUpload {
     display: none;
 }
-#carouselAccueil {
-    display: block;
-}
-.carousel-item {
-    height: 60em;
-    /*width: auto;*/
-}
-h5 {
-    color: #FFE854;
+#body {
+    margin-top: 10em;
 }
 #footer {
     margin-top: 5em;
 }
-th {
-    color: #FFE854;
-}
+
+

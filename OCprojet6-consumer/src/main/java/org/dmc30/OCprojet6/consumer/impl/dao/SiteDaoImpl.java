@@ -36,6 +36,13 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
     }
 
     @Override
+    public List<Site> getAllSites() {
+        String vSQL = "SELECT * FROM site";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        return vJdbcTemplate.query(vSQL, siteRM);
+    }
+
+    @Override
     public Site getSiteById(int pId) {
         String vSQL = "SELECT * FROM site WHERE site_id=" + pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
@@ -65,32 +72,21 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
     }
 
     @Override
+    public List<Site> getMatchingSites(String pMotCle) {
+        String vMotCle = pMotCle+"%";
+        String vSQL = "SELECT * FROM site WHERE nom ILIKE :motCle";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("motCle", vMotCle);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        List<Site> vListSites = vJdbcTemplate.query(vSQL, vParams, siteRM);
+        return vListSites;
+    }
+
+    @Override
     public int getLastId() {
         String vSQL = "SELECT MAX(site_id) FROM site";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         return vJdbcTemplate.queryForObject(vSQL, Integer.TYPE);
-    }
-
-    @Override
-    public List<Site> searchSites(int pSiteId,
-                                  int pRegionId,
-                                  int pDepartementCode,
-                                  int pVilleId) {
-        String vSQL = "SELECT * FROM site WHERE site_id = :vSiteId AND region_id = :vRegionId AND departement_code = :vDepartementCode AND ville_id = :vVilleID";
-        MapSqlParameterSource vParams = new MapSqlParameterSource();
-        vParams.addValue("vSiteId", pSiteId);
-        vParams.addValue("vRegionId", pRegionId);
-        vParams.addValue("vDepartementCode", pDepartementCode);
-        vParams.addValue("vVilleID", pVilleId);
-        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        return vJdbcTemplate.query(vSQL, vParams, siteRM);
-    }
-
-    @Override
-    public List<Site> getAllSites() {
-        String vSQL = "SELECT * FROM site";
-        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        return vJdbcTemplate.query(vSQL, siteRM);
     }
 
     @Override

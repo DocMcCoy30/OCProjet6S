@@ -14,11 +14,6 @@ public class GeographicResource extends AbstractResource {
         return getManagerFactory().getRegionManager().getAllRegions();
     }
 
-    //debug
-    public Region getRegionById (int pId) {
-        return getManagerFactory().getRegionManager().getRegionById(pId);
-    }
-
     public List<Departement> getListDepartements () {
         return getManagerFactory().getDepartementManager().getAllDepartements();
     }
@@ -33,10 +28,6 @@ public class GeographicResource extends AbstractResource {
 
     public List<Ville> getVillesByDepartement (int pCode) {
         return getManagerFactory().getVilleManager().getListVillesByDepartement(pCode);
-    }
-
-    public Ville getVilleById (int pId) {
-        return getManagerFactory().getVilleManager().getVilleById(pId);
     }
 
     public Departement getDepartementByCode(Integer pDepartementCode) {

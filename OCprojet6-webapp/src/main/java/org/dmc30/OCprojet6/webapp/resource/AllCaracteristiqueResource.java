@@ -3,7 +3,6 @@ package org.dmc30.OCprojet6.webapp.resource;
 
 import org.dmc30.OCprojet6.model.bean.Caracteristique;
 import org.dmc30.OCprojet6.model.bean.TypeRoche;
-
 import javax.inject.Named;
 import java.util.List;
 

@@ -23,9 +23,4 @@ public class SecteurResource extends AbstractResource {
         return getManagerFactory().getSecteurManager().getSecteursBySiteId(pSiteId);
     }
 
-    public List<Secteur> getAllSecteurs () {
-        return getManagerFactory().getSecteurManager().getAllSecteurs();
-    }
-
-
 }

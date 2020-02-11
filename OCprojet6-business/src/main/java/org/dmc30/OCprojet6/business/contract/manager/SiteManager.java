@@ -28,7 +28,7 @@ public interface SiteManager {
     List<Site> getSitesByRegion(int pRegionId);
 
     /**
-     * Cherche et renvoie la liste des Sites stockée dans la database par région
+     * Cherche et renvoie la liste des Sites stockée dans la database par departement
      *
      * @param pCode le code du département
      * @return la liste d'objets recherchée
@@ -36,28 +36,25 @@ public interface SiteManager {
     List<Site> getSitesByDepartement(int pCode);
 
     /**
-     * Cherche et renvoie la liste des Sites stockée dans la database par région
+     * Cherche et renvoie la liste des Sites stockée dans la database par ville
      *
      * @param pVilleId l'identifiant de la ville
      * @return la liste d'objets recherchée
      */
     List<Site> getSitesByVille(int pVilleId);
 
-    int getLastId();
+    /**
+     * Cherche et renvoie la liste des sites dont le nom contient un terme de recherche
+     * @param pMotCle la sequence de caractères renseignée dans la zone de recherche
+     * @return la liste des sites correspondants
+     */
+    List<Site> getMatchingSites (String pMotCle);
 
     /**
-     * Effectue un recherche multicritère et renvoie la liste des sites correspondants
-     * @param pSiteId l'identifiant du site recherché
-     * @param pRegionId l'identifiant de la région du site recherché
-     * @param pDepartementCode le code du département du site recherché
-     * @param pVilleId l'identifiant de la ville du site recherché
-     * @return la liste des sites correspondants aux citères de recherche
+     * Renvoie l'identifiant du dernier site enregistré
+     * @return l'id du site
      */
-    List<Site> searchSites (int pSiteId,
-                            int pRegionId,
-                            int pDepartementCode,
-                            int pVilleId);
-
+    int getLastId();
 
     /**
      * Cherche et renvoie la liste des objets de type Site stockés dans la database

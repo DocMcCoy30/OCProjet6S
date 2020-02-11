@@ -8,6 +8,10 @@ import java.util.List;
 @Named
 public class SiteResource extends AbstractResource {
 
+    public List<Site> getAllSites() {
+        return getManagerFactory().getSiteManager().getAllSites();
+    }
+
     public Site getSiteById(int pId) {
         return getManagerFactory().getSiteManager().getSiteById(pId);
     }
@@ -24,12 +28,8 @@ public class SiteResource extends AbstractResource {
         return getManagerFactory().getSiteManager().getSitesByVille(pVilleId);
     }
 
-    public List<Site> searchSites(int pSiteId, int pRegionId, int pDepartementCode, int pVilleId) {
-        return getManagerFactory().getSiteManager().searchSites(pSiteId, pRegionId, pDepartementCode, pVilleId);
-    }
-
-    public List<Site> getListSites() {
-        return getManagerFactory().getSiteManager().getAllSites();
+    public List<Site> getMatchingSites (String pMotCle) {
+        return getManagerFactory().getSiteManager().getMatchingSites(pMotCle);
     }
 
     public int getLastId () {

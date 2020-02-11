@@ -19,10 +19,10 @@ public class AccueilController extends AbstractController {
     @Inject
     PhotoResource photoResource;
 
-    Logger logger = LogManager.getLogger();
+    Logger logger = LogManager.getLogger(AccueilController.class);
 
     @GetMapping({"/", "/accueil"})
-    public ModelAndView welcomePage(Model pModel) {
+    public ModelAndView showWelcomePage(Model pModel) {
         List<Photo> vListPhotos = photoResource.getAllPhotos();
         ModelAndView vMaV = new ModelAndView("accueil");
         vMaV.addObject("listPhotos", vListPhotos);
@@ -41,6 +41,13 @@ public class AccueilController extends AbstractController {
     @GetMapping("/tb")
     public String testBootstrap() {
         return "testBootstrap";
+    }
+
+    @GetMapping("/jsTestPage")
+    public ModelAndView jsTestPage(Model pModel) {
+        ModelAndView vMav = new ModelAndView();
+        afficherListe(pModel);
+        return vMav;
     }
 
 }

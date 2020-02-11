@@ -19,7 +19,7 @@ public class AbstractController {
     AllCaracteristiqueResource allCaracteristiqueResource;
 
     protected void afficherListe(Model pModel) {
-        List<Site> vListSites = siteResource.getListSites();
+        List<Site> vListSites = siteResource.getAllSites();
         pModel.addAttribute("sites", vListSites);
         List<Region> vListRegions = geographicResource.getListRegions();
         pModel.addAttribute("regions", vListRegions);
