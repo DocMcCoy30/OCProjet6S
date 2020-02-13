@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.business.contract.manager.UsersManager;
 import org.dmc30.OCprojet6.model.bean.Users;
-import org.dmc30.OCprojet6.model.exception.OCP6Error;
+import org.dmc30.OCprojet6.model.exception.ErrorMessages;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.transaction.TransactionStatus;
@@ -49,10 +49,10 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
             logger.info("Commit OK");
         } catch (BadSqlGrammarException e) {
             logger.error("Problème de syntaxe dans la requète SQL");
-            throw new TechnicalException(OCP6Error.OCP_6_400.getMessagesError().getMessage401());
+            throw new TechnicalException(ErrorMessages.SQL_ERROR.getErrorMessage());
         } catch (Exception e) {
             logger.error("Problème technique");
-            throw new TechnicalException(OCP6Error.OCP_6_100.getMessagesError().getMessage101());
+            throw new TechnicalException(ErrorMessages.TX_ERROR.getErrorMessage());
         } finally {
             if (vTransactionStatus != null) {
                 getPlatformTransactionManager().rollback(vTransactionStatus);

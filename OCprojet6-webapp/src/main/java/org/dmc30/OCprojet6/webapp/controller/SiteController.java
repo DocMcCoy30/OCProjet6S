@@ -1,5 +1,6 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
+import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.model.bean.*;
@@ -15,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -175,13 +178,29 @@ public class SiteController extends AbstractController {
     }
 
 
-
+    /**
+     * Afficher la page de création de site
+     * @param pModel les données de listes déroulantes
+     * @return la page de création de site
+     */
     @GetMapping("/showCreationSiteForm")
     public String showCreationSiteForm(Model pModel) {
         afficherListe(pModel);
         return "formulaire-creation-site";
     }
 
+    /**
+     * Crée un nouveau site dans la base de données er l'affiche dans la page de recherche
+     * @param pModel les données des listes déroulantes à renvoyer à la page de recherche
+     * @param pNomSite le nom du nouveau site
+     * @param pDescription la description du nouveau site
+     * @param pNomVille le nom de la ville du nouveau site
+     * @param pRegionId l'identifiant de la région du nouveau site
+     * @param pDepartementCode le code du département du nouveau site
+     * @param pTypeRocheId l'identifiant du type de roche du nouveau site
+     * @return le ModelAndView : les données du nouveau site + les données des listes déroulantes dans Model,
+     * la page de recherche dans View
+     */
     @PostMapping("/creationSite")
     public ModelAndView createSite(Model pModel,
                                    @RequestParam(value = "nom", required = false) String pNomSite,
@@ -205,12 +224,17 @@ public class SiteController extends AbstractController {
             vListSites.add(vNewSite);
             vMaV.addObject("messageCreationSite", vMessageCreationSite);
             vMaV.addObject("listSites", vListSites);
-            vMaV.setViewName("showSearchSitePage");
+            vMaV.setViewName("recherche-site");
             afficherListe(pModel);
         }
         return vMaV;
     }
 
+    /**
+     * Affiche le site selectionné dans la page site.
+     * @param pSiteId l'identifiant du site selectionné.
+     * @return le ModelAndView : les données du site selectionné dans Model, la page site dans View.
+     */
     @GetMapping("/showSitePage")
     public ModelAndView showSitePage(@RequestParam("siteId") int pSiteId) {
         ModelAndView vMaV = new ModelAndView();

@@ -91,7 +91,7 @@
                 <c:param name="siteId" value="${site.id}"/>
             </c:url>
             <div class="row" id="buttonLinkBar">
-                <div class="col-md-2 offset-1">
+                <div class="col-md-2">
                     <a class="btn btn-outline-warning" href="${secteurPage}">Voir les secteurs</a>
                 </div>
                 <div class="col-md-2">
@@ -99,6 +99,9 @@
                 </div>
                 <div class="col-md-2">
                     <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>
                 </div>
                 <div class="col-md-2">
                     <input class="btn btn-outline-warning" type="submit" onclick="showFormUpload(1)"
@@ -111,22 +114,25 @@
             <br>
             <form class="row" method="POST" action="uploadFile" id="formUpload" enctype="multipart/form-data">
                 <input type="hidden" value="${site.id}" name="siteId">
-                <div class="input-group col-md-12">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon">Image</span>
+                <div class="row col-md-12 no-gutters">
+                    <div class="input-group col-md-7">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon">Image</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="file " id="inputGroupFile"
+                                   aria-describedby="inputGroupFileAddon">
+                            <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>
+                        </div>
                     </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="file " onchange="showFileName()"
-                               id="inputGroupFile"
-                               aria-describedby="inputGroupFileAddon">
-                        <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>
+                    <div class="input-group col-md-5">
+                        <div class="input-group-prepend offset-1">
+                            <span class="input-group-text form-control" id="nameLabel">Nom : </span>
+                        </div>
+                        <input type="text" class="form-control" name="nomPhoto" aria-label="nomPhoto"
+                               aria-describedby="nameLabel">
                     </div>
-                    <div class="input-group-prepend offset-1">
-                        <span class="input-group-text" id="nameLabel">Nom : </span>
-                    </div>
-                    <input type="text" class="form-control" name="nomPhoto" aria-label="nomPhoto"
-                           aria-describedby="nameLabel">
-                    <button class="btn btn-outline-warning offset-1" id="uploadButton" type="submit"
+                    <button class="btn btn-outline-warning offset-10" id="btnUpload" type="submit"
                             onclick="showFormUpload(0)">Ajouter
                     </button>
                 </div>

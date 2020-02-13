@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,7 +17,6 @@ public class SecteurController extends AbstractController {
 
     @Inject
     SecteurResource secteurResource;
-
 
     @GetMapping("/showSecteurPage")
     public ModelAndView showSecteurPage(@RequestParam("siteId") int pSiteId) {

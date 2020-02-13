@@ -71,8 +71,10 @@
     <div id="body">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">${site.nom}</h2><h5 class="text-muted text-right">${site.ville.nom}
+                <form method="post" action="/searchSite">
+                <a><h2 class="card-title">${site.nom}</h2></a><h5 class="text-muted text-right">${site.ville.nom}
                 - ${site.departement.nom}</h5>
+                </form>
             </div>
             <div>
                 <c:if test="${ !empty messageCreationSecteur}">

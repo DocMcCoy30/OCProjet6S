@@ -69,7 +69,7 @@
     </header>
 
     <div id="body">
-<%--        <a id="jsTestPage" href="${pageContext.request.contextPath}/jsTestPage">JjsTestPage</a>--%>
+        <a id="jsTestPage" href="${pageContext.request.contextPath}/jsTestPage">JjsTestPage</a>
         <div class="container-fluid">
             <div id="carouselAccueil" class="carousel slide carousel-fade" data-ride="carousel">
                 <div class="carousel-inner">

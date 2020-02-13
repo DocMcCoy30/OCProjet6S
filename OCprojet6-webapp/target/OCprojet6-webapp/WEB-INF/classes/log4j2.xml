@@ -3,7 +3,7 @@
     <Appenders>
         <File name="logFile"
               fileName="C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\logs\app.log"
-              immediateFlush="true" append="false">
+              immediateFlush="false" append="false">
             <PatternLayout
                     pattern="%d{dd MMM yyyy HH:mm:ss,SSS} %c{1} %p %m%n"/>
         </File>

@@ -1,55 +1,40 @@
 /**
- * deconnection :fonctionnel
+ * deconnection
  */
 function lougOutFormSubmit() {
     document.getElementById("logoutForm").submit();
 }
-//
-// function inputSearchSubmit() {
-//  document.getElementById('inputSearchForm').submit();
-// }
+
+/**
+ * Autocomplétion de la barre de recherche
+ */
 $("#searchInput").autocomplete({
-    source : function(request, response) {
+    source: function (request, response) {
         $.ajax({
-            url : "AutocompleteController",
-            type : "GET",
-            data : {
-                term : request.term
+            url: "AutocompleteController",
+            type: "GET",
+            data: {
+                term: request.term
             },
-            dataType : "json",
-            success : function(data) {
+            dataType: "json",
+            success: function (data) {
                 response(data);
             }
         });
     },
-    // select: function( event, ui ) {
-    //     alert( ui.item.value );
-    //     // Your code
-    //     return false;
-    // }
 });
-function inputSearch () {
-    var donnees = document.getElementById('searchInput');
-    var url = "searchAll?valeur="+escape(donnees.value);
-    requete=new XMLHttpRequest();
-    requete.open("GET", url, true);
-    requete.onreadystatechange = majIHM;
-    requete.send(null);
-}
 
 /**
- * Gère les liste de choix de recherche de sites : fonctionnel
+ * Gère les liste de choix de recherche de sites dans le formulaire de recherche multicritères
  * @param optionRef
  */
 function searchSitePopulate(optionRef) {
-    document.getElementById('optionRef').value=optionRef;
+    document.getElementById('optionRef').value = optionRef;
     document.getElementById('searchSitesForm').submit();
-    // $('#optionRef').value=optionRef;
-    // $('#searchSitesForm').submit();
 }
 
 /**
- * Affiche le formulaire d'upload d'images : fonctionnel
+ * Affiche le formulaire d'upload d'images
  * @param a
  */
 function showFormUpload(a) {
@@ -64,9 +49,12 @@ function showFormUpload(a) {
  * Affiche le message d'upload pendant 5s et l'efface : !fonctionnel
  * @param msg
  */
-function showUploadMsg (msg) {
-    document.getElementById('uploadMsg').innerHTML=msg;
-    setTimeout(function() {document.getElementById('uploadMsg').innerHTML='';},5000);}
+function showUploadMsg(msg) {
+    document.getElementById('uploadMsg').innerHTML = msg;
+    setTimeout(function () {
+        document.getElementById('uploadMsg').innerHTML = '';
+    }, 5000);
+}
 
 /**
  * Récupère le nom de la photo selectionnée et l'affiche dans l'input : !fonctionnel

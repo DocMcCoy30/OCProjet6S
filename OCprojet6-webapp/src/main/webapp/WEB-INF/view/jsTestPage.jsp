@@ -108,11 +108,78 @@
                         </select>
                     </div>
                     <input type="hidden" id="optionRef" name="optionRef" value=""/>
-                    <%--            <div class="text-right">--%>
-                    <%--                <button type="submit" class="btn btn-outline-warning" id="searchSiteButton">Rechercher</button>--%>
-                    <%--            </div>--%>
                 </div>
             </form>
+            <br><br><br>
+            <div class="card">
+                <div class="card-title"><h2>Ajouter un nouveau site</h2></div>
+                <form action="creationSiteC" method="post">
+                    <div class="row col-md-12 no-gutters">
+                        <div class="input-group col-lg-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="nom">Nom du site : </span>
+                            </div>
+                            <input type="text" name="nom" class="form-control" aria-label="nom"
+                                   aria-describedby="nom" required>
+                        </div>
+                        <div class="input-group col-lg-5">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="typeRoches">Type de roche : </span>
+                            </div>
+                            <select class="custom-select" name="typeRoche" id="typeRoche" required>
+                                <option selected disabled></option>
+                                <c:forEach var="typeRoche" items="${typeRoche}">
+                                    <option value="${typeRoche.id}">${typeRoche.nom}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 no-gutters">
+                        <div class="input-group col-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="regions">Region :</span>
+                            </div>
+                            <select class="custom-select" name="region" id="regionC" required>
+                                <option selected disabled></option>
+                                <c:forEach var="region" items="${regions}">
+                                    <option value="${region.id}">${region.nom}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="departements">Departement :</span>
+                            </div>
+                            <select class="custom-select" name="departement" required id="departementC">
+                                <option selected disabled></option>
+                                <c:forEach var="departement" items="${departements}">
+                                    <option value="${departement.code}">${departement.nom}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="villeC">Ville : </span>
+                            </div>
+                            <input type="text" name="ville" class="form-control" aria-label="ville"
+                                   aria-describedby="ville" required>
+                        </div>
+                    </div>
+                    <div class="row col-lg-12 no-gutters">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Description : </span>
+                            </div>
+                            <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-outline-warning" id="btnCreationSite">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+            <br><br>
+            <span id="resultat"></span>
         </div>
     </div>
 
@@ -136,5 +203,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script rel="script" src="${pageContext.request.contextPath}/resources/js/webappJsFunctions.js"></script>
+<script rel="script" src="${pageContext.request.contextPath}/resources/js/labo.js"></script>
 
 </html>

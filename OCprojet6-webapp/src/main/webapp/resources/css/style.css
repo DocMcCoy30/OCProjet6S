@@ -21,14 +21,13 @@ th {
     color: #402F11;
 }
 .navbar {
-    background-color: transparent;
+    background-color: #1F4C73;
 }
 .carousel-item {
     height: 50em;
     width: auto;
 }
 .input-group {
-    /*border: red 1px solid;*/
     margin-right: auto;
     margin-left: auto;
     margin-top: 2em;
@@ -55,27 +54,28 @@ th {
 .card {
     margin-top: 1em;
     background: #F2E8C9;
-    /*border : 3px solid #222559;*/
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
-    /*box-shadow: 5px 3px 3px #402F11;*/
 }
 #siteCard {
     height: 15em;
     margin-top: 1em;
     background: #F2E8C9;
-    /*border : 3px solid #222559;*/
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
-    /*box-shadow: 5px 3px 3px #402F11;*/
 }
 #userCard {
     background: #F2E8C9;
-    /*border : 3px solid #222559;*/
 }
 #buttonLinkBar {
+    margin-top: 1em;
+}
+#btnCreationSite {
+    margin-top: 1em;
+}
+#btnUpload {
     margin-top: 1em;
 }
 #descriptionBlock {
