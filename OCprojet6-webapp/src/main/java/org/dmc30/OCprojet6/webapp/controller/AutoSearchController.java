@@ -32,6 +32,13 @@ public class AutoSearchController extends AbstractController {
     @Inject
     PhotoResource photoResource;
 
+    /**
+     * Recherche dans les tables site, region, departement et ville, les entrées corespondantes aux caractères renseignés
+     * dans la barre de recherche et l'autocomplète.
+     * @param pMotCle Les caractères de recherche renseignés dans la barre.
+     * @param response La réponse à retourner sous forme d'objet JSON.
+     * @throws IOException
+     */
     @GetMapping("/AutocompleteController")
     public void autocompleteTheSearchInput(@RequestParam(value = "term") String pMotCle,
                                            HttpServletResponse response) throws IOException {
@@ -81,6 +88,12 @@ public class AutoSearchController extends AbstractController {
         response.getWriter().write(vJSONSearchResult);
     }
 
+    /**
+     * Recherche les sites concernés par la recherche.
+     * @param pModel Alimente en données les listes déroulantes.
+     * @param pMotCle Le mot clé renseigné dans la barre de recherche.
+     * @return Le Model contenant les sites résultats de recherche.
+     */
     @PostMapping("/searchAll")
     public ModelAndView searchAll(Model pModel,
                                   @RequestParam(value = "motCle") String pMotCle) {

@@ -36,14 +36,14 @@ public class SiteController extends AbstractController {
     final Logger logger = LogManager.getLogger(SiteController.class);
 
     /**
-     * recherche de sites multicritère dynamique
-     * @param pModel le modèle à renvoyer pour alimenter les listes déroulantes
-     * @param pOptionRef l'option de recherche selectionnée (javascript : onchange)
-     * @param pSiteId l'identifiant du site selectionné
-     * @param pRegionId l'identifiant de la région selectionnée
-     * @param pDepartementCode le code du département selectionné
-     * @param pVilleId l'identifiant de la ville selectionnée
-     * @return la liste des sites visés par la recherche et la vue
+     * Recherche de sites multicritères dynamique (listes déroulantes de choix interdépendantes).
+     * @param pModel Les données à renvoyer pour alimenter les listes déroulantes.
+     * @param pOptionRef L'option de recherche selectionnée (javascript : onchange).
+     * @param pSiteId L'identifiant du site selectionné.
+     * @param pRegionId L'identifiant de la région selectionnée.
+     * @param pDepartementCode Le code du département selectionné.
+     * @param pVilleId L'identifiant de la ville selectionnée.
+     * @return La liste des sites visés par la recherche et la vue.
      */
     @PostMapping("/searchSites")
     public ModelAndView searchSites(Model pModel,
@@ -58,12 +58,16 @@ public class SiteController extends AbstractController {
         List<Departement> vListDepartements = new ArrayList<>();
         List<Ville> vListVilles = new ArrayList<>();
         List<Photo> vListPhotos = new ArrayList<>();
+        String vInfoDeRecherche = "";
 
         //option de recherche par nom de site
         if ((pOptionRef != null) && (pOptionRef == 1)) {
-//            //renvoyer le site selectionné à la jsp
+            //renvoyer le site selectionné à la jsp
             Site vSite = siteResource.getSiteById(pSiteId);
             vListSites.add(siteResource.getSiteById(pSiteId));
+            //renvoyer les infos de recherche
+            vInfoDeRecherche = "Site recherché : " + vSite.getNom() + ".";
+
 //            pModel.addAttribute("sites", vListSites);
 //            //renvoyer les données géographique correspondant au site choisi à la jsp
 //            //region
@@ -100,6 +104,8 @@ public class SiteController extends AbstractController {
             //renvoyer la liste de sites correspondants à la région choisie à la jsp
             vListSites = siteResource.getSitesByRegion(pRegionId);
             pModel.addAttribute("sites", vListSites);
+            //renvoyer les infos de recherche
+            vInfoDeRecherche = "Région recherchée : " + geographicResource.getRegionById(pRegionId).getNom() + ".";
             //renvoyer la jsp
             vMaV.setViewName("recherche-site");
         }
@@ -130,6 +136,8 @@ public class SiteController extends AbstractController {
             //renvoyer la liste des villes correspondantes au département choisie
             vListVilles = geographicResource.getVillesByDepartement(pDepartementCode);
             pModel.addAttribute("villes", vListVilles);
+            //renvoyer les infos de recherche
+            vInfoDeRecherche = "Département recherché : " + geographicResource.getDepartementByCode(pDepartementCode).getNom() + ".";
             //renvoyer la jsp
             vMaV.setViewName("recherche-site");
         }
@@ -160,6 +168,8 @@ public class SiteController extends AbstractController {
             //renvoyer toutes les villes
             vListVilles = geographicResource.getListVilles();
             pModel.addAttribute("villes", vListVilles);
+            //renvoyer les infos de recherche
+            vInfoDeRecherche = "Ville recherchée : " + geographicResource.getVilleById(pVilleId).getNom() + ".";
             //renvoyer la jsp
             vMaV.setViewName("recherche-site");
         }
@@ -174,14 +184,36 @@ public class SiteController extends AbstractController {
             }
         }
         vMaV.addObject("listSites", vListSites);
+        vMaV.addObject("messageInfoRecherche", vInfoDeRecherche);
         return vMaV;
     }
 
 
     /**
-     * Afficher la page de création de site
-     * @param pModel les données de listes déroulantes
-     * @return la page de création de site
+     * Affiche le site selectionné dans la page site.
+     * @param pSiteId L'identifiant du site selectionné.
+     * @return Le ModelAndView : les données du site selectionné dans Model, la page site dans View.
+     */
+    @GetMapping("/showSitePage")
+    public ModelAndView showSitePage(@RequestParam("siteId") int pSiteId) {
+        ModelAndView vMaV = new ModelAndView();
+        // création du site à retourner
+        Site vSite = siteResource.getSiteById(pSiteId);
+        // création de la liste de photo correspondantes au site
+        if (photoResource.getPhotoByRefId(pSiteId, "site") != null) {
+            List<Photo> vListPhotos = photoResource.getPhotoByRefId(pSiteId, "site");
+            vMaV.addObject("listPhotos", vListPhotos);
+        }
+        vMaV.addObject("site", vSite);
+        vMaV.setViewName("sites");
+        return vMaV;
+    }
+
+
+    /**
+     * Afficher le formulaire de création de site.
+     * @param pModel Les données de listes déroulantes.
+     * @return La page de création de site.
      */
     @GetMapping("/showCreationSiteForm")
     public String showCreationSiteForm(Model pModel) {
@@ -190,16 +222,36 @@ public class SiteController extends AbstractController {
     }
 
     /**
-     * Crée un nouveau site dans la base de données er l'affiche dans la page de recherche
-     * @param pModel les données des listes déroulantes à renvoyer à la page de recherche
-     * @param pNomSite le nom du nouveau site
-     * @param pDescription la description du nouveau site
-     * @param pNomVille le nom de la ville du nouveau site
-     * @param pRegionId l'identifiant de la région du nouveau site
-     * @param pDepartementCode le code du département du nouveau site
-     * @param pTypeRocheId l'identifiant du type de roche du nouveau site
-     * @return le ModelAndView : les données du nouveau site + les données des listes déroulantes dans Model,
-     * la page de recherche dans View
+     * Alimente la liste des départements en fonction de la région choisie dans le formulaire de création de sites.
+     * @param pId L'identifiant de la région selectionnée.
+     * @param response La réponse envoyée sous forme d'objet JSON.
+     * @throws IOException
+     */
+    @GetMapping("/autoPopulateDepartements")
+    public void autoPopulate (@RequestParam(value = "region") int pId,
+                              HttpServletResponse response) throws IOException {
+        logger.debug("Into autoPopulate Test : id = "+pId);
+        List<Departement> vListDepartement = geographicResource.getDepartementsByRegion(pId);
+        // Creation de la liste de noms correspondants à la recherche en format JSON
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        String vJSONSearchResult = new Gson().toJson(vListDepartement);
+        logger.debug("JSON searchList = " + vJSONSearchResult);
+        response.getWriter().write(vJSONSearchResult);
+
+    }
+
+    /**
+     * Crée un nouveau site dans la base de données er l'affiche dans la page de recherche.
+     * @param pModel Les données des listes déroulantes à renvoyer à la page de recherche.
+     * @param pNomSite Le nom du nouveau site.
+     * @param pDescription La description du nouveau site.
+     * @param pNomVille Le nom de la ville du nouveau site.
+     * @param pRegionId L'identifiant de la région du nouveau site.
+     * @param pDepartementCode Le code du département du nouveau site.
+     * @param pTypeRocheId L'identifiant du type de roche du nouveau site.
+     * @return Le ModelAndView : les données du nouveau site + les données des listes déroulantes dans Model,
+     * la page de recherche dans View.
      */
     @PostMapping("/creationSite")
     public ModelAndView createSite(Model pModel,
@@ -227,98 +279,6 @@ public class SiteController extends AbstractController {
             vMaV.setViewName("recherche-site");
             afficherListe(pModel);
         }
-        return vMaV;
-    }
-
-    /**
-     * Affiche le site selectionné dans la page site.
-     * @param pSiteId l'identifiant du site selectionné.
-     * @return le ModelAndView : les données du site selectionné dans Model, la page site dans View.
-     */
-    @GetMapping("/showSitePage")
-    public ModelAndView showSitePage(@RequestParam("siteId") int pSiteId) {
-        ModelAndView vMaV = new ModelAndView();
-        // création du site à retourner
-        Site vSite = siteResource.getSiteById(pSiteId);
-        // création de la liste de photo correspondantes au site
-        if (photoResource.getPhotoByRefId(pSiteId, "site") != null) {
-            List<Photo> vListPhotos = photoResource.getPhotoByRefId(pSiteId, "site");
-            vMaV.addObject("listPhotos", vListPhotos);
-        }
-        vMaV.addObject("site", vSite);
-        vMaV.setViewName("sites");
-        return vMaV;
-    }
-
-    /**
-     * Upload une image sur le serveur et la référence dans la base de données
-     *
-     * @param pNomPhoto : le nom de l'image renseigné dans le formulaire
-     * @param pFile     : le fichier à uploader
-     * @param pSiteId   : l'identifiant de site correspondant
-     * @return le ModelAndView
-     */
-    @PostMapping("/uploadFile")
-    public ModelAndView uploadPhoto(@RequestParam("nomPhoto") String pNomPhoto,
-                                    @RequestParam("file") MultipartFile pFile,
-                                    @RequestParam("siteId") int pSiteId,
-                                    HttpServletRequest request) {
-
-        String vRef = "site";
-        String vNomPhoto = "";
-        String vUploadMsg;
-        ModelAndView vMaV = new ModelAndView();
-
-        if (!pFile.isEmpty()) {
-            try {
-                byte[] bytes = pFile.getBytes();
-
-                // Crée le repertoire de stockage des images
-                String rootPath = request.getSession().getServletContext().getRealPath("/");
-                File dir = new File(rootPath + File.separator + "resources/img");
-
-                if (!dir.exists())
-                    dir.mkdirs();
-
-                // crée le nom du fichier (avec une référence aléatoire pour diminuer
-                // le risque de non concordance entre la BD et le répertoire
-                Random rand = new Random();
-                int vRandomRef = rand.nextInt(1000000);
-                vNomPhoto = "Site" + pSiteId + "_" + vRandomRef + "_" + pNomPhoto + ".jpeg";
-                // crée le fichier dans le repertoire
-                File serverFile = new File(dir.getAbsolutePath()
-                        + File.separator + vNomPhoto);
-                BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream(serverFile));
-                stream.write(bytes);
-                stream.close();
-
-                logger.info("Repertoire créé = " + serverFile.getAbsolutePath());
-                logger.info("Fichier créé = " + vNomPhoto);
-
-                vUploadMsg = "L'image " + pNomPhoto + " a été chargée !";
-            } catch (Exception e) {
-                vUploadMsg = "Echec du chargement de l'image " + pNomPhoto + " => " + e.getMessage();
-            }
-        } else {
-            vUploadMsg = "Il n'y a pas d'image à charger";
-        }
-
-        Photo vPhoto = new Photo(vNomPhoto, vRef, pSiteId);
-        photoResource.createPhoto(vPhoto);
-
-//        vMaV = showSitePage(pSiteId);
-//        vMaV.addObject("uploadMessage", vUploadMsg);
-
-        // création du site à retourner
-        Site vSite = siteResource.getSiteById(pSiteId);
-        // création de la liste de photo correspondantes au site
-        List<Photo> vListPhotos = photoResource.getPhotoByRefId(vPhoto.getRefId(), vPhoto.getRef());
-
-        vMaV.addObject("site", vSite);
-        vMaV.addObject("listPhotos", vListPhotos);
-        vMaV.addObject("uploadMsg", vUploadMsg);
-        vMaV.setViewName("sites");
         return vMaV;
     }
 

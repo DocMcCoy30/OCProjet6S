@@ -1,12 +1,12 @@
 /**
- * deconnection
+ * Gère la deconnexion de l'utilisateur.
  */
 function lougOutFormSubmit() {
     document.getElementById("logoutForm").submit();
 }
 
 /**
- * Autocomplétion de la barre de recherche
+ * Autocomplétion de la barre de recherche.
  */
 $("#searchInput").autocomplete({
     source: function (request, response) {
@@ -34,7 +34,27 @@ function searchSitePopulate(optionRef) {
 }
 
 /**
- * Affiche le formulaire d'upload d'images
+ * Gère la liste des départements en fonction de la région choisie dans le formulaire de création de site
+ */
+$('#region').change(function (response) {
+    $.ajax({
+        url: 'autoPopulateDepartements',
+        type: 'GET',
+        data: {region: $(this).val()},
+        // dataType: "json",
+        success: function (data) {
+            document.getElementById('departement').options.length = 0;
+            for (let i = 0; i < data.length; i++) {
+                let code = parseInt(data[i].code);
+                let nom = data[i].nom;
+                $('#departement').append('<option value="' + code + '">' + nom + '</option>');
+            }
+        }
+    });
+});
+
+/**
+ * Affiche le formulaire d'upload d'images lorsque le bouton "ajouter une photo" est cliqué.
  * @param a
  */
 function showFormUpload(a) {

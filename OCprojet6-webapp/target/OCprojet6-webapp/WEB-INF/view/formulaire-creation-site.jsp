@@ -109,7 +109,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="departements">Departement :</span>
                                 </div>
-                                <select class="custom-select" name="departement" required id="departement">
+                                <select class="custom-select" name="departement" id="departement" required >
                                     <option selected disabled></option>
                                     <c:forEach var="departement" items="${departements}">
                                         <option value="${departement.code}">${departement.nom}</option>

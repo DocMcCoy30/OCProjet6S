@@ -18,6 +18,11 @@ public class SecteurController extends AbstractController {
     @Inject
     SecteurResource secteurResource;
 
+    /**
+     * Affiche la page des secteurs correspondants au site selectionné.
+     * @param pSiteId L'identifiant du site.
+     * @return la liste des secteurs concernés et la vue.
+     */
     @GetMapping("/showSecteurPage")
     public ModelAndView showSecteurPage(@RequestParam("siteId") int pSiteId) {
         ModelAndView vMaV = new ModelAndView();
@@ -29,6 +34,11 @@ public class SecteurController extends AbstractController {
         return vMaV;
     }
 
+    /**
+     * Affiche le formulaire de création de secteur.
+     * @param pSiteId L'identifiant du site concerné.
+     * @return Les infos du site concerné et la vue.
+     */
     @GetMapping("/showCreationSecteurForm")
     public ModelAndView showCreationSiteForm(@RequestParam(value = "siteId") Integer pSiteId) {
         ModelAndView vMaV = new ModelAndView();
@@ -38,6 +48,13 @@ public class SecteurController extends AbstractController {
         return vMaV;
     }
 
+    /**
+     * Enregistre un nouveau secteur dans la base de données.
+     * @param pSecteurNom Le nom du secteur.
+     * @param pDescription La description du secteur.
+     * @param pSiteId L'identifiant du site.
+     * @return Les données du sites et la liste des secteurs, un message de confirmation, la vue (page-secteurs).
+     */
     @PostMapping("/creationSecteur")
     public ModelAndView createSite(@RequestParam(value = "secteurNom", required = false) String pSecteurNom,
                                    @RequestParam(value = "description", required = false) String pDescription,

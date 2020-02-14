@@ -14,14 +14,17 @@ h1 {
     font-style: normal;
     font-weight: bold;
 }
-h5{
+h5, h2, a {
     color: #402F11;
+}
+h3 a {
+    color: #F2E8C9;
 }
 th {
     color: #402F11;
 }
 .navbar {
-    background-color: #1F4C73;
+    background-color: transparent;
 }
 .carousel-item {
     height: 50em;
@@ -69,6 +72,10 @@ th {
 #userCard {
     background: #F2E8C9;
 }
+#secteurCardHeader {
+    background: #1F4C73;
+    text-align: center;
+}
 #buttonLinkBar {
     margin-top: 1em;
 }
@@ -81,6 +88,7 @@ th {
 #descriptionBlock {
     margin-top: 1em;
     margin-bottom: 1em;
+    background-color: #F2E8C9;
 }
 #uploadButton {
     height: 2.5em;
@@ -93,6 +101,12 @@ th {
 }
 #footer {
     margin-top: 5em;
+}
+#infoDeRecherche {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+    color: #F2E8C9;
 }
 
 

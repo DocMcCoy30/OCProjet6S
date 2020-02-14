@@ -74,7 +74,7 @@
                 <div class="card-title"><h2>Ajouter un nouveau secteur </h2></div>
                 <form action="creationSecteur" method="post">
                     <div class="row col-md-12 no-gutters">
-                        <div class="input-group col-lg">
+                        <div class="input-group col-md-5">
                             <div class="input-group-prepend">
                                 <c:set var="site" value="${site}"/>
                                 <input id="siteId" name="siteId" type="hidden" value="${site.id}">
@@ -85,7 +85,7 @@
                                    aria-label="siteNom"
                                    aria-describedby="siteNom">
                         </div>
-                        <div class="input-group col-lg">
+                        <div class="input-group col-md-7">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="secteurNom">Nom du secteur : </span>
                             </div>

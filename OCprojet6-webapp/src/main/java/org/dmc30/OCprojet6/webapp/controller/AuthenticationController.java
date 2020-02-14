@@ -15,12 +15,21 @@ public class AuthenticationController {
     @Inject
     private AuthenticationResource authenticationResource;
 
-
+    /**
+     * Affiche le formulaire de connexion.
+     * @return La vue.
+     */
     @GetMapping("/signin")
     public String showUserAccountForm() {
         return "signin";
     }
 
+    /**
+     * Gère les erreurs de saisie et la deconnexion.
+     * @param error Les erreurs de connexion.
+     * @param logout L'information de déconnexion.
+     * @return Les messages et la vue.
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
                               @RequestParam(value = "logout", required = false) String logout) {
@@ -36,6 +45,12 @@ public class AuthenticationController {
         return model;
     }
 
+    /**
+     * Gère la création d'un nouveau compte utilisateur (avec recherche de doublons username et email => un bug dans Postgrès+IntelliJ
+     * ne permet pas de récupérer les erreurs de contrainte d'unicité...
+     * @param pUsers Le nouvel utilisateur
+     * @return Un message de confirmation ou d'erreur.
+     */
     @PostMapping("/signup")
     public ModelAndView saveUsers(@ModelAttribute("users") Users pUsers) {
         ModelAndView vModel = new ModelAndView();

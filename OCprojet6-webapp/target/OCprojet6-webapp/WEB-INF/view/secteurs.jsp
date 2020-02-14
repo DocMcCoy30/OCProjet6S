@@ -71,9 +71,12 @@
     <div id="body">
         <div class="card">
             <div class="card-header">
+                <c:url var="sitePage" value="/showSitePage">
+                    <c:param name="siteId" value="${site.id}"/>
+                </c:url>
                 <form method="post" action="/searchSite">
-                <a><h2 class="card-title">${site.nom}</h2></a><h5 class="text-muted text-right">${site.ville.nom}
-                - ${site.departement.nom}</h5>
+                    <h2 class="card-title"><a href="${sitePage}">${site.nom}</a></h2>
+                    <h5 class="text-muted text-right">${site.ville.nom} - ${site.departement.nom}</h5>
                 </form>
             </div>
             <div>
@@ -87,8 +90,8 @@
                 <c:forEach var="secteur" items="${listSecteurs}">
                     <div class="container">
                         <div class="card">
-                            <div class="card-header">
-                                <a href="#"><h3 class="card-title">${secteur.nom}</h3></a>
+                            <div class="card-header" id="secteurCardHeader">
+                                <h3 class="card-title"><a href="#">${secteur.nom}</a></h3>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <div>
                                         <c:url var="showVoiePage" value="/showVoiePage">

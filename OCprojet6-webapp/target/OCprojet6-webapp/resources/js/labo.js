@@ -1,6 +1,6 @@
 $('#regionC').change(function (response) {
     $.ajax({
-        url: 'autoPopulate',
+        url: 'autoPopulateDepartements',
         type: 'GET',
         data: {region: $(this).val()},
         // dataType: "json",

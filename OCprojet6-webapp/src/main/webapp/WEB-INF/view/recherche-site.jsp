@@ -119,6 +119,11 @@
                 </div>
             </c:if>
         </div>
+        <c:if test="${ !empty messageInfoRecherche }">
+        <div id="infoDeRecherche" class="col-md-12">
+            <h4><c:out value="${messageInfoRecherche}"/></h4>
+        </div>
+        </c:if>
         <div class="row">
             <c:if test="${ !empty listSites}">
                 <c:forEach var="site" items="${listSites}">

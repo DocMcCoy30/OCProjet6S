@@ -8,7 +8,6 @@ import java.util.List;
 @Named
 public class PhotoResource extends AbstractResource {
 
-
     public void createPhoto (Photo pPhoto) {
         getManagerFactory().getPhotoManager().createPhoto(pPhoto);
     }

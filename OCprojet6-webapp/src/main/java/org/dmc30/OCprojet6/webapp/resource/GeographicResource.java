@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.webapp.resource;
 
 import org.dmc30.OCprojet6.model.bean.Departement;
 import org.dmc30.OCprojet6.model.bean.Region;
+import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.model.bean.Ville;
 
 import javax.inject.Named;
@@ -12,6 +13,11 @@ public class GeographicResource extends AbstractResource {
 
     public List<Region> getListRegions () {
         return getManagerFactory().getRegionManager().getAllRegions();
+    }
+
+
+    public Region getRegionById(Integer pRegionId) {
+        return getManagerFactory().getRegionManager().getRegionById(pRegionId);
     }
 
     public List<Region> getMatchingRegions (String pMotCle) {
@@ -42,7 +48,12 @@ public class GeographicResource extends AbstractResource {
         return getManagerFactory().getVilleManager().getListVillesByDepartement(pCode);
     }
 
+    public Ville getVilleById(Integer pVilleId) {
+        return getManagerFactory().getVilleManager().getVilleById(pVilleId);
+    }
+
     public List<Ville> getMatchingVilles(String pMotCle) {
         return getManagerFactory().getVilleManager().getMatchingVilles(pMotCle);
     }
+
 }

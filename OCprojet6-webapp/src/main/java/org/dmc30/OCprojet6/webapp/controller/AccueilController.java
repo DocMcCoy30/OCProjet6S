@@ -21,6 +21,11 @@ public class AccueilController extends AbstractController {
 
     Logger logger = LogManager.getLogger(AccueilController.class);
 
+    /**
+     * Affiche la page d'accueil.
+     * @param pModel Les données qui alimentent les liste déroulantes.
+     * @return La liste des photos et la vue.
+     */
     @GetMapping({"/", "/accueil"})
     public ModelAndView showWelcomePage(Model pModel) {
         List<Photo> vListPhotos = photoResource.getAllPhotos();
@@ -30,6 +35,11 @@ public class AccueilController extends AbstractController {
         return vMaV;
     }
 
+    /**
+     * Affiche la page de recherche de sites
+     * @param pModel Les données qui alimentent les liste déroulantes.
+     * @return la vue.
+     */
     @GetMapping("/showSearchSitePage")
     public ModelAndView showSearchSitePage(Model pModel) {
         afficherListe(pModel);
