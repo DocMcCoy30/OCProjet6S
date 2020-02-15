@@ -66,7 +66,7 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
 
     @Override
     public List<Site> getMatchingSites(String pMotCle) {
-        String vMotCle = pMotCle+"%";
+        String vMotCle = "%"+pMotCle+"%";
         String vSQL = "SELECT * FROM site WHERE nom ILIKE :motCle";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("motCle", vMotCle);

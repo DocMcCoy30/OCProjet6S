@@ -23,4 +23,8 @@ public class SecteurResource extends AbstractResource {
         return getManagerFactory().getSecteurManager().getSecteursBySiteId(pSiteId);
     }
 
+    public Secteur getSecteurById (int pSecteurId) {
+        return getManagerFactory().getSecteurManager().getSecteurById(pSecteurId);
+    }
+
 }

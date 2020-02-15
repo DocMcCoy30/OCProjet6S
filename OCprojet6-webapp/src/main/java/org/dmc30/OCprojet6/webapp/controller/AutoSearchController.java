@@ -128,7 +128,7 @@ public class AutoSearchController extends AbstractController {
         for (Ville vVille : vListVilles
         ) {
             int vVilleId = vVille.getId();
-            vListSitesFromVilles = siteResource.getSitesByRegion(vVilleId);
+            vListSitesFromVilles = siteResource.getSitesByVille(vVilleId);
         }
         //ajout des listes de sites à la liste de recherhce
         vListSitesRecherches.addAll(vListSitesFromSites);

@@ -25,7 +25,6 @@ public class VoieRM implements RowMapper<Voie> {
         Voie vVoie = new Voie(resultSet.getInt("voie_id"));
         vVoie.setNom(resultSet.getString("nom"));
         vVoie.setHauteur(resultSet.getInt("hauteur"));
-        vVoie.setNbDePoints(resultSet.getInt("nb_de_points"));
         // utilisation de dao
         Secteur vSecteur = secteurDao.getSecteurById(resultSet.getInt("secteur_id"));
         vVoie.setSecteur(vSecteur);

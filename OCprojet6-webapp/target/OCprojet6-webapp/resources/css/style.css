@@ -1,30 +1,67 @@
 @font-face {
-    font-family: 'reqnad';
-    src: url('ReqnadGeometrikBeta0.1-Regular.otf');
+    font-family: 'girassolregular';
+    src: url('font/girassol/girassol-regular-webfont.eot');
+    src: url('font/girassol/girassol-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('font/girassol/girassol-regular-webfont.woff') format('woff'),
+    url('font/girassol/girassol-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: reqnad;
+    src: url('font/Reqnad/ReqnadGeometrikBeta0.1-Regular.otf');
 }
 body {
-    background: #1F4C73;
+    background: url('../img/freesolo.jpg') no-repeat center fixed;
+    background-size: cover;
     color: #402F11;
     margin:0;
     padding:0;
     height:100%;
-    font-family: 'reqnad', Arial, serif;
+    font-family: /*girassolregular,*/ reqnad, Arial, serif;
 }
 h1 {
-    font-style: normal;
     font-weight: bold;
 }
-h5, h2, a {
-    color: #402F11;
+h5, h2, h1, a {
+    color: #f0ad4e;
 }
 h3 a {
     color: #F2E8C9;
 }
 th {
-    color: #402F11;
+    color: #F2E8C9;
 }
+td {
+    color: #f0ad4e;
+}
+.vertical-center {
+    min-height: 50vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.jumbotron {
+    background: transparent;
+    margin: auto;
+}
+#title {
+    font-size: 10em;
+    color: #f0ad4e;
+}
+#subTitle {
+    font-size: 3em;
+    color: #f0ad4e;
+}
+
 .navbar {
     background-color: transparent;
+    color: #f0ad4e;
+    font-size: large;
+}
+#navLink {
+    color: #f0ad4e;
 }
 .carousel-item {
     height: 50em;
@@ -57,41 +94,76 @@ th {
 .card {
     margin-top: 1em;
     background: #F2E8C9;
+    opacity: 0.7;
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
 }
 #siteCard {
-    height: 15em;
+    height: auto;
     margin-top: 1em;
     background: #F2E8C9;
+    opacity: 0.7;
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
 }
 #userCard {
     background: #F2E8C9;
+    opacity: 0.7;
 }
 #secteurCardHeader {
     background: #1F4C73;
     text-align: center;
+    opacity: 0.7;
+}
+#voieCardHeader {
+    background: #1F4C73;
+    text-align: center;
+    opacity: 0.7;
 }
 #buttonLinkBar {
     margin-top: 1em;
 }
 #btnCreationSite {
     margin-top: 1em;
+    margin-bottom: 1em;
 }
 #btnUpload {
     margin-top: 1em;
+    margin-bottom: 1em;
+}
+#btnAjoutCommentaire {
+    width: 15em;
+}
+#btnAjoutSecteur {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+#btnAjoutVoie {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-right: 1em;
+}
+#btnRetour {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+}
+#infoSecteur {
+    background-color: #1F4C73;
+    opacity: 0.7;
+}
+#infoVoies {
+    background-color: #1F4C73;
+    opacity: 0.7;
 }
 #descriptionBlock {
+    padding: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
     background-color: #F2E8C9;
-}
-#uploadButton {
-    height: 2.5em;
+    opacity: 0.7;
 }
 #formUpload {
     display: none;
@@ -107,6 +179,7 @@ th {
     margin-bottom: 2em;
     text-align: center;
     color: #F2E8C9;
+    opacity: 0.7;
 }
 
 

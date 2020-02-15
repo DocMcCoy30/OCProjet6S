@@ -20,6 +20,13 @@ public interface VoieManager {
 
     /**
      * Cherche et renvoie la liste des objets de type Voie stockés dans la database
+     * @param pSecteurId L'identifiant du secteur.
+     * @return La liste d'objet recherchée
+     */
+    List<Voie> getVoiesBySecteurId(int pSecteurId);
+
+    /**
+     * Cherche et renvoie la liste des objets de type Voie stockés dans la database
      * @return la liste d'objets recherchée
      */
     List<Voie> getAllVoies();
@@ -35,4 +42,5 @@ public interface VoieManager {
      * @param pId : l'identifiant de l'objet à supprimer
      */
     void deleteVoie (int pId);
+
 }

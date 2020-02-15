@@ -18,61 +18,13 @@
     <title>Page de recherche de sites</title>
 </head>
 
-<body>
-<div class="container">
-    <c:url value="/logout" var="logoutUrl"/>
-    <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}"><h1>Les amis de l'escalade</h1></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/accueil">Home<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/showSearchSitePage">Recherche</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="clearfix">
-                <form action="searchAll" method="post" class="form-inline mt-2 mt-md-0 mr-2 float-right"
-                      id="inputSearchForm">
-                    <div class="ui-widget">
-                        <input class="form-control mr-sm-2" type="text" id="searchInput" name="motCle">
-                    </div>
-                    <button class="btn btn-outline-success my-2 mr-5" type="submit">Rechercher</button>
-                </form>
-            </div>
-            <div class="clearfix">
-                <c:if test="${pageContext.request.userPrincipal.name == null}">
-            <span class="float-right">
-            <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/signin">Creer un compte</a>
-            &nbsp
-            <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/login">Se connecter</a>
-        </span>
-                </c:if>
-            </div>
-            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <div>Bonjour ${pageContext.request.userPrincipal.name}</div>
-                &emsp;
-                <form action="${logoutUrl}" method="post" id="logoutForm">
-                    <input type="hidden" name="${_csrf.parameterName}"
-                           value="${_csrf.token}"/>
-                    <a class="btn btn-outline-warning" href="javascript:lougOutFormSubmit()">Se déconnecter</a>
-                </form>
-            </c:if>
-        </nav>
-    </header>
+<%@include file="header.jsp" %>
 
 <div id="body">
     <div class="container">
         <form action="searchSites" method="post" id="searchSitesForm">
-            <div class="row col-md-12 no-gutters" id="buttonSearchSiteBar">
-                <div class="input-group col-md">
+            <div class="row col-lg-12 no-gutters" id="buttonSearchSiteBar">
+                <div class="input-group col-lg">
                     <select class="custom-select" name="site" id="site" onchange="searchSitePopulate(1)">
                         <option selected disabled>Site</option>
                         <c:forEach var="site" items="${sites}">
@@ -81,7 +33,7 @@
                     </select>
                 </div>
                 &nbsp
-                <div class="input-group col-md">
+                <div class="input-group col-lg">
                     <select class="custom-select" name="region" id="region" onchange="searchSitePopulate(2)">
                         <option selected disabled>Région</option>
                         <c:forEach var="region" items="${regions}">
@@ -90,7 +42,7 @@
                     </select>
                 </div>
                 &nbsp
-                <div class="input-group col-md">
+                <div class="input-group col-lg">
                     <select class="custom-select" name="departement" id="departement" onchange="searchSitePopulate(3)">
                         <option selected disabled>Département</option>
                         <c:forEach var="departement" items="${departements}">
@@ -99,7 +51,7 @@
                     </select>
                 </div>
                 &nbsp
-                <div class="input-group col-md">
+                <div class="input-group col-lg">
                     <select class="custom-select" name="ville" id="ville" onchange="searchSitePopulate(4)">
                         <option selected disabled>Villes</option>
                         <c:forEach var="ville" items="${villes}">
@@ -111,7 +63,7 @@
             </div>
         </form>
         <br><br>
-        <%--        Afficher les résultats de recherche     --%>
+       <%--        Afficher les résultats de recherche     --%>
         <div>
             <c:if test="${ !empty messageCreationSite}">
                 <div class="alert alert-success" role="alert">
@@ -130,15 +82,15 @@
                     <c:url var="sitePageLink" value="/showSitePage">
                         <c:param name="siteId" value="${site.id}"/>
                     </c:url>
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         <div class="card" id="siteCard">
                             <div class="row no-gutters">
-                                <div class="col-md-4">
+                                <div class="col-lg-4">
                                     <a href="${sitePageLink}"><img
                                             src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
                                             class="card-img" alt="${site.listPhotos[0].nom}"></a>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-lg-8">
                                     <div class="card-body">
                                         <a href="${sitePageLink}"><h5 class="card-title">${site.nom}</h5></a>
                                         <p class="card-text">${site.description.info}</p>
@@ -167,8 +119,7 @@
             <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
             </p>
         </footer>
-    </div>
-</body>
+
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

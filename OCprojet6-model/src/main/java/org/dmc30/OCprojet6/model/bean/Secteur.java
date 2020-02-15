@@ -8,6 +8,9 @@ public class Secteur {
     private String nom;
     private String description;
     private Site site;
+    private int hauteurMax;
+    private String [] cotationMinMax;
+    private int nbDeVoies;
     private List<Voie> listVoies;
     private List<Photo> listPhotos;
 
@@ -47,6 +50,30 @@ public class Secteur {
 
     public void setSite(Site site) {
         this.site = site;
+    }
+
+    public int getHauteurMax() {
+        return hauteurMax;
+    }
+
+    public void setHauteurMax(Integer hauteurMax) {
+        this.hauteurMax = hauteurMax;
+    }
+
+    public String[] getCotationMinMax() {
+        return cotationMinMax;
+    }
+
+    public void setCotationMinMax(String[] cotationMinMax) {
+        this.cotationMinMax = cotationMinMax;
+    }
+
+    public int getNbDeVoies() {
+        return nbDeVoies;
+    }
+
+    public void setNbDeVoies(int nbDeVoies) {
+        this.nbDeVoies = nbDeVoies;
     }
 
     public List<Voie> getListVoies() {

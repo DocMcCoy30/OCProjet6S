@@ -49,7 +49,7 @@ public class VilleDaoImpl extends AbstractDao implements VilleDao {
 
     @Override
     public List<Ville> getMatchingVilles(String pMotCle) {
-        String vMotCle = pMotCle+"%";
+        String vMotCle = "%"+pMotCle+"%";
         String vSQL = "SELECT * FROM ville WHERE nom ILIKE :motCle";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("motCle", vMotCle);

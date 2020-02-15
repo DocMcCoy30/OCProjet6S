@@ -1,5 +1,7 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.model.bean.Secteur;
 import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.webapp.resource.SecteurResource;
@@ -17,6 +19,9 @@ public class SecteurController extends AbstractController {
 
     @Inject
     SecteurResource secteurResource;
+
+    Logger logger = LogManager.getLogger(SecteurController.class);
+
 
     /**
      * Affiche la page des secteurs correspondants au site selectionné.

@@ -12,7 +12,7 @@
               defaultTransactionIsolation="READ_COMMITTED"
 
               initialSize="1"
-              maxTotal="30"
+              maxTotal="10"
               maxIdle="10"
               maxWaitMillis="60000"
               minIdle="1"

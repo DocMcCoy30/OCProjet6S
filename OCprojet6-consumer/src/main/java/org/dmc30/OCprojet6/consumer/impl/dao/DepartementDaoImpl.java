@@ -49,7 +49,7 @@ Logger logger = LogManager.getLogger(DepartementDaoImpl.class);
 
     @Override
     public List<Departement> getMatchingDepartements(String pMotCle) {
-        String vMotCle = pMotCle+"%";
+        String vMotCle = "%"+pMotCle+"%";
         String vSQL = "SELECT * FROM departement WHERE nom ILIKE :motCle";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("motCle", vMotCle);

@@ -8,7 +8,6 @@ public class Voie {
     private String nom;
     private Cotation cotation;
     private int hauteur;
-    private int nbDePoints;
     private Secteur secteur;
     private List<Caracteristique> listCaracteristiques;
     private List<Photo> listPhotos;
@@ -50,14 +49,6 @@ public class Voie {
 
     public void setHauteur(int hauteur) {
         this.hauteur = hauteur;
-    }
-
-    public int getNbDePoints() {
-        return nbDePoints;
-    }
-
-    public void setNbDePoints(int nbDePoints) {
-        this.nbDePoints = nbDePoints;
     }
 
     public Secteur getSecteur() {
