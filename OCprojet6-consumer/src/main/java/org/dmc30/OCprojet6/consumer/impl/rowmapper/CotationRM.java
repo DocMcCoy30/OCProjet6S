@@ -11,8 +11,7 @@ import java.sql.SQLException;
 public class CotationRM implements RowMapper<Cotation> {
     @Override
     public Cotation mapRow(ResultSet resultSet, int i) throws SQLException {
-        Cotation vCotation = new Cotation(resultSet.getInt("cotation_id"));
-        vCotation.setValeur(resultSet.getString("valeur"));
+        Cotation vCotation = new Cotation(resultSet.getInt("cotation_id"), resultSet.getString("valeur"));
         return vCotation;
     }
 }

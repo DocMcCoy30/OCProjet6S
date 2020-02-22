@@ -26,15 +26,15 @@ public class SecteurRM implements RowMapper<Secteur> {
 
     @Override
     public Secteur mapRow(ResultSet resultSet, int i) throws SQLException {
-        Secteur vSecteur = new Secteur(resultSet.getInt("secteur_id"));
-        vSecteur.setId(resultSet.getInt("secteur_id"));
-        vSecteur.setNom(resultSet.getString("nom"));
-        vSecteur.setDescription(resultSet.getString("description"));
+        Secteur vSecteur = new Secteur(resultSet.getInt("secteur_id"),
+                resultSet.getString("nom") ,
+                resultSet.getString("description"));
+
         // utilisation de siteDao
         Site vSite = siteDao.getSiteById(resultSet.getInt("site_id"));
         vSecteur.setSite(vSite);
         // utilisation de voieDao
-//        if (!(voieDao.getVoiesBySecteurId(resultSet.getInt("secteur_id")).isEmpty())) {
+//        if ( !(voieDao.getVoiesBySecteurId(resultSet.getInt("secteur_id")).isEmpty()) ) {
 //            List<Voie> vListVoies = voieDao.getVoiesBySecteurId(resultSet.getInt("secteur_id"));
 //            vSecteur.setListVoies(vListVoies);
 //            vSecteur.setNbDeVoies(vListVoies.size());

@@ -51,7 +51,7 @@ td {
     color: #f0ad4e;
 }
 #subTitle {
-    font-size: 3em;
+    font-size: 2.5em;
     color: #f0ad4e;
 }
 
@@ -77,6 +77,7 @@ td {
 }
 .btn {
     width: 11em;
+    opacity: 0.9;
 }
 #carouselAccueil {
     display: block;
@@ -87,6 +88,11 @@ td {
 }
 #searchSiteButton {
     margin-top: 2em;
+    opacity: 0.9;
+}
+#searchInput {
+    background: #F2E8C9;
+    opacity: 0.9;
 }
 #createSiteButton {
     margin-top: 2em;
@@ -94,7 +100,7 @@ td {
 .card {
     margin-top: 1em;
     background: #F2E8C9;
-    opacity: 0.7;
+    opacity: 0.9;
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
@@ -103,24 +109,30 @@ td {
     height: auto;
     margin-top: 1em;
     background: #F2E8C9;
-    opacity: 0.7;
+    opacity: 0.9;
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
 }
+#siteCardBody {
+    background: #1F4C73;
+    opacity: 0.9;
+}
+#siteCardFooter {
+    background: #F2E8C9;
+    opacity: 0.9;
+}
 #userCard {
     background: #F2E8C9;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 #secteurCardHeader {
     background: #1F4C73;
     text-align: center;
-    opacity: 0.7;
 }
 #voieCardHeader {
     background: #1F4C73;
     text-align: center;
-    opacity: 0.7;
 }
 #buttonLinkBar {
     margin-top: 1em;
@@ -152,18 +164,18 @@ td {
 }
 #infoSecteur {
     background-color: #1F4C73;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 #infoVoies {
     background-color: #1F4C73;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 #descriptionBlock {
     padding: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
     background-color: #F2E8C9;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 #formUpload {
     display: none;
@@ -179,7 +191,7 @@ td {
     margin-bottom: 2em;
     text-align: center;
     color: #F2E8C9;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 
 

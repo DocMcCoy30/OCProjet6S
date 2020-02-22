@@ -9,7 +9,10 @@ public class Description {
     public Description() {
     }
 
-    public Description(int description_id) {
+    public Description(int id, String description, String info) {
+        this.id = id;
+        this.description = description;
+        this.info = info;
     }
 
     public int getId() {

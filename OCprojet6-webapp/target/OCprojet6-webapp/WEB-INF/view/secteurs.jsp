@@ -20,7 +20,9 @@
 
 <%@include file="header.jsp" %>
 
-    <div id="body">
+<div id="body">
+    <div class="container">
+
         <div class="card">
             <div class="card-header">
                 <c:url var="sitePage" value="/showSitePage">
@@ -30,18 +32,18 @@
                     <h2 class="card-title"><a href="${sitePage}">${site.nom}</a></h2>
                     <h5 class="text-muted text-right">${site.ville.nom} - ${site.departement.nom}</h5>
                 </form>
+                <div>
+                    <c:if test="${ !empty messageCreationSecteur}">
+                        <div class="alert alert-success" role="alert">
+                            <c:out value="${messageCreationSecteur}"/>
+                        </div>
+                    </c:if>
+                </div>
             </div>
-            <div>
-                <c:if test="${ !empty messageCreationSecteur}">
-                    <div class="alert alert-success" role="alert">
-                        <c:out value="${messageCreationSecteur}"/>
-                    </div>
-                </c:if>
-            </div>
-            <c:if test="${ !empty listSecteurs}">
-                <c:forEach var="secteur" items="${listSecteurs}">
-                    <div class="container">
-                        <div class="card">
+            <div class="card-body">
+                <c:if test="${ !empty listSecteurs}">
+                    <c:forEach var="secteur" items="${listSecteurs}">
+                        <div class="card" id="secteurCard">
                             <div class="card-header" id="secteurCardHeader">
                                 <h2 class="card-title">${secteur.nom}</h2>
                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -69,7 +71,8 @@
                                     <tr>
                                         <th>Nombre de voies : ${secteur.nbDeVoies}</th>
                                         <th>Hauteur max : ${secteur.hauteurMax}</th>
-                                        <th>Cotation : de ${secteur.cotationMinMax[0]} à ${secteur.cotationMinMax[1]}</th>
+                                        <th>Cotation : de ${secteur.cotationMinMax[0]}
+                                            à ${secteur.cotationMinMax[1]}</th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -84,29 +87,31 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
-            </c:if>
-
-
-            <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-                <div class="text-right">
-                    <c:url var="creationSecteurForm" value="/showCreationSecteurForm">
-                        <c:param name="siteId" value="${site.id}"/>
-                    </c:url>
-                    <a href="${creationSecteurForm}" type="button" id="btnAjoutSecteur" class="btn btn-outline-warning">Ajouter un secteur</a>
-                </div>
-            </sec:authorize>
+                    </c:forEach>
+                </c:if>
+            </div>
         </div>
-        <br><br>
-    </div>
 
-    <!-- FOOTER -->
-    <footer id="footer" class="page-footer">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-        </p>
-    </footer>
+
+        <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+            <div class="text-right">
+                <c:url var="creationSecteurForm" value="/showCreationSecteurForm">
+                    <c:param name="siteId" value="${site.id}"/>
+                </c:url>
+                <a href="${creationSecteurForm}" type="button" id="btnAjoutSecteur" class="btn btn-outline-warning">Ajouter
+                    un secteur</a>
+            </div>
+        </sec:authorize>
+    </div>
+    <br><br>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer" class="page-footer">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+    </p>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

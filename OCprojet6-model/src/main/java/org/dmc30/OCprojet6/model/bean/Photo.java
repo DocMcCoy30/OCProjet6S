@@ -10,10 +10,14 @@ public class Photo {
     public Photo() {
     }
 
-    public Photo(int photo_id) {
+    public Photo(String nom, String ref, int refId) {
+        this.nom = nom;
+        this.ref = ref;
+        this.refId = refId;
     }
 
-    public Photo(String nom, String ref, int refId) {
+    public Photo(int id, String nom, String ref, int refId) {
+        this.id = id;
         this.nom = nom;
         this.ref = ref;
         this.refId = refId;

@@ -12,8 +12,10 @@ public class Caracteristique {
     public Caracteristique() {
     }
 
-    public Caracteristique(int id) {
+    public Caracteristique(int id, String nom, String definition) {
         this.id = id;
+        this.nom = nom;
+        this.definition = definition;
     }
 
     public int getId() {

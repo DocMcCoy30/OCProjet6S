@@ -6,8 +6,8 @@ public class Voie {
 
     private int id;
     private String nom;
-    private Cotation cotation;
     private int hauteur;
+    private Cotation cotation;
     private Secteur secteur;
     private List<Caracteristique> listCaracteristiques;
     private List<Photo> listPhotos;
@@ -16,7 +16,10 @@ public class Voie {
     public Voie() {
     }
 
-    public Voie(int voie_id) {
+    public Voie(int id, String nom, int hauteur) {
+        this.id = id;
+        this.nom = nom;
+        this.hauteur = hauteur;
     }
 
     public int getId() {
@@ -35,20 +38,20 @@ public class Voie {
         this.nom = nom;
     }
 
-    public Cotation getCotation() {
-        return cotation;
-    }
-
-    public void setCotation(Cotation cotation) {
-        this.cotation = cotation;
-    }
-
     public int getHauteur() {
         return hauteur;
     }
 
     public void setHauteur(int hauteur) {
         this.hauteur = hauteur;
+    }
+
+    public Cotation getCotation() {
+        return cotation;
+    }
+
+    public void setCotation(Cotation cotation) {
+        this.cotation = cotation;
     }
 
     public Secteur getSecteur() {

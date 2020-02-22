@@ -18,9 +18,8 @@ public class VilleRM implements RowMapper<Ville> {
 
     @Override
     public Ville mapRow(ResultSet resultSet, int i) throws SQLException {
-        Ville vVille = new Ville(resultSet.getInt("ville_id"));
-        vVille.setId(resultSet.getInt("ville_id"));
-        vVille.setNom(resultSet.getString("nom"));
+        Ville vVille = new Ville(resultSet.getInt("ville_id"), resultSet.getString("nom"));
+
         // utilisation de departementDao avec departement_code
         Departement vDepartement = departementDao.getDepartementByCode(resultSet.getInt("departement_code"));
         vVille.setDepartement(vDepartement);

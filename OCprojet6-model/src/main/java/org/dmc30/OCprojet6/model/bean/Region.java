@@ -9,7 +9,9 @@ public class Region {
     public Region() {
     }
 
-    public Region(int region_id) {
+    public Region(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
     }
 
     public int getId() {

@@ -10,7 +10,9 @@ public class TypeRoche {
     public TypeRoche() {
     }
 
-    public TypeRoche(int type_roche_id) {
+    public TypeRoche(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
     }
 
     public int getId() {

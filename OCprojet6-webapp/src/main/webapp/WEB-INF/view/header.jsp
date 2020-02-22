@@ -15,22 +15,22 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/showSearchSitePage">Recherche</a>
                     </li>
                 </ul>
-            </div>
-            <div class="clearfix">
+
+            <div class="clearfix form-inline">
                 <form action="searchAll" method="post" class="form-inline mt-2 mt-lg-0 mr-2 float-right"
                       id="inputSearchForm">
                     <div class="ui-widget">
                         <input class="form-control mr-sm-2" type="text" id="searchInput" name="motCle">
                     </div>
-                    <button class="btn btn-outline-success my-2 mr-5" type="submit">Rechercher</button>
+                    <button class="btn btn-warning my-2 mr-5" type="submit" id="searchSiteButton">Rechercher</button>
                 </form>
-            </div>
-            <div class="clearfix">
+<%--            </div>--%>
+<%--            <div class="clearfix">--%>
                 <c:if test="${pageContext.request.userPrincipal.name == null}">
-            <span class="float-right form-inline">
-            <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/signin">Creer un compte</a>
+            <span class="form-inline mt-2 mt-lg-0 mr-2 float-right">
+            <a class="btn btn-warning" href="${pageContext.request.contextPath}/signin">Creer un compte</a>
             &nbsp
-            <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/login">Se connecter</a>
+            <a class="btn btn-warning" href="${pageContext.request.contextPath}/login">Se connecter</a>
         </span>
                 </c:if>
             </div>
@@ -43,6 +43,7 @@
                     <a class="btn btn-outline-warning" href="javascript:lougOutFormSubmit()">Se déconnecter</a>
                 </form>
             </c:if>
+            </div>
         </nav>
     </header>
 

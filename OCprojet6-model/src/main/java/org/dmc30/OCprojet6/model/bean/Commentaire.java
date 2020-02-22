@@ -10,7 +10,9 @@ public class Commentaire {
     public Commentaire() {
     }
 
-    public Commentaire(int commentaire_id) {
+    public Commentaire(int id, String commentaire) {
+        this.id = id;
+        this.commentaire = commentaire;
     }
 
     public String getCommentaire() {

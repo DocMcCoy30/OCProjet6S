@@ -26,7 +26,10 @@ public class Site {
     public Site() {
     }
 
-    public Site(int site_id) {
+    public Site(int id, String nom, boolean officiel) {
+        this.id = id;
+        this.nom = nom;
+        this.officiel = officiel;
     }
 
     public int getId() {

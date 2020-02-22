@@ -8,7 +8,9 @@ public class Cotation {
     public Cotation() {
     }
 
-    public Cotation(int cotation_id) {
+    public Cotation(int id, String valeur) {
+        this.id = id;
+        this.valeur = valeur;
     }
 
     public int getId() {

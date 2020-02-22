@@ -9,7 +9,9 @@ public class Ville {
     public Ville() {
     }
 
-    public Ville(int id) {
+    public Ville(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
     }
 
     public int getId() {

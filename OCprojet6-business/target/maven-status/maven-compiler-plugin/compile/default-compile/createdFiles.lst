@@ -28,4 +28,5 @@ org\dmc30\OCprojet6\business\contract\manager\VilleManager.class
 org\dmc30\OCprojet6\business\contract\manager\TypeRocheManager.class
 org\dmc30\OCprojet6\business\contract\manager\PhotoManager.class
 org\dmc30\OCprojet6\business\contract\manager\TopoManager.class
+org\dmc30\OCprojet6\business\impl\manager\labo.class
 org\dmc30\OCprojet6\business\impl\manager\RegionManagerImpl.class

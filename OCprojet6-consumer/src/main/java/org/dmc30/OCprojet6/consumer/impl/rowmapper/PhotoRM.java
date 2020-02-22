@@ -16,11 +16,11 @@ public class PhotoRM implements RowMapper<Photo> {
 
     @Override
     public Photo mapRow(ResultSet resultSet, int i) throws SQLException {
-        Photo vPhoto = new Photo(resultSet.getInt("photo_id"));
-        vPhoto.setId(resultSet.getInt("photo_id"));
-        vPhoto.setNom(resultSet.getString("nom"));
-        vPhoto.setRef(resultSet.getString("ref"));
-        vPhoto.setRefId(resultSet.getInt("ref_id"));
+        Photo vPhoto = new Photo(resultSet.getInt("photo_id"),
+                resultSet.getString("nom"),
+                resultSet.getString("ref"),
+                resultSet.getInt("ref_id"));
+
         return vPhoto;
     }
 }

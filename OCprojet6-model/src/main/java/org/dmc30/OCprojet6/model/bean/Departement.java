@@ -10,7 +10,9 @@ public class Departement {
     public Departement() {
     }
 
-    public Departement(int code) {
+    public Departement(int code, String nom) {
+        this.code = code;
+        this.nom = nom;
     }
 
     public int getCode() {

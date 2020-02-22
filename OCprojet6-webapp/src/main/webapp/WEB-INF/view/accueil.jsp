@@ -24,12 +24,12 @@
 
 <div id="body" class="col-lg-12">
 
-    <a id="jsTestPage" href="${pageContext.request.contextPath}/jsTestPage">JjsTestPage</a>
+<%--    <a id="jsTestPage" href="${pageContext.request.contextPath}/jsTestPage">JjsTestPage</a>--%>
 
     <div class="content-row vertical-center">
         <div class="jumbotron text-center">
             <div id="title">LES AMIS DE L'ESCALADE</div>
-            <div id="subTitle">Site communautaire des passionnés d'escalade</div>
+            <div id="subTitle">Le site des passionnés d'escalade</div>
         </div>
     </div>
 

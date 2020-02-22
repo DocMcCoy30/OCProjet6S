@@ -66,6 +66,8 @@ public class PhotoController extends AbstractController {
                 int vRandomRef = rand.nextInt(1000000);
                 vNomPhoto = "Site" + pSiteId + "_" + vRandomRef + "_" + pNomPhoto + ".jpeg";
                 // crée le fichier dans le repertoire
+                logger.debug("dir.getAbsolutePath = " + dir.getAbsolutePath());
+                logger.debug("dir.getPath = " + dir.getPath());
                 File serverFile = new File(dir.getAbsolutePath()
                         + File.separator + vNomPhoto);
                 BufferedOutputStream stream = new BufferedOutputStream(

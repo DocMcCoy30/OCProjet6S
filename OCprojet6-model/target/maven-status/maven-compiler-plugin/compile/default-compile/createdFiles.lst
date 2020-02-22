@@ -5,6 +5,7 @@ org\dmc30\OCprojet6\model\bean\Description.class
 org\dmc30\OCprojet6\model\bean\Departement.class
 org\dmc30\OCprojet6\model\bean\Site.class
 org\dmc30\OCprojet6\model\bean\Commentaire.class
+org\dmc30\OCprojet6\model\exception\ErrorMessages.class
 org\dmc30\OCprojet6\model\bean\TypeRoche.class
 org\dmc30\OCprojet6\model\bean\Region.class
 org\dmc30\OCprojet6\model\bean\Topo.class

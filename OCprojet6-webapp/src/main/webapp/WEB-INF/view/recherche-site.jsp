@@ -23,7 +23,7 @@
 <div id="body">
     <div class="container">
         <form action="searchSites" method="post" id="searchSitesForm">
-            <div class="row col-lg-12 no-gutters" id="buttonSearchSiteBar">
+            <div class="row col-lg-12 no-gutters" id="SearchSiteBar">
                 <div class="input-group col-lg">
                     <select class="custom-select" name="site" id="site" onchange="searchSitePopulate(1)">
                         <option selected disabled>Site</option>

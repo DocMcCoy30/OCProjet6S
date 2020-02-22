@@ -12,9 +12,7 @@ public class TypeRocheRM implements RowMapper<TypeRoche> {
 
     @Override
     public TypeRoche mapRow(ResultSet resultSet, int i) throws SQLException {
-        TypeRoche vTypeRoche = new TypeRoche(resultSet.getInt("type_roche_id"));
-        vTypeRoche.setId(resultSet.getInt("type_roche_id"));
-        vTypeRoche.setNom(resultSet.getString("nom"));
+        TypeRoche vTypeRoche = new TypeRoche(resultSet.getInt("type_roche_id"), resultSet.getString("nom"));
         return vTypeRoche;
     }
 }

@@ -17,7 +17,10 @@ public class Secteur {
     public Secteur() {
     }
 
-    public Secteur(int secteur_id) {
+    public Secteur(int secteur_id, String nom, String description) {
+        this.id = secteur_id;
+        this.nom = nom;
+        this.description = description;
     }
 
     public int getId() {

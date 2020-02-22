@@ -236,7 +236,7 @@ public class SiteController extends AbstractController {
     }
 
     /**
-     * Crée un nouveau site dans la base de données er l'affiche dans la page de recherche.
+     * Crée un nouveau site dans la base de données et l'affiche dans la page de recherche.
      * @param pModel Les données des listes déroulantes à renvoyer à la page de recherche.
      * @param pNomSite Le nom du nouveau site.
      * @param pDescription La description du nouveau site.

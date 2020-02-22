@@ -18,11 +18,12 @@ public class TopoRM implements RowMapper<Topo> {
 
     @Override
     public Topo mapRow(ResultSet resultSet, int i) throws SQLException {
-        Topo vTopo = new Topo(resultSet.getInt("topo_id"));
-        vTopo.setNom(resultSet.getString("nom"));
-        vTopo.setDescription(resultSet.getString("description"));
-        vTopo.setDisponible(resultSet.getBoolean("disponible"));
-        vTopo.setDateDeParution(resultSet.getDate("date_parution"));
+        Topo vTopo = new Topo(resultSet.getInt("topo_id"),
+                resultSet.getString("nom"),
+                resultSet.getString("description"),
+                resultSet.getBoolean("disponible"),
+                resultSet.getDate("date_parution"));
+
         // utilisation de dao
         Site vSite = siteDao.getSiteById(resultSet.getInt("site_id"));
         vTopo.setSite(vSite);

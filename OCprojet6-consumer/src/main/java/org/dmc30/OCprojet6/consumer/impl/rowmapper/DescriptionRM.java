@@ -12,10 +12,10 @@ public class DescriptionRM implements RowMapper<Description> {
 
     @Override
     public Description mapRow(ResultSet resultSet, int i) throws SQLException {
-        Description vDescription = new Description(resultSet.getInt("description_id"));
-        vDescription.setId(resultSet.getInt("description_id"));
-        vDescription.setDescription(resultSet.getString("description"));
-        vDescription.setInfo(resultSet.getString("info"));
+        Description vDescription = new Description(resultSet.getInt("description_id"),
+                resultSet.getString("description"),
+                resultSet.getString("info"));
+
         return vDescription;
     }
 }

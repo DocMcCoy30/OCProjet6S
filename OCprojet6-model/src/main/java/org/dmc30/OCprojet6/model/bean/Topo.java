@@ -14,7 +14,12 @@ public class Topo {
     public Topo() {
     }
 
-    public Topo(int topo_id) {
+    public Topo(int id, String nom, String description, boolean disponible, Date dateDeParution) {
+        Id = id;
+        this.nom = nom;
+        this.description = description;
+        this.disponible = disponible;
+        this.dateDeParution = dateDeParution;
     }
 
     public int getId() {

@@ -20,14 +20,15 @@
 
 <%@include file="header.jsp" %>
 
-    <div id="body">
-        <div class="card">
+<div id="body">
+    <div class="container">
+        <div class="card" id="siteCard">
             <div class="card-header">
                 <h2 class="card-title">${site.nom}</h2>
                 <h5 class="text-muted text-right">${site.ville.nom} - ${site.departement.nom}</h5>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" id="siteCardBody">
             <div>
                 <img src="..." class="card-img-top" alt="...">
             </div>
@@ -38,29 +39,29 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer">
+        <div class="card-footer" id="siteCardFooter">
             <c:url var="secteurPage" value="/showSecteurPage">
                 <c:param name="siteId" value="${site.id}"/>
             </c:url>
             <div class="row" id="buttonLinkBar">
                 <div class="col-md-2">
-                    <a class="btn btn-outline-warning" href="${secteurPage}">Voir les secteurs</a>
+                    <a class="btn btn-warning" href="${secteurPage}">Voir les secteurs</a>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/#">Voir les topos</a>
+                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les topos</a>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>
+                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>
+                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>
                 </div>
                 <div class="col-md-2">
-                    <input class="btn btn-outline-warning" type="submit" onclick="showFormUpload(1)"
+                    <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"
                            value="Ajouter une photo"><br/>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
+                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
                 </div>
             </div>
             <br>
@@ -84,7 +85,7 @@
                         <input type="text" class="form-control" name="nomPhoto" aria-label="nomPhoto"
                                aria-describedby="nameLabel">
                     </div>
-                    <button class="btn btn-outline-warning offset-10" id="btnUpload" type="submit"
+                    <button class="btn btn-warning offset-10" id="btnUpload" type="submit"
                             onclick="showFormUpload(0)">Ajouter
                     </button>
                 </div>
@@ -156,19 +157,22 @@
                 </ul>
                 <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
                     <div class="text-right">
-                    <button type="button" id="btnAjoutCommentaire" class="btn btn-outline-primary">Ajouter un commentaire</button>
+                        <button type="button" id="btnAjoutCommentaire" class="btn btn-outline-primary">Ajouter un
+                            commentaire
+                        </button>
                     </div>
                 </sec:authorize>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- FOOTER -->
-    <footer id="footer" class="page-footer">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-        </p>
-    </footer>
+<!-- FOOTER -->
+<footer id="footer" class="page-footer">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+    </p>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

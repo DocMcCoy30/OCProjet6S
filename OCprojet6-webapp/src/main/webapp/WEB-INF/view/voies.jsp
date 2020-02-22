@@ -21,47 +21,49 @@
 <%@include file="header.jsp" %>
 
 <div id="body">
-    <div class="card">
-        <div class="card-header" id="voieCardHeader">
-            <h2 class="card-title">${secteur.nom}</h2>
-        </div>
-        <div class="card-body">
-            <table class="table" id="infoVoies">
-                <thead>
-                <tr>
-                    <th>Nom:</th>
-                    <th>Hauteur</th>
-                    <th>Cotation</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="voie" items="${voies}">
-                    <tr>
-                        <td>${voie.nom}</td>
-                        <td>${voie.hauteur}</td>
-                        <td>${voie.cotation.valeur}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <div class="text-left">
-                <c:url var="showSecteurPage" value="/showSecteurPage">
-                    <c:param name="siteId" value="${siteId}"/>
-                </c:url>
-                <a href="${showSecteurPage}" type="button" id="btnRetour" class="btn btn-outline-primary">Retour aux
-                    secteurs</a>
+    <div class="container">
+        <div class="card">
+            <div class="card-header" id="voieCardHeader">
+                <h2 class="card-title">${secteur.nom}</h2>
             </div>
-            <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-                <div class="text-right">
-                    <c:url var="creationVoieForm" value="/showCreationVoieForm">
-                        <c:param name="SecteurId" value="${secteur.id}"/>
+            <div class="card-body">
+                <table class="table" id="infoVoies">
+                    <thead>
+                    <tr>
+                        <th>Nom:</th>
+                        <th>Hauteur</th>
+                        <th>Cotation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="voie" items="${voies}">
+                        <tr>
+                            <td>${voie.nom}</td>
+                            <td>${voie.hauteur}</td>
+                            <td>${voie.cotation.valeur}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="text-left">
+                    <c:url var="showSecteurPage" value="/showSecteurPage">
+                        <c:param name="siteId" value="${siteId}"/>
                     </c:url>
-                    <a href="${creationVoieForm}" type="button" id="btnAjoutVoie" class="btn btn-outline-primary">Ajouter
-                        une voie</a>
+                    <a href="${showSecteurPage}" type="button" id="btnRetour" class="btn btn-outline-primary">Retour aux
+                        secteurs</a>
                 </div>
-            </sec:authorize>
+                <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+                    <div class="text-right">
+                        <c:url var="creationVoieForm" value="/showCreationVoieForm">
+                            <c:param name="SecteurId" value="${secteur.id}"/>
+                        </c:url>
+                        <a href="${creationVoieForm}" type="button" id="btnAjoutVoie" class="btn btn-outline-primary">Ajouter
+                            une voie</a>
+                    </div>
+                </sec:authorize>
+            </div>
         </div>
     </div>
 </div>

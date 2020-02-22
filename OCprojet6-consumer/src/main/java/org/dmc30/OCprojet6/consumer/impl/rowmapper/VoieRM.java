@@ -22,9 +22,10 @@ public class VoieRM implements RowMapper<Voie> {
 
     @Override
     public Voie mapRow(ResultSet resultSet, int i) throws SQLException {
-        Voie vVoie = new Voie(resultSet.getInt("voie_id"));
-        vVoie.setNom(resultSet.getString("nom"));
-        vVoie.setHauteur(resultSet.getInt("hauteur"));
+        Voie vVoie = new Voie(resultSet.getInt("voie_id"),
+                resultSet.getString("nom"),
+                resultSet.getInt("hauteur"));
+
         // utilisation de dao
         Secteur vSecteur = secteurDao.getSecteurById(resultSet.getInt("secteur_id"));
         vVoie.setSecteur(vSecteur);
