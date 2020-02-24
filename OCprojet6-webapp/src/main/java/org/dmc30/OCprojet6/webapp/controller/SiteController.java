@@ -175,6 +175,10 @@ public class SiteController extends AbstractController {
             if (!vListPhotos.isEmpty()) {
                 logger.info("La liste de photos pour " + vSite.getNom() + " contient " + vListPhotos.size() + " photos");
                 vSite.setListPhotos(vListPhotos);
+            } else {
+                vListPhotos = photoResource.getPhotoByRefId(0, "logo");
+                logger.info("La liste de photo pour " + vSite.getNom() + " est vide");
+                vSite.setListPhotos(vListPhotos);
             }
         }
         vMaV.addObject("listSites", vListSites);
@@ -191,12 +195,17 @@ public class SiteController extends AbstractController {
     @GetMapping("/showSitePage")
     public ModelAndView showSitePage(@RequestParam("siteId") int pSiteId) {
         ModelAndView vMaV = new ModelAndView();
+        List<Photo> vListPhotos;
         // création du site à retourner
         Site vSite = siteResource.getSiteById(pSiteId);
-        // création de la liste de photo correspondantes au site
-        if (photoResource.getPhotoByRefId(pSiteId, "site") != null) {
-            List<Photo> vListPhotos = photoResource.getPhotoByRefId(pSiteId, "site");
-            vMaV.addObject("listPhotos", vListPhotos);
+        // création de la liste de photo correspondantes au site ou logo si absence de photo
+        if ( ! (photoResource.getPhotoByRefId(pSiteId, "site")).isEmpty() ) {
+            vListPhotos = photoResource.getPhotoByRefId(pSiteId, "site");
+            vSite.setListPhotos(vListPhotos);
+        } else {
+            vListPhotos = photoResource.getPhotoByRefId(0, "logo");
+            vSite.setListPhotos(vListPhotos);
+            logger.debug("Logo = "+vListPhotos.get(0).getNom());
         }
         vMaV.addObject("site", vSite);
         vMaV.setViewName("sites");

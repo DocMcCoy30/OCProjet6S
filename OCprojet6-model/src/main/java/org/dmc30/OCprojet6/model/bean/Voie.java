@@ -22,6 +22,13 @@ public class Voie {
         this.hauteur = hauteur;
     }
 
+    public Voie(String nom, int hauteur, Cotation cotation, Secteur secteur) {
+        this.nom = nom;
+        this.hauteur = hauteur;
+        this.cotation = cotation;
+        this.secteur = secteur;
+    }
+
     public int getId() {
         return id;
     }

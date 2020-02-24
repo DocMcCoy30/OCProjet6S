@@ -1,12 +1,16 @@
 package org.dmc30.OCprojet6.model.exception;
 
 public enum ErrorMessages {
-    SQL_ERROR(100, "Une erreur de type SQL est survenue lors de la création du compte.", "Vérifier la requète SQL ou la structure de la table"),
-    TX_ERROR(101, "Une erreur technique est survenue lors de la création du compte.", "Une erreur est survenue lors de l'execution de la transaction"),
+    SQL_SYNTAX_ERROR(100, "Une erreur de type SQL est survenue.", "Vérifier la requète SQL ou la structure de la table"),
+    SQL_QUERY_ERROR(101, "Un problème est survenu lors de la récupération des données", "Vérifier la connexion à la base de données ou la requète SQL"),
+    SQL_UPDATE_ERROR(102, "Un problème est survenu lors de la création des données", "Vérifier la connexion à la base de données ou la requète SQL"),
+    SQL_DELETE_ERROR(103, "Un problème est survenu lors de la suppression des données", "Vérifier la connexion à la base de données ou la requète SQL"),
 
-    OCP_6_200(200, "Erreur 200", "Description de l'erreur 200"),
+    TX_ERROR(200, "Une erreur technique est survenue lors de la création du compte.", "Une erreur est survenue lors de l'execution de la transaction"),
 
-    OCP_6_300(300, "Erreur 300", "Description de l'erreur 300");
+    DUPLICATE_KEY_ERROR(300, "Ce username/mail existe déjà dans la base", "Username ou mail déjà existant dans la base de données"),
+
+    TECHNICAL_ERROR(400, "Une erreur technique est survenue.", "Une erreur technique est survenue.");
 
     private Integer errorCode;
     private String errorMessage;

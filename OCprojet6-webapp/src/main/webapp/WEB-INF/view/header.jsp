@@ -40,7 +40,7 @@
                 <form action="${logoutUrl}" method="post" id="logoutForm">
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}"/>
-                    <a class="btn btn-outline-warning" href="javascript:lougOutFormSubmit()">Se déconnecter</a>
+                    <a class="btn btn-warning" href="javascript:lougOutFormSubmit()">Se déconnecter</a>
                 </form>
             </c:if>
             </div>

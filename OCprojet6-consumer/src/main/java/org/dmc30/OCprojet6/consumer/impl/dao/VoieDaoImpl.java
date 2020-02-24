@@ -4,6 +4,8 @@ import org.dmc30.OCprojet6.consumer.contract.dao.VoieDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.VoieRM;
 import org.dmc30.OCprojet6.model.bean.Voie;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,6 +19,14 @@ public class VoieDaoImpl extends AbstractDao implements VoieDao {
 
     @Override
     public void createVoie(Voie pVoie) {
+        String vSQL = "INSERT INTO voie (nom, hauteur, secteur_id, cotation_id) VALUES (:nom, :hauteur, :secteurId, :cotationId)";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("nom", pVoie.getNom());
+        vParams.addValue("hauteur", pVoie.getHauteur());
+        vParams.addValue("secteurId", pVoie.getSecteur().getId());
+        vParams.addValue("cotationId", pVoie.getCotation().getId());
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL,vParams);
     }
 
     @Override

@@ -46,13 +46,13 @@
                         <div class="card" id="secteurCard">
                             <div class="card-header" id="secteurCardHeader">
                                 <h2 class="card-title">${secteur.nom}</h2>
-                                <div class="btn-group" role="group" aria-label="Basic example">
+                                <div class="btn-group" role="group">
                                     <div>
                                         <c:url var="showVoiePage" value="/showVoiePage">
                                             <c:param name="secteurId" value="${secteur.id}"/>
                                             <c:param name="siteId" value="${site.id}"/>
                                         </c:url>
-                                        <a href="${showVoiePage}" type="button" class="btn btn-outline-warning">Voir les
+                                        <a href="${showVoiePage}" type="button" class="btn btn-warning">Voir les
                                             voies</a>
                                     </div>
                                     &nbsp
@@ -60,7 +60,7 @@
                                         <c:url var="showPhotoSecteurPage" value="/showPhotoSecteurPage">
                                             <c:param name="secteurId" value="${secteur.id}"/>
                                         </c:url>
-                                        <a href="${showVoiePage}" type="button" class="btn btn-outline-warning">Voir les
+                                        <a href="${showPhotoSecteurPage}" type="button" class="btn btn-warning">Voir les
                                             photos</a>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                 <c:url var="creationSecteurForm" value="/showCreationSecteurForm">
                     <c:param name="siteId" value="${site.id}"/>
                 </c:url>
-                <a href="${creationSecteurForm}" type="button" id="btnAjoutSecteur" class="btn btn-outline-warning">Ajouter
+                <a href="${creationSecteurForm}" type="button" id="btnAjoutSecteur" class="btn btn-warning">Ajouter
                     un secteur</a>
             </div>
         </sec:authorize>

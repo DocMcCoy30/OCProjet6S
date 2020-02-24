@@ -6,6 +6,8 @@ import org.dmc30.OCprojet6.business.contract.manager.UsersManager;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.ErrorMessages;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,9 +49,15 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
             vTransactionStatus = null;
             getPlatformTransactionManager().commit(vTScommit);
             logger.info("Commit OK");
+        } catch (DuplicateKeyException e) {
+            logger.error("Username ou mail déjà existant.");
+            throw new TechnicalException(ErrorMessages.DUPLICATE_KEY_ERROR.getErrorMessage());
         } catch (BadSqlGrammarException e) {
             logger.error("Problème de syntaxe dans la requète SQL");
-            throw new TechnicalException(ErrorMessages.SQL_ERROR.getErrorMessage());
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
         } catch (Exception e) {
             logger.error("Problème technique");
             throw new TechnicalException(ErrorMessages.TX_ERROR.getErrorMessage());
@@ -62,7 +70,7 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
     }
 
     @Override
-    public Users getUsersByName(String pUsername) {
+    public Users getUsersByName(String pUsername) throws TechnicalException {
         return getDaoFactory().getUsersDao().getUsersByName(pUsername);
     }
 
@@ -87,7 +95,7 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
      * @param pUser Le nouvel utilisateur à créer et dont on souhaite comparer les données
      * @return un tableau de 2 chiffres analysés dans le controller : si différents de 0 => existence d'un doublon
      */
-    public int[] rechercheDoublon(Users pUser) {
+    public int[] rechercheDoublon(Users pUser) throws TechnicalException {
         List<Users> vListUsers = getDaoFactory().getUsersDao().getAllUsers();
         int vUsernameMarker = 0;
         int vEmailMarker = 0;

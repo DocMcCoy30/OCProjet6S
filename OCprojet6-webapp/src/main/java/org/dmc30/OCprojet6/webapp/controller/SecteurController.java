@@ -45,7 +45,7 @@ public class SecteurController extends AbstractController {
      * @return Les infos du site concerné et la vue.
      */
     @GetMapping("/showCreationSecteurForm")
-    public ModelAndView showCreationSiteForm(@RequestParam(value = "siteId") Integer pSiteId) {
+    public ModelAndView showCreationSecteurForm(@RequestParam(value = "siteId") Integer pSiteId) {
         ModelAndView vMaV = new ModelAndView();
         Site vSite = siteResource.getSiteById(pSiteId);
         vMaV.addObject("site", vSite);
@@ -61,7 +61,7 @@ public class SecteurController extends AbstractController {
      * @return Les données du sites et la liste des secteurs, un message de confirmation, la vue (page-secteurs).
      */
     @PostMapping("/creationSecteur")
-    public ModelAndView createSite(@RequestParam(value = "secteurNom", required = false) String pSecteurNom,
+    public ModelAndView createSecteur(@RequestParam(value = "secteurNom", required = false) String pSecteurNom,
                                    @RequestParam(value = "description", required = false) String pDescription,
                                    @RequestParam(value = "siteId", required = false) int pSiteId) {
         Secteur vNewSecteur = null;

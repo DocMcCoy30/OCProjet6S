@@ -4,6 +4,9 @@ import org.dmc30.OCprojet6.consumer.contract.dao.UsersDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.UsersRM;
 import org.dmc30.OCprojet6.consumer.securityResource.PasswordEncoderHelper;
 import org.dmc30.OCprojet6.model.bean.Users;
+import org.dmc30.OCprojet6.model.exception.ErrorMessages;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.inject.Inject;
@@ -25,23 +28,41 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
         String vEmail = pUsers.getEmail();
         String vSQL = "INSERT INTO users (username, password, email, enabled) VALUES (?,?,?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        vJdbcTemplate.update(vSQL, vUserName, vPassword, vEmail, true);
-
     }
 
     @Override
-    public Users getUsersByName(String pUsername) {
+    public Users getUsersByName(String pUsername) throws TechnicalException {
+        List<Users> vListUsers;
         String vSQL = "SELECT * FROM users WHERE username="+pUsername;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Users> vListUsers = vJdbcTemplate.query(vSQL, usersRM);
+        try {
+            vListUsers = vJdbcTemplate.query(vSQL, usersRM);
+        }
+        catch (DataAccessException e) {
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        }
+        catch (Exception e) {
+            throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
+        }
         return vListUsers.get(0);
     }
 
     @Override
-    public List<Users> getAllUsers() {
+    public List<Users> getAllUsers() throws TechnicalException {
+        List<Users> vListUsers;
+
         String vSQL = "SELECT * FROM users";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        return vJdbcTemplate.query(vSQL, usersRM);
+        try {
+        vListUsers = vJdbcTemplate.query(vSQL, usersRM);
+        }
+        catch (DataAccessException e) {
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        }
+        catch (Exception e) {
+            throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
+        }
+        return vListUsers;
     }
 
     @Override

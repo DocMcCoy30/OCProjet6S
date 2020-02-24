@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
 import org.dmc30.OCprojet6.model.bean.Caracteristique;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.dmc30.OCprojet6.webapp.resource.AllCaracteristiqueResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +18,8 @@ public class CaracteristiqueController {
     private AllCaracteristiqueResource allCaracteristiqueResource;
 
     @GetMapping("/liste")
-    public String listCaracteristique(Model pModel) {
-        List<Caracteristique> vCaracteristique = allCaracteristiqueResource.getListCaracteristique();
+    public String listCaracteristique(Model pModel) throws TechnicalException {
+        List<Caracteristique> vCaracteristique = allCaracteristiqueResource.getAllCaracteristiques();
         pModel.addAttribute("caracteristiques", vCaracteristique);
         return "liste-caracteristique";
     }
@@ -31,26 +32,26 @@ public class CaracteristiqueController {
     }
 
     @PostMapping("/ajoutCaracteristique")
-    public String saveCaracteristique(@ModelAttribute("caracteristique") Caracteristique pCaracteristique) {
+    public String saveCaracteristique(@ModelAttribute("caracteristique") Caracteristique pCaracteristique) throws TechnicalException {
         allCaracteristiqueResource.createCaracteristique(pCaracteristique);
         return "redirect:/caracteristique/liste";
     }
 
     @GetMapping("/formulaireUpdate")
-    public String showFormForUpdate(@RequestParam("caracteristiqueId") int pId, Model pModel) {
+    public String showFormForUpdate(@RequestParam("caracteristiqueId") int pId, Model pModel) throws TechnicalException {
         Caracteristique vCaracteristique = allCaracteristiqueResource.getCaracteristiqueById(pId);
         pModel.addAttribute(vCaracteristique);
         return "formulaire-update";
     }
 
     @PostMapping("/updateCaracteristique")
-    public String updateCaracteristique(@ModelAttribute("caracteristique") Caracteristique pCaracteristique) {
+    public String updateCaracteristique(@ModelAttribute("caracteristique") Caracteristique pCaracteristique) throws TechnicalException {
         allCaracteristiqueResource.updateCaracteristique(pCaracteristique);
         return "redirect:/caracteristique/liste";
     }
 
     @GetMapping("/delete")
-    public String deleteCustomer(@RequestParam("caracteristiqueId") int pId) {
+    public String deleteCustomer(@RequestParam("caracteristiqueId") int pId) throws TechnicalException {
         allCaracteristiqueResource.deleteCarateristique(pId);
         return "redirect:/caracteristique/liste";
     }

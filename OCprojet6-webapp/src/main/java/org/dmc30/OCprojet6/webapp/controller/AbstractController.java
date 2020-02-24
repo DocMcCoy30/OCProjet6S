@@ -27,7 +27,7 @@ public class AbstractController {
         pModel.addAttribute("departements", vListDepartements);
         List<Ville> vListVilles = geographicResource.getListVilles();
         pModel.addAttribute("villes", vListVilles);
-        List<TypeRoche> vListTypeRoches = allCaracteristiqueResource.getListTypeRoche();
+        List<TypeRoche> vListTypeRoches = allCaracteristiqueResource.getAllTypeRoche();
         pModel.addAttribute("typeRoche", vListTypeRoches);
     }
 }

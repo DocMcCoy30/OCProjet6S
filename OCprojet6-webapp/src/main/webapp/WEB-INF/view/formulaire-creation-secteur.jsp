@@ -20,31 +20,30 @@
 
 <%@include file="header.jsp" %>
 
-    <div id="body">
-        <div class="container-fluid">
-            <div class="card">
-                <div class="card-title"><h2>Ajouter un nouveau secteur </h2></div>
+<div id="body">
+    <div class="container-fluid">
+        <c:set var="site" value="${site}"/>
+        <div class="card">
+            <div class="card-header">
+                <c:url var="secteurPage" value="/showSecteurPage">
+                    <c:param name="siteId" value="${site.id}"/>
+                </c:url>
+                <input id="secteurId" name="secteurId" type="hidden" value="${secteur.id}">
+                <h2 class="card-title"><a href="${secteurPage}">${site.nom}</a></h2>
+            </div>
+            <div class="card-body">
+                <h5>Ajouter un nouveau secteur :</h5>
                 <form action="creationSecteur" method="post">
                     <div class="row col-md-12 no-gutters">
-                        <div class="input-group col-md-5">
-                            <div class="input-group-prepend">
-                                <c:set var="site" value="${site}"/>
-                                <input id="siteId" name="siteId" type="hidden" value="${site.id}">
-                                <span class="input-group-text" id="siteNom">Nom du site : </span>
-                            </div>
-                            <input type="text" name="siteNom" disabled="disabled" value="${site.nom}" required
-                                   class="form-control"
-                                   aria-label="siteNom"
-                                   aria-describedby="siteNom">
-                        </div>
-                        <div class="input-group col-md-7">
+                        <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="secteurNom">Nom du secteur : </span>
                             </div>
-                            <input type="text" name="secteurNom" required class="form-control" aria-label="secteurNom"
-                                   aria-describedby="secteurNom">
+                            <input type="text" name="secteurNom" class="form-control" aria-label="secteurNom"
+                                   aria-describedby="secteurNom" required>
                         </div>
-                        <div class="row col-lg-12 no-gutters">
+                    </div>
+                        <div class="row col-md-12 no-gutters">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="description">Description : </span>
@@ -52,21 +51,22 @@
                                 <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
                             </div>
                         </div>
-                    </div>
+
                     <br><br>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-outline-warning">Ajouter</button>
+                        <button type="submit" class="btn btn-warning">Ajouter</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <!-- FOOTER -->
-    <footer id="footer" class="page-footer">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-        </p>
-    </footer>
+</div>
+<!-- FOOTER -->
+<footer id="footer" class="page-footer">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+    </p>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

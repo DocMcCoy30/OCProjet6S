@@ -83,7 +83,7 @@
                         <c:param name="siteId" value="${site.id}"/>
                     </c:url>
                     <div class="col-lg-6">
-                        <div class="card" id="siteCard">
+                        <div class="card" id="searchSiteCard">
                             <div class="row no-gutters">
                                 <div class="col-lg-4">
                                     <a href="${sitePageLink}"><img
@@ -107,7 +107,7 @@
         <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
             <div class="text-right">
                 <a href="${pageContext.request.contextPath}/showCreationSiteForm" type="button"
-                   class="btn btn-outline-warning" id="createSiteButton">Créer
+                   class="btn btn-warning" id="createSiteButton">Créer
                     un site</a>
             </div>
         </sec:authorize>

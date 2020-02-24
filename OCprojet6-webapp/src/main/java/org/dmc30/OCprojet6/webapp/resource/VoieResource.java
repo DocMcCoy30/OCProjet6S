@@ -11,4 +11,8 @@ public class VoieResource extends AbstractResource{
     public List<Voie> getVoiesBySecteurId (int pSecteurId) {
         return getManagerFactory().getVoieManager().getVoiesBySecteurId(pSecteurId);
     }
+
+    public void createVoie (Voie pVoie) {
+        getManagerFactory().getVoieManager().createVoie(pVoie);
+    }
 }

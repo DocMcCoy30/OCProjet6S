@@ -15,43 +15,58 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
-    <title>Page de creation de secteur</title>
+    <title>Page de creation de voie</title>
 </head>
 
 <%@include file="header.jsp" %>
 
 <div id="body">
     <div class="container-fluid">
-        <c:set var="site" value="${site}"/>
+        <c:set var="siteId" value="${siteId}"/>
+        <c:set var="secteur" value="${secteur}"/>
         <div class="card">
             <div class="card-header">
-                <c:url var="secteurPage" value="/showSecteurPage">
-                    <c:param name="siteId" value="${site.id}"/>
+                <c:url var="voiePage" value="/showVoiePage">
+                    <c:param name="siteId" value="${siteId}"/>
+                    <c:param name="secteurId" value="${secteur.id}"/>
                 </c:url>
-                <input id="secteurId" name="secteurId" type="hidden" value="${secteur.id}">
-                <h2 class="card-title"><a href="${secteurPage}">${site.nom}</a></h2>
+                <h2 class="card-title"><a href="${voiePage}">${secteur.nom}</a></h2>
             </div>
             <div class="card-body">
-                <h5>Ajouter un nouveau secteur :</h5>
-                <form action="creationSecteur" method="post">
+                <h5>Ajouter une nouvelle voie :</h5>
+                <form action="creationVoie" method="post">
+                    <input id="siteId" name="siteId" type="hidden" value="${siteId}">
+                    <input id="secteurId" name="secteurId" type="hidden" value="${secteur.id}">
                     <div class="row col-md-12 no-gutters">
-                        <div class="input-group">
+                        <div class="input-group mb-1">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="secteurNom">Nom du secteur : </span>
+                                <span class="input-group-text" id="voieNom">Nom de la voie : </span>
                             </div>
-                            <input type="text" name="secteurNom" class="form-control" aria-label="secteurNom"
-                                   aria-describedby="secteurNom" required>
+                            <input type="text" name="nom" class="form-control" aria-label="Nom de la voie"
+                                   aria-describedby="Nom de la voie" required>
                         </div>
                     </div>
-                        <div class="row col-md-12 no-gutters">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="description">Description : </span>
-                                </div>
-                                <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+                    <div class="row col-md-12 no-gutters">
+                        <div class="input-group col-md-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="description">Hauteur : </span>
                             </div>
+                            <input type="number" name="hauteur" class="form-control" aria-label="Hauteur de la voie"
+                                   aria-describedby="Hauteur de la voie">
                         </div>
-
+                        <div class="input-group col-md-4 ml-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="cotation">Cotation : </span>
+                            </div>
+                            <select class="custom-select" name="cotationId" id="cotations"                                 aria-label="Cotation de la voie"
+                                    aria-describedby="Cotation de la voie">
+                                <option selected disabled></option>
+                                <c:forEach var="cotation" items="${cotations}">
+                                    <option value="${cotation.id}">${cotation.valeur}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
                     <br><br>
                     <div class="text-right">
                         <button type="submit" class="btn btn-warning">Ajouter</button>

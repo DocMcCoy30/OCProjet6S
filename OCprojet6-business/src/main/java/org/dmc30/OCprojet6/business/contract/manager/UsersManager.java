@@ -17,7 +17,7 @@ public interface UsersManager {
      * @param pUsername l'identifiant de l'objet recherché
      * @return l'objet recherché
      */
-    Users getUsersByName (String pUsername);
+    Users getUsersByName (String pUsername) throws TechnicalException;
 
     /**
      * Cherche et renvoie la liste des objets de type Users stockés dans la database
@@ -42,5 +42,5 @@ public interface UsersManager {
      * @param pUsers le Users renseigné dans le formulaire de création de compte
      * @return vrai ou faux
      */
-    int[] rechercheDoublon (Users pUsers);
+    int[] rechercheDoublon (Users pUsers) throws TechnicalException;
 }

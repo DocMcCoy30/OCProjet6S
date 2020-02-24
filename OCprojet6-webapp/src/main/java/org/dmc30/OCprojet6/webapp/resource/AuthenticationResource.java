@@ -13,11 +13,11 @@ public class AuthenticationResource extends AbstractResource{
         getManagerFactory().getUsersManager().createUsers(pUsers);
     }
 
-    public Users getUserByName (String pUsername) {
+    public Users getUserByName (String pUsername) throws TechnicalException {
         return getManagerFactory().getUsersManager().getUsersByName(pUsername);
     }
 
-    public int[] rechercheDoublon (Users pUsers) {
+    public int[] rechercheDoublon (Users pUsers) throws TechnicalException {
         return getManagerFactory().getUsersManager().rechercheDoublon(pUsers);
     }
 

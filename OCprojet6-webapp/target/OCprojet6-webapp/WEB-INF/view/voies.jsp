@@ -15,7 +15,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
-    <title>Page des secteurs</title>
+    <title>Page des voies</title>
 </head>
 
 <%@include file="header.jsp" %>
@@ -25,14 +25,28 @@
         <div class="card">
             <div class="card-header" id="voieCardHeader">
                 <h2 class="card-title">${secteur.nom}</h2>
+                <div class="text-right">
+                    <c:url var="showSecteurPage" value="/showSecteurPage">
+                        <c:param name="siteId" value="${siteId}"/>
+                    </c:url>
+                    <a href="${showSecteurPage}" type="button" id="btnRetour" class="btn btn-warning">Retour aux
+                        secteurs</a>
+                </div>
+                <div>
+                    <c:if test="${ !empty messageCreationVoie}">
+                        <div class="alert alert-success" role="alert">
+                            <c:out value="${messageCreationVoie}"/>
+                        </div>
+                    </c:if>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table" id="infoVoies">
                     <thead>
                     <tr>
                         <th>Nom:</th>
-                        <th>Hauteur</th>
-                        <th>Cotation</th>
+                        <th>Hauteur:</th>
+                        <th>Cotation:</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,24 +60,16 @@
                     </tbody>
                 </table>
             </div>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <div class="text-left">
-                    <c:url var="showSecteurPage" value="/showSecteurPage">
+            <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+                <div class="text-right">
+                    <c:url var="creationVoieForm" value="/showCreationVoieForm">
+                        <c:param name="secteurId" value="${secteur.id}"/>
                         <c:param name="siteId" value="${siteId}"/>
                     </c:url>
-                    <a href="${showSecteurPage}" type="button" id="btnRetour" class="btn btn-outline-primary">Retour aux
-                        secteurs</a>
+                    <a href="${creationVoieForm}" type="button" id="btnAjoutVoie" class="btn btn-warning">Ajouter
+                        une voie</a>
                 </div>
-                <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-                    <div class="text-right">
-                        <c:url var="creationVoieForm" value="/showCreationVoieForm">
-                            <c:param name="SecteurId" value="${secteur.id}"/>
-                        </c:url>
-                        <a href="${creationVoieForm}" type="button" id="btnAjoutVoie" class="btn btn-outline-primary">Ajouter
-                            une voie</a>
-                    </div>
-                </sec:authorize>
-            </div>
+            </sec:authorize>
         </div>
     </div>
 </div>

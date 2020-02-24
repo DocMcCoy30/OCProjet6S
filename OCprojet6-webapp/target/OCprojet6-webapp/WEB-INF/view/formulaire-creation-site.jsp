@@ -20,10 +20,13 @@
 
 <%@include file="header.jsp" %>
 
-    <div id="body">
-        <div class="container-fluid">
-            <div class="card">
+<div id="body">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
                 <div class="card-title"><h2>Ajouter un nouveau site</h2></div>
+            </div>
+            <div class="card-body">
                 <form action="creationSite" method="post">
                     <div class="row col-md-12 no-gutters">
                         <div class="input-group col-lg-7">
@@ -33,7 +36,7 @@
                             <input type="text" name="nom" class="form-control" aria-label="nom"
                                    aria-describedby="nom" required>
                         </div>
-                        <div class="input-group col-lg-5">
+                        <div class="input-group col-md ml-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="typeRoches">Type de roche : </span>
                             </div>
@@ -45,37 +48,37 @@
                             </select>
                         </div>
                     </div>
-                        <div class="row col-md-12 no-gutters">
-                            <div class="input-group col-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="regions">Region :</span>
-                                </div>
-                                <select class="custom-select" name="region" id="region" required>
-                                    <option selected disabled></option>
-                                    <c:forEach var="region" items="${regions}">
-                                        <option value="${region.id}">${region.nom}</option>
-                                    </c:forEach>
-                                </select>
+                    <div class="row col-md-12 no-gutters">
+                        <div class="input-group col-md">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="regions">Region :</span>
                             </div>
-                            <div class="input-group col-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="departements">Departement :</span>
-                                </div>
-                                <select class="custom-select" name="departement" id="departement" required >
-                                    <option selected disabled></option>
-                                    <c:forEach var="departement" items="${departements}">
-                                        <option value="${departement.code}">${departement.nom}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="input-group col-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="ville">Ville : </span>
-                                </div>
-                                <input type="text" name="ville"class="form-control" aria-label="ville"
-                                       aria-describedby="ville"  required>
-                            </div>
+                            <select class="custom-select" name="region" id="region" required>
+                                <option selected disabled></option>
+                                <c:forEach var="region" items="${regions}">
+                                    <option value="${region.id}">${region.nom}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+                        <div class="input-group col-md ml-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="departements">Departement :</span>
+                            </div>
+                            <select class="custom-select" name="departement" id="departement" required>
+                                <option selected disabled></option>
+                                <c:forEach var="departement" items="${departements}">
+                                    <option value="${departement.code}">${departement.nom}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="input-group col-md ml-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="ville">Ville : </span>
+                            </div>
+                            <input type="text" name="ville" class="form-control" aria-label="ville"
+                                   aria-describedby="ville" required>
+                        </div>
+                    </div>
                     <div class="row col-lg-12 no-gutters">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -85,18 +88,19 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-outline-warning" id="btnCreationSite">Ajouter</button>
+                        <button type="submit" class="btn btn-warning" id="btnCreationSite">Ajouter</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <!-- FOOTER -->
-    <footer id="footer" class="page-footer">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-        </p>
-    </footer>
+</div>
+<!-- FOOTER -->
+<footer id="footer" class="page-footer">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+    </p>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

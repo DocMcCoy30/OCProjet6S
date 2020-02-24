@@ -23,14 +23,15 @@
 <div id="body">
     <div class="container">
         <div class="card" id="siteCard">
-            <div class="card-header">
+            <div class="card-header" id="siteCardHeader">
                 <h2 class="card-title">${site.nom}</h2>
                 <h5 class="text-muted text-right">${site.ville.nom} - ${site.departement.nom}</h5>
             </div>
         </div>
         <div class="card-body" id="siteCardBody">
             <div>
-                <img src="..." class="card-img-top" alt="...">
+                <img id="banniereSite" src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
+                     class="card-img-top" alt="${site.listPhotos[0].nom}">
             </div>
             <div id="descriptionBlock">
                 <p>Description :</p>
@@ -43,24 +44,45 @@
             <c:url var="secteurPage" value="/showSecteurPage">
                 <c:param name="siteId" value="${site.id}"/>
             </c:url>
-            <div class="row" id="buttonLinkBar">
-                <div class="col-md-2">
+            <%--            <div class="container row" role="group" id="buttonLinkBar">--%>
+            <%--                <div class="col-md-2">--%>
+            <%--                    <a class="btn btn-warning" href="${secteurPage}">Voir les secteurs</a>--%>
+            <%--                </div>--%>
+            <%--                <div class="col-md-2">--%>
+            <%--                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les topos</a>--%>
+            <%--                </div>--%>
+            <%--                <div class="col-md-2">--%>
+            <%--                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>--%>
+            <%--                </div>--%>
+            <%--                <div class="col-md-2">--%>
+            <%--                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>--%>
+            <%--                </div>--%>
+            <%--                <div class="col-md-2">--%>
+            <%--                    <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"--%>
+            <%--                           value="Ajouter une photo"><br/>--%>
+            <%--                </div>--%>
+            <%--                <div class="col-md-2">--%>
+            <%--                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
+            <div class="btn-toolbar" role="toolbar" id="buttonLinkBar">
+                <div class="btn-group mr-2" role="group">
                     <a class="btn btn-warning" href="${secteurPage}">Voir les secteurs</a>
                 </div>
-                <div class="col-md-2">
+                <div class="btn-group mr-2" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les topos</a>
                 </div>
-                <div class="col-md-2">
+                <div class="btn-group mr-2" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>
                 </div>
-                <div class="col-md-2">
+                <div class="btn-group mr-2" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>
                 </div>
-                <div class="col-md-2">
+                <div class="btn-group mr-2" role="group">
                     <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"
                            value="Ajouter une photo"><br/>
                 </div>
-                <div class="col-md-2">
+                <div class="btn-group mr-2" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
                 </div>
             </div>
@@ -101,8 +123,8 @@
         </div>
         <br><br>
         <div class="card">
-            <div class="card-header>">
-                <h3 class="card-title">Commentaires</h3>
+            <div class="card-header">
+                <h2 class="card-title">Commentaires</h2>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled">
