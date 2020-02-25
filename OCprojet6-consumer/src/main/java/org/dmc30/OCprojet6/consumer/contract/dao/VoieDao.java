@@ -12,7 +12,7 @@ public interface VoieDao {
     List<Voie> getAllVoies();
     Integer getNbDeVoiesBySecteur (int pSecteurId);
     Integer getHauteurMaxBySecteur (int pSecteurId);
-    int[] getCotationsBySecteur (int pSecteurId);
+    int[] getCotationsMinMaxBySecteur(int pSecteurId);
     void updateVoie (Voie pVoie);
     void deleteVoie(int pId);
 

@@ -43,4 +43,9 @@ public interface VoieManager {
      */
     void deleteVoie (int pId);
 
+    Integer getHauteurMaxBySecteur(int pSecteurId);
+
+    Integer getNbDeVoiesBySecteur(int pSecteurId);
+
+    int[] getCotationMinMaxBySecteur(int pSecteurId);
 }

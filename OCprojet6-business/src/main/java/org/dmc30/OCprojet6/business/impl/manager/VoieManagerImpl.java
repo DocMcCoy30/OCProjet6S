@@ -39,4 +39,19 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager {
     public void deleteVoie(int pId) {
         getDaoFactory().getVoieDao().deleteVoie(pId);
     }
+
+    @Override
+    public Integer getHauteurMaxBySecteur(int pSecteurId) {
+        return getDaoFactory().getVoieDao().getHauteurMaxBySecteur(pSecteurId);
+    }
+
+    @Override
+    public Integer getNbDeVoiesBySecteur(int pSecteurId) {
+        return getDaoFactory().getVoieDao().getNbDeVoiesBySecteur(pSecteurId);
+    }
+
+    @Override
+    public int[] getCotationMinMaxBySecteur(int pSecteurId) {
+        return getDaoFactory().getVoieDao().getCotationsMinMaxBySecteur(pSecteurId);
+    }
 }

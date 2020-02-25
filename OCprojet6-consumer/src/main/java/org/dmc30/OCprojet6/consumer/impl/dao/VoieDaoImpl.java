@@ -67,7 +67,7 @@ public class VoieDaoImpl extends AbstractDao implements VoieDao {
     }
 
     @Override
-    public int[] getCotationsBySecteur(int pSecteurId) {
+    public int[] getCotationsMinMaxBySecteur(int pSecteurId) {
         String vSQLMin = "SELECT MIN(cotation_id) FROM voie WHERE secteur_id="+pSecteurId;
         String vSQLMax = "SELECT MAX(cotation_id) FROM voie WHERE secteur_id="+pSecteurId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());

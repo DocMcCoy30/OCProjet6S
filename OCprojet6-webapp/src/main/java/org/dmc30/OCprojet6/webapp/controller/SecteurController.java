@@ -2,9 +2,13 @@ package org.dmc30.OCprojet6.webapp.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.dmc30.OCprojet6.model.bean.Cotation;
 import org.dmc30.OCprojet6.model.bean.Secteur;
 import org.dmc30.OCprojet6.model.bean.Site;
+import org.dmc30.OCprojet6.model.bean.Voie;
+import org.dmc30.OCprojet6.webapp.resource.AllCaracteristiqueResource;
 import org.dmc30.OCprojet6.webapp.resource.SecteurResource;
+import org.dmc30.OCprojet6.webapp.resource.VoieResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +23,10 @@ public class SecteurController extends AbstractController {
 
     @Inject
     SecteurResource secteurResource;
+    @Inject
+    VoieResource voieResource;
+    @Inject
+    AllCaracteristiqueResource allCaracteristiqueResource;
 
     Logger logger = LogManager.getLogger(SecteurController.class);
 
@@ -33,6 +41,25 @@ public class SecteurController extends AbstractController {
         ModelAndView vMaV = new ModelAndView();
         Site vSite = siteResource.getSiteById(pSiteId);
         List<Secteur> vListSecteurs = secteurResource.getSecteursBySiteId(pSiteId);
+        // rechercher le nombre de voies, la hauteur max, les cotations Min et Max pour chaque secteur
+        for (Secteur vSecteur:vListSecteurs
+             ) {
+            if (!(voieResource.getVoiesBySecteurId(vSecteur.getId()).isEmpty())) {
+                // hauteur Max
+                int vHauteurMax = voieResource.getHauteurMaxBySecteur(vSecteur.getId());
+                vSecteur.setHauteurMax(vHauteurMax);
+                // Nombre de voies
+                int vNbDeVoies = voieResource.getNbDeVoiesBySecteur(vSecteur.getId());
+                vSecteur.setNbDeVoies(vNbDeVoies);
+                // Cotation MinMax
+                int[] vCotationIdMinMax = voieResource.getCotationMinMaxBySecteur(vSecteur.getId());
+                String vCotationMin = (allCaracteristiqueResource.getCotationById(vCotationIdMinMax[0])).getValeur();
+                String vCotationMax = (allCaracteristiqueResource.getCotationById(vCotationIdMinMax[1])).getValeur();
+                String[] vCotationMinMax = {vCotationMin, vCotationMax};
+                vSecteur.setCotationMinMax(vCotationMinMax);
+            }
+        }
+        // retourner les données
         vMaV.addObject("listSecteurs", vListSecteurs);
         vMaV.addObject("site", vSite);
         vMaV.setViewName("secteurs");

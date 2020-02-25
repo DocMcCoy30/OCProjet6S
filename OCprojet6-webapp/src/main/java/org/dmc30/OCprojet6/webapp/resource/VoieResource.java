@@ -15,4 +15,16 @@ public class VoieResource extends AbstractResource{
     public void createVoie (Voie pVoie) {
         getManagerFactory().getVoieManager().createVoie(pVoie);
     }
+
+    public Integer getHauteurMaxBySecteur(int pSecteurId) {
+        return getManagerFactory().getVoieManager().getHauteurMaxBySecteur(pSecteurId);
+    }
+
+    public Integer getNbDeVoiesBySecteur(int pSecteurId) {
+        return getManagerFactory().getVoieManager().getNbDeVoiesBySecteur(pSecteurId);
+    }
+
+    public int[] getCotationMinMaxBySecteur(int pSecteurId) {
+        return getManagerFactory().getVoieManager().getCotationMinMaxBySecteur(pSecteurId);
+    }
 }
