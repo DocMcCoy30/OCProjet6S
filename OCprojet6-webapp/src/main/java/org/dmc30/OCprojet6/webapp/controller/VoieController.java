@@ -30,6 +30,12 @@ public class VoieController extends AbstractController{
 
     Logger logger = LogManager.getLogger(VoieController.class);
 
+    /**
+     * Affiche la page des voies d'un secteur.
+     * @param pSecteurId L'identifiant du secteur dont on souhaite consulter la liste des voies.
+     * @param pSiteId L'identifiant du site correspondant au secteur.
+     * @return Les données et la vue.
+     */
     @GetMapping("/showVoiePage")
     public ModelAndView showVoiePage (@RequestParam(value = "secteurId") Integer pSecteurId,
                                       @RequestParam(value = "siteId") Integer pSiteId) {
@@ -47,6 +53,12 @@ public class VoieController extends AbstractController{
         return vMaV;
     }
 
+    /**
+     * Affiche le formulaire de création de voie.
+     * @param pSecteurId L'identifiant du secteur auquel on souhaite ajouter une nouvelle voie.
+     * @param pSiteId L'identifiant du site correspondant au secteur.
+     * @return Les données et la vue.
+     */
     @GetMapping("/showCreationVoieForm")
     public ModelAndView showCreationVoieForm(@RequestParam(value = "secteurId") Integer pSecteurId,
                                              @RequestParam(value = "siteId") Integer pSiteId) {
@@ -60,6 +72,15 @@ public class VoieController extends AbstractController{
         return vMaV;
     }
 
+    /**
+     * Crée une nouvelle voie dans la base de données.
+     * @param pVoieNom Le nom de la nouvelle voie.
+     * @param pVoieHauteur La hauteur de la nouvelle voie.
+     * @param pCotationId L'identifiant de la cotation de la nouvelle voie.
+     * @param pSecteurId Le secteur auquel est rattachée la nouvelle voie.
+     * @param pSiteId Le site auquel est rattaché le secteur.
+     * @return Les données, le message de confirmation et la vue.
+     */
     @PostMapping("/creationVoie")
     public ModelAndView createVoie (@RequestParam(value = "nom") String pVoieNom,
                                     @RequestParam(value = "hauteur", required = false) Integer pVoieHauteur,

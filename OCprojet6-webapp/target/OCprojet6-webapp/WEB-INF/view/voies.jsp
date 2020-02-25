@@ -24,22 +24,26 @@
     <div class="container">
         <div class="card">
             <div class="card-header" id="voieCardHeader">
-                <h2 class="card-title">${secteur.nom}</h2>
-                <div class="text-right">
-                    <c:url var="showSecteurPage" value="/showSecteurPage">
-                        <c:param name="siteId" value="${siteId}"/>
-                    </c:url>
-                    <a href="${showSecteurPage}" type="button" id="btnRetour" class="btn btn-warning">Retour aux
-                        secteurs</a>
+                <div class="row">
+
+                    <div class="col">
+                        <h2 class="card-title">${secteur.nom}</h2>
+                    </div>
+                    <div class="col-auto pull-right">
+                        <c:url var="showSecteurPage" value="/showSecteurPage">
+                            <c:param name="siteId" value="${siteId}"/>
+                        </c:url>
+                        <a href="${showSecteurPage}" type="button" id="btnRetour" class="btn btn-warning">Retour aux
+                            secteurs</a>
+                    </div>
                 </div>
-                <div>
-                    <c:if test="${ !empty messageCreationVoie}">
-                        <div class="alert alert-success" role="alert">
-                            <c:out value="${messageCreationVoie}"/>
-                        </div>
-                    </c:if>
-                </div>
+                <c:if test="${ !empty messageCreationVoie}">
+                    <div class="alert alert-success" role="alert">
+                        <c:out value="${messageCreationVoie}"/>
+                    </div>
+                </c:if>
             </div>
+            <%--        </div>--%>
             <div class="card-body">
                 <table class="table" id="infoVoies">
                     <thead>

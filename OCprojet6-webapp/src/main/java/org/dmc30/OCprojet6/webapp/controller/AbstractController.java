@@ -18,6 +18,10 @@ public class AbstractController {
     @Inject
     AllCaracteristiqueResource allCaracteristiqueResource;
 
+    /**
+     * Renvoie la liste de toutes les données servant à alimenter les menus déroulants.
+     * @param pModel Le model contenant les données.
+     */
     protected void afficherListe(Model pModel) {
         List<Site> vListSites = siteResource.getAllSites();
         pModel.addAttribute("sites", vListSites);

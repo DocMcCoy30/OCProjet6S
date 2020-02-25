@@ -24,7 +24,14 @@
     <div class="container">
         <div class="card" id="siteCard">
             <div class="card-header" id="siteCardHeader">
-                <h2 class="card-title">${site.nom}</h2>
+                <div class="row">
+                    <div class="col">
+                        <h2 class="card-title">${site.nom}</h2>
+                    </div>
+                    <div class="col-auto pull-right">
+                        <a class="btn btn-warning" href="#">Modifier</a>
+                    </div>
+                </div>
                 <h5 class="text-muted text-right">${site.ville.nom} - ${site.departement.nom}</h5>
             </div>
         </div>

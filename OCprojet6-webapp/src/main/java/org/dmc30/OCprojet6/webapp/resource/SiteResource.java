@@ -70,6 +70,7 @@ public class SiteResource extends AbstractResource {
         vNewDescription.setInfo(vInfo);
         vNewSite.setDescription(vNewDescription);
 
+        // création du site
         getManagerFactory().getSiteManager().createSite(vNewSite);
 
         return vNewSite;

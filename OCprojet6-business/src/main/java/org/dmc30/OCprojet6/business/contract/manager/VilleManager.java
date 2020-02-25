@@ -8,54 +8,55 @@ import java.util.List;
 public interface VilleManager {
 
     /**
-     * Enregistre un objet de type Ville dans la database
+     * Enregistre une nouvelle ville dans la base de données.
+     * @param pVille La nouvelle ville à enregistrer.
      */
     void createVille (Ville pVille);
 
     /**
-     * Cherche et renvoie un objet de type Ville stocké dans la database
-     * @param pId l'identifiant de l'objet recherché
-     * @return l'objet recherché
+     * Recherche une ville dans la base de données par son identifiant.
+     * @param pId L'identifiant de la ville.
+     * @return La ville correspondante à l'identifiant renseigné.
      */
     Ville getVilleById (int pId);
 
     /**
-     * Cherche et renvoie la liste des Villes d'un département dans la database
-     * @param pCode le code du departement concerné
-     * @return la liste d'objets recherchée
+     * Cherche et renvoie la liste des Villes d'un département stockée dans la base de données.
+     * @param pCode Le code du departement concerné.
+     * @return La liste des villes recherchée.
      */
     List<Ville> getListVillesByDepartement(int pCode);
 
     /**
-     * Cherche et renvoie la liste des villes dont le nom correspond aux termes de recherche
-     * @param pMotCle la sequence de caractères renseignée dans la zone de recherche
-     * @return la liste des villes correspondantes
+     * Cherche et renvoie la liste des villes dont le nom correspond aux termes de recherche.
+     * @param pMotCle La sequence de caractères renseignée dans la zone de recherche.
+     * @return La liste des villes correspondantes.
      */
     List<Ville> getMatchingVilles(String pMotCle);
 
     /**
-     * Cherche et renvoie la liste des objets de type Ville stockés dans la database
-     * @return la liste d'objets recherchée
+     * Cherche et renvoie la liste des Villes stockée dans la base de données.
+     * @return La liste des villes.
      */
     List<Ville> getAllVilles();
 
     /**
-     * Modifie un objet de type Ville
-     * @param pVille : l'objet à modifier
+     * Modifie un objet de type Ville.
+     * @param pVille La ville à modifier.
      */
     void updateVille (Ville pVille);
 
     /**
-     * Supprimer un objet de type Ville
-     * @param pId : l'identifiant de l'objet à supprimer
+     * Supprime un objet de type Ville.
+     * @param pId L'identifiant de la ville à supprimer.
      */
     void deleteVille (int pId);
 
     /**
-     * Vérifie que la nouvelle ville n'existe pas déjà dans le database
-     * @param pVille la nouvelle ville renseignée dans le formulaire de création
-     * @return un tableau contenant les résultats de recherche sous forme de 2 Integer :
-     * [vrai ou faux / 0 ou villeId]
+     * Vérifie que la nouvelle ville n'existe pas déjà dans le database.
+     * @param pVille La nouvelle ville renseignée dans le formulaire de création.
+     * @return Un tableau contenant les résultats de recherche sous forme de 2 Integer :
+     * [vrai ou faux / 0 ou villeId].
      */
     ArrayList<Integer> rechercheDoublon(Ville pVille);
 

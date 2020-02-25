@@ -8,8 +8,6 @@ public interface DescriptionDao {
 
     void createDescription (Description pDescription);
     Description getDescriptionById (int pId);
-
     List<Description> getAllDescriptions();
-
     int getLastId();
 }

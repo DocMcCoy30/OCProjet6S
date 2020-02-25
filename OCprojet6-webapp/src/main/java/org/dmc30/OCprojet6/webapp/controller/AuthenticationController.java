@@ -46,8 +46,7 @@ public class AuthenticationController {
     }
 
     /**
-     * Gère la création d'un nouveau compte utilisateur (avec recherche de doublons username et email => un bug dans Postgrès+IntelliJ
-     * ne permet pas de récupérer les erreurs de contrainte d'unicité...
+     * Gère la création d'un nouveau compte utilisateur.
      * @param pUsers Le nouvel utilisateur
      * @return Un message de confirmation ou d'erreur.
      */

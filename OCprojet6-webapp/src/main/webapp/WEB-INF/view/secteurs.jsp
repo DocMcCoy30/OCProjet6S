@@ -70,7 +70,7 @@
                                     <thead>
                                     <tr>
                                         <th>Nombre de voies : ${secteur.nbDeVoies}</th>
-                                        <th>Hauteur max : ${secteur.hauteurMax}</th>
+                                        <th>Hauteur max : ${secteur.hauteurMax} m</th>
                                         <th>Cotation : de ${secteur.cotationMinMax[0]}
                                             à ${secteur.cotationMinMax[1]}</th>
                                     </tr>

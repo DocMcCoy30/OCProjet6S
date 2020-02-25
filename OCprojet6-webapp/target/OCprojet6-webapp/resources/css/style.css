@@ -43,6 +43,10 @@ td {
     color: #f0ad4e;
 }
 
+a:hover {
+    color: #F2E205;
+}
+
 .vertical-center {
     min-height: 50vh;
     width: 100%;

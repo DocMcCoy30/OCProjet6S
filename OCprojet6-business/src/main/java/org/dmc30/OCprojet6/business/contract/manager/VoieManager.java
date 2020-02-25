@@ -7,45 +7,61 @@ import java.util.List;
 public interface VoieManager {
 
     /**
-     * Enregistre un objet de type Voie dans la database
+     * Enregistre une nouvelle voie dans la base de données.
+     * @param pVoie La nouvelle voie à enregistrer.
      */
     void createVoie (Voie pVoie);
 
     /**
-     * Cherche et renvoie un objet de type Voie stocké dans la database
-     * @param pId l'identifiant de l'objet recherché
-     * @return l'objet recherché
+     * Recherche une voie par son identifiant dans la base de données.
+     * @param pId L'identifiant de la voie recherchée.
+     * @return La voie correspondante à l'identifiant renseigné.
      */
     Voie getVoieById (int pId);
 
     /**
-     * Cherche et renvoie la liste des objets de type Voie stockés dans la database
+     * Cherche la liste des Voies par secteur dans la base de données.
      * @param pSecteurId L'identifiant du secteur.
-     * @return La liste d'objet recherchée
+     * @return La liste des voies correspondant au secteur renseigné.
      */
     List<Voie> getVoiesBySecteurId(int pSecteurId);
 
     /**
-     * Cherche et renvoie la liste des objets de type Voie stockés dans la database
-     * @return la liste d'objets recherchée
+     * Cherche la liste de toute les voies dans la base de données.
+     * @return La liste des voies
      */
     List<Voie> getAllVoies();
 
     /**
-     * Modifie un objet de type Voie
-     * @param pVoie : l'objet à modifier
+     * Modifie une Voie.
+     * @param pVoie : La voie à modifier.
      */
     void updateVoie (Voie pVoie);
 
     /**
-     * Supprimer un objet de type Voie
-     * @param pId : l'identifiant de l'objet à supprimer
+     * Supprime une Voie.
+     * @param pId L'identifiant de la voie à supprimer.
      */
     void deleteVoie (int pId);
 
+    /**
+     * Récupère la hauteur Max parmi les hauteurs des voies d'un secteur.
+     * @param pSecteurId L'identifiant du secteur.
+     * @return La hauteur de la voie la plus haute du secteur.
+     */
     Integer getHauteurMaxBySecteur(int pSecteurId);
 
+    /**
+     * Récupère le nombre de voie pour un secteur.
+     * @param pSecteurId L'identifiant du secteur.
+     * @return Le nombre de voies d'un secteur.
+     */
     Integer getNbDeVoiesBySecteur(int pSecteurId);
 
+    /**
+     * Récupère les identifiants des cotations Min et Max parmi les cotations de toutes les voies d'un secteur.
+     * @param pSecteurId L'identifiant d'un secteur.
+     * @return Les identifiants des cotations Min et Max.
+     */
     int[] getCotationMinMaxBySecteur(int pSecteurId);
 }

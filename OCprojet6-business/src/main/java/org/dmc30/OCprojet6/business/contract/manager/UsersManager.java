@@ -8,38 +8,38 @@ import java.util.List;
 public interface UsersManager {
 
     /**
-     * Enregistre un objet de type Users dans la DB (table)users et son rôle dans (table)users_role
+     * Enregistre un nouvel utilisateur dans la base de données : (table)users et son rôle dans (table)users_role
      */
     void createUsers (Users pUsers) throws TechnicalException;
 
     /**
-     * Cherche et renvoie un objet de type Users stocké dans la database
-     * @param pUsername l'identifiant de l'objet recherché
-     * @return l'objet recherché
+     * Cherche un utilisateur par son identifiant dans la base de donnée.
+     * @param pUsername L'identifiant de l'utilisateur recherché.
+     * @return L'uitlisateur correspodant à l'identifiant renseigné.
      */
     Users getUsersByName (String pUsername) throws TechnicalException;
 
     /**
-     * Cherche et renvoie la liste des objets de type Users stockés dans la database
-     * @return la liste d'objets recherchée
+     * Cherche et renvoie la liste de tous les utilisateurs stockés dans la base de données.
+     * @return La liste des utilisateurs.
      */
     List<Users> getAllUsers();
 
     /**
-     * Modifie un objet de type Users
+     * Modifie un utilisateur.
      * @param pUsers : l'objet à modifier
      */
     void updateUsers (Users pUsers);
 
     /**
-     * Supprimer un objet de type Users
-     * @param pId : l'identifiant de l'objet à supprimer
+     * Supprime un utilisateur de la base de données.
+     * @param pId : L'identifiant de l'utilisateur à supprimer.
      */
     void deleteUsers (int pId);
 
     /**
-     * Verifie que le nouveau user n'existe pas déjà dans la database
-     * @param pUsers le Users renseigné dans le formulaire de création de compte
+     * Verifie que le nouveal utilisateur n'est pas déjà enregistré dans la base de données.
+     * @param pUsers Le nouvel utilisateur renseigné dans le formulaire de création de compte.
      * @return vrai ou faux
      */
     int[] rechercheDoublon (Users pUsers) throws TechnicalException;

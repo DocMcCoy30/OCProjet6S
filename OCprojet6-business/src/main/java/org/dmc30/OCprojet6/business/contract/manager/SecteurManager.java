@@ -7,38 +7,39 @@ import java.util.List;
 public interface SecteurManager {
 
     /**
-     * Enregistre un objet de type Secteur dans la database
+     * Enregistre un nouveau Secteur dans la base de données.
      */
     void createSecteur (Secteur pSecteur);
 
     /**
-     * Cherche et renvoie un objet de type Secteur stocké dans la database
-     * @param pId l'identifiant de l'objet recherché
-     * @return l'objet recherché
+     * Cherche un secteur dans la base de données par son identifiant.
+     * @param pId L'identifiant de du secteur recherché.
+     * @return Le secteur recherché.
      */
     Secteur getSecteurById (int pId);
 
     /**
-     * Cherche et renvoie la liste des secteurs d'un même site stockée dans la database
-     * @return la liste des secteurs
+     * Cherche et renvoie la liste des secteurs correspondants à un site.
+     * @param pSiteId L'identifiant du site.
+     * @return La liste des secteurs.
      */
     List<Secteur> getSecteursBySiteId(int pSiteId);
 
     /**
-     * Cherche et renvoie la liste des objets de type Secteur stockés dans la database
-     * @return la liste d'objets recherchée
+     * Cherche et renvoie la liste de tous les secteurs stockés dans la base de données.
+     * @return La liste de tous les secteurs.
      */
     List<Secteur> getAllSecteurs();
 
     /**
-     * Modifie un objet de type Secteur
-     * @param pSecteur : l'objet à modifier
+     * Modifie un secteur.
+     * @param pSecteur Le secteur à modifier.
      */
     void updateSecteur (Secteur pSecteur);
 
     /**
-     * Supprimer un objet de type Secteur
-     * @param pId : l'identifiant de l'objet à supprimer
+     * Supprime un secteur.
+     * @param pId : L'identifiant du secteur à supprimer.
      */
     void deleteSecteur (int pId);
 }

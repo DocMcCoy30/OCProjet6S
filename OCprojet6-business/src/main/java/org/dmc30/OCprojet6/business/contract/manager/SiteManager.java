@@ -7,73 +7,67 @@ import java.util.List;
 public interface SiteManager {
 
     /**
-     * Enregistre un objet de type Site dans la database
+     * Enregistre un nouveau site dans la base de données.
+     * @param pSite Le nouveau site à enregistrer.
      */
     Site createSite(Site pSite);
 
     /**
-     * Cherche et renvoie un objet de type Site stocké dans la database
-     *
-     * @param pId l'identifiant de l'objet recherché
-     * @return l'objet recherché
+     * Cherche un Site stocké dans la base de donnée par son identifiant.
+     * @param pId L'identifiant du site recherché.
+     * @return Le site correspondant à l'identifiant renseigné.
      */
     Site getSiteById(int pId);
 
     /**
-     * Cherche et renvoie la liste des Sites stockée dans la database par région
-     *
-     * @param pRegionId l'identifiant de la région
-     * @return la liste d'objets recherchée
+     * Cherche dans la base de données la liste des sites correspondant à une région.
+     * @param pRegionId L'identifiant de la région concernée.
+     * @return La liste des sites recherchés.
      */
     List<Site> getSitesByRegion(int pRegionId);
 
     /**
-     * Cherche et renvoie la liste des Sites stockée dans la database par departement
-     *
-     * @param pCode le code du département
-     * @return la liste d'objets recherchée
+     * Cherche dans la base de données la liste des sites correspondant à un departement.
+     * @param pCode Le code du département concerné.
+     * @return La liste des sites recherchés.
      */
     List<Site> getSitesByDepartement(int pCode);
 
     /**
-     * Cherche et renvoie la liste des Sites stockée dans la database par ville
-     *
-     * @param pVilleId l'identifiant de la ville
-     * @return la liste d'objets recherchée
+     * Cherche dans la base de données la liste des sites correspondant à une ville.
+     * @param pVilleId L'identifiant de la ville concernée.
+     * @return La liste des sites recherchés.
      */
     List<Site> getSitesByVille(int pVilleId);
 
     /**
-     * Cherche et renvoie la liste des sites dont le nom correspond aux termes de recherche
-     * @param pMotCle la sequence de caractères renseignée dans la zone de recherche
-     * @return la liste des sites correspondants
+     * Cherche et renvoie la liste des sites dont le nom correspond aux termes de recherche.
+     * @param pMotCle La sequence de caractères renseignée dans la zone de recherche.
+     * @return La liste des sites correspondants.
      */
     List<Site> getMatchingSites (String pMotCle);
 
     /**
-     * Cherche et renvoie la liste des objets de type Site stockés dans la database
-     *
-     * @return la liste d'objets recherchée
+     * Cherche et renvoie la liste de tous les sites stockés dans la base de données.
+     * @return La liste de tous les sites.
      */
     List<Site> getAllSites();
 
     /**
-     * Renvoie l'identifiant du dernier site enregistré
-     * @return l'id du site
+     * Renvoie L'identifiant du dernier site enregistré.
+     * @return L'id du site.
      */
     int getLastId();
 
     /**
-     * Modifie un objet de type Site
-     *
-     * @param pSite : l'objet à modifier
+     * Modifie un Site.
+     * @param pSite Le site à modifier.
      */
     void updateSite(Site pSite);
 
     /**
-     * Supprimer un objet de type Site
-     *
-     * @param pId : l'identifiant de l'objet à supprimer
+     * Supprime un Site
+     * @param pId L'identifiant du site à supprimer.
      */
     void deleteSite(int pId);
 }

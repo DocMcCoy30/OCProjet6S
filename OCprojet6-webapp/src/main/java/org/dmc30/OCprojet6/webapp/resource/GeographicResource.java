@@ -15,7 +15,6 @@ public class GeographicResource extends AbstractResource {
         return getManagerFactory().getRegionManager().getAllRegions();
     }
 
-
     public Region getRegionById(Integer pRegionId) {
         return getManagerFactory().getRegionManager().getRegionById(pRegionId);
     }
