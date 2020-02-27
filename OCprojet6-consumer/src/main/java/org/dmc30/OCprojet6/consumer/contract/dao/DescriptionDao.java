@@ -10,4 +10,6 @@ public interface DescriptionDao {
     Description getDescriptionById (int pId);
     List<Description> getAllDescriptions();
     int getLastId();
+
+    void updateDescription(Description pDescription);
 }

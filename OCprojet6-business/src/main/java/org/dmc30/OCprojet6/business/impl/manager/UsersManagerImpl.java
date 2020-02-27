@@ -26,10 +26,8 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
     @Transactional
     public void createUsers(Users pUsers) throws TechnicalException {
 
-        logger.info("Création du PlatformTransactionManager");
         TransactionStatus vTransactionStatus
                 = getPlatformTransactionManager().getTransaction(new DefaultTransactionDefinition());
-        logger.info("PlatformTransactionManager créé");
         try {
             String vRole;
             List<Users> vListUsers = getDaoFactory().getUsersDao().getAllUsers();

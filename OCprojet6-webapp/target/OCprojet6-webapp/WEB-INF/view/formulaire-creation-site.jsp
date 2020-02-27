@@ -27,25 +27,45 @@
                 <div class="card-title"><h2>Ajouter un nouveau site</h2></div>
             </div>
             <div class="card-body">
-                <form action="creationSite" method="post">
+                <form action="createUpdateSite" method="post">
                     <div class="row col-md-12 no-gutters">
                         <div class="input-group col-lg-7">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="nom">Nom du site : </span>
                             </div>
-                            <input type="text" name="nom" class="form-control" aria-label="nom"
-                                   aria-describedby="nom" required>
+                            <c:choose>
+                                <c:when test="${! empty site}">
+                                    <input type="text" name="nom" class="form-control" aria-label="nom"
+                                           aria-describedby="nom" value="${site.nom}" required>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" name="nom" class="form-control" aria-label="nom"
+                                           aria-describedby="nom" required>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="input-group col-md ml-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="typeRoches">Type de roche : </span>
                             </div>
-                            <select class="custom-select" name="typeRoche" id="typeRoche" required>
-                                <option selected disabled></option>
-                                <c:forEach var="typeRoche" items="${typeRoche}">
-                                    <option value="${typeRoche.id}">${typeRoche.nom}</option>
-                                </c:forEach>
-                            </select>
+                            <c:choose>
+                                <c:when test="${! empty site}">
+                                    <select class="custom-select" name="typeRoche" id="typeRoche" required>
+                                        <option selected value="${site.typeRoche.id}">${site.typeRoche.nom}</option>
+                                        <c:forEach var="typeRoche" items="${typeRoche}">
+                                            <option value="${typeRoche.id}">${typeRoche.nom}</option>
+                                        </c:forEach>
+                                    </select>
+                                </c:when>
+                                <c:otherwise>
+                                    <select class="custom-select" name="typeRoche" id="typeRoche" required>
+                                        <option selected disabled></option>
+                                        <c:forEach var="typeRoche" items="${typeRoche}">
+                                            <option value="${typeRoche.id}">${typeRoche.nom}</option>
+                                        </c:forEach>
+                                    </select>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <div class="row col-md-12 no-gutters">
@@ -53,30 +73,62 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="regions">Region :</span>
                             </div>
-                            <select class="custom-select" name="region" id="region" required>
-                                <option selected disabled></option>
-                                <c:forEach var="region" items="${regions}">
-                                    <option value="${region.id}">${region.nom}</option>
-                                </c:forEach>
-                            </select>
+                            <c:choose>
+                                <c:when test="${! empty site}">
+                                    <select class="custom-select" name="region" id="region" required>
+                                        <option selected value="${site.region.id}">${site.region.nom}</option>
+                                        <c:forEach var="region" items="${regions}">
+                                            <option value="${region.id}">${region.nom}</option>
+                                        </c:forEach>
+                                    </select>
+                                </c:when>
+                                <c:otherwise>
+                                    <select class="custom-select" name="region" id="region" required>
+                                        <option selected disabled></option>
+                                        <c:forEach var="region" items="${regions}">
+                                            <option value="${region.id}">${region.nom}</option>
+                                        </c:forEach>
+                                    </select>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="input-group col-md ml-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="departements">Departement :</span>
                             </div>
-                            <select class="custom-select" name="departement" id="departement" required>
-                                <option selected disabled></option>
-                                <c:forEach var="departement" items="${departements}">
-                                    <option value="${departement.code}">${departement.nom}</option>
-                                </c:forEach>
-                            </select>
+                            <c:choose>
+                                <c:when test="${! empty site}">
+                                    <select class="custom-select" name="departement" id="departement" required>
+                                        <option selected value="${site.departement.code}">${site.departement.nom}</option>
+                                        <c:forEach var="departement" items="${departements}">
+                                            <option value="${departement.code}">${departement.nom}</option>
+                                        </c:forEach>
+                                    </select>
+                                </c:when>
+                                <c:otherwise>
+                                    <select class="custom-select" name="departement" id="departement" required>
+                                        <option selected disabled></option>
+                                        <c:forEach var="departement" items="${departements}">
+                                            <option value="${departement.code}">${departement.nom}</option>
+                                        </c:forEach>
+                                    </select>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="input-group col-md ml-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="ville">Ville : </span>
                             </div>
-                            <input type="text" name="ville" class="form-control" aria-label="ville"
-                                   aria-describedby="ville" required>
+                            <c:choose>
+                                <c:when test="${! empty site}">
+                                    <input type="text" name="ville" class="form-control" aria-label="ville"
+                                           aria-describedby="ville" value="${site.ville.nom}" required>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" name="ville" class="form-control" aria-label="ville"
+                                           aria-describedby="ville" required>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <div class="row col-lg-12 no-gutters">
@@ -84,12 +136,33 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Description : </span>
                             </div>
-                            <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+                            <c:choose>
+                                <c:when test="${! empty site}">
+                                    <textarea class="form-control" name="description"
+                                              aria-label="With textarea">${site.description.description}</textarea>
+                                </c:when>
+                                <c:otherwise>
+                                    <textarea class="form-control" name="description"
+                                              aria-label="With textarea"></textarea>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-warning" id="btnCreationSite">Ajouter</button>
-                    </div>
+                    <c:choose>
+                        <c:when test="${! empty site}">
+                            <div class="text-right">
+                                <input hidden name="siteId" value="${site.id}">
+                                <input hidden name="descriptionId" value="${site.description.id}">
+                                <input hidden name="villeId" value="${site.ville.id}">
+                                <button type="submit" class="btn btn-warning" name="action" value="update" id="btnModficationSite">Modifier</button>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-warning" name="action" value="create" id="btnCreationSite">Ajouter</button>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                 </form>
             </div>
         </div>

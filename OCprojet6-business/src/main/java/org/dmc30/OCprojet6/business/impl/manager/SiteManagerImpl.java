@@ -1,10 +1,17 @@
 package org.dmc30.OCprojet6.business.impl.manager;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.business.contract.manager.SiteManager;
 import org.dmc30.OCprojet6.business.contract.manager.VilleManager;
 import org.dmc30.OCprojet6.model.bean.Description;
 import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.model.bean.Ville;
+import org.dmc30.OCprojet6.model.exception.ErrorMessages;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -17,12 +24,14 @@ import java.util.List;
 @Named
 public class SiteManagerImpl extends AbstractManager implements SiteManager {
 
+    Logger logger = LogManager.getLogger(SiteManagerImpl.class);
+
     @Inject
     VilleManager villeManager;
 
     @Override
     @Transactional
-    public Site createSite(Site pSite) {
+    public Site createSite(Site pSite) throws TechnicalException {
 
         Site vNewSite;
         TransactionStatus vTransactionStatus
@@ -51,6 +60,18 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
             TransactionStatus vTScommit = vTransactionStatus;
             vTransactionStatus = null;
             getPlatformTransactionManager().commit(vTScommit);
+        } catch (DuplicateKeyException e) {
+            logger.error("Username ou mail déjà existant.");
+            throw new TechnicalException(ErrorMessages.DUPLICATE_KEY_ERROR.getErrorMessage());
+        } catch (BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
+        } catch (Exception e) {
+            logger.error("Problème technique");
+            throw new TechnicalException(ErrorMessages.TX_ERROR.getErrorMessage());
         } finally {
             if (vTransactionStatus != null) {
                 getPlatformTransactionManager().rollback(vTransactionStatus);
@@ -58,6 +79,51 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
         }
         // renvoyer le site
         return vNewSite;
+    }
+
+    @Override
+    @Transactional
+    public void updateSite(Site pSite) throws TechnicalException {
+
+        Site vSite;
+        TransactionStatus vTransactionStatus
+                = getPlatformTransactionManager().getTransaction(new DefaultTransactionDefinition());
+        try {
+            vSite = pSite;
+            // verifier que la ville n'existe pas
+            ArrayList<Integer> vListResult = villeManager.rechercheDoublon(pSite.getVille());
+            // creer la ville ou la récuperer si elle existe
+            if (vListResult.get(0) > 0) {
+                Ville vVille = getDaoFactory().getVilleDao().getVilleById(vListResult.get(1));
+                vSite.setVille(vVille);
+            } else if (vListResult.get(0) == 0) {
+                getDaoFactory().getVilleDao().createVille(pSite.getVille());
+                int vNewVilleId = getDaoFactory().getVilleDao().getLastId();
+                Ville vNewVille = getDaoFactory().getVilleDao().getVilleById(vNewVilleId);
+                vSite.setVille(vNewVille);
+            }
+            //modifier la description
+            getDaoFactory().getDescriptionDao().updateDescription(pSite.getDescription());
+
+            // creer le site dans la base de donnée
+            getDaoFactory().getSiteDao().updateSite(vSite);
+            TransactionStatus vTScommit = vTransactionStatus;
+            vTransactionStatus = null;
+            getPlatformTransactionManager().commit(vTScommit);
+        } catch (BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
+        } catch (Exception e) {
+            logger.error("Problème technique");
+            throw new TechnicalException(ErrorMessages.TX_ERROR.getErrorMessage());
+        } finally {
+            if (vTransactionStatus != null) {
+                getPlatformTransactionManager().rollback(vTransactionStatus);
+            }
+        }
     }
 
     @Override
@@ -95,10 +161,10 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
         return getDaoFactory().getSiteDao().getLastId();
     }
 
-    @Override
-    public void updateSite(Site pSite) {
-        getDaoFactory().getSiteDao().updateSite(pSite);
-    }
+//    @Override
+//    public void updateSite(Site pSite) {
+//        getDaoFactory().getSiteDao().updateSite(pSite);
+//    }
 
     @Override
     public void deleteSite(int pId) {

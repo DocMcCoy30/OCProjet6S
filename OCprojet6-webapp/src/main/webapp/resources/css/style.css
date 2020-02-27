@@ -13,14 +13,26 @@
     src: url('font/Reqnad/ReqnadGeometrikBeta0.1-Regular.otf');
 }
 
+@font-face {
+    font-family: yeong_sung;
+    src: url("font/Yeon_Sung/YeonSung-Regular.ttf") format('truetype');
+;
+}
+
+@font-face {
+    font-family: cabin;
+    src: url("font/Cabin/Cabin-Regular.ttf") format('truetype');
+;
+}
+
 body {
     background: url('../img/freesolo.jpg') no-repeat center fixed;
     background-size: cover;
-    color: #402F11;
+    color: #f0ad4e;
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: /*girassolregular,*/ reqnad, Arial, serif;
+    font-family: cabin, yeong_sung, reqnad, Arial, serif;
 }
 
 h1 {
@@ -193,6 +205,11 @@ a:hover {
 }
 
 #btnCreationSite {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#btnModficationSite {
     margin-top: 1em;
     margin-bottom: 1em;
 }

@@ -65,9 +65,9 @@
         <br><br>
        <%--        Afficher les résultats de recherche     --%>
         <div>
-            <c:if test="${ !empty messageCreationSite}">
+            <c:if test="${ !empty message}">
                 <div class="alert alert-success" role="alert">
-                    <c:out value="${messageCreationSite}"/>
+                    <c:out value="${message}"/>
                 </div>
             </c:if>
         </div>

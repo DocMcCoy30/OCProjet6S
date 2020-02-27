@@ -40,8 +40,6 @@ public class VoieController extends AbstractController{
     public ModelAndView showVoiePage (@RequestParam(value = "secteurId") Integer pSecteurId,
                                       @RequestParam(value = "siteId") Integer pSiteId) {
 
-        logger.debug("SecteurId = "+pSecteurId);
-        logger.debug("SiteId = "+pSiteId);
         Secteur vSecteur = secteurResource.getSecteurById(pSecteurId);
         List<Voie> vListVoie = voieResource.getVoiesBySecteurId(pSecteurId);
 

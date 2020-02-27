@@ -8,6 +8,8 @@ import org.dmc30.OCprojet6.model.exception.ErrorMessages;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,6 +30,15 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
         String vEmail = pUsers.getEmail();
         String vSQL = "INSERT INTO users (username, password, email, enabled) VALUES (?,?,?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+
+            vJdbcTemplate.update(vSQL, vUserName, vPassword, vEmail, true);
+
+//        MapSqlParameterSource vParams = new MapSqlParameterSource();
+//        vParams.addValue("vUsername", pUsers.getUsername());
+//        vParams.addValue("vPassword", encoder.passwordEncoder(pUsers.getPassword()));
+//        vParams.addValue("vEmail", pUsers.getEmail());
+//        vParams.addValue("vEnabled", pUsers.isEnabled());
+//        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
     }
 
     @Override

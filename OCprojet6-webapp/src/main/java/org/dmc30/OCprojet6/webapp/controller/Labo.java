@@ -36,34 +36,34 @@ public class Labo extends AbstractController {
 
     }
 
-    @PostMapping("/creationSiteC")
-    public ModelAndView createSite(Model pModel,
-                                   @RequestParam(value = "nom", required = false) String pNomSite,
-                                   @RequestParam(value = "description", required = false) String pDescription,
-                                   @RequestParam(value = "ville", required = false) String pNomVille,
-                                   @RequestParam(value = "region", required = false) Integer pRegionId,
-                                   @RequestParam(value = "departement", required = false) Integer pDepartementCode,
-                                   @RequestParam(value = "typeRoche", required = false) Integer pTypeRocheId) {
-
-        Site vNewSite = null;
-        List<Site> vListSites = new ArrayList<>();
-        ModelAndView vMaV = new ModelAndView();
-        try {
-            vNewSite = siteResource.createSite(pNomSite, pDescription, pNomVille, pRegionId, pDepartementCode, pTypeRocheId);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } finally {
-            String vMessageCreationSite = "Le nouveau site " + pNomSite + " est créé !";
-            // debug
-            vNewSite.setId(siteResource.getLastId());
-            vListSites.add(vNewSite);
-            vMaV.addObject("messageCreationSite", vMessageCreationSite);
-            vMaV.addObject("listSites", vListSites);
-            vMaV.setViewName("jsTestPage");
-            afficherListe(pModel);
-        }
-        return vMaV;
-    }
+//    @PostMapping("/creationSiteC")
+//    public ModelAndView createSite(Model pModel,
+//                                   @RequestParam(value = "nom", required = false) String pNomSite,
+//                                   @RequestParam(value = "description", required = false) String pDescription,
+//                                   @RequestParam(value = "ville", required = false) String pNomVille,
+//                                   @RequestParam(value = "region", required = false) Integer pRegionId,
+//                                   @RequestParam(value = "departement", required = false) Integer pDepartementCode,
+//                                   @RequestParam(value = "typeRoche", required = false) Integer pTypeRocheId) {
+//
+//        Site vNewSite = null;
+//        List<Site> vListSites = new ArrayList<>();
+//        ModelAndView vMaV = new ModelAndView();
+//        try {
+//            vNewSite = siteResource.createSite(pNomSite, pDescription, pNomVille, pRegionId, pDepartementCode, pTypeRocheId);
+//        } catch (NullPointerException e) {
+//            e.printStackTrace();
+//        } finally {
+//            String vMessageCreationSite = "Le nouveau site " + pNomSite + " est créé !";
+//            // debug
+//            vNewSite.setId(siteResource.getLastId());
+//            vListSites.add(vNewSite);
+//            vMaV.addObject("messageCreationSite", vMessageCreationSite);
+//            vMaV.addObject("listSites", vListSites);
+//            vMaV.setViewName("jsTestPage");
+//            afficherListe(pModel);
+//        }
+//        return vMaV;
+//    }
 
 
 

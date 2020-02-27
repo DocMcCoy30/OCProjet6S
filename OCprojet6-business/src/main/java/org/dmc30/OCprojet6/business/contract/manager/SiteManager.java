@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.business.contract.manager;
 
 import org.dmc30.OCprojet6.model.bean.Site;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface SiteManager {
      * Enregistre un nouveau site dans la base de données.
      * @param pSite Le nouveau site à enregistrer.
      */
-    Site createSite(Site pSite);
+    Site createSite(Site pSite) throws TechnicalException;
 
     /**
      * Cherche un Site stocké dans la base de donnée par son identifiant.
@@ -63,7 +64,7 @@ public interface SiteManager {
      * Modifie un Site.
      * @param pSite Le site à modifier.
      */
-    void updateSite(Site pSite);
+    void updateSite(Site pSite) throws TechnicalException;
 
     /**
      * Supprime un Site

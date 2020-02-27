@@ -35,7 +35,8 @@ public class AutoSearchController extends AbstractController {
     /**
      * Recherche dans les tables site, region, departement et ville, les entrées corespondantes aux caractères renseignés
      * dans la barre de recherche et l'autocomplète.
-     * @param pMotCle Les caractères de recherche renseignés dans la barre.
+     *
+     * @param pMotCle  Les caractères de recherche renseignés dans la barre.
      * @param response La réponse à retourner sous forme d'objet JSON.
      * @throws IOException
      */
@@ -90,7 +91,8 @@ public class AutoSearchController extends AbstractController {
 
     /**
      * Recherche les sites concernés par la recherche.
-     * @param pModel Alimente en données les listes déroulantes.
+     *
+     * @param pModel  Alimente en données les listes déroulantes.
      * @param pMotCle Le mot clé renseigné dans la barre de recherche.
      * @return Le Model contenant les sites résultats de recherche.
      */
@@ -107,7 +109,6 @@ public class AutoSearchController extends AbstractController {
         //Liste des sites recherchés
         List<Site> vListSitesFromSites = siteResource.getMatchingSites(pMotCle);
         //Liste des sites de la région recherchée
-        logger.debug("Into sites par région");
         List<Region> vListRegions = geographicResource.getMatchingRegions(pMotCle);
         for (Region vRegion : vListRegions
         ) {
@@ -115,7 +116,6 @@ public class AutoSearchController extends AbstractController {
             vListSitesFromRegions = siteResource.getSitesByRegion(vRegionId);
         }
         //Liste des sites du département recherché
-        logger.debug("Into sites par département");
         List<Departement> vListDepartements = geographicResource.getMatchingDepartements(pMotCle);
         for (Departement vDepartement : vListDepartements
         ) {
@@ -123,7 +123,6 @@ public class AutoSearchController extends AbstractController {
             vListSitesFromDepartements = siteResource.getSitesByDepartement(vDepartementCode);
         }
         //Liste des sites de la ville recherchée
-        logger.debug("Into sites par ville");
         List<Ville> vListVilles = geographicResource.getMatchingVilles(pMotCle);
         for (Ville vVille : vListVilles
         ) {
@@ -137,13 +136,12 @@ public class AutoSearchController extends AbstractController {
         vListSitesRecherches.addAll(vListSitesFromVilles);
         // création de la liste des photos correspondantes aux sites recherchés
         for (Site vSite : vListSitesRecherches) {
-            if ( ! (photoResource.getPhotoByRefId(vSite.getId(), "site")).isEmpty() ) {
+            if (!(photoResource.getPhotoByRefId(vSite.getId(), "site")).isEmpty()) {
                 vListPhotos = photoResource.getPhotoByRefId(vSite.getId(), "site");
                 vSite.setListPhotos(vListPhotos);
             } else {
                 vListPhotos = photoResource.getPhotoByRefId(0, "logo");
                 vSite.setListPhotos(vListPhotos);
-                logger.debug("Logo = "+vListPhotos.get(0).getNom());
             }
         }
         //envoie de la liste du résultat de la recherche à la jsp

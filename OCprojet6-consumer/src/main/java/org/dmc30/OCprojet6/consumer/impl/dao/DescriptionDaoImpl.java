@@ -50,4 +50,15 @@ public class DescriptionDaoImpl extends AbstractDao implements DescriptionDao {
         return vJdbcTemplate.queryForObject(vSQL, Integer.TYPE);
     }
 
+    @Override
+    public void updateDescription(Description pDescription) {
+        String vSQL ="UPDATE description SET description = :vDescription, info = :vInfo WHERE description_id= :vDescriptionId";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("vDescriptionId", pDescription.getId());
+        vParams.addValue("vDescription", pDescription.getDescription());
+        vParams.addValue("vInfo", pDescription.getInfo());
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL, vParams);
+    }
+
 }
