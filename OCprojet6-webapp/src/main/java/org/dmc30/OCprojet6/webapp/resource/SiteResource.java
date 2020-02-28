@@ -53,7 +53,7 @@ public class SiteResource extends AbstractResource {
         //creation d'un objet site
         Site vSite = new Site();
         //construction du nouveau site
-        setSiteAttribut(pNomSite, pNomVille, pRegionId, pDepartementCode, pTypeRocheId, vSite);
+        setSiteCommonsAttributes(pNomSite, pNomVille, pRegionId, pDepartementCode, pTypeRocheId, vSite);
         //fixation de la description
         Description vNewDescription = new Description();
         if (pDescription.isEmpty()) {
@@ -82,12 +82,15 @@ public class SiteResource extends AbstractResource {
      * @param pTypeRocheId     L'identifiant du type de roche.
      * @return Le site modifié.
      */
-    public Site updateSite(Integer pSiteId, String pNomSite, Integer pDescriptionId, String pDescription, String pNomVille, Integer pRegionId, Integer pDepartementCode, Integer pTypeRocheId) throws TechnicalException {
+    public Site updateSite(Integer pSiteId, String pNomSite,
+                           Integer pDescriptionId, String pDescription,
+                           String pNomVille, Integer pRegionId,
+                           Integer pDepartementCode, Integer pTypeRocheId) throws TechnicalException {
         //creation d'un objet site
         Site vSite = new Site();
         //fixation de l'attribut id
         vSite.setId(pSiteId);
-        setSiteAttribut(pNomSite, pNomVille, pRegionId, pDepartementCode, pTypeRocheId, vSite);
+        setSiteCommonsAttributes(pNomSite, pNomVille, pRegionId, pDepartementCode, pTypeRocheId, vSite);
         //fixation de la description
         Description vNewDescription = new Description();
         vNewDescription.setId(pDescriptionId);
@@ -109,14 +112,13 @@ public class SiteResource extends AbstractResource {
      * Fixe les attributs d'un objet Site pour création ou modification.
      *
      * @param pNomSite         Le nom du Site.
-     * @param pDescription     La description du site.
      * @param pNomVille        Le nom de la ville.
      * @param pRegionId        L'identifiant de la région.
      * @param pDepartementCode Le code du département.
      * @param pTypeRocheId     Le type de roche.
      * @param vSite            L'objet Site à créer ou modifier.
      */
-    private void setSiteAttribut(String pNomSite, String pNomVille, Integer pRegionId, Integer pDepartementCode, Integer pTypeRocheId, Site vSite) {
+    private void setSiteCommonsAttributes(String pNomSite, String pNomVille, Integer pRegionId, Integer pDepartementCode, Integer pTypeRocheId, Site vSite) {
 
         //fixation de l'attribut nom
         vSite.setNom(pNomSite);

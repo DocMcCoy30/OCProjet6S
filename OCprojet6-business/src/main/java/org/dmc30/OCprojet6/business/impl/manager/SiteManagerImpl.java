@@ -60,9 +60,6 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
             TransactionStatus vTScommit = vTransactionStatus;
             vTransactionStatus = null;
             getPlatformTransactionManager().commit(vTScommit);
-        } catch (DuplicateKeyException e) {
-            logger.error("Username ou mail déjà existant.");
-            throw new TechnicalException(ErrorMessages.DUPLICATE_KEY_ERROR.getErrorMessage());
         } catch (BadSqlGrammarException e) {
             logger.error("Problème de syntaxe dans la requète SQL");
             throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());

@@ -24,7 +24,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <div class="card-title"><h2>Ajouter un nouveau site</h2></div>
+                <div class="card-title"><h2>Ajouter/modifier un site</h2></div>
             </div>
             <div class="card-body">
                 <form action="createUpdateSite" method="post">
@@ -154,7 +154,7 @@
                                 <input hidden name="siteId" value="${site.id}">
                                 <input hidden name="descriptionId" value="${site.description.id}">
                                 <input hidden name="villeId" value="${site.ville.id}">
-                                <button type="submit" class="btn btn-warning" name="action" value="update" id="btnModficationSite">Modifier</button>
+                                <button type="submit" class="btn btn-warning" name="action" value="update" id="btnModificationSite">Modifier</button>
                             </div>
                         </c:when>
                         <c:otherwise>

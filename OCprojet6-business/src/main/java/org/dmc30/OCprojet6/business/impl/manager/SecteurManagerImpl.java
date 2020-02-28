@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.business.impl.manager;
 
 import org.dmc30.OCprojet6.business.contract.manager.SecteurManager;
 import org.dmc30.OCprojet6.model.bean.Secteur;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import javax.inject.Named;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class SecteurManagerImpl extends AbstractManager implements SecteurManager {
 
     @Override
-    public void createSecteur(Secteur pSecteur) {
+    public void createSecteur(Secteur pSecteur) throws TechnicalException {
         getDaoFactory().getSecteurDao().createSecteur(pSecteur);
     }
 
@@ -30,7 +31,7 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
     }
 
     @Override
-    public void updateSecteur(Secteur pSecteur) {
+    public void updateSecteur(Secteur pSecteur) throws TechnicalException {
         getDaoFactory().getSecteurDao().updateSecteur(pSecteur);
     }
 

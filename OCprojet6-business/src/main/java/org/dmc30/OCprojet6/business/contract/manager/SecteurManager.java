@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.business.contract.manager;
 
 import org.dmc30.OCprojet6.model.bean.Secteur;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface SecteurManager {
     /**
      * Enregistre un nouveau Secteur dans la base de données.
      */
-    void createSecteur (Secteur pSecteur);
+    void createSecteur (Secteur pSecteur) throws TechnicalException;
 
     /**
      * Cherche un secteur dans la base de données par son identifiant.
@@ -35,7 +36,7 @@ public interface SecteurManager {
      * Modifie un secteur.
      * @param pSecteur Le secteur à modifier.
      */
-    void updateSecteur (Secteur pSecteur);
+    void updateSecteur (Secteur pSecteur) throws TechnicalException;
 
     /**
      * Supprime un secteur.

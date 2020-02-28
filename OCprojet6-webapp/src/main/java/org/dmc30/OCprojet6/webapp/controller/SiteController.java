@@ -256,9 +256,9 @@ public class SiteController extends AbstractController {
     }
 
     /**
-     * Crée ou modifie un site dans la base de données et l'affiche dans la page de recherche.
+     * Crée ou modifie un site dans la base de données et l'affiche dans la page site.
      *
-     * @param pModel           Les données des listes déroulantes à renvoyer à la page de recherche.
+     * @param pModel           Les données des listes déroulantes à renvoyer à la page.
      * @param pNomSite         Le nom du nouveau site.
      * @param pDescription     La description du nouveau site.
      * @param pNomVille        Le nom de la ville du nouveau site.
@@ -270,58 +270,50 @@ public class SiteController extends AbstractController {
      */
     @PostMapping("/createUpdateSite")
     public ModelAndView createUpdateSite(Model pModel,
-                                   @RequestParam(value = "nom", required = false) String pNomSite,
-                                   @RequestParam(value = "description", required = false) String pDescription,
-                                   @RequestParam(value = "ville", required = false) String pNomVille,
-                                   @RequestParam(value = "region", required = false) Integer pRegionId,
-                                   @RequestParam(value = "departement", required = false) Integer pDepartementCode,
-                                   @RequestParam(value = "typeRoche", required = false) Integer pTypeRocheId,
-                                   @RequestParam(value = "siteId", required = false) Integer pSiteId,
-                                   @RequestParam(value = "descriptionId", required = false) Integer pDescriptionId,
-                                   @RequestParam(value = "action") String pAction) throws TechnicalException {
+                                         @RequestParam(value = "nom", required = false) String pNomSite,
+                                         @RequestParam(value = "description", required = false) String pDescription,
+                                         @RequestParam(value = "ville", required = false) String pNomVille,
+                                         @RequestParam(value = "region", required = false) Integer pRegionId,
+                                         @RequestParam(value = "departement", required = false) Integer pDepartementCode,
+                                         @RequestParam(value = "typeRoche", required = false) Integer pTypeRocheId,
+                                         @RequestParam(value = "siteId", required = false) Integer pSiteId,
+                                         @RequestParam(value = "descriptionId", required = false) Integer pDescriptionId,
+                                         @RequestParam(value = "action") String pAction) throws TechnicalException {
 
         Site vSite = null;
         String vMessage = "";
         int vSiteId = 0;
         List<Photo> vListPhotos = new ArrayList<>();
         ModelAndView vMaV = new ModelAndView();
-
-        switch (pAction) {
-            case "update":
-                try {
+        try {
+            switch (pAction) {
+                case "update":
                     vSite = siteResource.updateSite(pSiteId, pNomSite, pDescriptionId, pDescription, pNomVille, pRegionId, pDepartementCode, pTypeRocheId);
                     vMessage = "Le site " + pNomSite + " a été modifié.";
-                } catch (TechnicalException e) {
-                    vMessage = e.getMessage();
-                }
-                break;
-            case "create":
-                try {
+                    break;
+                case "create":
                     vSite = siteResource.createSite(pNomSite, pDescription, pNomVille, pRegionId, pDepartementCode, pTypeRocheId);
                     vSiteId = siteResource.getLastId();
                     vSite.setId(vSiteId);
                     vMessage = "Le nouveau site " + pNomSite + " a été créé !";
-                }
-                catch (TechnicalException e) {
-                    vMessage = e.getMessage();
-                }
-                break;
+                    break;
+            }
+            if (!(photoResource.getPhotoByRefId(vSiteId, "site")).isEmpty()) {
+                vListPhotos = photoResource.getPhotoByRefId(vSite.getId(), "site");
+                vSite.setListPhotos(vListPhotos);
+            } else {
+                vListPhotos = photoResource.getPhotoByRefId(0, "logo");
+                vSite.setListPhotos(vListPhotos);
+            }
+        } catch (TechnicalException e) {
+            vMessage = e.getMessage();
+        } finally {
+            vMaV.addObject("message", vMessage);
+            vMaV.addObject("site", vSite);
+            vMaV.setViewName("sites");
+            afficherListe(pModel);
         }
 
-        if (!(photoResource.getPhotoByRefId(vSiteId, "site")).isEmpty()) {
-            vListPhotos = photoResource.getPhotoByRefId(vSite.getId(), "site");
-            vSite.setListPhotos(vListPhotos);
-        } else {
-            vListPhotos = photoResource.getPhotoByRefId(0, "logo");
-            vSite.setListPhotos(vListPhotos);
-        }
-
-
-        vMaV.addObject("message", vMessage);
-        vMaV.addObject("site", vSite);
-        vMaV.setViewName("sites");
-
-        afficherListe(pModel);
         return vMaV;
     }
 

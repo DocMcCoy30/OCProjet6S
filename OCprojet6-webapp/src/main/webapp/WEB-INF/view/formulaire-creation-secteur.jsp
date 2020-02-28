@@ -21,7 +21,7 @@
 <%@include file="header.jsp" %>
 
 <div id="body">
-    <div class="container-fluid">
+    <div class="container">
         <c:set var="site" value="${site}"/>
         <div class="card">
             <div class="card-header">
@@ -32,30 +32,63 @@
                 <h2 class="card-title"><a href="${secteurPage}">${site.nom}</a></h2>
             </div>
             <div class="card-body">
-                <h5>Ajouter un nouveau secteur :</h5>
-                <form action="creationSecteur" method="post">
+                <h5>Ajouter/modifier un secteur :</h5>
+                <form action="createUpdateSecteur" method="post">
                     <div class="row col-md-12 no-gutters">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="secteurNom">Nom du secteur : </span>
                             </div>
-                            <input type="text" name="secteurNom" class="form-control" aria-label="secteurNom"
-                                   aria-describedby="secteurNom" required>
+                            <c:choose>
+                                <c:when test="${! empty secteur}">
+                                    <input type="text" name="secteurNom" class="form-control" aria-label="secteurNom"
+                                           aria-describedby="secteurNom" value="${secteur.nom}" required>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" name="secteurNom" class="form-control" aria-label="secteurNom"
+                                           aria-describedby="secteurNom" required>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
-                        <div class="row col-md-12 no-gutters">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="description">Description : </span>
-                                </div>
-                                <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+                    <div class="row col-md-12 no-gutters">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="description">Description : </span>
                             </div>
+                            <c:choose>
+                                <c:when test="${! empty secteur}">
+                                    <textarea class="form-control" name="description" aria-label="With textarea">
+                                            ${secteur.description}
+                                    </textarea>
+                                </c:when>
+                                <c:otherwise>
+                                    <textarea class="form-control" name="description"
+                                              aria-label="With textarea"></textarea>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
-
-                    <br><br>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-warning">Ajouter</button>
                     </div>
+                    <br><br>
+                    <c:choose>
+                        <c:when test="${! empty secteur}">
+                            <div class="text-right">
+                                <input hidden name="siteId" value="${site.id}">
+                                <input hidden name="secteurId" value="${secteur.id}">
+                                <button type="submit" class="btn btn-warning" name="action" value="update"
+                                        id="btnModificationSite">Modifier
+                                </button>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="text-right">
+                                <input hidden name="siteId" value="${site.id}">
+                                <button type="submit" class="btn btn-warning" name="action" value="create"
+                                        id="btnCreationSecteur">Ajouter
+                                </button>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                 </form>
             </div>
         </div>

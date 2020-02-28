@@ -77,7 +77,7 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
 
     @Override
     public List<Site> getAllSites() {
-        String vSQL = "SELECT * FROM site";
+        String vSQL = "SELECT * FROM site ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         return vJdbcTemplate.query(vSQL, siteRM);
     }

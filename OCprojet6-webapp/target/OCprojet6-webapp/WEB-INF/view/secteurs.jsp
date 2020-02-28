@@ -33,9 +33,9 @@
                     <h5 class="text-muted text-right">${site.ville.nom} - ${site.departement.nom}</h5>
                 </form>
                 <div>
-                    <c:if test="${ !empty messageCreationSecteur}">
+                    <c:if test="${ !empty message}">
                         <div class="alert alert-success" role="alert">
-                            <c:out value="${messageCreationSecteur}"/>
+                            <c:out value="${message}"/>
                         </div>
                     </c:if>
                 </div>
@@ -45,24 +45,19 @@
                     <c:forEach var="secteur" items="${listSecteurs}">
                         <div class="card" id="secteurCard">
                             <div class="card-header" id="secteurCardHeader">
-                                <h2 class="card-title">${secteur.nom}</h2>
-                                <div class="btn-group" role="group">
-                                    <div>
-                                        <c:url var="showVoiePage" value="/showVoiePage">
-                                            <c:param name="secteurId" value="${secteur.id}"/>
-                                            <c:param name="siteId" value="${site.id}"/>
-                                        </c:url>
-                                        <a href="${showVoiePage}" type="button" class="btn btn-warning">Voir les
-                                            voies</a>
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="card-title">${secteur.nom}</h2>
                                     </div>
-                                    &nbsp
-                                    <div>
-                                        <c:url var="showPhotoSecteurPage" value="/showPhotoSecteurPage">
-                                            <c:param name="secteurId" value="${secteur.id}"/>
-                                        </c:url>
-                                        <a href="${showPhotoSecteurPage}" type="button" class="btn btn-warning">Voir les
-                                            photos</a>
+                                    <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
+                                    <c:url var="modifierSite" value="/showCreationSecteurForm">
+                                        <c:param name="secteurId" value="${secteur.id}"/>
+                                        <c:param name="siteId" value="${site.id}"/>
+                                    </c:url>
+                                    <div class="col-auto pull-right">
+                                        <a class="btn btn-warning" href="${modifierSite}">Modifier</a>
                                     </div>
+                                    </sec:authorize>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -86,22 +81,41 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-footer">
+                                <div class="btn-toolbar" role="toolbar">
+                                    <div class="btn-group ml-auto" role="group">                                        <c:url var="showVoiePage" value="/showVoiePage">
+                                            <c:param name="secteurId" value="${secteur.id}"/>
+                                            <c:param name="siteId" value="${site.id}"/>
+                                        </c:url>
+                                        <a href="${showVoiePage}" type="button" class="btn btn-warning">Voir les
+                                            voies</a>
+                                    </div>
+                                    &nbsp
+                                    <div class="btn-group mr-auto" role="group">                                        <c:url var="showPhotoSecteurPage" value="/showPhotoSecteurPage">
+                                            <c:param name="secteurId" value="${secteur.id}"/>
+                                        </c:url>
+                                        <a href="${showPhotoSecteurPage}" type="button" class="btn btn-warning">Voir les
+                                            photos</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </c:forEach>
                 </c:if>
             </div>
+            <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+                <div class="text-left">
+                    <c:url var="creationSecteurForm" value="/showCreationSecteurForm">
+                        <c:param name="siteId" value="${site.id}"/>
+                    </c:url>
+                    <a href="${creationSecteurForm}" type="button" id="btnAjoutSecteur" class="btn btn-warning">Ajouter
+                        un secteur</a>
+                </div>
+            </sec:authorize>
         </div>
 
 
-        <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-            <div class="text-right">
-                <c:url var="creationSecteurForm" value="/showCreationSecteurForm">
-                    <c:param name="siteId" value="${site.id}"/>
-                </c:url>
-                <a href="${creationSecteurForm}" type="button" id="btnAjoutSecteur" class="btn btn-warning">Ajouter
-                    un secteur</a>
-            </div>
-        </sec:authorize>
+
     </div>
     <br><br>
 </div>

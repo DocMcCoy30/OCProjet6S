@@ -63,7 +63,7 @@
                         <!-- Login/Submit Button -->
                         <div style="margin-top: 10px" class="form-group">
                             <div class="col-sm-8 controls">
-                                <button type="submit" class="btn btn-outline-warning">Se connecter</button>
+                                <button type="submit" class="btn btn-warning">Se connecter</button>
                             </div>
                             <br>
                             <div class="col-sm-12">

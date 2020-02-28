@@ -35,12 +35,14 @@
                     <div class="col">
                         <h2 class="card-title">${site.nom}</h2>
                     </div>
+                    <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
                     <c:url var="modifierSite" value="/showCreationSiteForm">
                         <c:param name="siteId" value="${site.id}"/>
                     </c:url>
-                    <div class="col-auto pull-right">
-                        <a class="btn btn-warning" href="${modifierSite}">Modifier</a>
-                    </div>
+                        <div class="col-auto pull-right">
+                            <a class="btn btn-warning" href="${modifierSite}">Modifier</a>
+                        </div>
+                    </sec:authorize>
                 </div>
                 <h5 class="text-muted text-right">${site.ville.nom} - ${site.departement.nom}</h5>
             </div>
@@ -61,24 +63,24 @@
             <c:url var="secteurPage" value="/showSecteurPage">
                 <c:param name="siteId" value="${site.id}"/>
             </c:url>
-            <div class="btn-toolbar mx-auto" role="toolbar" id="buttonLinkBar">
-                <div class="btn-group col-auto mr-2" role="group">
+            <div class="btn-toolbar" role="toolbar" id="buttonLinkBar">
+                <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${secteurPage}">Voir les secteurs</a>
                 </div>
-                <div class="btn-group col-auto mr-2" role="group">
+                <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les topos</a>
                 </div>
-<%--                <div class="btn-group col-auto mr-2" role="group">--%>
-<%--                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>--%>
-<%--                </div>--%>
-                <div class="btn-group col-auto mr-2" role="group">
+                <%--                <div class="btn-group col-auto mr-2" role="group">--%>
+                <%--                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>--%>
+                <%--                </div>--%>
+                <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>
                 </div>
-<%--                <div class="btn-group col-auto mr-2" role="group">--%>
-<%--                    <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"--%>
-<%--                           value="Ajouter une photo"><br/>--%>
-<%--                </div>--%>
-                <div class="btn-group col-auto mr-2" role="group">
+                <%--                <div class="btn-group col-auto mr-2" role="group">--%>
+                <%--                    <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"--%>
+                <%--                           value="Ajouter une photo"><br/>--%>
+                <%--                </div>--%>
+                <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
                 </div>
             </div>

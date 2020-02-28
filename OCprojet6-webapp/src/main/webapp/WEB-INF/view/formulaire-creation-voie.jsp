@@ -21,7 +21,7 @@
 <%@include file="header.jsp" %>
 
 <div id="body">
-    <div class="container-fluid">
+    <div class="container">
         <c:set var="siteId" value="${siteId}"/>
         <c:set var="secteur" value="${secteur}"/>
         <div class="card">
@@ -58,7 +58,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="cotation">Cotation : </span>
                             </div>
-                            <select class="custom-select" name="cotationId" id="cotations"                                 aria-label="Cotation de la voie"
+                            <select class="custom-select" name="cotationId" id="cotations"
+                                    aria-label="Cotation de la voie"
                                     aria-describedby="Cotation de la voie">
                                 <option selected disabled></option>
                                 <c:forEach var="cotation" items="${cotations}">

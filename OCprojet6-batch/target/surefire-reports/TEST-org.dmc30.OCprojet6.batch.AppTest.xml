@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.dmc30.OCprojet6.batch.AppTest" time="0.063" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.dmc30.OCprojet6.batch.AppTest" time="0.078" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -17,29 +17,29 @@
     <property name="os.name" value="Windows 10"/>
     <property name="user.country" value="FR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.boot.library.path" value="C:\Env\Java\jdk1.8.0_211\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\thoma\AppData\Local\Temp\surefire6141941311642550622\surefirebooter3783951659982122926.jar C:\Users\thoma\AppData\Local\Temp\surefire6141941311642550622 2020-02-27T19-48-37_174-jvmRun1 surefire2868138498592703469tmp surefire_0792357977068714491tmp"/>
+    <property name="sun.boot.library.path" value="C:\Env\java\jdk1.8.0_211\jre\bin"/>
+    <property name="sun.java.command" value="C:\Users\thoma\AppData\Local\Temp\surefire5101923492717033340\surefirebooter1355511586138231756.jar C:\Users\thoma\AppData\Local\Temp\surefire5101923492717033340 2020-02-28T15-28-41_111-jvmRun1 surefire5040414090492314276tmp surefire_01289956682373653529tmp"/>
     <property name="surefire.test.class.path" value="C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-batch\target\test-classes;C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-batch\target\classes;C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\target\OCprojet6-business-1.0-SNAPSHOT.jar;C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\target\OCprojet6-consumer-1.0-SNAPSHOT.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\spring-jdbc\5.2.1.RELEASE\spring-jdbc-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\security\spring-security-web\5.2.1.RELEASE\spring-security-web-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\security\spring-security-core\5.2.1.RELEASE\spring-security-core-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\security\spring-security-config\5.2.1.RELEASE\spring-security-config-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\security\spring-security-taglibs\5.2.1.RELEASE\spring-security-taglibs-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\security\spring-security-acl\5.2.1.RELEASE\spring-security-acl-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\spring-web\5.2.1.RELEASE\spring-web-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\spring-beans\5.2.1.RELEASE\spring-beans-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\spring-core\5.2.1.RELEASE\spring-core-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\spring-jcl\5.2.1.RELEASE\spring-jcl-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\spring-context\5.2.1.RELEASE\spring-context-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\spring-aop\5.2.1.RELEASE\spring-aop-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\spring-expression\5.2.1.RELEASE\spring-expression-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\springframework\spring-tx\5.2.1.RELEASE\spring-tx-5.2.1.RELEASE.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\apache\logging\log4j\log4j-core\2.13.0\log4j-core-2.13.0.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\apache\logging\log4j\log4j-api\2.13.0\log4j-api-2.13.0.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\apache\logging\log4j\log4j-jcl\2.13.0\log4j-jcl-2.13.0.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\apache\logging\log4j\log4j-web\2.13.0\log4j-web-2.13.0.jar;C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-model\target\OCprojet6-model-1.0-SNAPSHOT.jar;C:\Env\maven\apache-maven-3.6.2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-technical\target\OCprojet6-technical.jar;C:\Env\maven\apache-maven-3.6.2\repository\javax\annotation\javax.annotation-api\1.3.2\javax.annotation-api-1.3.2.jar;C:\Env\maven\apache-maven-3.6.2\repository\javax\inject\javax.inject\1\javax.inject-1.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\postgresql\postgresql\42.2.8.jre7\postgresql-42.2.8.jre7.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\apache\commons\commons-dbcp2\2.7.0\commons-dbcp2-2.7.0.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\apache\commons\commons-pool2\2.7.0\commons-pool2-2.7.0.jar;C:\Env\maven\apache-maven-3.6.2\repository\junit\junit\4.13\junit-4.13.jar;C:\Env\maven\apache-maven-3.6.2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\thoma"/>
     <property name="user.language" value="fr"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.home" value="C:\Env\Java\jdk1.8.0_211\jre"/>
+    <property name="java.home" value="C:\Env\java\jdk1.8.0_211\jre"/>
     <property name="basedir" value="C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-batch"/>
     <property name="file.separator" value="\"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\thoma\AppData\Local\Temp\surefire6141941311642550622\surefirebooter3783951659982122926.jar"/>
-    <property name="sun.boot.class.path" value="C:\Env\Java\jdk1.8.0_211\jre\lib\resources.jar;C:\Env\Java\jdk1.8.0_211\jre\lib\rt.jar;C:\Env\Java\jdk1.8.0_211\jre\lib\sunrsasign.jar;C:\Env\Java\jdk1.8.0_211\jre\lib\jsse.jar;C:\Env\Java\jdk1.8.0_211\jre\lib\jce.jar;C:\Env\Java\jdk1.8.0_211\jre\lib\charsets.jar;C:\Env\Java\jdk1.8.0_211\jre\lib\jfr.jar;C:\Env\Java\jdk1.8.0_211\jre\classes"/>
+    <property name="surefire.real.class.path" value="C:\Users\thoma\AppData\Local\Temp\surefire5101923492717033340\surefirebooter1355511586138231756.jar"/>
+    <property name="sun.boot.class.path" value="C:\Env\java\jdk1.8.0_211\jre\lib\resources.jar;C:\Env\java\jdk1.8.0_211\jre\lib\rt.jar;C:\Env\java\jdk1.8.0_211\jre\lib\sunrsasign.jar;C:\Env\java\jdk1.8.0_211\jre\lib\jsse.jar;C:\Env\java\jdk1.8.0_211\jre\lib\jce.jar;C:\Env\java\jdk1.8.0_211\jre\lib\charsets.jar;C:\Env\java\jdk1.8.0_211\jre\lib\jfr.jar;C:\Env\java\jdk1.8.0_211\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="1.8.0_211-b12"/>
     <property name="user.name" value="thoma"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
-    <property name="java.endorsed.dirs" value="C:\Env\Java\jdk1.8.0_211\jre\lib\endorsed"/>
+    <property name="java.endorsed.dirs" value="C:\Env\java\jdk1.8.0_211\jre\lib\endorsed"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
@@ -52,14 +52,13 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="idea.version2019.3.3" value="true"/>
-    <property name="java.library.path" value="C:\Env\Java\jdk1.8.0_211\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Env\maven\apache-maven-3.6.2\bin;C:\Env\java\jdk1.8.0_211\bin;C:\Windows\System32;C:\Windows;C:\Windows\System32\wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\GnuPG\bin;%JAVA_HOME%\bin;C:\Env\java\jdk1.8.0_211\bin;C:\Users\thoma\AppData\Local\Microsoft\WindowsApps;;C:\Users\thoma\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.library.path" value="C:\Env\java\jdk1.8.0_211\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Env\cmder_mini\bin;C:\Env\cmder_mini\vendor\bin;C:\Env\cmder_mini\vendor\conemu-maximus5\ConEmu\Scripts;C:\Env\cmder_mini\vendor\conemu-maximus5;C:\Env\cmder_mini\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Env\maven\apache-maven-3.6.2\bin;C:\Env\java\jdk1.8.0_211\bin;C:\Windows\System32;C:\Windows;C:\Windows\System32\wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\GnuPG\bin;%JAVA_HOME%\bin;C:\Env\java\jdk1.8.0_211\bin;C:\Users\thoma\AppData\Local\Microsoft\WindowsApps;C:\Users\thoma\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Env\cmder_mini;."/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="java.vm.version" value="25.211-b12"/>
-    <property name="java.ext.dirs" value="C:\Env\Java\jdk1.8.0_211\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="java.ext.dirs" value="C:\Env\java\jdk1.8.0_211\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="org.dmc30.OCprojet6.batch.AppTest" time="0.016"/>
+  <testcase name="shouldAnswerWithTrue" classname="org.dmc30.OCprojet6.batch.AppTest" time="0"/>
 </testsuite>

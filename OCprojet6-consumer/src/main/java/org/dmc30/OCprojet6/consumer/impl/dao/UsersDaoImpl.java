@@ -30,29 +30,19 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
         String vEmail = pUsers.getEmail();
         String vSQL = "INSERT INTO users (username, password, email, enabled) VALUES (?,?,?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-
-            vJdbcTemplate.update(vSQL, vUserName, vPassword, vEmail, true);
-
-//        MapSqlParameterSource vParams = new MapSqlParameterSource();
-//        vParams.addValue("vUsername", pUsers.getUsername());
-//        vParams.addValue("vPassword", encoder.passwordEncoder(pUsers.getPassword()));
-//        vParams.addValue("vEmail", pUsers.getEmail());
-//        vParams.addValue("vEnabled", pUsers.isEnabled());
-//        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL, vUserName, vPassword, vEmail, true);
     }
 
     @Override
     public Users getUsersByName(String pUsername) throws TechnicalException {
         List<Users> vListUsers;
-        String vSQL = "SELECT * FROM users WHERE username="+pUsername;
+        String vSQL = "SELECT * FROM users WHERE username=" + pUsername;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         try {
             vListUsers = vJdbcTemplate.query(vSQL, usersRM);
-        }
-        catch (DataAccessException e) {
+        } catch (DataAccessException e) {
             throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
         }
         return vListUsers.get(0);
@@ -65,12 +55,10 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
         String vSQL = "SELECT * FROM users";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         try {
-        vListUsers = vJdbcTemplate.query(vSQL, usersRM);
-        }
-        catch (DataAccessException e) {
+            vListUsers = vJdbcTemplate.query(vSQL, usersRM);
+        } catch (DataAccessException e) {
             throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
         }
         return vListUsers;
