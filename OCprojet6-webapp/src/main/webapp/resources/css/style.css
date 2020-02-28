@@ -43,6 +43,10 @@ h1, h2, h4, h5, a, td {
     color: #DE781F;
 }
 
+h3 {
+    color: white ;
+}
+
 h3 a {
     color: #F2E8C9;
 }

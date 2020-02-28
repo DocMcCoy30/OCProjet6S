@@ -46,7 +46,6 @@ public class SecteurDaoImpl extends AbstractDao implements SecteurDao {
         } catch (Exception e) {
             logger.error("Problème technique");
             throw new TechnicalException(ErrorMessages.TX_ERROR.getErrorMessage());
-
         }
     }
 

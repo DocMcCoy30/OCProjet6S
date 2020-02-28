@@ -24,8 +24,6 @@
                     </div>
                     <button class="btn btn-warning my-2 mr-5" type="submit" id="searchSiteButton">Rechercher</button>
                 </form>
-<%--            </div>--%>
-<%--            <div class="clearfix">--%>
                 <c:if test="${pageContext.request.userPrincipal.name == null}">
             <span class="form-inline mt-2 mt-lg-0 mr-2 float-right">
             <a class="btn btn-warning" href="${pageContext.request.contextPath}/signin">Creer un compte</a>
@@ -35,12 +33,12 @@
                 </c:if>
             </div>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <div>Bonjour ${pageContext.request.userPrincipal.name}</div>
+                <h3>Bonjour ${pageContext.request.userPrincipal.name}</h3>
                 &emsp;
                 <form action="${logoutUrl}" method="post" id="logoutForm">
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}"/>
-                    <a class="btn btn-warning" href="javascript:lougOutFormSubmit()">Se déconnecter</a>
+                    <a class="btn btn-warning" href="javascript:lougOutFormSubmit()">Se deconnecter</a>
                 </form>
             </c:if>
             </div>

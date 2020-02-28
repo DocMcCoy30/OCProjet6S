@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.business.contract.manager;
 
 import org.dmc30.OCprojet6.model.bean.Voie;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface VoieManager {
      * Enregistre une nouvelle voie dans la base de données.
      * @param pVoie La nouvelle voie à enregistrer.
      */
-    void createVoie (Voie pVoie);
+    void createVoie (Voie pVoie) throws TechnicalException;
 
     /**
      * Recherche une voie par son identifiant dans la base de données.
@@ -36,7 +37,7 @@ public interface VoieManager {
      * Modifie une Voie.
      * @param pVoie : La voie à modifier.
      */
-    void updateVoie (Voie pVoie);
+    void updateVoie (Voie pVoie) throws TechnicalException;
 
     /**
      * Supprime une Voie.

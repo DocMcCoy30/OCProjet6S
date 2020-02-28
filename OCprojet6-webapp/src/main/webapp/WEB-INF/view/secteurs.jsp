@@ -50,12 +50,12 @@
                                         <h2 class="card-title">${secteur.nom}</h2>
                                     </div>
                                     <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
-                                    <c:url var="modifierSite" value="/showCreationSecteurForm">
+                                    <c:url var="modifierSecteur" value="/showSecteurForm">
                                         <c:param name="secteurId" value="${secteur.id}"/>
                                         <c:param name="siteId" value="${site.id}"/>
                                     </c:url>
                                     <div class="col-auto pull-right">
-                                        <a class="btn btn-warning" href="${modifierSite}">Modifier</a>
+                                        <a class="btn btn-warning" href="${modifierSecteur}">Modifier</a>
                                     </div>
                                     </sec:authorize>
                                 </div>
@@ -105,10 +105,10 @@
             </div>
             <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
                 <div class="text-left">
-                    <c:url var="creationSecteurForm" value="/showCreationSecteurForm">
+                    <c:url var="ajouterSecteur" value="/showSecteurForm">
                         <c:param name="siteId" value="${site.id}"/>
                     </c:url>
-                    <a href="${creationSecteurForm}" type="button" id="btnAjoutSecteur" class="btn btn-warning">Ajouter
+                    <a href="${ajouterSecteur}" type="button" id="btnAjoutSecteur" class="btn btn-warning">Ajouter
                         un secteur</a>
                 </div>
             </sec:authorize>

@@ -33,8 +33,8 @@
                 <h2 class="card-title"><a href="${voiePage}">${secteur.nom}</a></h2>
             </div>
             <div class="card-body">
-                <h5>Ajouter une nouvelle voie :</h5>
-                <form action="creationVoie" method="post">
+                <h5>Ajouter/Modifier une voie :</h5>
+                <form action="createUpdateVoie" method="post">
                     <input id="siteId" name="siteId" type="hidden" value="${siteId}">
                     <input id="secteurId" name="secteurId" type="hidden" value="${secteur.id}">
                     <div class="row col-md-12 no-gutters">
@@ -42,36 +42,78 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="voieNom">Nom de la voie : </span>
                             </div>
-                            <input type="text" name="nom" class="form-control" aria-label="Nom de la voie"
-                                   aria-describedby="Nom de la voie" required>
+                            <c:choose>
+                                <c:when test="${! empty voie}">
+                                    <input type="text" name="nom" class="form-control" aria-label="Nom de la voie"
+                                           aria-describedby="Nom de la voie" value="${voie.nom}" required>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" name="nom" class="form-control" aria-label="Nom de la voie"
+                                           aria-describedby="Nom de la voie" required>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <div class="row col-md-12 no-gutters">
-                        <div class="input-group col-md-4">
+                        <div class="input-group col-md-5">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="description">Hauteur : </span>
                             </div>
-                            <input type="number" name="hauteur" class="form-control" aria-label="Hauteur de la voie"
-                                   aria-describedby="Hauteur de la voie">
+                            <c:choose>
+                                <c:when test="${! empty voie}">
+                                    <input type="number" name="hauteur" class="form-control"
+                                           aria-label="Hauteur de la voie"
+                                           aria-describedby="Hauteur de la voie" value="${voie.hauteur}">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="number" name="hauteur" class="form-control"
+                                           aria-label="Hauteur de la voie"
+                                           aria-describedby="Hauteur de la voie">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
-                        <div class="input-group col-md-4 ml-2">
+                        <div class="input-group col-md-5 ml-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="cotation">Cotation : </span>
                             </div>
+                            <c:choose>
+                                <c:when test="${! empty voie}">
                             <select class="custom-select" name="cotationId" id="cotations"
                                     aria-label="Cotation de la voie"
                                     aria-describedby="Cotation de la voie">
-                                <option selected disabled></option>
+                                <option selected value="${voie.cotation.id}">${voie.cotation.valeur}</option>
                                 <c:forEach var="cotation" items="${cotations}">
-                                    <option value="${cotation.id}">${cotation.valeur}</option>
+                                <option value="${cotation.id}">${cotation.valeur}</option>
                                 </c:forEach>
-                            </select>
+                                </c:when>
+                                <c:otherwise>
+                                    <select class="custom-select" name="cotationId" id="cotations"
+                                            aria-label="Cotation de la voie"
+                                            aria-describedby="Cotation de la voie">
+                                        <option selected disabled></option>
+                                        <c:forEach var="cotation" items="${cotations}">
+                                            <option value="${cotation.id}">${cotation.valeur}</option>
+                                        </c:forEach>
+                                    </select>
+                                </c:otherwise>
+                            </c:choose>
+
                         </div>
                     </div>
                     <br><br>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-warning">Ajouter</button>
-                    </div>
+                    <c:choose>
+                        <c:when test="${! empty voie}">
+                            <input hidden name="voieId" value="${voie.id}">
+                            <input hidden name="siteId" value="${siteId}">
+                            <input hidden name="secteurId" value="${secteur.id}">
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-warning" name="action" value="update">Modifier</button>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <button type="submit" class="btn btn-warning" name="action" value="create">Ajouter</button>
+                        </c:otherwise>
+                    </c:choose>
                 </form>
             </div>
         </div>

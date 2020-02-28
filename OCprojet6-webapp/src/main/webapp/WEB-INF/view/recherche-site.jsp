@@ -106,7 +106,7 @@
         </div>
         <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
             <div class="text-right">
-                <a href="${pageContext.request.contextPath}/showCreationSiteForm" type="button"
+                <a href="${pageContext.request.contextPath}/showSiteForm" type="button"
                    class="btn btn-warning" id="createSiteButton">Créer
                     un site</a>
             </div>

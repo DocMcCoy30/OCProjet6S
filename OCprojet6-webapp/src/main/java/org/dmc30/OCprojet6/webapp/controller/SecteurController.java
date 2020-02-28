@@ -54,14 +54,15 @@ public class SecteurController extends AbstractController {
     }
 
     /**
-     * Affiche le formulaire de création de secteur.
+     * Affiche le formulaire de création/modification de secteur.
      *
      * @param pSiteId L'identifiant du site concerné.
+     * @param pSecteurId L'identifiant du secteur à modifier.
      * @return Les infos du site concerné et la vue.
      */
-    @GetMapping("/showCreationSecteurForm")
-    public ModelAndView showCreationSecteurForm(@RequestParam(value = "siteId") Integer pSiteId,
-                                                @RequestParam(value = "secteurId", required = false) Integer pSecteurId) {
+    @GetMapping("/showSecteurForm")
+    public ModelAndView showSecteurForm(@RequestParam(value = "siteId") Integer pSiteId,
+                                        @RequestParam(value = "secteurId", required = false) Integer pSecteurId) {
         ModelAndView vMaV = new ModelAndView();
         if (pSecteurId != null) {
             Secteur vSecteur = secteurResource.getSecteurById(pSecteurId);

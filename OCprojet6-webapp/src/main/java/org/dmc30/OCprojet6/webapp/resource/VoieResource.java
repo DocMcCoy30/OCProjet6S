@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.webapp.resource;
 
 import org.dmc30.OCprojet6.model.bean.Voie;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import javax.inject.Named;
 import java.util.List;
@@ -12,7 +13,7 @@ public class VoieResource extends AbstractResource{
         return getManagerFactory().getVoieManager().getVoiesBySecteurId(pSecteurId);
     }
 
-    public void createVoie (Voie pVoie) {
+    public void createVoie (Voie pVoie) throws TechnicalException {
         getManagerFactory().getVoieManager().createVoie(pVoie);
     }
 
@@ -26,5 +27,13 @@ public class VoieResource extends AbstractResource{
 
     public int[] getCotationMinMaxBySecteur(int pSecteurId) {
         return getManagerFactory().getVoieManager().getCotationMinMaxBySecteur(pSecteurId);
+    }
+
+    public Voie getVoiesById(Integer pVoieId) {
+        return getManagerFactory().getVoieManager().getVoieById(pVoieId);
+    }
+
+    public void updateVoie(Voie pVoie) throws TechnicalException {
+        getManagerFactory().getVoieManager().updateVoie(pVoie);
     }
 }

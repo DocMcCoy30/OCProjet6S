@@ -1,8 +1,14 @@
 package org.dmc30.OCprojet6.consumer.impl.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.consumer.contract.dao.VoieDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.VoieRM;
 import org.dmc30.OCprojet6.model.bean.Voie;
+import org.dmc30.OCprojet6.model.exception.ErrorMessages;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,11 +20,13 @@ import java.util.List;
 @Named
 public class VoieDaoImpl extends AbstractDao implements VoieDao {
 
+    Logger logger = LogManager.getLogger(VoieDaoImpl.class);
+
     @Inject
     VoieRM voieRM;
 
     @Override
-    public void createVoie(Voie pVoie) {
+    public void createVoie(Voie pVoie) throws TechnicalException {
         String vSQL = "INSERT INTO voie (nom, hauteur, secteur_id, cotation_id) VALUES (:nom, :hauteur, :secteurId, :cotationId)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("nom", pVoie.getNom());
@@ -26,7 +34,20 @@ public class VoieDaoImpl extends AbstractDao implements VoieDao {
         vParams.addValue("secteurId", pVoie.getSecteur().getId());
         vParams.addValue("cotationId", pVoie.getCotation().getId());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        vJdbcTemplate.update(vSQL,vParams);
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+        } catch (
+                BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (
+                DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
+        } catch (Exception e) {
+            logger.error("Problème technique");
+            throw new TechnicalException(ErrorMessages.TX_ERROR.getErrorMessage());
+        }
     }
 
     @Override
@@ -61,15 +82,15 @@ public class VoieDaoImpl extends AbstractDao implements VoieDao {
 
     @Override
     public Integer getHauteurMaxBySecteur(int pSecteurId) {
-        String vSQL = "SELECT MAX(hauteur) FROM voie WHERE secteur_id="+pSecteurId;
+        String vSQL = "SELECT MAX(hauteur) FROM voie WHERE secteur_id=" + pSecteurId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         return vJdbcTemplate.queryForObject(vSQL, Integer.class);
     }
 
     @Override
     public int[] getCotationsMinMaxBySecteur(int pSecteurId) {
-        String vSQLMin = "SELECT MIN(cotation_id) FROM voie WHERE secteur_id="+pSecteurId;
-        String vSQLMax = "SELECT MAX(cotation_id) FROM voie WHERE secteur_id="+pSecteurId;
+        String vSQLMin = "SELECT MIN(cotation_id) FROM voie WHERE secteur_id=" + pSecteurId;
+        String vSQLMax = "SELECT MAX(cotation_id) FROM voie WHERE secteur_id=" + pSecteurId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         int vMin = vJdbcTemplate.queryForObject(vSQLMin, Integer.class);
         JdbcTemplate vJdbcTemplate2 = new JdbcTemplate(getDataSource());
@@ -78,7 +99,28 @@ public class VoieDaoImpl extends AbstractDao implements VoieDao {
     }
 
     @Override
-    public void updateVoie(Voie pVoie) {
+    public void updateVoie(Voie pVoie) throws TechnicalException {
+        String vSQL = "UPDATE voie SET nom= :vNom, hauteur= :vHauteur, cotation_id= :vCotationId WHERE voie_id= :vVoieId";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("vNom", pVoie.getNom());
+        vParams.addValue("vHauteur", pVoie.getHauteur());
+        vParams.addValue("vCotationId", pVoie.getCotation().getId());
+        vParams.addValue("vVoieId", pVoie.getId());
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+        } catch (
+                BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (
+                DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
+        } catch (Exception e) {
+            logger.error("Problème technique");
+            throw new TechnicalException(ErrorMessages.TX_ERROR.getErrorMessage());
+        }
 
     }
 

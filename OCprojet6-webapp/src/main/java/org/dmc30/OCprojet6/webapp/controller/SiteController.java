@@ -222,8 +222,8 @@ public class SiteController extends AbstractController {
      * @param pModel Les données de listes déroulantes.
      * @return La page de création de site.
      */
-    @GetMapping("/showCreationSiteForm")
-    public ModelAndView showCreationSiteForm(Model pModel,
+    @GetMapping("/showSiteForm")
+    public ModelAndView showSiteForm(Model pModel,
                                              @RequestParam(value = "siteId", required = false) Integer pSiteId) {
         ModelAndView vMaV = new ModelAndView();
         if (pSiteId != null) {

@@ -36,7 +36,7 @@
                         <h2 class="card-title">${site.nom}</h2>
                     </div>
                     <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
-                    <c:url var="modifierSite" value="/showCreationSiteForm">
+                    <c:url var="modifierSite" value="/showSiteForm">
                         <c:param name="siteId" value="${site.id}"/>
                     </c:url>
                         <div class="col-auto pull-right">

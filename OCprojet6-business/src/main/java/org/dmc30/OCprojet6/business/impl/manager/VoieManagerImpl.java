@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.business.impl.manager;
 
 import org.dmc30.OCprojet6.business.contract.manager.VoieManager;
 import org.dmc30.OCprojet6.model.bean.Voie;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import javax.inject.Named;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class VoieManagerImpl extends AbstractManager implements VoieManager {
     
     @Override
-    public void createVoie(Voie pVoie) {
+    public void createVoie(Voie pVoie) throws TechnicalException {
         getDaoFactory().getVoieDao().createVoie(pVoie);
 
     }
@@ -31,7 +32,7 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager {
     }
 
     @Override
-    public void updateVoie(Voie pVoie) {
+    public void updateVoie(Voie pVoie) throws TechnicalException {
         getDaoFactory().getVoieDao().updateVoie(pVoie);
     }
 

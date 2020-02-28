@@ -22,10 +22,11 @@
 
 <div id="body">
     <div class="container">
+        <c:set var="siteId" value="${siteId}"/>
+        <c:set var="secteur" value="${secteur}"/>
         <div class="card">
             <div class="card-header" id="voieCardHeader">
                 <div class="row">
-
                     <div class="col">
                         <h2 class="card-title">${secteur.nom}</h2>
                     </div>
@@ -43,7 +44,6 @@
                     </div>
                 </c:if>
             </div>
-            <%--        </div>--%>
             <div class="card-body">
                 <table class="table" id="infoVoies">
                     <thead>
@@ -51,6 +51,7 @@
                         <th>Nom:</th>
                         <th>Hauteur:</th>
                         <th>Cotation:</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,6 +60,16 @@
                             <td>${voie.nom}</td>
                             <td>${voie.hauteur}</td>
                             <td>${voie.cotation.valeur}</td>
+                             <td class="text-right">
+                                <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
+                                    <c:url var="modifierVoie" value="/showVoieForm">
+                                        <c:param name="secteurId" value="${secteur.id}"/>
+                                        <c:param name="siteId" value="${siteId}"/>
+                                        <c:param name="voieId" value="${voie.id}"/>
+                                    </c:url>
+                                        <a class="btn btn-warning" href="${modifierVoie}">Modifier</a>
+                                </sec:authorize>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -66,11 +77,11 @@
             </div>
             <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
                 <div class="text-right">
-                    <c:url var="creationVoieForm" value="/showCreationVoieForm">
+                    <c:url var="ajouterVoie" value="/showVoieForm">
                         <c:param name="secteurId" value="${secteur.id}"/>
                         <c:param name="siteId" value="${siteId}"/>
                     </c:url>
-                    <a href="${creationVoieForm}" type="button" id="btnAjoutVoie" class="btn btn-warning">Ajouter
+                    <a href="${ajouterVoie}" type="button" id="btnAjoutVoie" class="btn btn-warning">Ajouter
                         une voie</a>
                 </div>
             </sec:authorize>
