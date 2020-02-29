@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.business.contract.manager;
 
 import org.dmc30.OCprojet6.model.bean.Photo;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface PhotoManager {
     /**
      * Enregistre un objet de type Photo dans la database.
      */
-    void createPhoto (Photo pPhoto);
+    void createPhoto (Photo pPhoto) throws TechnicalException;
 
     /**
      * Cherche et renvoie un objet de type Photo stocké dans la database.

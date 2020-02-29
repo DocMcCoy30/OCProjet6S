@@ -1,13 +1,17 @@
 package org.dmc30.OCprojet6.consumer.impl.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.consumer.contract.dao.VilleDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.VilleRM;
-import org.dmc30.OCprojet6.model.bean.Region;
 import org.dmc30.OCprojet6.model.bean.Ville;
+import org.dmc30.OCprojet6.model.exception.ErrorMessages;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -15,17 +19,33 @@ import java.util.List;
 @Named
 public class VilleDaoImpl extends AbstractDao implements VilleDao {
 
+    Logger logger = LogManager.getLogger(VilleDaoImpl.class);
+
     @Inject
     VilleRM villeRM;
 
     @Override
-    public void createVille(Ville pVille) {
+    public void createVille(Ville pVille) throws TechnicalException {
         String vSQL = "INSERT INTO ville (nom, departement_code) VALUES (:nom, :departementCode)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("nom", pVille.getNom());
         vParams.addValue("departementCode", pVille.getDepartement().getCode());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        vJdbcTemplate.update(vSQL,vParams);
+        try {
+            vJdbcTemplate.update(vSQL,vParams);
+        }catch (
+                BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (
+                DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
+        } catch (Exception e) {
+            logger.error("Problème technique");
+            throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
+        }
+
     }
 
     @Override

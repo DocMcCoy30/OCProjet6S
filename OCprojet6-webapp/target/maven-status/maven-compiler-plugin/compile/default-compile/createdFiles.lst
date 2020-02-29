@@ -14,6 +14,7 @@ org\dmc30\OCprojet6\webapp\controller\AuthenticationController.class
 org\dmc30\OCprojet6\webapp\controller\PhotoController.class
 org\dmc30\OCprojet6\webapp\controller\SecteurController.class
 org\dmc30\OCprojet6\webapp\resource\DescriptionResource.class
+org\dmc30\OCprojet6\webapp\controller\TopoController.class
 org\dmc30\OCprojet6\webapp\controller\AutoSearchController.class
 org\dmc30\OCprojet6\webapp\resource\AllCaracteristiqueResource.class
 org\dmc30\OCprojet6\webapp\resource\VoieResource.class

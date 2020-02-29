@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.business.impl.manager;
 
 import org.dmc30.OCprojet6.business.contract.manager.TopoManager;
 import org.dmc30.OCprojet6.model.bean.Topo;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import javax.inject.Named;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class TopoManagerImpl extends AbstractManager implements TopoManager {
 
     @Override
-    public void createTopo(Topo pTopo) {
+    public void createTopo(Topo pTopo) throws TechnicalException {
         getDaoFactory().getTopoDao().createTopo(pTopo);
 
     }
@@ -20,6 +21,10 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager {
         return getDaoFactory().getTopoDao().getTopoById(pId);
     }
 
+    @Override
+    public List<Topo> getToposBySiteId(int pSiteId) {
+        return getDaoFactory().getTopoDao().getToposBySiteId(pSiteId);
+    }
     @Override
     public List<Topo> getAllTopos() {
         return getDaoFactory().getTopoDao().getAllTopos();

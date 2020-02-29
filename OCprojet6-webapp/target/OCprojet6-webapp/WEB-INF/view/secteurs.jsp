@@ -62,14 +62,12 @@
                             </div>
                             <div class="card-body">
                                 <table class="table" id="infoSecteur">
-                                    <thead>
                                     <tr>
                                         <th>Nombre de voies : ${secteur.nbDeVoies}</th>
                                         <th>Hauteur max : ${secteur.hauteurMax} m</th>
                                         <th>Cotation : de ${secteur.cotationMinMax[0]}
                                             à ${secteur.cotationMinMax[1]}</th>
                                     </tr>
-                                    </thead>
                                 </table>
                                 <div>
                                     <img src="..." class="card-img-top" alt="...">
@@ -113,11 +111,7 @@
                 </div>
             </sec:authorize>
         </div>
-
-
-
     </div>
-    <br><br>
 </div>
 
 <!-- FOOTER -->

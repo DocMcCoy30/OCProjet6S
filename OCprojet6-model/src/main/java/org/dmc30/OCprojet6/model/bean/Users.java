@@ -11,6 +11,9 @@ public class Users {
     private List<Site> listSites;
     private List<Topo> listTopos;
 
+    public Users() {
+    }
+
     public Users(String username) {
         this.username = username;
     }

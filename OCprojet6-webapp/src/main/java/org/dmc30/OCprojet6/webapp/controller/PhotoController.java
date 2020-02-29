@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.model.bean.Photo;
 import org.dmc30.OCprojet6.model.bean.Site;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.dmc30.OCprojet6.webapp.resource.PhotoResource;
 import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.springframework.stereotype.Controller;
@@ -42,8 +43,9 @@ public class PhotoController extends AbstractController {
     public ModelAndView uploadPhoto(@RequestParam("nomPhoto") String pNomPhoto,
                                     @RequestParam("file") MultipartFile pFile,
                                     @RequestParam("siteId") int pSiteId,
-                                    HttpServletRequest request) {
+                                    HttpServletRequest request) throws TechnicalException {
 
+        Photo vPhoto = new Photo();
         String vRef = "site";
         String vNomPhoto = "";
         String vUploadMsg;
@@ -85,9 +87,14 @@ public class PhotoController extends AbstractController {
         } else {
             vUploadMsg = "Il n'y a pas d'image à charger";
         }
-
-        Photo vPhoto = new Photo(vNomPhoto, vRef, pSiteId);
-        photoResource.createPhoto(vPhoto);
+        try {
+            vPhoto = new Photo(vNomPhoto, vRef, pSiteId);
+            photoResource.createPhoto(vPhoto);
+        }
+        catch (TechnicalException e) {
+            vUploadMsg = e.getMessage();
+        }
+      ;
 
 //        vMaV = showSitePage(pSiteId);
 //        vMaV.addObject("uploadMessage", vUploadMsg);

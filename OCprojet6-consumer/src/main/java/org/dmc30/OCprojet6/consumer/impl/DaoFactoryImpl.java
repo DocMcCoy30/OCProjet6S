@@ -30,6 +30,8 @@ public class DaoFactoryImpl implements DaoFactory {
     @Inject
     TopoDao topoDao;
     @Inject
+    TopoReservationDao topoReservationDao;
+    @Inject
     TypeRocheDao typeRocheDao;
     @Inject
     UserRoleDao userRoleDao;
@@ -138,6 +140,15 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setTopoDao(TopoDao topoDao) {
         this.topoDao = topoDao;
+    }
+
+    @Override
+    public TopoReservationDao getTopoReservationDao() {
+        return topoReservationDao;
+    }
+    @Override
+    public void setTopoReservationDao(TopoReservationDao topoReservationDao) {
+        this.topoReservationDao = topoReservationDao;
     }
 
     @Override

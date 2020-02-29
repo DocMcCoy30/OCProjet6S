@@ -42,11 +42,11 @@
                             <c:choose>
                                 <c:when test="${! empty secteur}">
                                     <input type="text" name="secteurNom" class="form-control" aria-label="secteurNom"
-                                           aria-describedby="secteurNom" value="${secteur.nom}" required>
+                                           aria-describedby="Nom du secteur" value="${secteur.nom}" required>
                                 </c:when>
                                 <c:otherwise>
                                     <input type="text" name="secteurNom" class="form-control" aria-label="secteurNom"
-                                           aria-describedby="secteurNom" required>
+                                           aria-describedby="Nom du secteur" required>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -58,13 +58,14 @@
                             </div>
                             <c:choose>
                                 <c:when test="${! empty secteur}">
-                                    <textarea class="form-control" name="description" aria-label="With textarea">
+                                    <textarea class="form-control" name="description" aria-label="With textarea"
+                                              aria-describedby="Description du secteur">
                                             ${secteur.description}
                                     </textarea>
                                 </c:when>
                                 <c:otherwise>
-                                    <textarea class="form-control" name="description"
-                                              aria-label="With textarea"></textarea>
+                                    <textarea class="form-control" name="description" aria-label="With textarea"
+                                              aria-describedby="Description du secteur"></textarea>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -76,7 +77,7 @@
                                 <input hidden name="siteId" value="${site.id}">
                                 <input hidden name="secteurId" value="${secteur.id}">
                                 <button type="submit" class="btn btn-warning" name="action" value="update"
-                                        id="btnModificationSite">Modifier
+                                        id="btnModificationSecteur">Modifier
                                 </button>
                             </div>
                         </c:when>
@@ -113,4 +114,4 @@
 <script rel="script" src="${pageContext.request.contextPath}/resources/js/webappJsFunctions.js"></script>
 
 </html>
->
+

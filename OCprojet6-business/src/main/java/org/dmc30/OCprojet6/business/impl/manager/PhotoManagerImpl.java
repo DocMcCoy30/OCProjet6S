@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.business.impl.manager;
 
 import org.dmc30.OCprojet6.business.contract.manager.PhotoManager;
 import org.dmc30.OCprojet6.model.bean.Photo;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import javax.inject.Named;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class PhotoManagerImpl extends AbstractManager implements PhotoManager {
 
     @Override
-    public void createPhoto(Photo pPhoto) {
+    public void createPhoto(Photo pPhoto) throws TechnicalException {
         getDaoFactory().getPhotoDao().createPhoto(pPhoto);
 
     }

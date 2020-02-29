@@ -131,9 +131,25 @@ public class AutoSearchController extends AbstractController {
         }
         //ajout des listes de sites à la liste de recherhce
         vListSitesRecherches.addAll(vListSitesFromSites);
+        for (Site vSite:vListSitesFromSites
+             ) {
+            logger.debug("Autosearch vListSitesFromSites " + vSite.getNom());
+        }
         vListSitesRecherches.addAll(vListSitesFromRegions);
+        for (Site vSite:vListSitesFromRegions
+        ) {
+            logger.debug("Autosearch vListSitesFromRegions " + vSite.getNom());
+        }
         vListSitesRecherches.addAll(vListSitesFromDepartements);
+        for (Site vSite:vListSitesFromDepartements
+        ) {
+            logger.debug("Autosearch vListSitesFromDepartements " + vSite.getNom());
+        }
         vListSitesRecherches.addAll(vListSitesFromVilles);
+        for (Site vSite:vListSitesFromVilles
+        ) {
+            logger.debug("Autosearch vListSitesFromVilles " + vSite.getNom());
+        }
         // création de la liste des photos correspondantes aux sites recherchés
         for (Site vSite : vListSitesRecherches) {
             if (!(photoResource.getPhotoByRefId(vSite.getId(), "site")).isEmpty()) {

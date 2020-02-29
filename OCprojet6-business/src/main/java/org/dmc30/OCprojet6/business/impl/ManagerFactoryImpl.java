@@ -30,6 +30,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Inject
     TopoManager topoManager;
     @Inject
+    TopoReservationManager topoReservationManager;
+    @Inject
     TypeRocheManager typeRocheManager;
     @Inject
     UsersManager usersManager;
@@ -136,6 +138,16 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public void setTopoManager(TopoManager topoManager) {
         this.topoManager = topoManager;
+    }
+
+    @Override
+    public TopoReservationManager getTopoReservationManager() {
+        return topoReservationManager;
+    }
+
+    @Override
+    public void setTopoReservationManager(TopoReservationManager topoReservationManager) {
+        this.topoReservationManager = topoReservationManager;
     }
 
     @Override

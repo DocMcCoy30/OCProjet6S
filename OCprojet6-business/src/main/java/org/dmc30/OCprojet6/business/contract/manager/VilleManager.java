@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.business.contract.manager;
 
 import org.dmc30.OCprojet6.model.bean.Ville;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public interface VilleManager {
      * Enregistre une nouvelle ville dans la base de données.
      * @param pVille La nouvelle ville à enregistrer.
      */
-    void createVille (Ville pVille);
+    void createVille (Ville pVille) throws TechnicalException;
 
     /**
      * Recherche une ville dans la base de données par son identifiant.

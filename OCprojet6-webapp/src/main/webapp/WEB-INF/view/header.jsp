@@ -1,4 +1,4 @@
-    <c:url value="/logout" var="logoutUrl"/>
+srf    <c:url value="/logout" var="logoutUrl"/>
     <header id="header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="${pageContext.request.contextPath}"><h1>Les amis de l'escalade</h1></a>

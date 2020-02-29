@@ -2,14 +2,16 @@ package org.dmc30.OCprojet6.consumer.impl.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.dmc30.OCprojet6.consumer.contract.dao.TopoDao;
-import org.dmc30.OCprojet6.consumer.impl.rowmapper.TopoRM;
+import org.dmc30.OCprojet6.consumer.contract.dao.TopoReservationDao;
+import org.dmc30.OCprojet6.consumer.impl.rowmapper.TopoReservationRM;
 import org.dmc30.OCprojet6.model.bean.Topo;
+import org.dmc30.OCprojet6.model.bean.TopoReservation;
 import org.dmc30.OCprojet6.model.exception.ErrorMessages;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -18,25 +20,24 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named
-public class TopoDaoImpl extends AbstractDao implements TopoDao {
-
-    Logger logger = LogManager.getLogger(TopoDaoImpl.class);
+public class TopoReservationImpl extends AbstractDao implements TopoReservationDao {
 
     @Inject
-    TopoRM topoRM;
+    TopoReservationRM topoReservationRM;
+
+    Logger logger = LogManager.getLogger(TopoReservationImpl.class);
 
     @Override
-    public void createTopo(Topo pTopo) throws TechnicalException {
-        String vSQL = "INSERT INTO topo (nom, date_parution, site_id, username) VALUES (:vNom, :vDateParution, :vSiteId, :vUsername)";
+    public void createTopoReservation(TopoReservation pTopoReservation) throws TechnicalException {
+        String vSQL = "INSERT INTO topo_reservation (reservation_date, reservation_topo_id, username) VALUES (:vDate, :vTopoId, :vUsername)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
-        vParams.addValue("vNom", pTopo.getNom());
-        vParams.addValue("vDateParution", pTopo.getDateParution());
-        vParams.addValue("vSiteId", pTopo.getSite().getId());
-        vParams.addValue("vUsername", pTopo.getUser().getUsername());
+        vParams.addValue("vDate", pTopoReservation.getDateReservation());
+        vParams.addValue("vTopoId", pTopoReservation.getTopo().getId());
+        vParams.addValue("vUsername", pTopoReservation.getUser().getUsername());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         try {
             vJdbcTemplate.update(vSQL, vParams);
-        }catch (
+        } catch (
                 BadSqlGrammarException e) {
             logger.error("Problème de syntaxe dans la requète SQL");
             throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
@@ -51,34 +52,34 @@ public class TopoDaoImpl extends AbstractDao implements TopoDao {
     }
 
     @Override
-    public Topo getTopoById(int pId) {
-        String vSQL="SELECT * FROM topo WHERE topo_id="+pId;
+    public TopoReservation getTopoReservationById(int pId) {
+        String vSQL = "SELECT * FROM topo_reservation WHERE reservation_id=" + pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Topo> vListTopos = vJdbcTemplate.query(vSQL, topoRM);
-        return vListTopos.get(0);
+        List<TopoReservation> vListTopoReservations = vJdbcTemplate.query(vSQL, topoReservationRM);
+        return vListTopoReservations.get(0);
     }
 
     @Override
-    public List<Topo> getToposBySiteId(int pSiteId) {
-        String vSQL="SELECT * FROM topo WHERE site_id="+pSiteId;
+    public List<TopoReservation> getTopoReservationByTopoId(int pTopoId) {
+        String vSQL = "SELECT * FROM topo_reservation WHERE reservation_topo_id=" + pTopoId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        return vJdbcTemplate.query(vSQL, topoRM);
+        return vJdbcTemplate.query(vSQL, topoReservationRM);
     }
 
     @Override
-    public List<Topo> getAllTopos() {
-        String vSQL="SELECT * FROM topo";
+    public List<TopoReservation> getAllTopoReservations() {
+        String vSQL = "SELECT * FROM topo_reservation";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        return vJdbcTemplate.query(vSQL, topoRM);
+        return vJdbcTemplate.query(vSQL, topoReservationRM);
     }
 
     @Override
-    public void updateTopo(Topo pTopo) {
+    public void updateTopoReservation (TopoReservation pTopoReservation) {
 
     }
 
     @Override
-    public void deleteTopo(int pId) {
+    public void deleteTopoReservation(int pId) {
 
     }
 

@@ -46,7 +46,7 @@ public class VoieDaoImpl extends AbstractDao implements VoieDao {
             throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
         } catch (Exception e) {
             logger.error("Problème technique");
-            throw new TechnicalException(ErrorMessages.TX_ERROR.getErrorMessage());
+            throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
         }
     }
 
@@ -119,7 +119,7 @@ public class VoieDaoImpl extends AbstractDao implements VoieDao {
             throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
         } catch (Exception e) {
             logger.error("Problème technique");
-            throw new TechnicalException(ErrorMessages.TX_ERROR.getErrorMessage());
+            throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
         }
 
     }

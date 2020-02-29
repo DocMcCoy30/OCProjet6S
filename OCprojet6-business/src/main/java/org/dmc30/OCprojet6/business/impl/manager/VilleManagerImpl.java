@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.business.impl.manager;
 
 import org.dmc30.OCprojet6.business.contract.manager.VilleManager;
 import org.dmc30.OCprojet6.model.bean.Ville;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import javax.inject.Named;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 public class VilleManagerImpl extends AbstractManager implements VilleManager {
 
     @Override
-    public void createVille(Ville pVille) {
+    public void createVille(Ville pVille) throws TechnicalException {
         getDaoFactory().getVilleDao().createVille(pVille);
 
     }

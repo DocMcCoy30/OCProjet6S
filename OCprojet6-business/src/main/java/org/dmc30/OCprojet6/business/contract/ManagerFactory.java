@@ -41,6 +41,10 @@ public interface ManagerFactory {
 
     void setTopoManager(TopoManager topoManager);
 
+    TopoReservationManager getTopoReservationManager();
+
+    void setTopoReservationManager(TopoReservationManager topoReservationManager);
+
     TypeRocheManager getTypeRocheManager();
 
     void setTypeRocheManager(TypeRocheManager typeRocheManager);

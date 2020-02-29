@@ -45,21 +45,21 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
 
     @Override
     public List<Site> getSitesByRegion(int pRegionId) {
-        String vSQL = "SELECT * FROM site WHERE region_id=" + pRegionId;
+        String vSQL = "SELECT * FROM site WHERE region_id=" + pRegionId + " ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         return vJdbcTemplate.query(vSQL, siteRM);
     }
 
     @Override
     public List<Site> getSitesByDepartement(int pCode) {
-        String vSQL = "SELECT * FROM site WHERE departement_code=" + pCode;
+        String vSQL = "SELECT * FROM site WHERE departement_code=" + pCode + " ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         return vJdbcTemplate.query(vSQL, siteRM);
     }
 
     @Override
     public List<Site> getSitesByVille(int pVilleId) {
-        String vSQL = "SELECT * FROM site WHERE ville_id=" + pVilleId;
+        String vSQL = "SELECT * FROM site WHERE ville_id=" + pVilleId + " ORDER BY nom";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         return vJdbcTemplate.query(vSQL, siteRM);
     }

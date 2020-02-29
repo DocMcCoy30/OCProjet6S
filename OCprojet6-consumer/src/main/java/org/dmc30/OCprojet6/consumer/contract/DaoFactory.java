@@ -44,6 +44,11 @@ public interface DaoFactory {
 
     void setTopoDao(TopoDao topoDao);
 
+
+    TopoReservationDao getTopoReservationDao();
+
+    void setTopoReservationDao(TopoReservationDao topoReservationDao);
+
     TypeRocheDao getTypeRocheDao();
 
     void setTypeRocheDao(TypeRocheDao typeRocheDao);

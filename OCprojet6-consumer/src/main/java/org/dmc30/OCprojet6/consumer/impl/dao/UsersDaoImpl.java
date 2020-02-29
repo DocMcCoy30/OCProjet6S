@@ -1,5 +1,7 @@
 package org.dmc30.OCprojet6.consumer.impl.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.consumer.contract.dao.UsersDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.UsersRM;
 import org.dmc30.OCprojet6.consumer.securityResource.PasswordEncoderHelper;
@@ -7,6 +9,7 @@ import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.ErrorMessages;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -17,6 +20,8 @@ import java.util.List;
 
 @Named
 public class UsersDaoImpl extends AbstractDao implements UsersDao {
+
+    Logger logger = LogManager.getLogger(UsersDaoImpl.class);
 
     @Inject
     UsersRM usersRM;
@@ -36,13 +41,20 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
     @Override
     public Users getUsersByName(String pUsername) throws TechnicalException {
         List<Users> vListUsers;
-        String vSQL = "SELECT * FROM users WHERE username=" + pUsername;
+        String vSQL = "SELECT * FROM users WHERE username='" + pUsername +"'";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         try {
             vListUsers = vJdbcTemplate.query(vSQL, usersRM);
-        } catch (DataAccessException e) {
+        }catch (
+                BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
             throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (
+                DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
         } catch (Exception e) {
+            logger.error("Problème technique");
             throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
         }
         return vListUsers.get(0);
@@ -56,9 +68,16 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         try {
             vListUsers = vJdbcTemplate.query(vSQL, usersRM);
-        } catch (DataAccessException e) {
+        }catch (
+                BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
             throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (
+                DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
         } catch (Exception e) {
+            logger.error("Problème technique");
             throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
         }
         return vListUsers;

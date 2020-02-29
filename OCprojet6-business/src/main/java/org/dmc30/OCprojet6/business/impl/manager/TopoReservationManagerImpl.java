@@ -1,0 +1,42 @@
+package org.dmc30.OCprojet6.business.impl.manager;
+
+import org.dmc30.OCprojet6.business.contract.manager.TopoReservationManager;
+import org.dmc30.OCprojet6.model.bean.TopoReservation;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
+
+import javax.inject.Named;
+import java.util.List;
+
+@Named
+public class TopoReservationManagerImpl extends AbstractManager implements TopoReservationManager {
+
+    @Override
+    public void createTopoReservation(TopoReservation pTopoReservation) throws TechnicalException {
+        getDaoFactory().getTopoReservationDao().createTopoReservation(pTopoReservation);
+    }
+
+    @Override
+    public TopoReservation getTopoReservationById(int pId) {
+        return null;
+    }
+
+    @Override
+    public List<TopoReservation> getTopoReservationsByTopoId(int pTopoId) {
+        return getDaoFactory().getTopoReservationDao().getTopoReservationByTopoId(pTopoId);
+    }
+
+    @Override
+    public List<TopoReservation> getAllTopoReservations() {
+        return null;
+    }
+
+    @Override
+    public void updateTopoReservation(TopoReservation pTopoReservation) {
+
+    }
+
+    @Override
+    public void deleteTopoReservation(int pId) {
+
+    }
+}

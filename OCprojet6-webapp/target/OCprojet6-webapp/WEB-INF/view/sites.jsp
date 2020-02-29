@@ -60,15 +60,18 @@
             </div>
         </div>
         <div class="card-footer" id="siteCardFooter">
-            <c:url var="secteurPage" value="/showSecteurPage">
-                <c:param name="siteId" value="${site.id}"/>
-            </c:url>
             <div class="btn-toolbar" role="toolbar" id="buttonLinkBar">
+                <c:url var="secteurPage" value="/showSecteurPage">
+                    <c:param name="siteId" value="${site.id}"/>
+                </c:url>
                 <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${secteurPage}">Voir les secteurs</a>
                 </div>
                 <div class="btn-group mx-auto" role="group">
-                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les topos</a>
+                    <c:url var="topoPage" value="/showTopoPage">
+                        <c:param name="siteId" value="${site.id}"/>
+                    </c:url>
+                    <a class="btn btn-warning" href="${topoPage}">Voir les topos</a>
                 </div>
                 <%--                <div class="btn-group col-auto mr-2" role="group">--%>
                 <%--                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>--%>

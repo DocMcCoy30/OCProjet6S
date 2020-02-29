@@ -37,7 +37,7 @@
                 <form action="createUpdateVoie" method="post">
                     <input id="siteId" name="siteId" type="hidden" value="${siteId}">
                     <input id="secteurId" name="secteurId" type="hidden" value="${secteur.id}">
-                    <div class="row col-md-12 no-gutters">
+                    <div class="row no-gutters">
                         <div class="input-group mb-1">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="voieNom">Nom de la voie : </span>
@@ -54,8 +54,8 @@
                             </c:choose>
                         </div>
                     </div>
-                    <div class="row col-md-12 no-gutters">
-                        <div class="input-group col-md-5">
+                    <div class="row no-gutters">
+                        <div class="input-group mx-auto">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="description">Hauteur : </span>
                             </div>
@@ -72,12 +72,12 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
-                        <div class="input-group col-md-5 ml-2">
+                        <div class="input-group col-md-5 mr-5">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="cotation">Cotation : </span>
                             </div>
                             <c:choose>
-                                <c:when test="${! empty voie}">
+                            <c:when test="${! empty voie}">
                             <select class="custom-select" name="cotationId" id="cotations"
                                     aria-label="Cotation de la voie"
                                     aria-describedby="Cotation de la voie">
@@ -87,35 +87,40 @@
                                 </c:forEach>
                                 </c:when>
                                 <c:otherwise>
-                                    <select class="custom-select" name="cotationId" id="cotations"
-                                            aria-label="Cotation de la voie"
-                                            aria-describedby="Cotation de la voie">
-                                        <option selected disabled></option>
-                                        <c:forEach var="cotation" items="${cotations}">
-                                            <option value="${cotation.id}">${cotation.valeur}</option>
-                                        </c:forEach>
-                                    </select>
+                                <select class="custom-select" name="cotationId" id="cotations"
+                                        aria-label="Cotation de la voie"
+                                        aria-describedby="Cotation de la voie">
+                                    <option selected disabled></option>
+                                    <c:forEach var="cotation" items="${cotations}">
+                                        <option value="${cotation.id}">${cotation.valeur}</option>
+                                    </c:forEach>
+                                </select>
                                 </c:otherwise>
-                            </c:choose>
-
+                                </c:choose>
                         </div>
                     </div>
                     <br><br>
+
                     <c:choose>
-                        <c:when test="${! empty voie}">
-                            <input hidden name="voieId" value="${voie.id}">
-                            <input hidden name="siteId" value="${siteId}">
-                            <input hidden name="secteurId" value="${secteur.id}">
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-warning" name="action" value="update">Modifier</button>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <button type="submit" class="btn btn-warning" name="action" value="create">Ajouter</button>
-                        </c:otherwise>
+                    <c:when test="${! empty voie}">
+                    <div class="text-right">
+                        <input type="hidden" name="voieId" value="${voie.id}">
+                        <input type="hidden" name="siteId" value="${siteId}">
+                        <input type="hidden" name="secteurId" value="${secteur.id}">
+                        <button type="submit" class="btn btn-warning" name="action" value="update">Modifier
+                        </button>
+                    </div>
+                    </c:when>
+                    <c:otherwise>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-warning" name="action" value="create">
+                            Ajouter
+                        </button>
+                    </div>
+                    </c:otherwise>
                     </c:choose>
-                </form>
             </div>
+            </form>
         </div>
     </div>
 </div>

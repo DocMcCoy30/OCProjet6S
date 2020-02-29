@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.business.contract.manager;
 
 import org.dmc30.OCprojet6.model.bean.Topo;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface TopoManager {
     /**
      * Enregistre un objet de type Topo dans la database.
      */
-    void createTopo (Topo pTopo);
+    void createTopo (Topo pTopo) throws TechnicalException;
 
     /**
      * Cherche et renvoie un objet de type Topo stocké dans la database.
@@ -17,6 +18,8 @@ public interface TopoManager {
      * @return l'objet recherché.
      */
     Topo getTopoById (int pId);
+
+    List<Topo> getToposBySiteId(int pSiteId);
 
     /**
      * Cherche et renvoie la liste des objets de type Topo stockés dans la database.

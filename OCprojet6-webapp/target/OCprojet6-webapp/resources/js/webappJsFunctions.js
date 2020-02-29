@@ -66,6 +66,18 @@ function showFormUpload(a) {
 }
 
 /**
+ * Affiche le formulaire d'ajout de topo lorsque le bouton "ajouter" est cliqué.
+ * @param a
+ */
+function showTopoForm(a) {
+    if (a === 1) {
+        document.getElementById("topoForm").style.display = "block";
+    } else {
+        document.getElementById("topoForm").style.display = "none";
+    }
+}
+
+/**
  * Affiche le message d'upload pendant 5s et l'efface : !fonctionnel
  * @param msg
  */
