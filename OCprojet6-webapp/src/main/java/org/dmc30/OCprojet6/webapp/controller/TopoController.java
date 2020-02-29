@@ -1,5 +1,7 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.model.bean.Topo;
 import org.dmc30.OCprojet6.model.bean.TopoReservation;
@@ -24,6 +26,8 @@ import java.util.List;
 @Controller
 public class TopoController {
 
+    Logger logger = LogManager.getLogger(TopoController.class);
+
     @Inject
     SiteResource siteResource;
     @Inject
@@ -44,7 +48,13 @@ public class TopoController {
              ) {
             List<TopoReservation> vListReservations = topoResource.getTopoReservationsByTopoId(vTopo.getId());
             vTopo.setListReservations(vListReservations);
+            logger.debug(vListReservations.get(0).getDateReservation());
+            for (TopoReservation vReservation:vListReservations
+                 ) {
+                logger.debug(vReservation.getDateReservation());
+            }
         }
+
         vMaV.addObject("topos", vListTopo);
         vMaV.addObject("site", vSite);
         vMaV.setViewName("topos");

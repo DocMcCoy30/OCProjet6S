@@ -58,11 +58,9 @@
                                             Dates réservées
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <%--                                            <c:forEach var="reservation" items="${topos.listReservations}">--%>
-                                            <a class="dropdown-item"><%--${reservation.dateReservation}--%>1</a>
-                                            <a class="dropdown-item"><%--${reservation.dateReservation}--%>2</a>
-                                            <a class="dropdown-item"><%--${reservation.dateReservation}--%>3</a>
-                                                <%--                                            </c:forEach>--%>
+                                            <c:forEach var="reservation" items="${topo.listReservations}">
+                                                <a class="dropdown-item">${reservation.dateReservation}</a>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </td>
