@@ -79,10 +79,10 @@
                 <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>
                 </div>
-                <%--                <div class="btn-group col-auto mr-2" role="group">--%>
-                <%--                    <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"--%>
-                <%--                           value="Ajouter une photo"><br/>--%>
-                <%--                </div>--%>
+                                <div class="btn-group col-auto mr-2" role="group">
+                                    <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"
+                                           value="Ajouter une photo"><br/>
+                                </div>
                 <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
                 </div>

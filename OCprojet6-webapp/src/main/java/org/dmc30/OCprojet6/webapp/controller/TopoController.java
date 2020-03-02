@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Controller
 public class TopoController {
@@ -37,26 +38,28 @@ public class TopoController {
 
 
     @GetMapping("/showTopoPage")
-    public ModelAndView showTopoPage(@RequestParam(value = "siteId") Integer pSiteId) {
+    public ModelAndView showTopoPage(@RequestParam(value = "siteId") Integer pSiteId,
+                                     String pMessage) {
         ModelAndView vMaV = new ModelAndView();
+        String vMessage;
+        if (pMessage == null) {
+            vMessage = "";
+        } else {
+            vMessage = pMessage;
+        }
         //récupérer le site
         Site vSite = siteResource.getSiteById(pSiteId);
         //récupérer les topos pour le site concerné
         List<Topo> vListTopo = topoResource.getTopoBySiteId(pSiteId);
         //récupérer les réservations pour les topos
-        for (Topo vTopo:vListTopo
-             ) {
+        for (Topo vTopo : vListTopo
+        ) {
             List<TopoReservation> vListReservations = topoResource.getTopoReservationsByTopoId(vTopo.getId());
             vTopo.setListReservations(vListReservations);
-            logger.debug(vListReservations.get(0).getDateReservation());
-            for (TopoReservation vReservation:vListReservations
-                 ) {
-                logger.debug(vReservation.getDateReservation());
-            }
         }
-
         vMaV.addObject("topos", vListTopo);
         vMaV.addObject("site", vSite);
+        vMaV.addObject("message", vMessage);
         vMaV.setViewName("topos");
         return vMaV;
     }
@@ -66,7 +69,7 @@ public class TopoController {
                                    @RequestParam(value = "topoNom") String vTopoNom,
                                    @RequestParam(value = "dateParution") String vDateParution,
                                    @RequestParam(value = "username") String pUsername) throws TechnicalException {
-        ModelAndView vMaV = new ModelAndView();
+//        ModelAndView vMaV = new ModelAndView();
         String vMessage = "";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date vDate = null;
@@ -84,52 +87,81 @@ public class TopoController {
         } catch (TechnicalException e) {
             vMessage = e.getMessage();
         }
-        List<Topo> vListTopo = topoResource.getTopoBySiteId(pSiteId);
-        vMaV.addObject("topos", vListTopo);
-        vMaV.addObject("site", vSite);
-        vMaV.addObject("message", vMessage);
-        vMaV.setViewName("topos");
-        return vMaV;
+        return showTopoPage(pSiteId, vMessage);
     }
 
     @PostMapping("/reserveTopo")
     public ModelAndView reserveTopo(@RequestParam(value = "siteId") Integer pSiteId,
-                                    @RequestParam(value = "topoId") Integer vTopoId,
-                                    @RequestParam(value = "dateReservation") String vDateReservation,
+                                    @RequestParam(value = "reservationTopoId") Integer pTopoId,
+                                    @RequestParam(value = "dateReservation", required = false) String pDateReservation,
                                     @RequestParam(value = "username") String pUsername) throws TechnicalException {
 
         ModelAndView vMaV = new ModelAndView();
-        Topo vTopo = new Topo();
-        Users vUser = new Users();
-        Site vSite = new Site();
-        List<Topo> vListTopo = new ArrayList<>();
         String vMessage = "";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date vDate = null;
+        Date vDateReservation = null;
+        List<String> vDates = new ArrayList<>();
+        String vDate = "";
+        Boolean vReservation = false;
 
+        //verifier la saisie de l'utilisateur
         try {
-            vDate = formatter.parse(vDateReservation);
-        } catch (ParseException e) {
+            if (pDateReservation.matches("^,+")) {
+                vMessage = "Veuillez indiquer une date de réservation !";
+            } else {
+                Pattern p = Pattern.compile(",");
+                String[] dates = p.split(pDateReservation, 10);
+                for (int i = 0; i < dates.length; i++) {
+                    if (!(dates[i].isEmpty())) {
+                        vDates.add(dates[i]);
+                    }
+                }
+                if (vDates.size() > 1) {
+                    vMessage = "Merci de ne saisir qu'une seule réservation à la fois !";
+                } else {
+                    vDate = vDates.get(0);
+                    vReservation = true;
+                }
+            }
+
+            if (vReservation) {
+                vDateReservation = formatter.parse(vDate);
+                try {
+                    //récupérer les topos pour le site concerné
+                    Users vUser = authenticationResource.getUserByName(pUsername);
+                    Topo vTopo = topoResource.getTopoById(pTopoId);
+                    TopoReservation vTopoReservation = new TopoReservation(vDateReservation, vTopo, vUser);
+                    //vérifier que la date de réservation est disponible
+                    if (rechercheDoublonDate(vDateReservation, pTopoId)) {
+                        vMessage = "Le topo " + vTopo.getNom() + " est déjà reservée pour le " + vDate + ".";
+                    } else {
+                        topoResource.createTopoReservation(vTopoReservation);
+                        vMessage = "La réservation du topo " + vTopo.getNom() + " le " + vDate + " par " + pUsername + " est effectuée.";
+                    }
+                } catch (TechnicalException e) {
+                    vMessage = e.getMessage();
+                }
+            }
+        } catch (
+                ParseException e) {
             e.printStackTrace();
         }
-        try {
-            //récupérer le site
-            vSite = siteResource.getSiteById(pSiteId);
-            //récupérer les topos pour le site concerné
-            vListTopo = topoResource.getTopoBySiteId(pSiteId);
-            vUser = authenticationResource.getUserByName(pUsername);
-            vTopo = topoResource.getTopoById(vTopoId);
-            TopoReservation vTopoReservation = new TopoReservation(vDate, vTopo, vUser);
-            topoResource.createTopoReservation(vTopoReservation);
-            vMessage = "Le topo est réservé le " + vDateReservation + " par " + pUsername + ".";
-        } catch (TechnicalException e) {
-            vMessage = e.getMessage();
-        }
+        return showTopoPage(pSiteId, vMessage);
+    }
 
-        vMaV.addObject("topos", vListTopo);
-        vMaV.addObject("site", vSite);
-        vMaV.addObject("message", vMessage);
-        vMaV.setViewName("topos");
-        return vMaV;
+    public boolean rechercheDoublonDate(Date pDate, int pTopoId) {
+        boolean doublon = false;
+        int i = 0;
+        List<TopoReservation> vListReservations = topoResource.getTopoReservationsByTopoId(pTopoId);
+        for (TopoReservation vReservation : vListReservations
+        ) {
+            if (pDate.equals(vReservation.getDateReservation())) {
+                i++;
+            }
+        }
+        if (i > 0) {
+            doublon = true;
+        }
+        return doublon;
     }
 }

@@ -63,6 +63,14 @@
             </div>
         </form>
         <br><br>
+        <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
+            <div class="text-center">
+                <a href="${pageContext.request.contextPath}/showSiteForm" type="button"
+                   class="btn btn-warning" id="btnCreationSite">Créer
+                    un site</a>
+            </div>
+        </sec:authorize>
+        <br><br>
        <%--        Afficher les résultats de recherche     --%>
         <div>
             <c:if test="${ !empty message}">
@@ -72,8 +80,8 @@
             </c:if>
         </div>
         <c:if test="${ !empty messageInfoRecherche }">
-        <div id="infoDeRecherche" class="col-md-12">
-            <h4><c:out value="${messageInfoRecherche}"/></h4>
+        <div class="col-md-12">
+            <h4 id="messageInfoRecherche"><c:out value="${messageInfoRecherche}"/></h4>
         </div>
         </c:if>
         <div class="row">
@@ -104,13 +112,6 @@
                 </c:forEach>
             </c:if>
         </div>
-        <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
-            <div class="text-right">
-                <a href="${pageContext.request.contextPath}/showSiteForm" type="button"
-                   class="btn btn-warning" id="createSiteButton">Créer
-                    un site</a>
-            </div>
-        </sec:authorize>
     </div>
 </div>
         <!-- FOOTER -->

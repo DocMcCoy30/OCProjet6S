@@ -62,6 +62,14 @@ a:hover {
     color: #F2E205;
 }
 
+#body {
+    margin-top: 10em;
+}
+
+#footer {
+    margin-top: 5em;
+}
+
 .vertical-center {
     min-height: 50vh;
     width: 100%;
@@ -108,11 +116,6 @@ a:hover {
     width: 10em;
 }
 
-.btn {
-    width: 10.5em;
-    opacity: 0.9;
-}
-
 #carouselAccueil {
     display: block;
 }
@@ -122,18 +125,40 @@ a:hover {
     color: #F2E205;
 }
 
-#searchSiteButton {
-    margin-top: 2em;
-    opacity: 0.9;
-}
-
 #searchInput {
     background: #F2E8C9;
     opacity: 0.9;
 }
 
-#createSiteButton {
-    margin-top: 2em;
+.btn {
+    width: 10.5em;
+    opacity: 0.9;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+#btnCreationSite {
+    width: 20em;
+}
+/*#buttonLinkBar {*/
+/*    margin-top: 1em;*/
+/*}*/
+#btnAjoutCommentaire {
+    width: 15em;
+}
+#btnAjoutSecteur {
+    margin-left: 1em;
+}
+#btnAjoutVoie {
+    margin-right: 1em;
+}
+#btnRetour {
+    margin-left: 1em;
+}
+#btnReservationTopo {
+    margin-top: unset;
+}
+#btnDatesReservees {
+    margin-top: unset;
 }
 
 .card {
@@ -179,47 +204,6 @@ a:hover {
     width: auto;
 }
 
-#buttonLinkBar {
-    margin-top: 1em;
-}
-
-#btnCreationSite {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-#btnModficationSite {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-#btnUpload {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-#btnAjoutCommentaire {
-    width: 15em;
-}
-
-#btnAjoutSecteur {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 1em;
-}
-
-#btnAjoutVoie {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-right: 1em;
-}
-
-#btnRetour {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 1em;
-}
-
 #infoSecteur {
     background-color: #1F4C73;
     text-align: center;
@@ -234,7 +218,6 @@ a:hover {
     margin-top: 1em;
     margin-bottom: 1em;
     background-color: #F2E8C9;
-    /*opacity: 0.9;*/
 }
 
 #formUpload {
@@ -245,20 +228,11 @@ a:hover {
     display: none;
 }
 
-#body {
-    margin-top: 10em;
-}
-
-#footer {
-    margin-top: 5em;
-}
-
-#infoDeRecherche {
-    margin-top: 2em;
-    margin-bottom: 2em;
+#messageInfoRecherche {
+    margin-bottom: 1em;
     text-align: center;
     color: #F2E8C9;
-    opacity: 0.9;
+    font-size: xx-large;
 }
 
 

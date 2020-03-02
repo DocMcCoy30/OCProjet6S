@@ -43,4 +43,6 @@ public interface TopoReservationManager {
      * @param pId : l'identifiant de l'objet à supprimer.
      */
     void deleteTopoReservation(int pId);
+
+
 }

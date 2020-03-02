@@ -94,18 +94,14 @@ public class PhotoController extends AbstractController {
         catch (TechnicalException e) {
             vUploadMsg = e.getMessage();
         }
-      ;
-
-//        vMaV = showSitePage(pSiteId);
-//        vMaV.addObject("uploadMessage", vUploadMsg);
 
         // création du site à retourner
         Site vSite = siteResource.getSiteById(pSiteId);
         // création de la liste de photo correspondantes au site
         List<Photo> vListPhotos = photoResource.getPhotoByRefId(vPhoto.getRefId(), vPhoto.getRef());
+        vSite.setListPhotos(vListPhotos);
 
         vMaV.addObject("site", vSite);
-        vMaV.addObject("listPhotos", vListPhotos);
         vMaV.addObject("uploadMsg", vUploadMsg);
         vMaV.setViewName("sites");
         return vMaV;

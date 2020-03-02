@@ -5,6 +5,7 @@ import org.dmc30.OCprojet6.model.bean.TopoReservation;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import javax.inject.Named;
+import java.util.Date;
 import java.util.List;
 
 @Named

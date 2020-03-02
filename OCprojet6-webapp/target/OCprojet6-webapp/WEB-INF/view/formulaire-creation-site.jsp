@@ -159,7 +159,7 @@
                         </c:when>
                         <c:otherwise>
                             <div class="text-right">
-                                <button type="submit" class="btn btn-warning" name="action" value="create" id="btnCreationSite">Ajouter</button>
+                                <button type="submit" class="btn btn-warning" name="action" value="create" id="btnAjoutSite">Ajouter</button>
                             </div>
                         </c:otherwise>
                     </c:choose>

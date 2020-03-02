@@ -61,7 +61,7 @@ public class SiteResource extends AbstractResource {
         }
         vNewDescription.setDescription(pDescription);
         String vInfo = pNomSite + " est un site d'escalade de type " + vSite.getTypeRoche().getNom() + ", situé à " + pNomSite +
-                ", dans le département du " + vSite.getDepartement().getNom() + " (" + vSite.getRegion().getNom() + ").";
+                ", dans le département " + vSite.getDepartement().getNom() + " (" + vSite.getRegion().getNom() + ").";
         vNewDescription.setInfo(vInfo);
         vSite.setDescription(vNewDescription);
         // création du site

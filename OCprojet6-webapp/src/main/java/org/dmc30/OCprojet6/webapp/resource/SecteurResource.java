@@ -14,7 +14,7 @@ public class SecteurResource extends AbstractResource {
         Secteur vNewSecteur = new Secteur();
         vNewSecteur.setNom(pNom);
         if (pDescription.isEmpty()) {
-            pDescription = "Ajouter une description pour ce site.";
+            pDescription = "Ajouter une description pour ce secteur.";
         }
         vNewSecteur.setDescription(pDescription);
         Site vSite = getManagerFactory().getSiteManager().getSiteById(pSiteId);

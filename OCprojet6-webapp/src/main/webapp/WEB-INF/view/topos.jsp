@@ -46,14 +46,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <input type="hidden" name="username"
+                               value="${pageContext.request.userPrincipal.name}">
                         <c:forEach var="topo" items="${topos}">
+                            <input type="hidden" name="siteId" value="${site.id}">
                             <tr>
                                 <td>${topo.nom}</td>
                                 <td>${topo.dateParution}</td>
                                 <td>
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        <button class="btn btn-secondary dropdown-toggle"  type="button"
+                                                id="btnDatesReservees" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
                                             Dates réservées
                                         </button>
@@ -66,13 +69,8 @@
                                 </td>
                                 <td><input type="date" name="dateReservation"></td>
                                 <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
-
                                     <td>
-                                        <input type="hidden" name="siteId" value="${site.id}">
-                                        <input type="hidden" name="topoId" value="${topo.id}">
-                                        <input type="hidden" name="username"
-                                               value="${pageContext.request.userPrincipal.name}">
-                                        <button type="submit" class="btn btn-warning">
+                                        <button type="submit" name="reservationTopoId" value="${topo.id}" class="btn btn-warning" id="btnReservationTopo">
                                             Reserver
                                         </button>
                                     </td>
