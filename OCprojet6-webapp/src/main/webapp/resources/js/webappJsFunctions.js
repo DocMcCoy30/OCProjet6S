@@ -24,6 +24,44 @@ $("#searchInput").autocomplete({
     },
 });
 
+$('#site-container').ready(function () {
+    let officiel = $('#var-macaron').val();
+    console.log(officiel);
+    if (officiel==='false') {
+        $('#macaron-officiel').css('display', 'none');
+        console.log(officiel + " : Le site n'est pas officiel")
+    }
+    else {
+        $('#macaron-officiel').css('display', 'block');
+        console.log(officiel + " : Le site est Officiel")
+    }
+});
+
+/**
+ * Gestion de l'option pour rendre un site officiel : modifie la valeur officiel dans la base de données selon
+ * que la checkbox ext cochée ou non.
+ */
+$('#officiel').click(function () {
+    let checked = $(this).is(':checked');
+    let siteId = $(this).val();
+    $.ajax({
+        url: 'rendreOfficiel',
+        type: 'POST',
+        data: { 'siteId': siteId, 'checked':checked } ,
+        dataType: "json",
+        success: function (data) {
+            let site = data;
+            if (site.officiel) {
+                $('#macaron-officiel').css('display', 'block')
+            }
+            else {
+                $('#macaron-officiel').css('display', 'none')
+            }
+            console.log(site);
+        }
+    });
+});
+
 /**
  * Gère les liste de choix de recherche de sites dans le formulaire de recherche multicritères
  * @param optionRef

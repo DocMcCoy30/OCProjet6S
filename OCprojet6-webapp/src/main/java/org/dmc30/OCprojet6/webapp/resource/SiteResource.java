@@ -9,30 +9,63 @@ import java.util.List;
 @Named
 public class SiteResource extends AbstractResource {
 
+    /**
+     * Cherche et renvoie tous les sites stockés dans la base de données.
+     * @return La liste de tous les sites.
+     */
     public List<Site> getAllSites() {
         return getManagerFactory().getSiteManager().getAllSites();
     }
 
+    /**
+     * Cherche un site par son identifiant.
+     * @param pId L'identifiant du site.
+     * @return Le site conserné.
+     */
     public Site getSiteById(int pId) {
         return getManagerFactory().getSiteManager().getSiteById(pId);
     }
 
+    /**
+     * Cherche et renvoie la liste des sites pour une région.
+     * @param pRegionId L'identifiant de la région concernée.
+     * @return Une liste de sites.
+     */
     public List<Site> getSitesByRegion(int pRegionId) {
         return getManagerFactory().getSiteManager().getSitesByRegion(pRegionId);
     }
 
+    /**
+     * Cherche et renvoie la liste des sites pour un département.
+     * @param pDepartementCode Le code du département concerné.
+     * @return Une liste de sites.
+     */
     public List<Site> getSitesByDepartement(int pDepartementCode) {
         return getManagerFactory().getSiteManager().getSitesByDepartement(pDepartementCode);
     }
 
+    /**
+     * Cherche et renvoie la liste des sites pour une ville.
+     * @param pVilleId L'identifiant de la ville concernée.
+     * @return Une liste de sites.
+     */
     public List<Site> getSitesByVille(int pVilleId) {
         return getManagerFactory().getSiteManager().getSitesByVille(pVilleId);
     }
 
+    /**
+     * Cherche et renvoie les sites correspondants à un mot-clé.
+     * @param pMotCle Le mot clé critère de recherche.
+     * @return La liste des sites correspondants à la recherche.
+     */
     public List<Site> getMatchingSites(String pMotCle) {
         return getManagerFactory().getSiteManager().getMatchingSites(pMotCle);
     }
 
+    /**
+     * Cherche et renvoie l'identifiant du dernier site créé.
+     * @return L'identifiant.
+     */
     public int getLastId() {
         return getManagerFactory().getSiteManager().getLastId();
     }
@@ -40,105 +73,22 @@ public class SiteResource extends AbstractResource {
     /**
      * Crée un nouveau site dans la base de données.
      *
-     * @param pNomSite         Le nom du site.
-     * @param pDescription     La description du site.
-     * @param pNomVille        Le nom de la ville.
-     * @param pRegionId        L'identifiant de la région.
-     * @param pDepartementCode Le code du département.
-     * @param pTypeRocheId     L'identifiant du type de roche.
+     * @param pSite Le site à créer.
      * @return Le nouveau site créé.
      */
-    public Site createSite(String pNomSite, String pDescription, String pNomVille,
-                           int pRegionId, int pDepartementCode, int pTypeRocheId) throws TechnicalException {
-        //creation d'un objet site
-        Site vSite = new Site();
-        //construction du nouveau site
-        setSiteCommonsAttributes(pNomSite, pNomVille, pRegionId, pDepartementCode, pTypeRocheId, vSite);
-        //fixation de la description
-        Description vNewDescription = new Description();
-        if (pDescription.isEmpty()) {
-            pDescription = "Ajouter une description pour ce site.";
-        }
-        vNewDescription.setDescription(pDescription);
-        String vInfo = pNomSite + " est un site d'escalade de type " + vSite.getTypeRoche().getNom() + ", situé à " + pNomSite +
-                ", dans le département " + vSite.getDepartement().getNom() + " (" + vSite.getRegion().getNom() + ").";
-        vNewDescription.setInfo(vInfo);
-        vSite.setDescription(vNewDescription);
-        // création du site
-        getManagerFactory().getSiteManager().createSite(vSite);
-
+    public Site createSite (Site pSite) throws TechnicalException {
+        Site vSite = getManagerFactory().getSiteManager().createSite(pSite);
         return vSite;
     }
 
     /**
      * Modifie un site existant dans la base de données.
      *
-     * @param pSiteId          L'identifiant du site à modifier.
-     * @param pNomSite         Le nom du site.
-     * @param pDescription     La description du site.
-     * @param pNomVille        Le nom de la ville.
-     * @param pRegionId        L'identifiant de la région.
-     * @param pDepartementCode Le code du département.
-     * @param pTypeRocheId     L'identifiant du type de roche.
+     * @param pSite Le site à modifier.
      * @return Le site modifié.
      */
-    public Site updateSite(Integer pSiteId, String pNomSite,
-                           Integer pDescriptionId, String pDescription,
-                           String pNomVille, Integer pRegionId,
-                           Integer pDepartementCode, Integer pTypeRocheId) throws TechnicalException {
-        //creation d'un objet site
-        Site vSite = new Site();
-        //fixation de l'attribut id
-        vSite.setId(pSiteId);
-        setSiteCommonsAttributes(pNomSite, pNomVille, pRegionId, pDepartementCode, pTypeRocheId, vSite);
-        //fixation de la description
-        Description vNewDescription = new Description();
-        vNewDescription.setId(pDescriptionId);
-        if (pDescription.isEmpty()) {
-            pDescription = "Ajouter une description pour ce site.";
-        }
-        vNewDescription.setDescription(pDescription);
-        String vInfo = pNomSite + " est un site d'escalade de type " + vSite.getTypeRoche().getNom() + ", situé à " + pNomSite +
-                ", dans le département du " + vSite.getDepartement().getNom() + " (" + vSite.getRegion().getNom() + ").";
-        vNewDescription.setInfo(vInfo);
-        vSite.setDescription(vNewDescription);
-        //modification du site
-        getManagerFactory().getSiteManager().updateSite(vSite);
-
+    public Site updateSite (Site pSite) throws TechnicalException {
+        Site vSite = getManagerFactory().getSiteManager().updateSite(pSite);
         return vSite;
-    }
-
-    /**
-     * Fixe les attributs d'un objet Site pour création ou modification.
-     *
-     * @param pNomSite         Le nom du Site.
-     * @param pNomVille        Le nom de la ville.
-     * @param pRegionId        L'identifiant de la région.
-     * @param pDepartementCode Le code du département.
-     * @param pTypeRocheId     Le type de roche.
-     * @param vSite            L'objet Site à créer ou modifier.
-     */
-    private void setSiteCommonsAttributes(String pNomSite, String pNomVille, Integer pRegionId, Integer pDepartementCode, Integer pTypeRocheId, Site vSite) {
-
-        //fixation de l'attribut nom
-        vSite.setNom(pNomSite);
-        //recuperation de la Region et fixation de l'attribut
-        Region vRegion = getManagerFactory().getRegionManager().getRegionById(pRegionId);
-        vSite.setRegion(vRegion);
-        //recuperation du Departement et fixation de l'attribut
-        Departement vDepartement = getManagerFactory().getDepartementManager().getDepartementByCode(pDepartementCode);
-        vSite.setDepartement(vDepartement);
-        //fixation de l'attribut ville
-        Ville vVille = new Ville();
-        vVille.setNom(pNomVille);
-        vVille.setDepartement(vDepartement);
-        //fixation de l'attribut ville
-        vSite.setVille(vVille);
-        //recuperation du TypeRoche et fixation de l'attribut
-        TypeRoche vTypeRoche = getManagerFactory().getTypeRocheManager().getTypeRocheById(pTypeRocheId);
-        vSite.setTypeRoche(vTypeRoche);
-        //fixation de l'attribut officiel
-        vSite.setOfficiel(false);
-
     }
 }

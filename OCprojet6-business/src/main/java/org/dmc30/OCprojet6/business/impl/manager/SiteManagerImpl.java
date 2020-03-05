@@ -80,7 +80,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
 
     @Override
     @Transactional
-    public void updateSite(Site pSite) throws TechnicalException {
+    public Site updateSite(Site pSite) throws TechnicalException {
 
         Site vSite;
         TransactionStatus vTransactionStatus
@@ -102,7 +102,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
             //modifier la description
             getDaoFactory().getDescriptionDao().updateDescription(pSite.getDescription());
 
-            // creer le site dans la base de donnée
+            // modifier le site dans la base de donnée
             getDaoFactory().getSiteDao().updateSite(vSite);
             TransactionStatus vTScommit = vTransactionStatus;
             vTransactionStatus = null;
@@ -121,6 +121,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
                 getPlatformTransactionManager().rollback(vTransactionStatus);
             }
         }
+        return vSite;
     }
 
     @Override

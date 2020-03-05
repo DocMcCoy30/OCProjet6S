@@ -36,6 +36,10 @@ public class AllCaracteristiqueResource extends AbstractResource{
         return getManagerFactory().getTypeRocheManager().getAllTypeRoches();
     }
 
+    public TypeRoche getTypeRocheById (int pId) {
+        return getManagerFactory().getTypeRocheManager().getTypeRocheById(pId);
+    }
+
     public List<Cotation> getAllCotations () {
         return getManagerFactory().getCotationManager().getAllCotations();
     }

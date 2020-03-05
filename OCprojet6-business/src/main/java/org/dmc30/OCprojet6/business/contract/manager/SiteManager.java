@@ -64,7 +64,7 @@ public interface SiteManager {
      * Modifie un Site.
      * @param pSite Le site à modifier.
      */
-    void updateSite(Site pSite) throws TechnicalException;
+    Site updateSite(Site pSite) throws TechnicalException;
 
     /**
      * Supprime un Site

@@ -10,6 +10,7 @@ import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,6 +61,7 @@ public class SiteController extends AbstractController {
             vSite.setListPhotos(vListPhotos);
             logger.debug("Logo = " + vListPhotos.get(0).getNom());
         }
+
         vMaV.addObject("site", vSite);
         vMaV.addObject("message", vMessage);
         vMaV.setViewName("sites");
@@ -111,17 +113,37 @@ public class SiteController extends AbstractController {
                                          @RequestParam(value = "descriptionId", required = false) Integer pDescriptionId,
                                          @RequestParam(value = "action") String pAction) throws TechnicalException {
 
-        Site vSite = null;
         String vMessage = "";
         int vSiteId = 0;
+
+        //construction de l'objet site
+        Site vSite = setSiteCommonsAttributes(pNomSite, pNomVille, pRegionId, pDepartementCode, pTypeRocheId);
+        //fixation de l'id
+        if (pSiteId != null) {
+            vSite.setId(pSiteId);
+        }
+        //fixation de la description
+        Description vNewDescription = new Description();
+        if (pDescriptionId != null) {
+            vNewDescription.setId(pDescriptionId);
+        }
+        if (pDescription.isEmpty()) {
+            pDescription = "Ajouter une description pour ce site.";
+        }
+        vNewDescription.setDescription(pDescription);
+        String vInfo = pNomSite + " est un site d'escalade de type " + vSite.getTypeRoche().getNom() + ", situé à " + pNomSite +
+                ", dans le département " + vSite.getDepartement().getNom() + " (" + vSite.getRegion().getNom() + ").";
+        vNewDescription.setInfo(vInfo);
+        vSite.setDescription(vNewDescription);
+        //création ou modification du site
         try {
             switch (pAction) {
                 case "update":
-                    vSite = siteResource.updateSite(pSiteId, pNomSite, pDescriptionId, pDescription, pNomVille, pRegionId, pDepartementCode, pTypeRocheId);
+                    vSite = siteResource.updateSite(vSite);
                     vMessage = "Le site " + pNomSite + " a été modifié.";
                     break;
                 case "create":
-                    vSite = siteResource.createSite(pNomSite, pDescription, pNomVille, pRegionId, pDepartementCode, pTypeRocheId);
+                    vSite = siteResource.createSite(vSite);
                     vSiteId = siteResource.getLastId();
                     vSite.setId(vSiteId);
                     vMessage = "Le nouveau site " + pNomSite + " a été créé !";
@@ -130,7 +152,7 @@ public class SiteController extends AbstractController {
         } catch (TechnicalException e) {
             vMessage = e.getMessage();
         }
-        return showSitePage(vSiteId, vMessage);
+        return showSitePage(vSite.getId(), vMessage);
     }
 
     /**
@@ -151,6 +173,62 @@ public class SiteController extends AbstractController {
         logger.debug("JSON searchList = " + vJSONSearchResult);
         response.getWriter().write(vJSONSearchResult);
 
+    }
+
+    @PostMapping("/rendreOfficiel")
+    public void rendreOfficiel(@RequestParam(value = "siteId") Integer pSiteId,
+                                       @RequestParam(value = "checked") Boolean pChecked,
+                                       HttpServletResponse response) throws TechnicalException, IOException {
+        ModelAndView vMav = new ModelAndView();
+        logger.debug(pSiteId);
+        Site vSite = siteResource.getSiteById(pSiteId);
+        logger.debug(pChecked);
+        if (pChecked) {
+            vSite.setOfficiel(true);
+        } else if (!pChecked){
+            vSite.setOfficiel(false);
+        }
+        vSite = siteResource.updateSite(vSite);
+        // Creation de la réponse en JSON
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        String vJSONSite = new Gson().toJson(vSite);
+        logger.debug("vJSONSite = " + vJSONSite);
+        response.getWriter().write(vJSONSite);
+    }
+
+    /**
+     * Fixe les attributs d'un objet Site pour création ou modification.
+     *
+     * @param pNomSite         Le nom du Site.
+     * @param pNomVille        Le nom de la ville.
+     * @param pRegionId        L'identifiant de la région.
+     * @param pDepartementCode Le code du département.
+     * @param pTypeRocheId     Le type de roche.
+     */
+    private Site setSiteCommonsAttributes(String pNomSite, String pNomVille, Integer pRegionId, Integer pDepartementCode, Integer pTypeRocheId) {
+        Site vSite = new Site();
+        //fixation de l'attribut nom
+        vSite.setNom(pNomSite);
+        //recuperation de la Region et fixation de l'attribut
+        Region vRegion = geographicResource.getRegionById(pRegionId);
+        vSite.setRegion(vRegion);
+        //recuperation du Departement et fixation de l'attribut
+        Departement vDepartement = geographicResource.getDepartementByCode(pDepartementCode);
+        vSite.setDepartement(vDepartement);
+        //fixation de l'attribut ville
+        Ville vVille = new Ville();
+        vVille.setNom(pNomVille);
+        vVille.setDepartement(vDepartement);
+        //fixation de l'attribut ville
+        vSite.setVille(vVille);
+        //recuperation du TypeRoche et fixation de l'attribut
+        TypeRoche vTypeRoche = allCaracteristiqueResource.getTypeRocheById(pTypeRocheId);
+        vSite.setTypeRoche(vTypeRoche);
+        //fixation de l'attribut officiel
+        vSite.setOfficiel(false);
+
+        return vSite;
     }
 
     /**

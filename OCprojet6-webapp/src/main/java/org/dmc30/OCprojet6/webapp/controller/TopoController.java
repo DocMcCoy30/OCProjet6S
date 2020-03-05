@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class TopoController {
         Site vSite = siteResource.getSiteById(pSiteId);
         //récupérer les topos pour le site concerné
         List<Topo> vListTopo = topoResource.getTopoBySiteId(pSiteId);
-        //récupérer les réservations pour les topos
+        //récupérer les réservations antérieures à la date du jour pour les topos
         for (Topo vTopo : vListTopo
         ) {
             List<TopoReservation> vListReservations = topoResource.getTopoReservationsByTopoId(vTopo.getId());

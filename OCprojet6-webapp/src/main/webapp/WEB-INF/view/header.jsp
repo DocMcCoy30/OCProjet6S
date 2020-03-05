@@ -1,20 +1,20 @@
-srf    <c:url value="/logout" var="logoutUrl"/>
-    <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}"><h1>Les amis de l'escalade</h1></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/accueil">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/showSearchSitePage">Recherche</a>
-                    </li>
-                </ul>
+<c:url value="/logout" var="logoutUrl"/>
+<header id="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}"><h1>Les amis de l'escalade</h1></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/accueil">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/showSearchSitePage">Recherche</a>
+                </li>
+            </ul>
 
             <div class="clearfix form-inline">
                 <form action="searchAll" method="post" class="form-inline mt-2 mt-lg-0 mr-2 float-right"
@@ -41,7 +41,7 @@ srf    <c:url value="/logout" var="logoutUrl"/>
                     <a class="btn btn-warning" href="javascript:lougOutFormSubmit()">Se deconnecter</a>
                 </form>
             </c:if>
-            </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 

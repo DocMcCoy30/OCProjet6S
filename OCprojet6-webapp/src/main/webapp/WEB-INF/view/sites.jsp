@@ -21,7 +21,7 @@
 <%@include file="header.jsp" %>
 
 <div id="body">
-    <div class="container">
+    <div class="container" id="site-container">
         <div>
             <c:if test="${ !empty message}">
                 <div class="alert alert-success" role="alert">
@@ -33,12 +33,27 @@
             <div class="card-header" id="siteCardHeader">
                 <div class="row">
                     <div class="col">
-                        <h2 class="card-title">${site.nom}</h2>
+                        <div class="row">
+                            <h2 class="card-title col-md-5">${site.nom}</h2>
+                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                <div class="col-md-3 align-middle">
+                                    <c:if test="${site.officiel}">
+                                        <input type="checkbox" name="siteId" value="${site.id}" id="officiel" checked/>
+                                    </c:if>
+                                    <c:if test="${! site.officiel}">
+                                        <input type="checkbox" name="siteId" value="${site.id}" id="officiel"/>
+                                    </c:if>
+                                    <label class="form-check-label" for="officiel">
+                                        <h5>Site Officiel</h5>
+                                    </label>
+                                </div>
+                            </sec:authorize>
+                        </div>
                     </div>
                     <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
-                    <c:url var="modifierSite" value="/showSiteForm">
-                        <c:param name="siteId" value="${site.id}"/>
-                    </c:url>
+                        <c:url var="modifierSite" value="/showSiteForm">
+                            <c:param name="siteId" value="${site.id}"/>
+                        </c:url>
                         <div class="col-auto pull-right">
                             <a class="btn btn-warning" href="${modifierSite}">Modifier</a>
                         </div>
@@ -48,9 +63,12 @@
             </div>
         </div>
         <div class="card-body" id="siteCardBody">
-            <div>
+            <div class="form-inline">
+                <input type="hidden" name="macaron-officiel" value="${site.officiel}" id="var-macaron">
                 <img id="banniereSite" src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
-                     class="card-img-top" alt="${site.listPhotos[0].nom}">
+                     class="rounded" alt="${site.listPhotos[0].nom}">
+                <img src="${pageContext.request.contextPath}/resources/img/officiel.png"
+                     class="rounded mx-auto" alt="macaron-officiel" id="macaron-officiel">
             </div>
             <div id="descriptionBlock">
                 <p>Description :</p>
@@ -73,16 +91,13 @@
                     </c:url>
                     <a class="btn btn-warning" href="${topoPage}">Voir les topos</a>
                 </div>
-                <%--                <div class="btn-group col-auto mr-2" role="group">--%>
-                <%--                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Ajouter un topo</a>--%>
-                <%--                </div>--%>
                 <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>
                 </div>
-                                <div class="btn-group col-auto mr-2" role="group">
-                                    <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"
-                                           value="Ajouter une photo"><br/>
-                                </div>
+                <div class="btn-group col-auto mr-2" role="group">
+                    <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"
+                           value="Ajouter une photo"><br/>
+                </div>
                 <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
                 </div>
