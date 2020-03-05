@@ -28,11 +28,11 @@ $('#site-container').ready(function () {
     let officiel = $('#var-macaron').val();
     console.log(officiel);
     if (officiel==='false') {
-        $('#macaron-officiel').css('display', 'none');
+        $('#attribut-officiel').css('display', 'none');
         console.log(officiel + " : Le site n'est pas officiel")
     }
     else {
-        $('#macaron-officiel').css('display', 'block');
+        $('#attribut-officiel').css('display', 'block');
         console.log(officiel + " : Le site est Officiel")
     }
 });
@@ -52,10 +52,10 @@ $('#officiel').click(function () {
         success: function (data) {
             let site = data;
             if (site.officiel) {
-                $('#macaron-officiel').css('display', 'block')
+                $('#attribut-officiel').css('display', 'block')
             }
             else {
-                $('#macaron-officiel').css('display', 'none')
+                $('#attribut-officiel').css('display', 'none')
             }
             console.log(site);
         }

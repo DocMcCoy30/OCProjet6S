@@ -103,6 +103,12 @@ a:hover {
     color: #DE781F;
 }
 
+#bonjour {
+    color: white;
+    font-size: 1.5em;
+    margin-right: 1em;
+}
+
 .carousel-item {
     height: 50em;
     width: auto;
@@ -227,6 +233,10 @@ a:hover {
 #macaron-officiel {
     width: 9em;
     height: auto;
+}
+
+#attribut-officiel {
+    font-size: larger;
 }
 
 #topoForm {

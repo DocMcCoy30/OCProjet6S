@@ -67,8 +67,9 @@
                 <input type="hidden" name="macaron-officiel" value="${site.officiel}" id="var-macaron">
                 <img id="banniereSite" src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
                      class="rounded" alt="${site.listPhotos[0].nom}">
-                <img src="${pageContext.request.contextPath}/resources/img/officiel.png"
-                     class="rounded mx-auto" alt="macaron-officiel" id="macaron-officiel">
+<%--                <img src="${pageContext.request.contextPath}/resources/img/officiel.png"--%>
+<%--                     class="rounded mx-auto" alt="macaron-officiel" id="macaron-officiel">--%>
+                <span class="offset-2" id="attribut-officiel">Site officiel Les Amis de l'Escalade</span>
             </div>
             <div id="descriptionBlock">
                 <p>Description :</p>
@@ -102,7 +103,18 @@
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
                 </div>
             </div>
-            <br>
+            <div>
+                <c:if test="${ !empty messageSuccess}">
+                    <div class="alert alert-success" role="alert">
+                        <c:out value="${messageSuccess}"/>
+                    </div>
+                </c:if>
+                <c:if test="${ !empty messageAlert}">
+                    <div class="alert alert-danger" role="alert">
+                        <c:out value="${messageAlert}"/>
+                    </div>
+                </c:if>
+            </div>
             <form class="row" method="POST" action="uploadFile" id="formUpload" enctype="multipart/form-data">
                 <input type="hidden" value="${site.id}" name="siteId">
                 <div class="row col-md-12 no-gutters">
@@ -129,13 +141,7 @@
                 </div>
             </form>
             <br>
-            <div>
-                <c:if test="${ !empty uploadMsg}">
-                    <div class="alert alert-success" role="alert">
-                        <c:out value="${uploadMsg}"/>
-                    </div>
-                </c:if>
-            </div>
+
         </div>
         <br><br>
         <div class="card">
@@ -145,7 +151,6 @@
             <div class="card-body">
                 <ul class="list-unstyled">
                     <li class="media">
-                        <img src="..." class="mr-3" alt="...">
                         <div class="media-body">
                             <h5 class="mt-0 mb-1">titre commentaire</h5>
                             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
@@ -156,46 +161,14 @@
                             vulputate fringilla. Donec lacinia congue felis in faucibus.
                         </div>
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <button type="button" class="btn btn-outline-warning">Modifier</button>
-                            <button type="button" class="btn btn-outline-warning">Supprimer</button>
-                        </sec:authorize>
-                    </li>
-                    <li class="media">
-                        <img src="..." class="mr-3" alt="...">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1">titre commentaire</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                            sollicitudin.
-                            Cras
-                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                            nisi
-                            vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <button type="button" class="btn btn-outline-warning">Modifier</button>
-                            <button type="button" class="btn btn-outline-warning">Supprimer</button>
-                        </sec:authorize>
-                    </li>
-                    <li class="media">
-                        <img src="..." class="mr-3" alt="...">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1">titre commentaire</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                            sollicitudin.
-                            Cras
-                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                            nisi
-                            vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <button type="button" class="btn btn-outline-warning">Modifier</button>
-                            <button type="button" class="btn btn-outline-warning">Supprimer</button>
+                            <button type="button" class="btn btn-warning">Modifier</button>
+                            <button type="button" class="btn btn-warning">Supprimer</button>
                         </sec:authorize>
                     </li>
                 </ul>
                 <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
                     <div class="text-right">
-                        <button type="button" id="btnAjoutCommentaire" class="btn btn-outline-primary">Ajouter un
+                        <button type="button" id="btnAjoutCommentaire" class="btn btn-primary">Ajouter un
                             commentaire
                         </button>
                     </div>

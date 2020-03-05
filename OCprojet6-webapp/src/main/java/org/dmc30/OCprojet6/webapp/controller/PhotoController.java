@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -46,22 +47,21 @@ public class PhotoController extends AbstractController {
                                     HttpServletRequest request) throws TechnicalException {
 
         Photo vPhoto = new Photo();
+        List<Photo> vListPhotos = new ArrayList<>();
         String vRef = "site";
         String vNomPhoto = "";
-        String vUploadMsg;
+        String vMessageSuccess = "";
+        String vMessageAlert = "";
         ModelAndView vMaV = new ModelAndView();
 
         if (!pFile.isEmpty()) {
             try {
                 byte[] bytes = pFile.getBytes();
-
                 // Crée le repertoire de stockage des images
                 String rootPath = request.getSession().getServletContext().getRealPath("/");
                 File dir = new File(rootPath + File.separator + "resources/img");
-
                 if (!dir.exists())
                     dir.mkdirs();
-
                 // crée le nom du fichier (avec une référence aléatoire pour diminuer
                 // le risque de non concordance entre la BD et le répertoire
                 Random rand = new Random();
@@ -76,33 +76,39 @@ public class PhotoController extends AbstractController {
                         new FileOutputStream(serverFile));
                 stream.write(bytes);
                 stream.close();
-
                 logger.info("Repertoire créé = " + serverFile.getAbsolutePath());
                 logger.info("Fichier créé = " + vNomPhoto);
-
-                vUploadMsg = "L'image " + pNomPhoto + " a été chargée !";
+                //enregistre l'image dans la base de données
+                try {
+                    vPhoto = new Photo(vNomPhoto, vRef, pSiteId);
+                    photoResource.createPhoto(vPhoto);
+                    logger.debug("Image enregistrée dans la DB");
+                }
+                catch (TechnicalException e) {
+                    vMessageAlert = e.getMessage();
+                }
+                vMessageSuccess = "L'image " + pNomPhoto + " a été chargée !";
             } catch (Exception e) {
-                vUploadMsg = "Echec du chargement de l'image " + pNomPhoto + " => " + e.getMessage();
+                vMessageAlert = "Echec du chargement de l'image " + pNomPhoto + " => " + e.getMessage();
             }
         } else {
-            vUploadMsg = "Il n'y a pas d'image à charger";
+            vMessageAlert = "Aucun fichier selectionné !";
         }
-        try {
-            vPhoto = new Photo(vNomPhoto, vRef, pSiteId);
-            photoResource.createPhoto(vPhoto);
-        }
-        catch (TechnicalException e) {
-            vUploadMsg = e.getMessage();
-        }
-
         // création du site à retourner
         Site vSite = siteResource.getSiteById(pSiteId);
-        // création de la liste de photo correspondantes au site
-        List<Photo> vListPhotos = photoResource.getPhotoByRefId(vPhoto.getRefId(), vPhoto.getRef());
+        // création de la liste de photo correspondantes au site ou logo si absence de photo
+        if (!(photoResource.getPhotoByRefId(pSiteId, vRef)).isEmpty()) {
+            vListPhotos = photoResource.getPhotoByRefId(pSiteId, vRef);
+            vSite.setListPhotos(vListPhotos);
+        } else {
+            vListPhotos = photoResource.getPhotoByRefId(0, "logo");
+            vSite.setListPhotos(vListPhotos);
+            logger.debug("Logo = " + vListPhotos.get(0).getNom());
+        }
         vSite.setListPhotos(vListPhotos);
-
         vMaV.addObject("site", vSite);
-        vMaV.addObject("uploadMsg", vUploadMsg);
+        vMaV.addObject("messageSuccess", vMessageSuccess);
+        vMaV.addObject("messageAlert", vMessageAlert);
         vMaV.setViewName("sites");
         return vMaV;
     }

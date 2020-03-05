@@ -17,7 +17,7 @@
             </ul>
 
             <div class="clearfix form-inline">
-                <form action="searchAll" method="post" class="form-inline mt-2 mt-lg-0 mr-2 float-right"
+                <form action="searchAll" method="post" class="form-inline mt-2 mr-2"
                       id="inputSearchForm">
                     <div class="ui-widget">
                         <input class="form-control mr-sm-2" type="text" id="searchInput" name="motCle">
@@ -33,8 +33,7 @@
                 </c:if>
             </div>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <h3>Bonjour ${pageContext.request.userPrincipal.name}</h3>
-                &emsp;
+                <span id="bonjour">Bonjour ${pageContext.request.userPrincipal.name}</span>
                 <form action="${logoutUrl}" method="post" id="logoutForm">
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}"/>

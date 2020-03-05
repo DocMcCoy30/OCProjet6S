@@ -23,9 +23,14 @@
 <div id="body">
     <div class="container">
         <div>
-            <c:if test="${ !empty message}">
+            <c:if test="${ !empty messageSuccess}">
                 <div class="alert alert-success" role="alert">
-                    <c:out value="${message}"/>
+                    <c:out value="${messageSuccess}"/>
+                </div>
+            </c:if>
+            <c:if test="${ !empty messageAlert}">
+                <div class="alert alert-danger" role="alert">
+                    <c:out value="${messageAlert}"/>
                 </div>
             </c:if>
         </div>
@@ -55,7 +60,7 @@
                                 <td>${topo.dateParution}</td>
                                 <td>
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle"  type="button"
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
                                                 id="btnDatesReservees" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
                                             Dates réservées
@@ -70,7 +75,8 @@
                                 <td><input type="date" name="dateReservation"></td>
                                 <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
                                     <td>
-                                        <button type="submit" name="reservationTopoId" value="${topo.id}" class="btn btn-warning" id="btnReservationTopo">
+                                        <button type="submit" name="reservationTopoId" value="${topo.id}"
+                                                class="btn btn-warning" id="btnReservationTopo">
                                             Reserver
                                         </button>
                                     </td>
@@ -85,7 +91,7 @@
                         <div class="text-right">
                             <input hidden name="siteId" value="${site.id}">
                             <button type="button" class="btn btn-warning"
-                                    id="btnCreationSecteur" onclick="showTopoForm(1)">Ajouter
+                                    id="btnCreationSecteur" onclick="showTopoForm(1)">Créer un topo
                             </button>
                         </div>
                     </sec:authorize>
@@ -96,43 +102,45 @@
             <div class="card" id="topoForm">
                 <div class="card-header">
                     <input id="secteurId" name="secteurId" type="hidden" value="${secteur.id}">
-                    <h2 class="card-title">${site.nom}</h2>
+                    <h2 class="card-title">Créer un topo pour le site ${site.nom}</h2>
                 </div>
                 <div class="card-body">
                     <h5>Ajouter/modifier un topo :</h5>
-                    <form action="createTopo" method="post">
-                        <div class="row col-md-12 no-gutters">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="topoNom">Nom du topo : </span>
-                                </div>
-                                <input type="text" name="topoNom" class="form-control" aria-label="topoNom"
-                                       aria-describedby="Nom du Topo" required>
+                    <div class="row col-md-12 no-gutters">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="topoNom">Nom du topo : </span>
+                            </div>
+                            <input type="text" name="topoNom" class="form-control" aria-label="topoNom"
+                                   aria-describedby="Nom du Topo" required>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 no-gutters">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="dateParution">Date de parution : </span>
+                                <input type="date" name="dateParution" class="form-control"
+                                       aria-label="dateParution"
+                                       aria-describedby="Date de parution" required>
                             </div>
                         </div>
-                        <div class="row col-md-12 no-gutters">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="dateParution">Date de parution : </span>
-                                    <input type="date" name="dateParution" class="form-control"
-                                           aria-label="dateParution"
-                                           aria-describedby="Date de parution" required>
-                                </div>
-                            </div>
-                        </div>
-                        <br><br>
-                        <div class="text-right">
-                            <input type="hidden" name="siteId" value="${site.id}">
-                            <input type="hidden" name="username" value="${pageContext.request.userPrincipal.name}">
-                            <button type="submit" class="btn btn-warning" id="btnAjoutTopo" onclick="showTopoForm(0)">
-                                Ajouter
-                            </button>
-                        </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-right">
+                        <input type="hidden" name="siteId" value="${site.id}">
+                        <input type="hidden" name="username" value="${pageContext.request.userPrincipal.name}">
+                        <button type="submit" class="btn btn-warning" id="btnAjoutTopo"
+                                onclick="showTopoForm(0)">
+                            Ajouter
+                        </button>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
+    </form>
+</div>
 </div>
 
 
