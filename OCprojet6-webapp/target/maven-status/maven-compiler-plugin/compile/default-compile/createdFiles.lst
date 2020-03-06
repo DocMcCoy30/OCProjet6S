@@ -11,7 +11,9 @@ org\dmc30\OCprojet6\webapp\resource\DescriptionResource.class
 org\dmc30\OCprojet6\webapp\controller\AutoSearchController.class
 org\dmc30\OCprojet6\webapp\resource\AllCaracteristiqueResource.class
 org\dmc30\OCprojet6\webapp\resource\VoieResource.class
+org\dmc30\OCprojet6\webapp\resource\CommentaireResource.class
 org\dmc30\OCprojet6\webapp\controller\VoieController.class
+org\dmc30\OCprojet6\webapp\controller\CommentaireController.class
 org\dmc30\OCprojet6\webapp\resource\SiteResource.class
 org\dmc30\OCprojet6\webapp\resource\GeographicResource.class
 org\dmc30\OCprojet6\webapp\resource\AbstractResource.class

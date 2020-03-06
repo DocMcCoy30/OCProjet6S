@@ -3,9 +3,13 @@ package org.dmc30.OCprojet6.webapp.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.model.bean.Commentaire;
+import org.dmc30.OCprojet6.model.bean.Photo;
+import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.dmc30.OCprojet6.webapp.resource.AuthenticationResource;
 import org.dmc30.OCprojet6.webapp.resource.CommentaireResource;
+import org.dmc30.OCprojet6.webapp.resource.PhotoResource;
+import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,18 +17,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import java.util.Date;
+import java.util.List;
 
 @Controller
-public class commentaireController {
+public class CommentaireController {
 
-    Logger logger = LogManager.getLogger(commentaireController.class);
+    Logger logger = LogManager.getLogger(CommentaireController.class);
 
     @Inject
     CommentaireResource commentaireResource;
     @Inject
     AuthenticationResource authenticationResource;
     @Inject
-    SiteController siteController;
+    SiteResource siteResource;
+    @Inject
+    PhotoResource photoResource;
 
     @PostMapping("/createCommentaire")
     public ModelAndView createCommentaire(@RequestParam(value = "siteId") Integer pSiteId,
@@ -35,6 +42,7 @@ public class commentaireController {
         ModelAndView vMaV = new ModelAndView();
         String vMessageSucces = "";
         String vMessageAlert = "";
+        List<Photo> vListPhotos;
         Commentaire vCommentaire = new Commentaire();
 
         //fixer les attributs du bean commentaire
@@ -52,11 +60,32 @@ public class commentaireController {
         } catch (TechnicalException e) {
             vMessageAlert = e.getMessage();
         }
+        // création du site à retourner
+        Site vSite = siteResource.getSiteById(pSiteId);
+        // création de la liste de photo correspondantes au site ou logo si absence de photo
+        if (!(photoResource.getPhotoByRefId(1, pSiteId)).isEmpty()) {
+            vListPhotos = photoResource.getPhotoByRefId(1, pSiteId);
+            vSite.setListPhotos(vListPhotos);
+        } else {
+            vListPhotos = photoResource.getPhotoByRefId(4,0);
+            vSite.setListPhotos(vListPhotos);
+            logger.debug("Logo = " + vListPhotos.get(0).getNom());
+        }
+        //créer la liste de commentaires validés correspondants au site
+        int vRefererenceId = 1;
+        int vRefId = pSiteId;
+        List<Commentaire> vListCommentaires = commentaireResource.getCommentairesByReference(vRefererenceId, vRefId);
+        vSite.setListCommentaires(vListCommentaires);
+
+        vMaV.addObject("site", vSite);
+        vMaV.addObject("messageSucces", vMessageSucces);
+        vMaV.addObject("messageAlert", vMessageAlert);
+        vMaV.setViewName("sites");
 
 
         logger.debug(vCommentaire.getDate());
 
-        return siteController.showSitePage(pSiteId, vMessageSucces, vMessageAlert);
+        return vMaV/*siteController.showSitePage(pSiteId, vMessageSucces, vMessageAlert)*/;
     }
 
 }

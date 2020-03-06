@@ -96,34 +96,47 @@ $('#region').change(function (response) {
  * @param a
  */
 function showFormUpload(a) {
-    if (a === 1) {
-        document.getElementById("formUpload").style.display = "block";
+    if (a !== 1) {
+        $('#formUpload').css('display', 'none')
     } else {
-        document.getElementById("formUpload").style.display = "none";
+        $('#formUpload').css('display', 'block')
     }
 }
 
 /**
  * Affiche le formulaire d'ajout de topo lorsque le bouton "ajouter" est cliqué.
- * @param a
+ * @param b
  */
-function showTopoForm(a) {
-    if (a === 1) {
-        document.getElementById("topoForm").style.display = "block";
+function showTopoForm(b) {
+    if (b !== 1) {
+        $('#topoForm').css('display', 'none')
     } else {
-        document.getElementById("topoForm").style.display = "none";
+        $('#topoForm').css('display', 'block')
     }
 }
 
 /**
- * Affiche le formulaire d'ajout de topo lorsque le bouton "ajouter" est cliqué.
- * @param a
+ * Affiche le panneau des commentaires de commentaire lorsque le bouton "ajouter" est cliqué.
+ * @param c
  */
-function showCommentaireForm(a) {
-    if (a === 1) {
-        document.getElementById("commentaireForm").style.display = "block";
+function showCommentPanel(c) {
+    if (c !== 1) {
+        $('#commentaire-card').css('display', 'none')
     } else {
-        document.getElementById("commentaireForm").style.display = "none";
+        $('#commentaire-card').css('display', 'block')
+    }
+}
+
+/**
+ * Affiche le formulaire d'ajout de commentaire lorsque le bouton "ajouter" est cliqué.
+ * @param d
+ */
+function showCommentaireForm(d) {
+    if (d !== 1) {
+        $('#commentaire-form').css('display', 'none')
+    } else {
+        showCommentPanel(0)
+        $('#commentaire-form').css('display', 'block')
     }
 }
 

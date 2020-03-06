@@ -65,8 +65,26 @@
         <div class="card-body" id="siteCardBody">
             <div class="form-inline">
                 <input type="hidden" name="macaron-officiel" value="${site.officiel}" id="var-macaron">
-                <img id="banniereSite" src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
-                     class="rounded" alt="${site.listPhotos[0].nom}">
+                <%--                <img id="banniereSite" src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"--%>
+                <%--                     class="rounded" alt="${site.listPhotos[0].nom}">--%>
+                <div id="carouselAccueil" class="carousel slide carousel-fade" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img id="photo-site"
+                                 src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
+                                 class="rounded" alt="${site.listPhotos[0].nom}">
+                        </div>
+                        <c:if test="${ ! empty site.listPhotos}">
+                            <c:forEach var="photo" items="${site.listPhotos}">
+                                <div class="carousel-item">
+                                    <img id="photo-site-carousel"
+                                         src="${pageContext.request.contextPath}/resources/img/${photo.nom}"
+                                         class="rounded d-block w-100" alt="${photo.nom}">
+                                </div>
+                            </c:forEach>
+                        </c:if>
+                    </div>
+                </div>
                 <%--                <img src="${pageContext.request.contextPath}/resources/img/officiel.png"--%>
                 <%--                     class="rounded mx-auto" alt="macaron-officiel" id="macaron-officiel">--%>
                 <span class="offset-2" id="attribut-officiel">Site officiel Les Amis de l'Escalade</span>
@@ -95,18 +113,22 @@
                 <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>
                 </div>
-                <div class="btn-group col-auto mr-2" role="group">
+                <div class="btn-group mx-auto" role="group">
                     <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"
                            value="Ajouter une photo"><br/>
+                </div>
+                <div class="btn-group mx-auto" role="group">
+                    <input class="btn btn-warning" type="submit" onclick="showCommentPanel(1)"
+                           value="Commentaires"><br/>
                 </div>
                 <div class="btn-group mx-auto" role="group">
                     <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
                 </div>
             </div>
             <div>
-                <c:if test="${ !empty messageSuccess}">
+                <c:if test="${ !empty messageSucces}">
                     <div class="alert alert-success" role="alert">
-                        <c:out value="${messageSuccess}"/>
+                        <c:out value="${messageSucces}"/>
                     </div>
                 </c:if>
                 <c:if test="${ !empty messageAlert}">
@@ -144,27 +166,38 @@
 
         </div>
         <br><br>
-        <div class="card">
+        <div class="card" id="commentaire-card">
             <div class="card-header">
                 <h2 class="card-title">Commentaires</h2>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled">
-                    <li class="media">
-                        <div class="media-body" id="commentaireSpan">
-                            <h5 class="mt-0 mb-1">titre commentaire</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                            sollicitudin.
-                            Cras
-                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                            nisi
-                            vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <button type="button" class="btn btn-warning">Modifier</button>
-                            <button type="button" class="btn btn-warning">Supprimer</button>
-                        </sec:authorize>
-                    </li>
+                    <c:if test="${empty site.listCommentaires}">
+                        <h5 style="color: red">Il n'y a aucun commentaire enregistré pour ce site.</h5>
+                    </c:if>
+                    <c:if test="${! empty site.listCommentaires}">
+                        <c:forEach var="commentaire" items="${site.listCommentaires}">
+                            <li class="media">
+                                <div class="media-body" id="commentaire-div">
+                                    <span class="mt-0 mb-1" style="color: red; font-size: larger">${commentaire.titre}</span>
+                                    posté par ${commentaire.users.username} le ${commentaire.date}
+                                    <div>${commentaire.commentaire}</div>
+                                </div>
+                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                    <div id="adminCommentBtn">
+                                        <div>
+                                            <button type="button" id="admin-modif" class="btn btn-danger">Modifier
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" id="admin-supp" class="btn btn-danger">Supprimer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </sec:authorize>
+                            </li>
+                        </c:forEach>
+                    </c:if>
                 </ul>
                 <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
                     <div class="text-right">
@@ -177,7 +210,7 @@
             </div>
         </div>
         <form action="createCommentaire" method="post">
-            <div class="card" id="commentaireForm">
+            <div class="card" id="commentaire-form">
                 <div class="card-header">
                     <input id="siteId" name="siteId" type="hidden" value="${site.id}">
                     <h2 class="card-title">Ajouter un commentaire pour le site ${site.nom}</h2>

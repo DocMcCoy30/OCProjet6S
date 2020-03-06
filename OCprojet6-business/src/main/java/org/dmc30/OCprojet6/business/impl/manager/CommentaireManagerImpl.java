@@ -35,4 +35,9 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
     public void deleteCommentaire(int pId) {
         getDaoFactory().getCommentaireDao().deleteCommentaire(pId);
     }
+
+    @Override
+    public List<Commentaire> getCommentairesByReference(int pRefererenceId, int pRefId) {
+        return getDaoFactory().getCommentaireDao().getCommentairesByReference(pRefererenceId, pRefId);
+    }
 }

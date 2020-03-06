@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.model.bean.*;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
+import org.dmc30.OCprojet6.webapp.resource.CommentaireResource;
 import org.dmc30.OCprojet6.webapp.resource.PhotoResource;
 import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class SiteController extends AbstractController {
     SiteResource siteResource;
     @Inject
     PhotoResource photoResource;
+    @Inject
+    CommentaireResource commentaireResource;
 
     final Logger logger = LogManager.getLogger(SiteController.class);
 
@@ -43,12 +46,12 @@ public class SiteController extends AbstractController {
                                      String pMessageSucces, String pMessageAlert) {
         ModelAndView vMaV = new ModelAndView();
         List<Photo> vListPhotos;
-        String vMessageSuccess, vMessageAlert;
+        String vMessageSucces, vMessageAlert;
 
         if (pMessageSucces == null) {
-            vMessageSuccess = "";
+            vMessageSucces = "";
         } else {
-            vMessageSuccess = pMessageSucces;
+            vMessageSucces = pMessageSucces;
         }
         if (pMessageAlert == null) {
             vMessageAlert = "";
@@ -66,9 +69,14 @@ public class SiteController extends AbstractController {
             vSite.setListPhotos(vListPhotos);
             logger.debug("Logo = " + vListPhotos.get(0).getNom());
         }
+        //créer la liste de commentaires validés correspondants au site
+        int vRefererenceId = 1;
+        int vRefId = pSiteId;
+        List<Commentaire> vListCommentaires = commentaireResource.getCommentairesByReference(vRefererenceId, vRefId);
+        vSite.setListCommentaires(vListCommentaires);
 
         vMaV.addObject("site", vSite);
-        vMaV.addObject("messageSuccess", vMessageSuccess);
+        vMaV.addObject("messageSuccess", vMessageSucces);
         vMaV.addObject("messageAlert", vMessageAlert);
         vMaV.setViewName("sites");
         return vMaV;

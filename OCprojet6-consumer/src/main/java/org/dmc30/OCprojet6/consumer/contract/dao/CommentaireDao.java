@@ -12,5 +12,6 @@ public interface CommentaireDao {
     List<Commentaire> getAllCommentaires();
     void updateCommentaire (Commentaire pCommentaire);
     void deleteCommentaire(int pId);
+    List<Commentaire> getCommentairesByReference(int pRefererenceId, int pRefId);
 }
 

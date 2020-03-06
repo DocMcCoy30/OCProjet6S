@@ -79,4 +79,14 @@ public class CommentaireDaoImpl extends AbstractDao implements CommentaireDao {
 
     }
 
+    @Override
+    public List<Commentaire> getCommentairesByReference(int pRefererenceId, int pRefId) {
+        String vSQL = "SELECT * FROM commentaire WHERE reference_id= :referenceId AND ref_id= :refId";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("referenceId", pRefererenceId);
+        vParams.addValue("refId", pRefId);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        return vJdbcTemplate.query(vSQL, vParams, commentaireRM);
+    }
+
 }

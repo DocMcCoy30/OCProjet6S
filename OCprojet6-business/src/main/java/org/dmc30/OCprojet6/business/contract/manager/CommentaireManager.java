@@ -37,6 +37,11 @@ public interface CommentaireManager {
      */
     void deleteCommentaire(int pId);
 
-
-
+    /**
+     * Cherche et renvoie la liste des commentaires correspondants à un site, un secteur ou une voie.
+     * @param pRefererenceId Le numero de référence pour site, secteur ou voie.
+     * @param pRefId L'identifiant du site, secteur ou voie.
+     * @return La liste des commentaires liés au référent.
+     */
+    List<Commentaire> getCommentairesByReference(int pRefererenceId, int pRefId);
 }
