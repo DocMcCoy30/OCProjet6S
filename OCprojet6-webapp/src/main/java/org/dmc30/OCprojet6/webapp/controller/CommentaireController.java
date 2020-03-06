@@ -29,9 +29,7 @@ public class CommentaireController {
     @Inject
     AuthenticationResource authenticationResource;
     @Inject
-    SiteResource siteResource;
-    @Inject
-    PhotoResource photoResource;
+    SiteController siteController;
 
     @PostMapping("/createCommentaire")
     public ModelAndView createCommentaire(@RequestParam(value = "siteId") Integer pSiteId,
@@ -42,7 +40,6 @@ public class CommentaireController {
         ModelAndView vMaV = new ModelAndView();
         String vMessageSucces = "";
         String vMessageAlert = "";
-        List<Photo> vListPhotos;
         Commentaire vCommentaire = new Commentaire();
 
         //fixer les attributs du bean commentaire
@@ -60,32 +57,8 @@ public class CommentaireController {
         } catch (TechnicalException e) {
             vMessageAlert = e.getMessage();
         }
-        // création du site à retourner
-        Site vSite = siteResource.getSiteById(pSiteId);
-        // création de la liste de photo correspondantes au site ou logo si absence de photo
-        if (!(photoResource.getPhotoByRefId(1, pSiteId)).isEmpty()) {
-            vListPhotos = photoResource.getPhotoByRefId(1, pSiteId);
-            vSite.setListPhotos(vListPhotos);
-        } else {
-            vListPhotos = photoResource.getPhotoByRefId(4,0);
-            vSite.setListPhotos(vListPhotos);
-            logger.debug("Logo = " + vListPhotos.get(0).getNom());
-        }
-        //créer la liste de commentaires validés correspondants au site
-        int vRefererenceId = 1;
-        int vRefId = pSiteId;
-        List<Commentaire> vListCommentaires = commentaireResource.getCommentairesByReference(vRefererenceId, vRefId);
-        vSite.setListCommentaires(vListCommentaires);
 
-        vMaV.addObject("site", vSite);
-        vMaV.addObject("messageSucces", vMessageSucces);
-        vMaV.addObject("messageAlert", vMessageAlert);
-        vMaV.setViewName("sites");
-
-
-        logger.debug(vCommentaire.getDate());
-
-        return vMaV/*siteController.showSitePage(pSiteId, vMessageSucces, vMessageAlert)*/;
+        return siteController.showSitePage(pSiteId, vMessageSucces, vMessageAlert);
     }
 
 }

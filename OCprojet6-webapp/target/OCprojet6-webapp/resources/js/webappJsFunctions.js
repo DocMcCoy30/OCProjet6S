@@ -123,6 +123,7 @@ function showCommentPanel(c) {
     if (c !== 1) {
         $('#commentaire-card').css('display', 'none')
     } else {
+        showCommentaireForm(0)
         $('#commentaire-card').css('display', 'block')
     }
 }
