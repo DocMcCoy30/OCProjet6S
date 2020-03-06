@@ -27,10 +27,10 @@ public class PhotoDaoImpl extends AbstractDao implements PhotoDao {
 
     @Override
     public void createPhoto(Photo pPhoto) throws TechnicalException {
-        String vSQL = "INSERT INTO photo (nom, ref, ref_id) VALUES (:nom, :ref, :refId)";
+        String vSQL = "INSERT INTO photo (nom, reference_id, ref_id) VALUES (:nom, :referenceId, :refId)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("nom", pPhoto.getNom());
-        vParams.addValue("ref", pPhoto.getRef());
+        vParams.addValue("referenceId", pPhoto.getReferenceId());
         vParams.addValue("refId", pPhoto.getRefId());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         try {
@@ -58,10 +58,10 @@ public class PhotoDaoImpl extends AbstractDao implements PhotoDao {
     }
 
     @Override
-    public List<Photo> getPhotosByRefId(int pRefId, String pRef) {
-        String vSQL = "SELECT * FROM photo WHERE ref = :ref AND ref_id = :refId";
+    public List<Photo> getPhotosByRefId(int pReferenceId, int pRefId) {
+        String vSQL = "SELECT * FROM photo WHERE reference_id = :referenceId AND ref_id = :refId";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
-        vParams.addValue("ref", pRef);
+        vParams.addValue("referenceId", pReferenceId);
         vParams.addValue("refId", pRefId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         return vJdbcTemplate.query(vSQL, vParams, photoRM);

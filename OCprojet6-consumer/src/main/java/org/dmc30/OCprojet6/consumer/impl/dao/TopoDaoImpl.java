@@ -27,7 +27,8 @@ public class TopoDaoImpl extends AbstractDao implements TopoDao {
 
     @Override
     public void createTopo(Topo pTopo) throws TechnicalException {
-        String vSQL = "INSERT INTO topo (nom, date_parution, site_id, username) VALUES (:vNom, :vDateParution, :vSiteId, :vUsername)";
+        String vSQL = "INSERT INTO topo (nom, date_parution, site_id, username)" +
+                " VALUES (:vNom, :vDateParution, :vSiteId, :vUsername)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("vNom", pTopo.getNom());
         vParams.addValue("vDateParution", pTopo.getDateParution());

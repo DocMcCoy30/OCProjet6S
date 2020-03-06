@@ -22,8 +22,8 @@ public class PhotoManagerImpl extends AbstractManager implements PhotoManager {
     }
 
     @Override
-    public List<Photo> getPhotosByRefId(int pRefId, String pRef) {
-        return getDaoFactory().getPhotoDao().getPhotosByRefId(pRefId, pRef);
+    public List<Photo> getPhotosByRefId(int pReferenceId, int pRefId) {
+        return getDaoFactory().getPhotoDao().getPhotosByRefId(pReferenceId, pRefId);
     }
 
     @Override

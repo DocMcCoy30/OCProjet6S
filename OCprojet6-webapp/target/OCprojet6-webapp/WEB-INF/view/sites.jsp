@@ -67,8 +67,8 @@
                 <input type="hidden" name="macaron-officiel" value="${site.officiel}" id="var-macaron">
                 <img id="banniereSite" src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"
                      class="rounded" alt="${site.listPhotos[0].nom}">
-<%--                <img src="${pageContext.request.contextPath}/resources/img/officiel.png"--%>
-<%--                     class="rounded mx-auto" alt="macaron-officiel" id="macaron-officiel">--%>
+                <%--                <img src="${pageContext.request.contextPath}/resources/img/officiel.png"--%>
+                <%--                     class="rounded mx-auto" alt="macaron-officiel" id="macaron-officiel">--%>
                 <span class="offset-2" id="attribut-officiel">Site officiel Les Amis de l'Escalade</span>
             </div>
             <div id="descriptionBlock">
@@ -151,7 +151,7 @@
             <div class="card-body">
                 <ul class="list-unstyled">
                     <li class="media">
-                        <div class="media-body">
+                        <div class="media-body" id="commentaireSpan">
                             <h5 class="mt-0 mb-1">titre commentaire</h5>
                             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
                             sollicitudin.
@@ -168,13 +168,53 @@
                 </ul>
                 <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
                     <div class="text-right">
-                        <button type="button" id="btnAjoutCommentaire" class="btn btn-primary">Ajouter un
-                            commentaire
+                        <button type="button" id="btnAjoutCommentaire" class="btn btn-primary"
+                                onclick="showCommentaireForm(1)">
+                            Ajouter un commentaire
                         </button>
                     </div>
                 </sec:authorize>
             </div>
         </div>
+        <form action="createCommentaire" method="post">
+            <div class="card" id="commentaireForm">
+                <div class="card-header">
+                    <input id="siteId" name="siteId" type="hidden" value="${site.id}">
+                    <h2 class="card-title">Ajouter un commentaire pour le site ${site.nom}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row no-gutters">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="commentaireTitre">Titre : </span>
+                            </div>
+                            <input type="text" name="commentaireTitre" class="form-control"
+                                   aria-label="commentaireTitre"
+                                   aria-describedby="Titre du commentaire" required>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Commentaire : </span>
+                                </div>
+                                <textarea class="form-control" name="commentaire"
+                                          aria-label="With textarea"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-right">
+                        <input type="hidden" name="siteId" value="${site.id}">
+                        <input type="hidden" name="username" value="${pageContext.request.userPrincipal.name}">
+                        <button type="submit" class="btn btn-warning" id="btnCreerCommentaire"
+                                onclick="showCommentaireForm(0)">
+                            Ajouter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 

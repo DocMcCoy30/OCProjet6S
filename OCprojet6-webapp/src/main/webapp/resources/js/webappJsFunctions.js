@@ -116,6 +116,18 @@ function showTopoForm(a) {
 }
 
 /**
+ * Affiche le formulaire d'ajout de topo lorsque le bouton "ajouter" est cliqué.
+ * @param a
+ */
+function showCommentaireForm(a) {
+    if (a === 1) {
+        document.getElementById("commentaireForm").style.display = "block";
+    } else {
+        document.getElementById("commentaireForm").style.display = "none";
+    }
+}
+
+/**
  * Affiche le message d'upload pendant 5s et l'efface : !fonctionnel
  * @param msg
  */

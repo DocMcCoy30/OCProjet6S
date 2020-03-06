@@ -77,7 +77,7 @@ public class TopoController {
                                    @RequestParam(value = "dateParution") String vDateParution,
                                    @RequestParam(value = "username") String pUsername) throws TechnicalException {
 //        ModelAndView vMaV = new ModelAndView();
-        String vMessageSuccess = "";
+        String vMessageSucces = "";
         String vMessageAlert = "";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date vDate = null;
@@ -91,11 +91,11 @@ public class TopoController {
         Topo vTopo = new Topo(vTopoNom, vDate, vSite, vUser);
         try {
             topoResource.createTopo(vTopo);
-            vMessageSuccess = "Le topo " + vTopoNom + " a été ajouté.";
+            vMessageSucces = "Le topo " + vTopoNom + " a été ajouté.";
         } catch (TechnicalException e) {
             vMessageAlert = e.getMessage();
         }
-        return showTopoPage(pSiteId, vMessageSuccess, vMessageAlert);
+        return showTopoPage(pSiteId, vMessageSucces, vMessageAlert);
     }
 
     @PostMapping("/reserveTopo")

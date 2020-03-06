@@ -24,10 +24,13 @@ public class CommentaireRM implements RowMapper<Commentaire> {
     @Override
     public Commentaire mapRow(ResultSet resultSet, int i) throws SQLException {
         Commentaire vCommentaire = new Commentaire(resultSet.getInt("commentaire_id"),
-                resultSet.getString("commentaire"));
+                resultSet.getString("titre"),
+                resultSet.getString("commentaire"),
+                resultSet.getDate("date_publication"),
+                resultSet.getInt("reference_id"),
+                resultSet.getInt("ref_id"),
+                resultSet.getBoolean("valide"));
         // utilisation de dao
-        Site vSite = siteDao.getSiteById(resultSet.getInt("site_id"));
-        vCommentaire.setSite(vSite);
         Users vUsers = null;
         try {
             vUsers = usersDao.getUsersByName(resultSet.getString("users_username"));

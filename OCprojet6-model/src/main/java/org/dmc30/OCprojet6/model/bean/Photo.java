@@ -4,22 +4,22 @@ public class Photo {
 
     private int id;
     private String nom;
-    private String ref;
+    private int referenceId;
     private int refId;
 
     public Photo() {
     }
 
-    public Photo(String nom, String ref, int refId) {
+    public Photo(String nom, int referenceId, int refId) {
         this.nom = nom;
-        this.ref = ref;
+        this.referenceId = referenceId;
         this.refId = refId;
     }
 
-    public Photo(int id, String nom, String ref, int refId) {
+    public Photo(int id, String nom, int referenceId, int refId) {
         this.id = id;
         this.nom = nom;
-        this.ref = ref;
+        this.referenceId = referenceId;
         this.refId = refId;
     }
 
@@ -39,13 +39,6 @@ public class Photo {
         this.nom = nom;
     }
 
-    public String getRef() {
-        return ref;
-    }
-
-    public void setRef(String ref) {
-        this.ref = ref;
-    }
 
     public int getRefId() {
         return refId;
@@ -53,5 +46,13 @@ public class Photo {
 
     public void setRefId(int refId) {
         this.refId = refId;
+    }
+
+    public int getReferenceId() {
+        return referenceId;
+    }
+
+    public void setReferenceId(int referenceId) {
+        this.referenceId = referenceId;
     }
 }

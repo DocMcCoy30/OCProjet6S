@@ -18,7 +18,7 @@ public class PhotoRM implements RowMapper<Photo> {
     public Photo mapRow(ResultSet resultSet, int i) throws SQLException {
         Photo vPhoto = new Photo(resultSet.getInt("photo_id"),
                 resultSet.getString("nom"),
-                resultSet.getString("ref"),
+                resultSet.getInt("reference_id"),
                 resultSet.getInt("ref_id"));
 
         return vPhoto;

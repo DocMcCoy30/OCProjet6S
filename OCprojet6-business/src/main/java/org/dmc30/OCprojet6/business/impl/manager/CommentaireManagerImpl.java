@@ -2,6 +2,7 @@ package org.dmc30.OCprojet6.business.impl.manager;
 
 import org.dmc30.OCprojet6.business.contract.manager.CommentaireManager;
 import org.dmc30.OCprojet6.model.bean.Commentaire;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import javax.inject.Named;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class CommentaireManagerImpl extends AbstractManager implements CommentaireManager {
 
     @Override
-    public void createCommentaire(Commentaire pCommentaire) {
+    public void createCommentaire(Commentaire pCommentaire) throws TechnicalException {
         getDaoFactory().getCommentaireDao().createCommentaire(pCommentaire);
 
     }

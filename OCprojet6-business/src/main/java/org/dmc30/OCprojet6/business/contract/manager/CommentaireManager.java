@@ -1,6 +1,7 @@
 package org.dmc30.OCprojet6.business.contract.manager;
 
 import org.dmc30.OCprojet6.model.bean.Commentaire;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface CommentaireManager {
     /**
      * Enregistre un objet de type Commentaire dans la database.
      */
-    void createCommentaire(Commentaire pCommentaire);
+    void createCommentaire(Commentaire pCommentaire) throws TechnicalException;
 
     /**
      * Cherche et renvoie un objet de type Commentaire stocké dans la database.

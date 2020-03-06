@@ -152,11 +152,11 @@ public class AutoSearchController extends AbstractController {
         }
         // création de la liste des photos correspondantes aux sites recherchés
         for (Site vSite : vListSitesRecherches) {
-            if (!(photoResource.getPhotoByRefId(vSite.getId(), "site")).isEmpty()) {
-                vListPhotos = photoResource.getPhotoByRefId(vSite.getId(), "site");
+            if (!(photoResource.getPhotoByRefId(1, vSite.getId())).isEmpty()) {
+                vListPhotos = photoResource.getPhotoByRefId(1, vSite.getId());
                 vSite.setListPhotos(vListPhotos);
             } else {
-                vListPhotos = photoResource.getPhotoByRefId(0, "logo");
+                vListPhotos = photoResource.getPhotoByRefId(1,0);
                 vSite.setListPhotos(vListPhotos);
             }
         }

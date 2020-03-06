@@ -115,7 +115,7 @@ a:hover {
 }
 
 .input-group {
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 .input-group-text {
@@ -219,15 +219,16 @@ a:hover {
     background-color: #1F4C73;
 }
 
+#commentaireSpan {
+    border: black 1px solid;
+    padding: 1em;
+}
+
 #descriptionBlock {
     padding: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
     background-color: #F2E8C9;
-}
-
-#formUpload {
-    display: none;
 }
 
 #macaron-officiel {
@@ -240,6 +241,14 @@ a:hover {
 }
 
 #topoForm {
+    display: none;
+}
+
+#formUpload {
+    display: none;
+}
+
+#commentaireForm {
     display: none;
 }
 

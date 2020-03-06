@@ -1,9 +1,17 @@
 package org.dmc30.OCprojet6.consumer.impl.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.consumer.contract.dao.CommentaireDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.CommentaireRM;
 import org.dmc30.OCprojet6.model.bean.Commentaire;
+import org.dmc30.OCprojet6.model.exception.ErrorMessages;
+import org.dmc30.OCprojet6.model.exception.TechnicalException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,12 +20,38 @@ import java.util.List;
 @Named
 public class CommentaireDaoImpl extends AbstractDao implements CommentaireDao {
 
+    Logger logger = LogManager.getLogger(CommentaireDaoImpl.class);
+
     @Inject
     CommentaireRM commentaireRM;
 
     @Override
-    public void createCommentaire(Commentaire pCommentaire) {
-
+    public void createCommentaire(Commentaire pCommentaire) throws TechnicalException {
+        String vSQL = "INSERT INTO commentaire (titre, commentaire, users_username, date_publication, reference_id, ref_id, valide) " +
+                "VALUES (:titre, :commentaire, :username, :date, :referenceId, :refId, :valide)";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("titre", pCommentaire.getTitre());
+        vParams.addValue("commentaire", pCommentaire.getCommentaire());
+        vParams.addValue("username", pCommentaire.getUsers().getUsername());
+        vParams.addValue("date", pCommentaire.getDate());
+        vParams.addValue("referenceId", pCommentaire.getReference_id());
+        vParams.addValue("refId", pCommentaire.getRef_id());
+        vParams.addValue("valide", pCommentaire.isValide());
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+        }catch (
+                BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (
+                DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
+        } catch (Exception e) {
+            logger.error("Problème technique");
+            throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
+        }
     }
 
     @Override

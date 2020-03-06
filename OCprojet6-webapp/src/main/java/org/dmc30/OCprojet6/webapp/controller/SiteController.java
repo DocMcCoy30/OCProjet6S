@@ -40,30 +40,36 @@ public class SiteController extends AbstractController {
      */
     @GetMapping("/showSitePage")
     public ModelAndView showSitePage(@RequestParam("siteId") int pSiteId,
-                                     String pMessage) {
+                                     String pMessageSucces, String pMessageAlert) {
         ModelAndView vMaV = new ModelAndView();
         List<Photo> vListPhotos;
-        String vMessage;
+        String vMessageSuccess, vMessageAlert;
 
-        if (pMessage == null) {
-            vMessage = "";
+        if (pMessageSucces == null) {
+            vMessageSuccess = "";
         } else {
-            vMessage = pMessage;
+            vMessageSuccess = pMessageSucces;
+        }
+        if (pMessageAlert == null) {
+            vMessageAlert = "";
+        } else {
+            vMessageAlert = pMessageAlert;
         }
         // création du site à retourner
         Site vSite = siteResource.getSiteById(pSiteId);
         // création de la liste de photo correspondantes au site ou logo si absence de photo
-        if (!(photoResource.getPhotoByRefId(pSiteId, "site")).isEmpty()) {
-            vListPhotos = photoResource.getPhotoByRefId(pSiteId, "site");
+        if (!(photoResource.getPhotoByRefId(1, pSiteId)).isEmpty()) {
+            vListPhotos = photoResource.getPhotoByRefId(1, pSiteId);
             vSite.setListPhotos(vListPhotos);
         } else {
-            vListPhotos = photoResource.getPhotoByRefId(0, "logo");
+            vListPhotos = photoResource.getPhotoByRefId(4,0);
             vSite.setListPhotos(vListPhotos);
             logger.debug("Logo = " + vListPhotos.get(0).getNom());
         }
 
         vMaV.addObject("site", vSite);
-        vMaV.addObject("message", vMessage);
+        vMaV.addObject("messageSuccess", vMessageSuccess);
+        vMaV.addObject("messageAlert", vMessageAlert);
         vMaV.setViewName("sites");
         return vMaV;
     }
@@ -113,7 +119,8 @@ public class SiteController extends AbstractController {
                                          @RequestParam(value = "descriptionId", required = false) Integer pDescriptionId,
                                          @RequestParam(value = "action") String pAction) throws TechnicalException {
 
-        String vMessage = "";
+        String vMessageSucces = "";
+        String vMessageAlert = "";
         int vSiteId = 0;
 
         //construction de l'objet site
@@ -140,19 +147,19 @@ public class SiteController extends AbstractController {
             switch (pAction) {
                 case "update":
                     vSite = siteResource.updateSite(vSite);
-                    vMessage = "Le site " + pNomSite + " a été modifié.";
+                    vMessageSucces = "Le site " + pNomSite + " a été modifié.";
                     break;
                 case "create":
                     vSite = siteResource.createSite(vSite);
                     vSiteId = siteResource.getLastId();
                     vSite.setId(vSiteId);
-                    vMessage = "Le nouveau site " + pNomSite + " a été créé !";
+                    vMessageSucces = "Le nouveau site " + pNomSite + " a été créé !";
                     break;
             }
         } catch (TechnicalException e) {
-            vMessage = e.getMessage();
+            vMessageAlert = e.getMessage();
         }
-        return showSitePage(vSite.getId(), vMessage);
+        return showSitePage(vSite.getId(), vMessageSucces, vMessageAlert);
     }
 
     /**
@@ -374,12 +381,12 @@ public class SiteController extends AbstractController {
         // création de la liste des photos correspondantes aux sites recherchés
         for (Site vSite : vListSites) {
             logger.info(vSite.getNom() + vSite.getId());
-            vListPhotos = photoResource.getPhotoByRefId(vSite.getId(), "site");
+            vListPhotos = photoResource.getPhotoByRefId(1, vSite.getId());
             if (!vListPhotos.isEmpty()) {
                 logger.info("La liste de photos pour " + vSite.getNom() + " contient " + vListPhotos.size() + " photos");
                 vSite.setListPhotos(vListPhotos);
             } else {
-                vListPhotos = photoResource.getPhotoByRefId(0, "logo");
+                vListPhotos = photoResource.getPhotoByRefId(4,0);
                 logger.info("La liste de photo pour " + vSite.getNom() + " est vide");
                 vSite.setListPhotos(vListPhotos);
             }

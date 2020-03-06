@@ -17,7 +17,7 @@ public class PhotoResource extends AbstractResource {
         return getManagerFactory().getPhotoManager().getAllPhotos();
     }
 
-    public List<Photo> getPhotoByRefId (int pRefId, String pRef) {
-        return getManagerFactory().getPhotoManager().getPhotosByRefId (pRefId, pRef);
+    public List<Photo> getPhotoByRefId (int pReferenceId, int pRefId) {
+        return getManagerFactory().getPhotoManager().getPhotosByRefId (pReferenceId, pRefId);
     }
 }

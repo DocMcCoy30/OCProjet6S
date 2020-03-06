@@ -48,7 +48,7 @@ public class PhotoController extends AbstractController {
 
         Photo vPhoto = new Photo();
         List<Photo> vListPhotos = new ArrayList<>();
-        String vRef = "site";
+        int vReferenceId = 1;
         String vNomPhoto = "";
         String vMessageSuccess = "";
         String vMessageAlert = "";
@@ -80,7 +80,7 @@ public class PhotoController extends AbstractController {
                 logger.info("Fichier créé = " + vNomPhoto);
                 //enregistre l'image dans la base de données
                 try {
-                    vPhoto = new Photo(vNomPhoto, vRef, pSiteId);
+                    vPhoto = new Photo(vNomPhoto, vReferenceId, pSiteId);
                     photoResource.createPhoto(vPhoto);
                     logger.debug("Image enregistrée dans la DB");
                 }
@@ -97,11 +97,11 @@ public class PhotoController extends AbstractController {
         // création du site à retourner
         Site vSite = siteResource.getSiteById(pSiteId);
         // création de la liste de photo correspondantes au site ou logo si absence de photo
-        if (!(photoResource.getPhotoByRefId(pSiteId, vRef)).isEmpty()) {
-            vListPhotos = photoResource.getPhotoByRefId(pSiteId, vRef);
+        if (!(photoResource.getPhotoByRefId(vReferenceId, pSiteId)).isEmpty()) {
+            vListPhotos = photoResource.getPhotoByRefId(vReferenceId ,pSiteId);
             vSite.setListPhotos(vListPhotos);
         } else {
-            vListPhotos = photoResource.getPhotoByRefId(0, "logo");
+            vListPhotos = photoResource.getPhotoByRefId(4, 0);
             vSite.setListPhotos(vListPhotos);
             logger.debug("Logo = " + vListPhotos.get(0).getNom());
         }
