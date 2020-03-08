@@ -73,8 +73,8 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
     }
 
     @Override
-    public List<Users> getAllUsers() {
-        return null;
+    public List<Users> getAllUsers() throws TechnicalException {
+        return getDaoFactory().getUsersDao().getAllUsers();
     }
 
     @Override

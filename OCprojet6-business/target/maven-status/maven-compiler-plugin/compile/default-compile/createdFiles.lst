@@ -5,6 +5,7 @@ org\dmc30\OCprojet6\business\impl\manager\VoieManagerImpl.class
 org\dmc30\OCprojet6\business\contract\manager\TopoReservationManager.class
 org\dmc30\OCprojet6\business\impl\manager\SiteManagerImpl.class
 org\dmc30\OCprojet6\business\impl\manager\TopoManagerImpl.class
+org\dmc30\OCprojet6\business\impl\manager\UserRolesManagerImpl.class
 org\dmc30\OCprojet6\business\contract\manager\SecteurManager.class
 org\dmc30\OCprojet6\business\impl\manager\UsersManagerImpl.class
 org\dmc30\OCprojet6\business\impl\manager\TopoReservationManagerImpl.class
@@ -28,6 +29,7 @@ org\dmc30\OCprojet6\business\contract\ManagerFactory.class
 org\dmc30\OCprojet6\business\impl\manager\DepartementManagerImpl.class
 org\dmc30\OCprojet6\business\contract\manager\VilleManager.class
 org\dmc30\OCprojet6\business\contract\manager\TypeRocheManager.class
+org\dmc30\OCprojet6\business\contract\manager\UserRolesManager.class
 org\dmc30\OCprojet6\business\contract\manager\PhotoManager.class
 org\dmc30\OCprojet6\business\contract\manager\TopoManager.class
 org\dmc30\OCprojet6\business\impl\manager\labo.class

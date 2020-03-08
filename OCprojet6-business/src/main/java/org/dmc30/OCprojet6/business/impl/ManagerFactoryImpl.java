@@ -36,6 +36,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Inject
     UsersManager usersManager;
     @Inject
+    UserRolesManager userRolesManager;
+    @Inject
     VilleManager villeManager;
     @Inject
     VoieManager voieManager;
@@ -168,6 +170,16 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public void setUsersManager(UsersManager usersManager) {
         this.usersManager = usersManager;
+    }
+
+    @Override
+    public UserRolesManager getUserRolesManager() {
+        return userRolesManager;
+    }
+
+    @Override
+    public void setUserRolesManager(UserRolesManager userRolesManager) {
+        this.userRolesManager = userRolesManager;
     }
 
     @Override

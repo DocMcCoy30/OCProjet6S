@@ -8,6 +8,7 @@ public class Users {
     private String password;
     private String email;
     private boolean enabled;
+    private String userRole;
     private List<Site> listSites;
     private List<Topo> listTopos;
 
@@ -48,6 +49,14 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     public List<Site> getListSites() {

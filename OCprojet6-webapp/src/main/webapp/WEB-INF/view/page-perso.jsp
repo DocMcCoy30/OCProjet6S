@@ -26,11 +26,11 @@
             <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
                 <h2>Listes des commentaires à valider :</h2>
                 <ul class="list-unstyled">
-                    <c:if test="${empty list_commentaires}">
+                    <c:if test="${empty commentaires}">
                         <h5 style="color: red">Il n'y a aucun commentaire à valider.</h5>
                     </c:if>
-                    <c:if test="${! empty list_commentaires}">
-                        <c:forEach var="commentaire" items="${list_commentaires}">
+                    <c:if test="${! empty commentaires}">
+                        <c:forEach var="commentaire" items="${commentaires}">
                             <li class="media">
                                 <div class="media-body" id="commentaire-div">
                                     <div class="row">
@@ -52,6 +52,93 @@
                     <a href="${pageContext.request.contextPath}/showPagePerso" type="button"
                        class="btn btn-warning" id="btnRefresh">Rafraichir</a>
                 </div>
+            </c:if>
+        </div>
+        <div id="user-panel">
+            <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                <h2>Listes des utilisateurs :</h2>
+                <table class="table table-dark" id="userTable">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Utilisateur</th>
+                        <th>Administrateur</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:if test="${empty users}">
+                        <h5 style="color: red">Il n'y a aucun utilisateur.</h5>
+                    </c:if>
+                    <c:if test="${! empty users}">
+                        <c:forEach var="user" items="${users}">
+                            <tr>
+                                <td>${user.username}</td>
+                                <td>${user.email}</td>
+                                <c:if test="${user.userRole =='ROLE_USER'}">
+                                    <td>
+                                        <div class="col-auto pull-right">
+                                            <input type="checkbox" id="utilisateur" name="username"
+                                                   value="${user.username}" checked="checked">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto pull-right">
+                                            <input type="checkbox" id="administrateur" name="administrateur"
+                                                   value="${user.username}">
+                                        </div>
+                                    </td>
+                                </c:if>
+                                <c:if test="${user.userRole == 'ROLE_ADMIN'}">
+                                    <td>
+                                        <div class="col-auto pull-right">
+                                            <input type="checkbox" id="utilisateur" name="username"
+                                                   value="${user.username}">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto pull-right">
+                                            <input type="checkbox" id="administrateur" name="administrateur"
+                                                   value="${user.username}" checked="checked">
+                                        </div>
+                                    </td>
+                                </c:if>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    </tbody>
+                </table>
+                <%--                <ul class="list-unstyled">--%>
+                <%--                    <c:if test="${empty users}">--%>
+                <%--                        <h5 style="color: red">Il n'y a aucun utilisateur.</h5>--%>
+                <%--                    </c:if>--%>
+                <%--                    <c:if test="${! empty users}">--%>
+                <%--                        <c:forEach var="user" items="${users}">--%>
+                <%--                            <li class="media">--%>
+                <%--                                <div class="media-body" id="user-div">--%>
+                <%--                                    <div class="row">--%>
+                <%--                                        <div class="col">--%>
+                <%--                                            Nom : ${user.username} - Email :${user.email}--%>
+                <%--                                        </div>--%>
+                <%--                                        <div class="col-auto pull-right">--%>
+                <%--                                            <input type="checkbox" id="utilisateur" name="username"--%>
+                <%--                                                   value="${user.username}">--%>
+                <%--                                        </div>--%>
+                <%--                                        <div class="col-auto pull-right">--%>
+                <%--                                            <input type="checkbox" id="administrateur" name="administrateur"--%>
+                <%--                                                   value="${user.username}">--%>
+                <%--                                        </div>--%>
+                <%--                                    </div>--%>
+                <%--                                </div>--%>
+                <%--                            </li>--%>
+                <%--                        </c:forEach>--%>
+                <%--                    </c:if>--%>
+                <%--                </ul>--%>
+                <%--                <div class="text-center">--%>
+                <%--                    <a href="${pageContext.request.contextPath}/showPagePerso" type="button"--%>
+                <%--                       class="btn btn-warning" id="btnRefresh">Rafraichir</a>--%>
+                <%--                </div>--%>
+                <%--            </c:if>--%>
             </c:if>
         </div>
     </div>

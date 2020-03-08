@@ -12,6 +12,7 @@ C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCpro
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\impl\manager\labo.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\impl\manager\TopoReservationManagerImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\impl\manager\AbstractManager.java
+C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\impl\manager\UserRolesManagerImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\impl\manager\TopoManagerImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\impl\manager\UsersManagerImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\contract\manager\SiteManager.java
@@ -23,6 +24,7 @@ C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCpro
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\contract\manager\CotationManager.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\contract\manager\TopoReservationManager.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\impl\ManagerFactoryImpl.java
+C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\contract\manager\UserRolesManager.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\contract\manager\DepartementManager.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\contract\manager\DescriptionManager.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-business\src\main\java\org\dmc30\OCprojet6\business\impl\manager\RegionManagerImpl.java

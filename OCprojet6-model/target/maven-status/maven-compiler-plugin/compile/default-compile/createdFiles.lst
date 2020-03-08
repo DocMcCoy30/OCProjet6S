@@ -15,3 +15,4 @@ org\dmc30\OCprojet6\model\bean\TopoReservation.class
 org\dmc30\OCprojet6\model\bean\Caracteristique.class
 org\dmc30\OCprojet6\model\exception\TechnicalException.class
 org\dmc30\OCprojet6\model\bean\Secteur.class
+org\dmc30\OCprojet6\model\bean\UserRoles.class

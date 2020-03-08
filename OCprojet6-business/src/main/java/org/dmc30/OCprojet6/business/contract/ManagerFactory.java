@@ -53,6 +53,10 @@ public interface ManagerFactory {
 
     void setUsersManager(UsersManager usersManager);
 
+    UserRolesManager getUserRolesManager();
+
+    void setUserRolesManager(UserRolesManager userRolesManager);
+
     VilleManager getVilleManager();
 
     void setVilleManager(VilleManager villeManager);
@@ -64,4 +68,5 @@ public interface ManagerFactory {
     CaracteristiqueManager getCaracteristiqueManager();
 
     void setCaracteristiqueManager(CaracteristiqueManager caracteristiqueManager);
+
 }

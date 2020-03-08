@@ -23,7 +23,7 @@ public interface UsersManager {
      * Cherche et renvoie la liste de tous les utilisateurs stockés dans la base de données.
      * @return La liste des utilisateurs.
      */
-    List<Users> getAllUsers();
+    List<Users> getAllUsers() throws TechnicalException;
 
     /**
      * Modifie un utilisateur.

@@ -26,13 +26,10 @@ $("#searchInput").autocomplete({
 
 $('#site-container').ready(function () {
     let officiel = $('#var-macaron').val();
-    console.log(officiel);
     if (officiel === 'false') {
         $('#attribut-officiel').css('display', 'none');
-        console.log(officiel + " : Le site n'est pas officiel")
     } else {
         $('#attribut-officiel').css('display', 'block');
-        console.log(officiel + " : Le site est Officiel")
     }
 });
 
@@ -55,19 +52,17 @@ $('#officiel').click(function () {
             } else {
                 $('#attribut-officiel').css('display', 'none')
             }
-            console.log(site);
         }
     });
 });
 
 /**
- * Gestion de l'option pour valider un commentaire : modifie la valeur 'valide' dans la base de données selon
+ * Gestion de l'option de validation des commentaires pour l'administrateur : modifie la valeur 'valide' dans la base de données selon
  * que la checkbox est cochée ou non.
  */
 $('#commentaire-panel input[type="checkbox"]').click(function () {
     let commentaireId = $(this).val();
     let checked = $(this).is(':checked');
-    console.log(commentaireId, checked);
     $.ajax({
         url: 'updateCommentaire',
         type: 'POST',
