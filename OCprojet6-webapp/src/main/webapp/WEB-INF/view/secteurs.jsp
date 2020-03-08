@@ -33,16 +33,21 @@
                     <h5 class="text-muted text-right">${site.ville.nom} - ${site.departement.nom}</h5>
                 </form>
                 <div>
-                    <c:if test="${ !empty message}">
+                    <c:if test="${!empty message_succes}">
                         <div class="alert alert-success" role="alert">
-                            <c:out value="${message}"/>
+                            <c:out value="${message_succes}"/>
+                        </div>
+                    </c:if>
+                    <c:if test="${!empty message_alert}">
+                        <div class="alert alert-danger" role="alert">
+                            <c:out value="${message_alert}"/>
                         </div>
                     </c:if>
                 </div>
             </div>
             <div class="card-body">
-                <c:if test="${ !empty listSecteurs}">
-                    <c:forEach var="secteur" items="${listSecteurs}">
+                <c:if test="${ !empty secteurss}">
+                    <c:forEach var="secteur" items="${secteurss}">
                         <div class="card" id="secteurCard">
                             <div class="card-header" id="secteurCardHeader">
                                 <div class="row">

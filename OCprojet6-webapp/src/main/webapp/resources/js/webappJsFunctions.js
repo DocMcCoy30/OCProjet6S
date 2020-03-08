@@ -27,11 +27,10 @@ $("#searchInput").autocomplete({
 $('#site-container').ready(function () {
     let officiel = $('#var-macaron').val();
     console.log(officiel);
-    if (officiel==='false') {
+    if (officiel === 'false') {
         $('#attribut-officiel').css('display', 'none');
         console.log(officiel + " : Le site n'est pas officiel")
-    }
-    else {
+    } else {
         $('#attribut-officiel').css('display', 'block');
         console.log(officiel + " : Le site est Officiel")
     }
@@ -39,7 +38,7 @@ $('#site-container').ready(function () {
 
 /**
  * Gestion de l'option pour rendre un site officiel : modifie la valeur officiel dans la base de données selon
- * que la checkbox ext cochée ou non.
+ * que la checkbox est cochée ou non.
  */
 $('#officiel').click(function () {
     let checked = $(this).is(':checked');
@@ -47,17 +46,40 @@ $('#officiel').click(function () {
     $.ajax({
         url: 'rendreOfficiel',
         type: 'POST',
-        data: { 'siteId': siteId, 'checked':checked } ,
+        data: {'siteId': siteId, 'checked': checked},
         dataType: "json",
         success: function (data) {
             let site = data;
             if (site.officiel) {
                 $('#attribut-officiel').css('display', 'block')
-            }
-            else {
+            } else {
                 $('#attribut-officiel').css('display', 'none')
             }
             console.log(site);
+        }
+    });
+});
+
+/**
+ * Gestion de l'option pour valider un commentaire : modifie la valeur 'valide' dans la base de données selon
+ * que la checkbox est cochée ou non.
+ */
+$('#commentaire-panel input[type="checkbox"]').click(function () {
+    let commentaireId = $(this).val();
+    let checked = $(this).is(':checked');
+    console.log(commentaireId, checked);
+    $.ajax({
+        url: 'updateCommentaire',
+        type: 'POST',
+        data: {'commentaireId': commentaireId, 'checked': checked},
+        dataType: "json",
+        success: function (data) {
+            let commentaire = data;
+            if (commentaire.valide) {
+                console.log("commentaire validé")
+            } else {
+                console.log("commentaire non validé")
+            }
         }
     });
 });

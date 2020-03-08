@@ -27,7 +27,7 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
     }
 
     @Override
-    public void updateCommentaire(Commentaire pCommentaire) {
+    public void updateCommentaire(Commentaire pCommentaire) throws TechnicalException {
         getDaoFactory().getCommentaireDao().updateCommentaire(pCommentaire);
     }
 
@@ -37,7 +37,12 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
     }
 
     @Override
-    public List<Commentaire> getCommentairesByReference(int pRefererenceId, int pRefId) {
-        return getDaoFactory().getCommentaireDao().getCommentairesByReference(pRefererenceId, pRefId);
+    public List<Commentaire> getValidatedCommentairesByReference(int pRefererenceId, int pRefId) {
+        return getDaoFactory().getCommentaireDao().getValidatedCommentairesByReference(pRefererenceId, pRefId);
+    }
+
+    @Override
+    public List<Commentaire> getNonValidatedCommentaires() {
+        return getDaoFactory().getCommentaireDao().getNonValidatedCommentaires();
     }
 }

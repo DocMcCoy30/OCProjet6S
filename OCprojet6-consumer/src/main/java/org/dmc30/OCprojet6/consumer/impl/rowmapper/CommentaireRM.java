@@ -24,7 +24,6 @@ public class CommentaireRM implements RowMapper<Commentaire> {
     @Override
     public Commentaire mapRow(ResultSet resultSet, int i) throws SQLException {
         Commentaire vCommentaire = new Commentaire(resultSet.getInt("commentaire_id"),
-                resultSet.getString("titre"),
                 resultSet.getString("commentaire"),
                 resultSet.getDate("date_publication"),
                 resultSet.getInt("reference_id"),

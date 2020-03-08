@@ -11,7 +11,6 @@ import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -72,12 +71,12 @@ public class SiteController extends AbstractController {
         //créer la liste de commentaires validés correspondants au site
         int vRefererenceId = 1;
         int vRefId = pSiteId;
-        List<Commentaire> vListCommentaires = commentaireResource.getCommentairesByReference(vRefererenceId, vRefId);
+        List<Commentaire> vListCommentaires = commentaireResource.getValidatedCommentairesByReference(vRefererenceId, vRefId);
         vSite.setListCommentaires(vListCommentaires);
 
         vMaV.addObject("site", vSite);
-        vMaV.addObject("messageSuccess", vMessageSucces);
-        vMaV.addObject("messageAlert", vMessageAlert);
+        vMaV.addObject("message_succes", vMessageSucces);
+        vMaV.addObject("message_alert", vMessageAlert);
         vMaV.setViewName("sites");
         return vMaV;
     }
@@ -194,7 +193,6 @@ public class SiteController extends AbstractController {
     public void rendreOfficiel(@RequestParam(value = "siteId") Integer pSiteId,
                                        @RequestParam(value = "checked") Boolean pChecked,
                                        HttpServletResponse response) throws TechnicalException, IOException {
-        ModelAndView vMav = new ModelAndView();
         logger.debug(pSiteId);
         Site vSite = siteResource.getSiteById(pSiteId);
         logger.debug(pChecked);

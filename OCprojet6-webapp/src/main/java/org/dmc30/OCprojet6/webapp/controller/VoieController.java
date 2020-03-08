@@ -101,7 +101,8 @@ public class VoieController extends AbstractController {
 
         ModelAndView vMaV = new ModelAndView();
         Integer vVoieHauteur = 0;
-        String vMessage ="";
+        String vMessageSucces ="";
+        String vMessageAlert ="";
         Voie vVoie = new Voie();
         Secteur vSecteur = new Secteur();
         List<Voie> vListVoie = new ArrayList<>();
@@ -122,7 +123,7 @@ public class VoieController extends AbstractController {
                         vVoie.setCotation(vCotation);
                     }
                     voieResource.updateVoie(vVoie);
-                    vMessage = "La voie "+ pVoieNom + " a été modifiée";
+                    vMessageSucces = "La voie "+ pVoieNom + " a été modifiée";
                     break;
 
                 case "create":
@@ -138,18 +139,19 @@ public class VoieController extends AbstractController {
                     }
                     // créer la voie dans la base de donnée
                     voieResource.createVoie(vVoie);
-                    vMessage = "La voie "+ pVoieNom + " a été créée";
+                    vMessageSucces = "La voie "+ pVoieNom + " a été créée";
             }
             // récupérer la liste des voies correspondant au secteur pour la renvoyer à la vue
             vListVoie = voieResource.getVoiesBySecteurId(pSecteurId);
 
         } catch (TechnicalException e) {
-            vMessage = e.getMessage();
+            vMessageAlert = e.getMessage();
 
         } finally {
             // ajout de la vue et des objets au ModelAndView
             vMaV.addObject("secteur", vSecteur);
-            vMaV.addObject("message", vMessage);
+            vMaV.addObject("message_succes", vMessageSucces);
+            vMaV.addObject("message_alert", vMessageAlert);
             vMaV.addObject("voies", vListVoie);
             vMaV.addObject("siteId", pSiteId);
             vMaV.setViewName("voies");

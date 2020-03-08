@@ -10,27 +10,12 @@ import java.util.List;
 @Named
 public class SecteurResource extends AbstractResource {
 
-    public Secteur createSecteur (String pNom, String pDescription, int pSiteId) throws TechnicalException {
-        Secteur vNewSecteur = new Secteur();
-        vNewSecteur.setNom(pNom);
-        if (pDescription.isEmpty()) {
-            pDescription = "Ajouter une description pour ce secteur.";
-        }
-        vNewSecteur.setDescription(pDescription);
-        Site vSite = getManagerFactory().getSiteManager().getSiteById(pSiteId);
-        vNewSecteur.setSite(vSite);
-        getManagerFactory().getSecteurManager().createSecteur(vNewSecteur);
-        return vNewSecteur;
+    public void createSecteur (Secteur pSecteur) throws TechnicalException {
+        getManagerFactory().getSecteurManager().createSecteur(pSecteur);
     }
 
-    public void updateSecteur(String pSecteurNom, String pDescription, int pSecteurId) throws TechnicalException {
-        Secteur vSecteur = getManagerFactory().getSecteurManager().getSecteurById(pSecteurId);
-        vSecteur.setNom(pSecteurNom);
-        if (pDescription.isEmpty()) {
-            pDescription = "Ajouter une description pour ce site.";
-        }
-        vSecteur.setDescription(pDescription);
-        getManagerFactory().getSecteurManager().updateSecteur(vSecteur);
+    public void updateSecteur(Secteur pSecteur) throws TechnicalException {
+        getManagerFactory().getSecteurManager().updateSecteur(pSecteur);
     }
 
     public List<Secteur> getSecteursBySiteId (int pSiteId) {

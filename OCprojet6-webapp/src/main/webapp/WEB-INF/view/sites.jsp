@@ -33,10 +33,10 @@
             <div class="card-header" id="siteCardHeader">
                 <div class="row">
                     <div class="col">
-                        <div class="row">
+<%--                        <div class="row">--%>
                             <h2 class="card-title col-md-5">${site.nom}</h2>
                             <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                <div class="col-md-3 align-middle">
+                                <div class="col-md-3">
                                     <c:if test="${site.officiel}">
                                         <input type="checkbox" name="siteId" value="${site.id}" id="officiel" checked/>
                                     </c:if>
@@ -49,7 +49,7 @@
                                 </div>
                             </sec:authorize>
                         </div>
-                    </div>
+<%--                    </div>--%>
                     <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
                         <c:url var="modifierSite" value="/showSiteForm">
                             <c:param name="siteId" value="${site.id}"/>
@@ -126,14 +126,14 @@
                 </div>
             </div>
             <div>
-                <c:if test="${ !empty messageSucces}">
+                <c:if test="${ !empty message_succes}">
                     <div class="alert alert-success" role="alert">
-                        <c:out value="${messageSucces}"/>
+                        <c:out value="${message_succes}"/>
                     </div>
                 </c:if>
-                <c:if test="${ !empty messageAlert}">
+                <c:if test="${ !empty message_alert}">
                     <div class="alert alert-danger" role="alert">
-                        <c:out value="${messageAlert}"/>
+                        <c:out value="${message_alert}"/>
                     </div>
                 </c:if>
             </div>
@@ -179,16 +179,13 @@
                         <c:forEach var="commentaire" items="${site.listCommentaires}">
                             <li class="media">
                                 <div class="media-body" id="commentaire-div">
-                                    <span class="mt-0 mb-1" style="color: red; font-size: larger">${commentaire.titre}</span>
-                                    posté par ${commentaire.users.username} le ${commentaire.date}
+                                    <span style="color: brown; font-size: larger">
+                                        Posté par ${commentaire.users.username} le ${commentaire.date}
+                                    </span>
                                     <div>${commentaire.commentaire}</div>
                                 </div>
                                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                                     <div id="adminCommentBtn">
-                                        <div>
-                                            <button type="button" id="admin-modif" class="btn btn-danger">Modifier
-                                            </button>
-                                        </div>
                                         <div>
                                             <button type="button" id="admin-supp" class="btn btn-danger">Supprimer
                                             </button>

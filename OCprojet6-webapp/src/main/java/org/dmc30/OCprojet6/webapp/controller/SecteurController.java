@@ -47,7 +47,7 @@ public class SecteurController extends AbstractController {
         // rechercher le nombre de voies, la hauteur max, les cotations Min et Max pour chaque secteur
         setCommonsAttributes(vListSecteurs);
         // retourner les données
-        vMaV.addObject("listSecteurs", vListSecteurs);
+        vMaV.addObject("secteurss", vListSecteurs);
         vMaV.addObject("site", vSite);
         vMaV.setViewName("secteurs");
         return vMaV;
@@ -88,33 +88,50 @@ public class SecteurController extends AbstractController {
                                             @RequestParam(value = "secteurId", required = false) Integer pSecteurId,
                                             @RequestParam(value = "siteId", required = false) Integer pSiteId,
                                             @RequestParam(value = "action") String pAction) {
-        Secteur vNewSecteur = null;
         Site vSite = null;
         List<Secteur> vListSecteurs = new ArrayList<>();
-        String vMessage = "";
+        String vMessageSucces = "";
+        String vMessageAlert = "";
         ModelAndView vMaV = new ModelAndView();
 
         try {
             switch (pAction) {
                 case "update":
-                    secteurResource.updateSecteur(pSecteurNom, pDescription, pSecteurId);
-                    vMessage = "Le secteur " + pSecteurNom + " a été modifié.";
+                    Secteur vSecteur = secteurResource.getSecteurById(pSecteurId);
+                    vSecteur.setNom(pSecteurNom);
+                    if (pDescription.isEmpty()) {
+                        pDescription = "Ajouter une description pour ce secteur.";
+                    }
+                    vSecteur.setDescription(pDescription);
+                    secteurResource.updateSecteur(vSecteur);
+                    vMessageSucces = "Le secteur " + pSecteurNom + " a été modifié.";
                     break;
                 case "create":
-                    secteurResource.createSecteur(pSecteurNom, pDescription, pSiteId);
-                    vMessage = "Le nouveau secteur " + pSecteurNom + " a été créé.";
+                    Secteur vNewSecteur = new Secteur();
+                    vNewSecteur.setNom(pSecteurNom);
+                    if (pDescription.isEmpty()) {
+                        pDescription = "Ajouter une description pour ce secteur.";
+                    }
+                    vNewSecteur.setDescription(pDescription);
+                    vSite = siteResource.getSiteById(pSiteId);
+                    vNewSecteur.setSite(vSite);
+                    secteurResource.createSecteur(vNewSecteur);
+                    vMessageSucces = "Le nouveau secteur " + pSecteurNom + " a été créé.";
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + pAction);
             }
             vListSecteurs = secteurResource.getSecteursBySiteId(pSiteId);
             // rechercher le nombre de voies, la hauteur max, les cotations Min et Max pour chaque secteur
             setCommonsAttributes(vListSecteurs);
             vSite = siteResource.getSiteById(pSiteId);
         } catch (TechnicalException e) {
-            vMessage = e.getMessage();
+            vMessageAlert = e.getMessage();
         } finally {
             vMaV.addObject("site", vSite);
-            vMaV.addObject("message", vMessage);
-            vMaV.addObject("listSecteurs", vListSecteurs);
+            vMaV.addObject("message_succes", vMessageSucces);
+            vMaV.addObject("message_alert", vMessageAlert);
+            vMaV.addObject("secteurss", vListSecteurs);
             vMaV.setViewName("secteurs");
         }
         return vMaV;

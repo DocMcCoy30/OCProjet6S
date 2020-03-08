@@ -27,15 +27,14 @@ public class CommentaireDaoImpl extends AbstractDao implements CommentaireDao {
 
     @Override
     public void createCommentaire(Commentaire pCommentaire) throws TechnicalException {
-        String vSQL = "INSERT INTO commentaire (titre, commentaire, users_username, date_publication, reference_id, ref_id, valide) " +
-                "VALUES (:titre, :commentaire, :username, :date, :referenceId, :refId, :valide)";
+        String vSQL = "INSERT INTO commentaire ( commentaire, users_username, date_publication, reference_id, ref_id, valide) " +
+                "VALUES (:commentaire, :username, :date, :referenceId, :refId, :valide)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
-        vParams.addValue("titre", pCommentaire.getTitre());
         vParams.addValue("commentaire", pCommentaire.getCommentaire());
         vParams.addValue("username", pCommentaire.getUsers().getUsername());
         vParams.addValue("date", pCommentaire.getDate());
-        vParams.addValue("referenceId", pCommentaire.getReference_id());
-        vParams.addValue("refId", pCommentaire.getRef_id());
+        vParams.addValue("referenceId", pCommentaire.getReferenceId());
+        vParams.addValue("refId", pCommentaire.getRefId());
         vParams.addValue("valide", pCommentaire.isValide());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         try {
@@ -70,8 +69,32 @@ public class CommentaireDaoImpl extends AbstractDao implements CommentaireDao {
     }
 
     @Override
-    public void updateCommentaire(Commentaire pCommentaire) {
-
+    public void updateCommentaire(Commentaire pCommentaire) throws TechnicalException {
+        String vSQL = "UPDATE commentaire SET commentaire= :commentaire, users_username= :username," +
+                " date_publication= :date, reference_id= :referenceId, ref_id =:refId, valide= :valide" +
+                " WHERE commentaire_id="+pCommentaire.getId();
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("commentaire", pCommentaire.getCommentaire());
+        vParams.addValue("username", pCommentaire.getUsers().getUsername());
+        vParams.addValue("date", pCommentaire.getDate());
+        vParams.addValue("referenceId", pCommentaire.getReferenceId());
+        vParams.addValue("refId", pCommentaire.getRefId());
+        vParams.addValue("valide", pCommentaire.isValide());
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+        }catch (
+                BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (
+                DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
+        } catch (Exception e) {
+            logger.error("Problème technique");
+            throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
+        }
     }
 
     @Override
@@ -80,13 +103,20 @@ public class CommentaireDaoImpl extends AbstractDao implements CommentaireDao {
     }
 
     @Override
-    public List<Commentaire> getCommentairesByReference(int pRefererenceId, int pRefId) {
-        String vSQL = "SELECT * FROM commentaire WHERE reference_id= :referenceId AND ref_id= :refId";
+    public List<Commentaire> getValidatedCommentairesByReference(int pRefererenceId, int pRefId) {
+        String vSQL = "SELECT * FROM commentaire WHERE reference_id= :referenceId AND ref_id= :refId AND valide='true'";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("referenceId", pRefererenceId);
         vParams.addValue("refId", pRefId);
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         return vJdbcTemplate.query(vSQL, vParams, commentaireRM);
+    }
+
+    @Override
+    public List<Commentaire> getNonValidatedCommentaires() {
+        String vSQL = "SELECT * FROM commentaire WHERE valide='false'";
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        return vJdbcTemplate.query(vSQL, commentaireRM);
     }
 
 }

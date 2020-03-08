@@ -38,9 +38,14 @@
                             secteurs</a>
                     </div>
                 </div>
-                <c:if test="${ !empty messageCreationVoie}">
+                <c:if test="${ !empty message_succes}">
                     <div class="alert alert-success" role="alert">
-                        <c:out value="${messageCreationVoie}"/>
+                        <c:out value="${message_succes}"/>
+                    </div>
+                </c:if>
+                <c:if test="${ !empty message_alert}">
+                    <div class="alert alert-danger" role="alert">
+                        <c:out value="${message_alert}"/>
                     </div>
                 </c:if>
             </div>

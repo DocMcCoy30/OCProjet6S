@@ -29,8 +29,8 @@
                         <img src="${pageContext.request.contextPath}/resources/img/Site39_169129_img1.jpeg"
                              class="d-block w-100" alt="Site39_169129_img1.jpeg">
                     </div>
-                    <c:if test="${ ! empty listPhotos}">
-                        <c:forEach var="photo" items="${listPhotos}">
+                    <c:if test="${ ! empty photos}">
+                        <c:forEach var="photo" items="${photos}">
                             <div class="carousel-item">
                                 <img src="${pageContext.request.contextPath}/resources/img/${photo.nom}"
                                      class="d-block w-100" alt="${photo.nom}">

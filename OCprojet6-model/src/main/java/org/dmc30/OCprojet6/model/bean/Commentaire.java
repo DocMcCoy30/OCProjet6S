@@ -5,35 +5,32 @@ import java.util.Date;
 public class Commentaire {
 
     private int id;
-    private String titre;
     private String commentaire;
     private Users users;
     private Date date;
-    private int reference_id;
-    private int ref_id;
+    private int referenceId;
+    private int refId;
     private boolean valide;
 
     public Commentaire() {
     }
 
-    public Commentaire(int id, String titre, String commentaire, Date date, int reference_id, int ref_id, boolean valide) {
+    public Commentaire(int id, String commentaire, Date date, int referenceId, int refId, boolean valide) {
         this.id = id;
-        this.titre = titre;
         this.commentaire = commentaire;
         this.users = users;
         this.date = date;
-        this.reference_id = reference_id;
-        this.ref_id = ref_id;
+        this.referenceId = referenceId;
+        this.refId = refId;
         this.valide = valide;
     }
 
-    public Commentaire(String titre, String commentaire, Users users, Date date, int reference_id, int ref_id, boolean valide) {
-        this.titre = titre;
+    public Commentaire(String commentaire, Users users, Date date, int referenceId, int refId, boolean valide) {
         this.commentaire = commentaire;
         this.users = users;
         this.date = date;
-        this.reference_id = reference_id;
-        this.ref_id = ref_id;
+        this.referenceId = referenceId;
+        this.refId = refId;
         this.valide = valide;
     }
 
@@ -43,14 +40,6 @@ public class Commentaire {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getTitre() {
-        return titre;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
     }
 
     public String getCommentaire() {
@@ -77,20 +66,20 @@ public class Commentaire {
         this.date = date;
     }
 
-    public int getReference_id() {
-        return reference_id;
+    public int getReferenceId() {
+        return referenceId;
     }
 
-    public void setReference_id(int reference_id) {
-        this.reference_id = reference_id;
+    public void setReferenceId(int referenceId) {
+        this.referenceId = referenceId;
     }
 
-    public int getRef_id() {
-        return ref_id;
+    public int getRefId() {
+        return refId;
     }
 
-    public void setRef_id(int ref_id) {
-        this.ref_id = ref_id;
+    public void setRefId(int refId) {
+        this.refId = refId;
     }
 
     public boolean isValide() {

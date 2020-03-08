@@ -13,7 +13,19 @@ public class CommentaireResource extends AbstractResource {
         getManagerFactory().getCommentaireManager().createCommentaire(pCommentaire);
     }
 
-    public List<Commentaire> getCommentairesByReference(int pRefererenceId, int pRefId) {
-        return getManagerFactory().getCommentaireManager().getCommentairesByReference(pRefererenceId, pRefId);
+    public List<Commentaire> getValidatedCommentairesByReference(int pRefererenceId, int pRefId) {
+        return getManagerFactory().getCommentaireManager().getValidatedCommentairesByReference(pRefererenceId, pRefId);
+    }
+
+    public List<Commentaire> getNonValidatedCommentaires() {
+        return getManagerFactory().getCommentaireManager().getNonValidatedCommentaires();
+    }
+
+    public void updateCommentaire (Commentaire pCommentaire) throws TechnicalException {
+        getManagerFactory().getCommentaireManager().updateCommentaire(pCommentaire);
+    }
+
+    public Commentaire getCommentaireById(Integer pCommentaireId) {
+        return getManagerFactory().getCommentaireManager().getCommentaireById(pCommentaireId);
     }
 }

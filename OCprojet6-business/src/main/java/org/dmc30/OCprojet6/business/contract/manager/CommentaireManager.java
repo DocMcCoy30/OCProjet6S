@@ -29,7 +29,7 @@ public interface CommentaireManager {
      * Modifie un objet de type Commentaire.
      * @param pCommentaire : l'objet à modifier.
      */
-    void updateCommentaire(Commentaire pCommentaire);
+    void updateCommentaire(Commentaire pCommentaire) throws TechnicalException;
 
     /**
      * Supprimer un objet de type Commentaire.
@@ -38,10 +38,17 @@ public interface CommentaireManager {
     void deleteCommentaire(int pId);
 
     /**
-     * Cherche et renvoie la liste des commentaires correspondants à un site, un secteur ou une voie.
+     * Cherche et renvoie la liste des commentaires validés correspondants à un site, un secteur ou une voie.
      * @param pRefererenceId Le numero de référence pour site, secteur ou voie.
      * @param pRefId L'identifiant du site, secteur ou voie.
      * @return La liste des commentaires liés au référent.
      */
-    List<Commentaire> getCommentairesByReference(int pRefererenceId, int pRefId);
+    List<Commentaire> getValidatedCommentairesByReference(int pRefererenceId, int pRefId);
+
+    /**
+     * Cherche et renvoie la liste de tous les commentaires non validés.
+     * @return La liste des commentaires non validés.
+     */
+    List<Commentaire> getNonValidatedCommentaires();
+
 }

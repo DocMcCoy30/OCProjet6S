@@ -91,7 +91,9 @@ public class SiteDaoImpl extends AbstractDao implements SiteDao {
 
     @Override
     public void updateSite(Site pSite) {
-        String vSQL = "UPDATE site SET nom= :vNom, description_id= :vDescriptionId, officiel= :vOfficiel, type_roche_id= :vTypeRocheId, region_id= :vRegionId, departement_code= :vDepartementCode, ville_id= :vVilleId WHERE site_id= :vSiteId";
+        String vSQL = "UPDATE site SET nom= :vNom, description_id= :vDescriptionId, officiel= :vOfficiel," +
+                " type_roche_id= :vTypeRocheId, region_id= :vRegionId, departement_code= :vDepartementCode," +
+                " ville_id= :vVilleId WHERE site_id= :vSiteId";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("vSiteId", pSite.getId());
         vParams.addValue("vNom", pSite.getNom());

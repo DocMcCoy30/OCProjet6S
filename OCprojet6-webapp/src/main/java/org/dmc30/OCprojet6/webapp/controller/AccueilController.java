@@ -2,7 +2,10 @@ package org.dmc30.OCprojet6.webapp.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.dmc30.OCprojet6.model.bean.Commentaire;
 import org.dmc30.OCprojet6.model.bean.Photo;
+import org.dmc30.OCprojet6.model.bean.Users;
+import org.dmc30.OCprojet6.webapp.resource.CommentaireResource;
 import org.dmc30.OCprojet6.webapp.resource.PhotoResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,6 +22,8 @@ public class AccueilController extends AbstractController {
 
     @Inject
     PhotoResource photoResource;
+    @Inject
+    CommentaireResource commentaireResource;
 
     Logger logger = LogManager.getLogger(AccueilController.class);
 
@@ -30,7 +36,7 @@ public class AccueilController extends AbstractController {
     public ModelAndView showWelcomePage(Model pModel) {
         List<Photo> vListPhotos = photoResource.getAllPhotos();
         ModelAndView vMaV = new ModelAndView("accueil");
-        vMaV.addObject("listPhotos", vListPhotos);
+        vMaV.addObject("photos", vListPhotos);
         afficherListe(pModel);
         return vMaV;
     }
@@ -53,6 +59,26 @@ public class AccueilController extends AbstractController {
         ModelAndView vMav = new ModelAndView();
         afficherListe(pModel);
         return vMav;
+    }
+
+    /**
+     * Affiche la page personnelle d'un utilisateur
+     * @return la vue avec :
+     * Pour les utilisateurs : la liste des sites enregistrés dans "mes sites".
+     * Pour les administrateurs : la lsite des commentaires à valider, la liste des utilisateurs et leur rôle pour modification
+     */
+    @GetMapping("/showPagePerso")
+    public ModelAndView showPagePerso () {
+        ModelAndView vMaV = new ModelAndView();
+        List<Commentaire> vListCommentaire = new ArrayList<>();
+        List<Users> vListUsers = new ArrayList<>();
+
+        //récupérer la liste des commentaires non validés
+        vListCommentaire = commentaireResource.getNonValidatedCommentaires();
+
+        vMaV.addObject("list_commentaires", vListCommentaire);
+        vMaV.setViewName("page-perso");
+        return vMaV;
     }
 
 }
