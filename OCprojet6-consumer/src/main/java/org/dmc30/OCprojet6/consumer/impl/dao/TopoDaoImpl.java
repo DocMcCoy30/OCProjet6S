@@ -83,4 +83,11 @@ public class TopoDaoImpl extends AbstractDao implements TopoDao {
 
     }
 
+    @Override
+    public List<Topo> getTopoByUser(String pUserName) {
+        String vSQL="SELECT * FROM topo WHERE username='"+pUserName+"'";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        return vJdbcTemplate.query(vSQL, topoRM);
+    }
+
 }

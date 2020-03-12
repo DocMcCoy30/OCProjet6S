@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.model.bean.Commentaire;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
-import org.dmc30.OCprojet6.webapp.resource.AuthenticationResource;
+import org.dmc30.OCprojet6.webapp.resource.UserResource;
 import org.dmc30.OCprojet6.webapp.resource.CommentaireResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +25,7 @@ public class CommentaireController {
     @Inject
     CommentaireResource commentaireResource;
     @Inject
-    AuthenticationResource authenticationResource;
+    UserResource userResource;
     @Inject
     SiteController siteController;
 
@@ -42,7 +42,7 @@ public class CommentaireController {
         vCommentaire.setReferenceId(1);
         vCommentaire.setRefId(pSiteId);
         vCommentaire.setValide(false);
-        vCommentaire.setUsers(authenticationResource.getUserByName(pUsername));
+        vCommentaire.setUsers(userResource.getUserByName(pUsername));
         vCommentaire.setDate(new Date());
         //enregistrer le commentaire dans la base de données
         try {

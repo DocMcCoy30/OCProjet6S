@@ -1,22 +1,31 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
+import com.google.gson.Gson;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.dmc30.OCprojet6.model.bean.UserRoles;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
-import org.dmc30.OCprojet6.webapp.resource.AuthenticationResource;
+import org.dmc30.OCprojet6.webapp.resource.UserResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
-public class AuthenticationController {
+public class UserController {
+
+    Logger logger = LogManager.getLogger(UserController.class);
 
     @Inject
-    private AuthenticationResource authenticationResource;
+    private UserResource userResource;
 
     /**
      * Affiche le formulaire de connexion.
+     *
      * @return La vue.
      */
     @GetMapping("/signin")
@@ -26,7 +35,8 @@ public class AuthenticationController {
 
     /**
      * Gère les erreurs de saisie et la deconnexion.
-     * @param error Les erreurs de connexion.
+     *
+     * @param error  Les erreurs de connexion.
      * @param logout L'information de déconnexion.
      * @return Les messages et la vue.
      */
@@ -47,31 +57,39 @@ public class AuthenticationController {
 
     /**
      * Gère la création d'un nouveau compte utilisateur.
+     *
      * @param pUsers Le nouvel utilisateur
      * @return Un message de confirmation ou d'erreur.
      */
     @PostMapping("/signup")
     public ModelAndView saveUsers(@ModelAttribute("users") Users pUsers) {
         ModelAndView vModel = new ModelAndView();
-//        int[] vResult = authenticationResource.rechercheDoublon(pUsers);
-//        if (vResult[0] != 0) {
-//            vModel.addObject("error", "Cet identifiant existe déjà !");
-//            vModel.setViewName("signin");
-//        } else if (vResult[1] != 0) {
-//            vModel.addObject("error", "Cet email existe déjà !");
-//            vModel.setViewName("signin");
-//        } else {
-            try {
-                authenticationResource.createUsers(pUsers);
-                vModel.addObject("message", "Votre compte est créé !");
-                vModel.setViewName("login");
-            }
-            catch (TechnicalException e) {
-                vModel.addObject("message", e.getMessage());
-                vModel.setViewName("login");
-            }
-//        }
+        try {
+            userResource.createUsers(pUsers);
+            vModel.addObject("message", "Votre compte est créé !");
+            vModel.setViewName("login");
+        } catch (TechnicalException e) {
+            vModel.addObject("message", e.getMessage());
+            vModel.setViewName("login");
+        }
         return vModel;
+    }
+
+    @PostMapping("/updateUserRole")
+    public void updateUserRole(@RequestParam(value = "username") String pUsername,
+                               @RequestParam(value = "newRole") String pNewRole,
+                               HttpServletResponse response) throws TechnicalException, IOException {
+        logger.debug(pUsername);
+        logger.debug(pNewRole);
+        UserRoles vUserRoles = userResource.getUserRoleByUsername(pUsername);
+        vUserRoles.setUserRole(pNewRole);
+        userResource.updateUserRole(vUserRoles);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        String vJSONCommentaire = new Gson().toJson(vUserRoles);
+        logger.debug("vJSONCommentaire = " + vJSONCommentaire);
+        response.getWriter().write(vJSONCommentaire);
     }
 
 }

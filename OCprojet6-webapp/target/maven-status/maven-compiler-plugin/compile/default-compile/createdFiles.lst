@@ -1,11 +1,11 @@
 org\dmc30\OCprojet6\webapp\resource\SecteurResource.class
+org\dmc30\OCprojet6\webapp\resource\UserResource.class
+org\dmc30\OCprojet6\webapp\controller\UserController.class
 org\dmc30\OCprojet6\webapp\controller\SiteController.class
 org\dmc30\OCprojet6\webapp\resource\TopoResource.class
-org\dmc30\OCprojet6\webapp\resource\AuthenticationResource.class
 org\dmc30\OCprojet6\webapp\controller\AbstractController.class
 org\dmc30\OCprojet6\webapp\controller\Labo.class
 org\dmc30\OCprojet6\webapp\controller\AccueilController.class
-org\dmc30\OCprojet6\webapp\controller\AuthenticationController.class
 org\dmc30\OCprojet6\webapp\controller\PhotoController.class
 org\dmc30\OCprojet6\webapp\resource\DescriptionResource.class
 org\dmc30\OCprojet6\webapp\controller\AutoSearchController.class

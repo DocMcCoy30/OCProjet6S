@@ -156,7 +156,7 @@ public class AutoSearchController extends AbstractController {
                 vListPhotos = photoResource.getPhotoByRefId(1, vSite.getId());
                 vSite.setListPhotos(vListPhotos);
             } else {
-                vListPhotos = photoResource.getPhotoByRefId(1,0);
+                vListPhotos = photoResource.getPhotoByRefId(4,0);
                 vSite.setListPhotos(vListPhotos);
             }
         }

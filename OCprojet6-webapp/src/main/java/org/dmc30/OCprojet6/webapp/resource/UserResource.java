@@ -9,7 +9,7 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named
-public class AuthenticationResource extends AbstractResource{
+public class UserResource extends AbstractResource{
 
     public void createUsers (Users pUsers) throws TechnicalException {
         getManagerFactory().getUsersManager().createUsers(pUsers);
@@ -30,5 +30,9 @@ public class AuthenticationResource extends AbstractResource{
 
     public UserRoles getUserRoleByUsername(String pUsername) throws TechnicalException {
         return getManagerFactory().getUserRolesManager().getUserRolesByUsername(pUsername);
+    }
+
+    public void updateUserRole (UserRoles pUserRoles) throws TechnicalException {
+        getManagerFactory().getUserRolesManager().updateUserRole(pUserRoles);
     }
 }

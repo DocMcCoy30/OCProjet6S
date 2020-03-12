@@ -39,4 +39,9 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager {
     public void deleteTopo(int pId) {
         getDaoFactory().getTopoDao().deleteTopo(pId);
     }
+
+    @Override
+    public List<Topo> getTopoByUser(String pUserName) {
+        return getDaoFactory().getTopoDao().getTopoByUser(pUserName);
+    }
 }

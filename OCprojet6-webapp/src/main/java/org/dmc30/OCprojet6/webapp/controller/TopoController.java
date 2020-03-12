@@ -7,7 +7,7 @@ import org.dmc30.OCprojet6.model.bean.Topo;
 import org.dmc30.OCprojet6.model.bean.TopoReservation;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
-import org.dmc30.OCprojet6.webapp.resource.AuthenticationResource;
+import org.dmc30.OCprojet6.webapp.resource.UserResource;
 import org.dmc30.OCprojet6.webapp.resource.SiteResource;
 import org.dmc30.OCprojet6.webapp.resource.TopoResource;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class TopoController {
     @Inject
     TopoResource topoResource;
     @Inject
-    AuthenticationResource authenticationResource;
+    UserResource userResource;
 
 
     @GetMapping("/showTopoPage")
@@ -82,7 +81,7 @@ public class TopoController {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date vDate = null;
         Site vSite = siteResource.getSiteById(pSiteId);
-        Users vUser = authenticationResource.getUserByName(pUsername);
+        Users vUser = userResource.getUserByName(pUsername);
         try {
             vDate = formatter.parse(vDateParution);
         } catch (ParseException e) {
@@ -137,7 +136,7 @@ public class TopoController {
                 vDateReservation = formatter.parse(vDate);
                 try {
                     //récupérer les topos pour le site concerné
-                    Users vUser = authenticationResource.getUserByName(pUsername);
+                    Users vUser = userResource.getUserByName(pUsername);
                     Topo vTopo = topoResource.getTopoById(pTopoId);
                     TopoReservation vTopoReservation = new TopoReservation(vDateReservation, vTopo, vUser);
                     //vérifier que la date de réservation est disponible

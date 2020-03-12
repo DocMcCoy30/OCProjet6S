@@ -214,14 +214,14 @@
                 </div>
                 <div class="card-body">
                     <div class="row no-gutters">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="commentaireTitre">Titre : </span>
-                            </div>
-                            <input type="text" name="commentaireTitre" class="form-control"
-                                   aria-label="commentaireTitre"
-                                   aria-describedby="Titre du commentaire" required>
-                        </div>
+<%--                        <div class="input-group">--%>
+<%--                            <div class="input-group-prepend">--%>
+<%--                                <span class="input-group-text" id="commentaireTitre">Titre : </span>--%>
+<%--                            </div>--%>
+<%--                            <input type="text" name="commentaireTitre" class="form-control"--%>
+<%--                                   aria-label="commentaireTitre"--%>
+<%--                                   aria-describedby="Titre du commentaire" required>--%>
+<%--                        </div>--%>
                         <div class="input-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">

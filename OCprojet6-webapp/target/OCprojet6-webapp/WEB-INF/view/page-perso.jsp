@@ -15,7 +15,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
-    <title>Modele</title>
+    <title>Page Perso</title>
 </head>
 
 <%@include file="header.jsp" %>
@@ -62,8 +62,8 @@
                     <tr>
                         <th>Nom</th>
                         <th>Email</th>
-                        <th>Utilisateur</th>
-                        <th>Administrateur</th>
+                        <th>Role</th>
+                        <th>Utilisateur/Administrateur</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -75,71 +75,124 @@
                             <tr>
                                 <td>${user.username}</td>
                                 <td>${user.email}</td>
-                                <c:if test="${user.userRole =='ROLE_USER'}">
-                                    <td>
-                                        <div class="col-auto pull-right">
-                                            <input type="checkbox" id="utilisateur" name="username"
-                                                   value="${user.username}" checked="checked">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-auto pull-right">
-                                            <input type="checkbox" id="administrateur" name="administrateur"
-                                                   value="${user.username}">
-                                        </div>
-                                    </td>
-                                </c:if>
-                                <c:if test="${user.userRole == 'ROLE_ADMIN'}">
-                                    <td>
-                                        <div class="col-auto pull-right">
-                                            <input type="checkbox" id="utilisateur" name="username"
-                                                   value="${user.username}">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-auto pull-right">
-                                            <input type="checkbox" id="administrateur" name="administrateur"
-                                                   value="${user.username}" checked="checked">
-                                        </div>
-                                    </td>
-                                </c:if>
+                                <td>${user.userRole}</td>
+                                <td>
+                                        <%--                                    <div class="form-check form-check-inline">--%>
+                                        <%--                                        <input class="form-check-input" type="radio" id="utilisateur" name="utilisateur"--%>
+                                        <%--                                               value="${user.username}" checked>--%>
+                                        <%--                                        <label class="form-check-label" for="utilisateur">User</label>--%>
+                                        <%--                                    </div>--%>
+                                        <%--                                    <div class="form-check form-check-inline">--%>
+                                        <%--                                        <input class="form-check-input" type="radio" id="administrateur" name="administrateur"--%>
+                                        <%--                                               value="${user.username}">--%>
+                                        <%--                                        <label class="form-check-label" for="administrateur">Admin</label>--%>
+                                        <%--                                    </div>--%>
+                                    <c:choose>
+                                        <c:when test="${user.userRole == 'ROLE_USER'}">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="utilisateur"
+                                                       name="utilisateur"
+                                                       value="${user.username}" checked>
+                                                <label class="form-check-label" for="utilisateur">User</label>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="utilisateur"
+                                                       name="utilisateur"
+                                                       value="${user.username}">
+                                                <label class="form-check-label" for="utilisateur">User</label>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${user.userRole == 'ROLE_ADMIN'}">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="administrateur"
+                                                       name="administrateur"
+                                                       value="${user.username}" checked>
+                                                <label class="form-check-label" for="administrateur">Admin</label>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="administrateur"
+                                                       name="administrateur"
+                                                       value="${user.username}">
+                                                <label class="form-check-label" for="administrateur">Admin</label>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                             </tr>
                         </c:forEach>
                     </c:if>
                     </tbody>
                 </table>
-                <%--                <ul class="list-unstyled">--%>
-                <%--                    <c:if test="${empty users}">--%>
-                <%--                        <h5 style="color: red">Il n'y a aucun utilisateur.</h5>--%>
-                <%--                    </c:if>--%>
-                <%--                    <c:if test="${! empty users}">--%>
-                <%--                        <c:forEach var="user" items="${users}">--%>
-                <%--                            <li class="media">--%>
-                <%--                                <div class="media-body" id="user-div">--%>
-                <%--                                    <div class="row">--%>
-                <%--                                        <div class="col">--%>
-                <%--                                            Nom : ${user.username} - Email :${user.email}--%>
-                <%--                                        </div>--%>
-                <%--                                        <div class="col-auto pull-right">--%>
-                <%--                                            <input type="checkbox" id="utilisateur" name="username"--%>
-                <%--                                                   value="${user.username}">--%>
-                <%--                                        </div>--%>
-                <%--                                        <div class="col-auto pull-right">--%>
-                <%--                                            <input type="checkbox" id="administrateur" name="administrateur"--%>
-                <%--                                                   value="${user.username}">--%>
-                <%--                                        </div>--%>
-                <%--                                    </div>--%>
-                <%--                                </div>--%>
-                <%--                            </li>--%>
-                <%--                        </c:forEach>--%>
-                <%--                    </c:if>--%>
-                <%--                </ul>--%>
-                <%--                <div class="text-center">--%>
-                <%--                    <a href="${pageContext.request.contextPath}/showPagePerso" type="button"--%>
-                <%--                       class="btn btn-warning" id="btnRefresh">Rafraichir</a>--%>
-                <%--                </div>--%>
-                <%--            </c:if>--%>
             </c:if>
+        </div>
+        <div id="topo-panel">
+            <h2>Listes de mes topos :</h2>
+            <%--            <form action="reserveTopo" method="post">--%>
+            <table class="table table-dark" id="topoTable">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Date de parution</th>
+                    <th>Réservation :</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="topo" items="${topos}">
+                    <input type="hidden" name="siteId" value="${site.id}">
+                    <tr>
+                        <td>${topo.nom}</td>
+                        <td>${topo.dateParution}</td>
+                        <td>
+                            <c:if test="${empty topo.listReservations}">
+                                <span style="color: red">Aucune réservation pour ce topo</span>
+                            </c:if>
+                            <c:if test="${! empty topo.listReservations}">
+                            <table class="table" id="topoResa">
+                                <thead>
+                                <tr>
+                                    <th>Date réservée :</th>
+                                    <th>par :</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="reservation" items="${topo.listReservations}">
+                                    <tr>
+                                        <td>${reservation.dateReservation}</td>
+                                        <td>${reservation.user.username}</td>
+                                        <td>
+                                            <button type="submit" name="reservationTopoId" value="${topo.id}"
+                                                    class="btn btn-warning" id="btnReservationTopo">
+                                                Annuler
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </td>
+                        </c:if>
+                            <%--                            <td><input type="date" name="dateReservation"></td>--%>
+                            <%--                            <td>--%>
+                            <%--                                <button type="submit" name="reservationTopoId" value="${topo.id}"--%>
+                            <%--                                        class="btn btn-warning" id="btnReservationTopo">--%>
+                            <%--                                    Reserver--%>
+                            <%--                                </button>--%>
+                            <%--                            </td>--%>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <%--            </form>--%>
+
         </div>
     </div>
 </div>

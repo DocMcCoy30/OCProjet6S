@@ -2,12 +2,10 @@ package org.dmc30.OCprojet6.webapp.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.dmc30.OCprojet6.model.bean.Commentaire;
-import org.dmc30.OCprojet6.model.bean.Photo;
-import org.dmc30.OCprojet6.model.bean.UserRoles;
-import org.dmc30.OCprojet6.model.bean.Users;
+import org.dmc30.OCprojet6.model.bean.*;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
-import org.dmc30.OCprojet6.webapp.resource.AuthenticationResource;
+import org.dmc30.OCprojet6.webapp.resource.TopoResource;
+import org.dmc30.OCprojet6.webapp.resource.UserResource;
 import org.dmc30.OCprojet6.webapp.resource.CommentaireResource;
 import org.dmc30.OCprojet6.webapp.resource.PhotoResource;
 import org.springframework.stereotype.Controller;
@@ -28,7 +26,9 @@ public class AccueilController extends AbstractController {
     @Inject
     CommentaireResource commentaireResource;
     @Inject
-    AuthenticationResource authenticationResource;
+    UserResource userResource;
+    @Inject
+    TopoResource topoResource;
 
     Logger logger = LogManager.getLogger(AccueilController.class);
 
@@ -76,23 +76,31 @@ public class AccueilController extends AbstractController {
      * Pour les administrateurs : la lsite des commentaires à valider, la liste des utilisateurs et leur rôle pour modification
      */
     @GetMapping("/showPagePerso")
-    public ModelAndView showPagePerso() throws TechnicalException {
+    public ModelAndView showPagePerso(@RequestParam(value = "userName") String pUserName) throws TechnicalException {
         ModelAndView vMaV = new ModelAndView();
         List<Commentaire> vListCommentaire = new ArrayList<>();
         List<Users> vListUsers = new ArrayList<>();
+        List<Topo> vListTopos = new ArrayList<>();
 
+        //Lister les sites enregistrés, topos, réservations liés à l'utilisateur
+        logger.debug("Page perso du User : " + pUserName);
+        vListTopos = topoResource.getTopoByUser(pUserName);
+        for (Topo vTopo:vListTopos
+             ) {
+            List<TopoReservation> vTopoReservations = topoResource.getTopoReservationsByTopoId(vTopo.getId());
+            vTopo.setListReservations(vTopoReservations);
+        }
         //récupérer la liste des commentaires non validés
         vListCommentaire = commentaireResource.getNonValidatedCommentaires();
         //récupérer la liste des utilisateurs et leur role
-        vListUsers = authenticationResource.getAllUsers();
+        vListUsers = userResource.getAllUsers();
         for (Users vUser : vListUsers
         ) {
-            UserRoles userRole = authenticationResource.getUserRoleByUsername(vUser.getUsername());
-            logger.debug("userRole.getUserRole()=" + userRole.getUserRole());
+            UserRoles userRole = userResource.getUserRoleByUsername(vUser.getUsername());
             vUser.setUserRole(userRole.getUserRole());
-            logger.debug("User.getUserRole="+vUser.getUserRole());
         }
 
+        vMaV.addObject("topos", vListTopos);
         vMaV.addObject("users", vListUsers);
         vMaV.addObject("commentaires", vListCommentaire);
         vMaV.setViewName("page-perso");

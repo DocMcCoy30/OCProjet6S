@@ -13,4 +13,5 @@ public interface TopoDao {
     List<Topo> getAllTopos();
     void updateTopo (Topo pTopo);
     void deleteTopo(int pId);
+    List<Topo> getTopoByUser(String pUserName);
 }

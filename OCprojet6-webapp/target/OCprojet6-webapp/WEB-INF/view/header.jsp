@@ -33,7 +33,9 @@
                 </c:if>
             </div>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <c:url var="page_perso" value="/showPagePerso"></c:url>
+                <c:url var="page_perso" value="/showPagePerso">
+                    <c:param name="userName" value="${pageContext.request.userPrincipal.name}"></c:param>
+                </c:url>
                 <span id="bonjour">Bonjour
                         <a href="${page_perso}" style="color: white">${pageContext.request.userPrincipal.name}</a></span>
                 <form action="${logoutUrl}" method="post" id="logoutForm">

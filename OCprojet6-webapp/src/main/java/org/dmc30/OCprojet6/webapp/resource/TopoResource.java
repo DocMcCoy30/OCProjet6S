@@ -29,4 +29,8 @@ public class TopoResource extends AbstractResource{
     public List<TopoReservation> getTopoReservationsByTopoId(int vTopoId) {
         return getManagerFactory().getTopoReservationManager().getTopoReservationsByTopoId(vTopoId);
     }
+
+    public List<Topo> getTopoByUser(String pUserName) {
+        return getManagerFactory().getTopoManager().getTopoByUser(pUserName);
+    }
 }

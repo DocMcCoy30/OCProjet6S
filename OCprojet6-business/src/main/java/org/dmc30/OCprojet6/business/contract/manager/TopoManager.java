@@ -38,4 +38,11 @@ public interface TopoManager {
      * @param pId : l'identifiant de l'objet à supprimer.
      */
     void deleteTopo (int pId);
+
+    /**
+     * Cherche et récupère les topos d'un utilisateur.
+     * @param pUserName Le nom de l'utilisateur.
+     * @return La liste des topos liés à l'utilisateur.
+     */
+    List<Topo> getTopoByUser(String pUserName);
 }

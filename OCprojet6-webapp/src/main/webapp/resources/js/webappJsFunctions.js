@@ -71,12 +71,48 @@ $('#commentaire-panel input[type="checkbox"]').click(function () {
         success: function (data) {
             let commentaire = data;
             if (commentaire.valide) {
-                console.log("commentaire validé")
+                console.log("commentaire validé");
             } else {
-                console.log("commentaire non validé")
+                console.log("commentaire non validé");
             }
         }
     });
+});
+
+$('#userTable input[type="radio"]').click(function () {
+    let username = $(this).val();
+    let checkboxName = $(this).attr('name');
+    let newRole ='';
+    console.log('User selectionné = '+username);
+    console.log('La check box cochée est ' + checkboxName);
+    if (checkboxName === 'utilisateur') {
+        newRole = 'ROLE_USER';
+        $.ajax({
+            url: 'updateUserRole',
+            method: 'POST',
+            data: {'username': username, 'newRole': newRole},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $('#administrateur').prop('checked', false);
+            }
+        })
+    } else if (checkboxName === 'administrateur') {
+        newRole = 'ROLE_ADMIN';
+        // console.log('Uncheck de #utilisateur demandée');
+        // $('#utilisateur').attr('checked', false);
+        $.ajax({
+            url: 'updateUserRole',
+            method: 'POST',
+            data: {'username': username, 'newRole': newRole},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $('#utilisateur').prop('checked', false);
+
+            }
+        })
+    }
 });
 
 /**
