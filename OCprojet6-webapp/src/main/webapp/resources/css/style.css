@@ -246,8 +246,14 @@ a:hover {
 }
 
 #commentaire-div {
-    border: black 1px solid;
+    border: #DE781F 1px solid;
+    margin: 1em;
     padding: 1em;
+}
+
+#commentaire-panel, #user-panel, #topo-panel, #reservation-panel {
+    border: white 2px solid;
+    margin-bottom: 1em;
 }
 
 #descriptionBlock {

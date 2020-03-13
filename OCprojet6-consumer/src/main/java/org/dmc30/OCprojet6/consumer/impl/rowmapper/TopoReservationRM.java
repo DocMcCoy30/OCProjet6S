@@ -28,7 +28,8 @@ public class TopoReservationRM implements RowMapper<TopoReservation> {
             vTopoReservation = new TopoReservation(resultSet.getInt("reservation_id"),
                     resultSet.getDate("reservation_date"),
                     topoDao.getTopoById(resultSet.getInt("reservation_topo_id")),
-                    usersDao.getUsersByName(resultSet.getString("username")));
+                    usersDao.getUsersByName(resultSet.getString("username")),
+                    resultSet.getBoolean("valide"));
         } catch (TechnicalException e) {
             e.printStackTrace();
         }

@@ -8,21 +8,24 @@ public class TopoReservation {
     private Date dateReservation;
     private Topo topo;
     private Users user;
+    private boolean valide;
 
     public TopoReservation() {
     }
 
-    public TopoReservation(int id, Date dateReservation, Topo topo, Users user) {
+    public TopoReservation(int id, Date dateReservation, Topo topo, Users user, boolean valide) {
         this.id = id;
         this.dateReservation = dateReservation;
         this.topo = topo;
         this.user = user;
+        this.valide = valide;
     }
 
-    public TopoReservation(Date dateReservation, Topo topo, Users user) {
+    public TopoReservation(Date dateReservation, Topo topo, Users user, boolean valide) {
         this.dateReservation = dateReservation;
         this.topo = topo;
         this.user = user;
+        this.valide = valide;
     }
 
     public int getId() {
@@ -55,5 +58,13 @@ public class TopoReservation {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public boolean isValide() {
+        return valide;
+    }
+
+    public void setValide(boolean valide) {
+        this.valide = valide;
     }
 }

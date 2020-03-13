@@ -36,7 +36,7 @@ public interface TopoReservationManager {
      * Modifie un objet de type TopoReservation.
      * @param pTopoReservation : l'objet à modifier.
      */
-    void updateTopoReservation(TopoReservation pTopoReservation);
+    void updateTopoReservation(TopoReservation pTopoReservation) throws TechnicalException;
 
     /**
      * Supprimer un objet de type TopoReservation.

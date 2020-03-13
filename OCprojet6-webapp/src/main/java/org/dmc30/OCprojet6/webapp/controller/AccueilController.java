@@ -81,6 +81,8 @@ public class AccueilController extends AbstractController {
         List<Commentaire> vListCommentaire = new ArrayList<>();
         List<Users> vListUsers = new ArrayList<>();
         List<Topo> vListTopos = new ArrayList<>();
+        int reservationMarker = 0;
+        boolean vValidationEnAttente = false;
 
         //Lister les sites enregistrés, topos, réservations liés à l'utilisateur
         logger.debug("Page perso du User : " + pUserName);
@@ -89,6 +91,15 @@ public class AccueilController extends AbstractController {
              ) {
             List<TopoReservation> vTopoReservations = topoResource.getTopoReservationsByTopoId(vTopo.getId());
             vTopo.setListReservations(vTopoReservations);
+            for (TopoReservation vReservation:vTopoReservations
+                 ) {
+                if (!vReservation.isValide()) {
+                    reservationMarker ++;
+                }
+            }
+        }
+        if (reservationMarker>0) {
+            vValidationEnAttente = true;
         }
         //récupérer la liste des commentaires non validés
         vListCommentaire = commentaireResource.getNonValidatedCommentaires();
@@ -100,6 +111,7 @@ public class AccueilController extends AbstractController {
             vUser.setUserRole(userRole.getUserRole());
         }
 
+        vMaV.addObject("demande", vValidationEnAttente);
         vMaV.addObject("topos", vListTopos);
         vMaV.addObject("users", vListUsers);
         vMaV.addObject("commentaires", vListCommentaire);

@@ -33,4 +33,16 @@ public class TopoResource extends AbstractResource{
     public List<Topo> getTopoByUser(String pUserName) {
         return getManagerFactory().getTopoManager().getTopoByUser(pUserName);
     }
+
+    public TopoReservation getTopoReservationById(Integer pReservationId) {
+        return getManagerFactory().getTopoReservationManager().getTopoReservationById(pReservationId);
+    }
+
+    public void updateTopoReservation(TopoReservation pTopoReservation) throws TechnicalException {
+        getManagerFactory().getTopoReservationManager().updateTopoReservation(pTopoReservation);
+    }
+
+    public void deleteTopoReservation(Integer pReservationId) {
+        getManagerFactory().getTopoReservationManager().deleteTopoReservation(pReservationId);
+    }
 }

@@ -1,5 +1,6 @@
 package org.dmc30.OCprojet6.webapp.controller;
 
+import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.model.bean.Site;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -138,13 +141,16 @@ public class TopoController {
                     //récupérer les topos pour le site concerné
                     Users vUser = userResource.getUserByName(pUsername);
                     Topo vTopo = topoResource.getTopoById(pTopoId);
-                    TopoReservation vTopoReservation = new TopoReservation(vDateReservation, vTopo, vUser);
+                    boolean vValide = false;
+                    TopoReservation vTopoReservation = new TopoReservation(vDateReservation, vTopo, vUser, vValide);
                     //vérifier que la date de réservation est disponible
                     if (rechercheDoublonDate(vDateReservation, pTopoId)) {
                         vMessageAlert = "Le topo " + vTopo.getNom() + " est déjà reservée pour le " + vDate + ".";
                     } else {
                         topoResource.createTopoReservation(vTopoReservation);
-                        vMessageSuccess = "La réservation du topo " + vTopo.getNom() + " le " + vDate + " par " + pUsername + " est effectuée.";
+                        vMessageSuccess = "La demande de réservation du topo " + vTopo.getNom() + " le " + vDate + " est enregistrée et en attente " +
+                                "de confirmation par le propriétaire. Vous pouvez retrouver l'état de la demande et les coordonnées du propriétaire" +
+                                " dans votre page personnelle.";
                     }
                 } catch (TechnicalException e) {
                     vMessageAlert = e.getMessage();
@@ -171,5 +177,35 @@ public class TopoController {
             doublon = true;
         }
         return doublon;
+    }
+
+    @PostMapping("/updateTopoReservation")
+    public void updateTopoReservation (@RequestParam(value = "reservationId") Integer pReservationId,
+                                       @RequestParam(value = "action") String pAction,
+                                       HttpServletResponse response) throws TechnicalException, IOException {
+        logger.debug("Reservation Id = " + pReservationId);
+        logger.debug("Action = " + pAction);
+        String vMessageError = "";
+        TopoReservation vTopoReservation = topoResource.getTopoReservationById(pReservationId);
+        switch (pAction) {
+            case "accepter" :
+                vTopoReservation.setValide(true);
+                try {
+                    topoResource.updateTopoReservation(vTopoReservation);
+                }
+                catch (TechnicalException e) {
+                    vMessageError = e.getMessage();
+                }
+                break;
+            case "refuser" :
+                topoResource.deleteTopoReservation(pReservationId);
+                break;
+        }
+        // Creation de la réponse en JSON
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        String vJSONCommentaire = new Gson().toJson("done");
+        logger.debug("vJSONCommentaire = " + vJSONCommentaire);
+        response.getWriter().write(vJSONCommentaire);
     }
 }

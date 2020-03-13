@@ -79,9 +79,38 @@ $('#commentaire-panel input[type="checkbox"]').click(function () {
     });
 });
 
+/**
+ * Gestion de l'acceptation ou le refus des demandes de reservation de topos
+ */
+$('#reservation-panel input[type="radio"]').click(function () {
+    // let reservationId = $('#reservationId').val();
+    // let reservationId =document.querySelector('input[name=reservationId]').value
+    let action= $(this).attr('id');
+    console.log("reservationId = " + action);
+    let reservationId = $(this).val();
+    console.log("action = " + reservationId);
+    $.ajax({
+        url: 'updateTopoReservation',
+        type: 'POST',
+        data: {'reservationId': reservationId, 'action': action},
+        dataType: 'json',
+        success: function (data) {
+            let reservation = data;
+            if (reservation.valide) {
+                console.log("reservation validée");
+            } else {
+                console.log("reservation validée");
+            }
+        }
+    });
+});
+
+/**
+ * Gère la modification de role de l'utilisateur dans la page personnelle des admin
+ */
 $('#userTable input[type="radio"]').click(function () {
-    let username = $(this).val();
-    let checkboxName = $(this).attr('name');
+    let username = $('#username').val();
+    let checkboxName = $(this).val();
     let newRole ='';
     console.log('User selectionné = '+username);
     console.log('La check box cochée est ' + checkboxName);

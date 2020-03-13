@@ -27,11 +27,12 @@ public class TopoReservationDaoImpl extends AbstractDao implements TopoReservati
 
     @Override
     public void createTopoReservation(TopoReservation pTopoReservation) throws TechnicalException {
-        String vSQL = "INSERT INTO topo_reservation (reservation_date, reservation_topo_id, username) VALUES (:vDate, :vTopoId, :vUsername)";
+        String vSQL = "INSERT INTO topo_reservation (reservation_date, reservation_topo_id, username, valide) VALUES (:vDate, :vTopoId, :vUsername, :vValide)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("vDate", pTopoReservation.getDateReservation());
         vParams.addValue("vTopoId", pTopoReservation.getTopo().getId());
         vParams.addValue("vUsername", pTopoReservation.getUser().getUsername());
+        vParams.addValue("vValide", pTopoReservation.isValide());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         try {
             vJdbcTemplate.update(vSQL, vParams);
@@ -72,13 +73,35 @@ public class TopoReservationDaoImpl extends AbstractDao implements TopoReservati
     }
 
     @Override
-    public void updateTopoReservation (TopoReservation pTopoReservation) {
-
+    public void updateTopoReservation (TopoReservation pTopoReservation) throws TechnicalException {
+        String vSQL ="UPDATE topo_reservation SET reservation_date= :date, reservation_topo_id= :topoId, username= :username, valide= :valide WHERE reservation_id="+pTopoReservation.getId();
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("date", pTopoReservation.getDateReservation());
+        vParams.addValue("topoId", pTopoReservation.getTopo().getId());
+        vParams.addValue("username", pTopoReservation.getUser().getUsername());
+        vParams.addValue("valide", pTopoReservation.isValide());
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+        } catch (
+                BadSqlGrammarException e) {
+            logger.error("Problème de syntaxe dans la requète SQL");
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        } catch (
+                DataAccessException e) {
+            logger.error("Problème d'accès à la base de données");
+            throw new TechnicalException(ErrorMessages.SQL_UPDATE_ERROR.getErrorMessage());
+        } catch (Exception e) {
+            logger.error("Problème technique");
+            throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
+        }
     }
 
     @Override
     public void deleteTopoReservation(int pId) {
-
+        String vSQL ="DELETE FROM topo_reservation WHERE reservation_id="+pId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL);
     }
 
 }

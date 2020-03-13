@@ -18,7 +18,7 @@ public class TopoReservationManagerImpl extends AbstractManager implements TopoR
 
     @Override
     public TopoReservation getTopoReservationById(int pId) {
-        return null;
+        return getDaoFactory().getTopoReservationDao().getTopoReservationById(pId);
     }
 
     @Override
@@ -32,12 +32,12 @@ public class TopoReservationManagerImpl extends AbstractManager implements TopoR
     }
 
     @Override
-    public void updateTopoReservation(TopoReservation pTopoReservation) {
-
+    public void updateTopoReservation(TopoReservation pTopoReservation) throws TechnicalException {
+        getDaoFactory().getTopoReservationDao().updateTopoReservation(pTopoReservation);
     }
 
     @Override
     public void deleteTopoReservation(int pId) {
-
+        getDaoFactory().getTopoReservationDao().deleteTopoReservation(pId);
     }
 }
