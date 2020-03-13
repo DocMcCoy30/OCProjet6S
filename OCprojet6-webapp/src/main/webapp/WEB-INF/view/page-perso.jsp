@@ -87,36 +87,36 @@
                                         <c:when test="${user.userRole == 'ROLE_USER'}">
                                             <div class="form-check form-check-inline">
                                                 <input type="hidden" id="username" value="${user.username}">
-                                                <input class="form-check-input" type="radio" id="utilisateur"
+                                                <input class="form-check-input" type="radio" id="ROLE_USER"
                                                        name="user_role"
-                                                       value="utilisateur" checked>
-                                                <label class="form-check-label" for="utilisateur">User</label>
+                                                       value="${user.username}" checked>
+                                                <label class="form-check-label" for="ROLE_USER">User</label>
                                             </div>
                                         </c:when>
                                         <c:otherwise>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" id="utilisateur"
+                                                <input class="form-check-input" type="radio" id="ROLE_USER"
                                                        name="user_role"
-                                                       value="utilisateur">
-                                                <label class="form-check-label" for="utilisateur">User</label>
+                                                       value="${user.username}">
+                                                <label class="form-check-label" for="ROLE_USER">User</label>
                                             </div>
                                         </c:otherwise>
                                     </c:choose>
                                     <c:choose>
                                         <c:when test="${user.userRole == 'ROLE_ADMIN'}">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" id="administrateur"
+                                                <input class="form-check-input" type="radio" id="ROLE_ADMIN"
                                                        name="user_role"
-                                                       value="administrateur" checked>
-                                                <label class="form-check-label" for="administrateur">Admin</label>
+                                                       value="${user.username}" checked>
+                                                <label class="form-check-label" for="ROLE_ADMIN">Admin</label>
                                             </div>
                                         </c:when>
                                         <c:otherwise>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" id="administrateur"
+                                                <input class="form-check-input" type="radio" id="ROLE_ADMIN"
                                                        name="user_role"
-                                                       value="administrateur">
-                                                <label class="form-check-label" for="administrateur">Admin</label>
+                                                       value="${user.username}">
+                                                <label class="form-check-label" for="ROLE_ADMIN">Admin</label>
                                             </div>
                                         </c:otherwise>
                                     </c:choose>
@@ -212,8 +212,6 @@
                                     <td>${reservation.user.email}</td>
                                     <td>
                                         <div class="form-check form-check-inline">
-                                            <input type="hidden" value="${reservation.id}" name="reservationId"
-                                                   id="reservationId">
                                             <input class="form-check-input" type="radio" id="accepter"
                                                    name="reservation"
                                                    value="${reservation.id}">
@@ -233,9 +231,6 @@
                     </tbody>
                 </table>
                 <div class="text-center">
-<%--                    <c:url var="showPagePerso" value="/showPagePerso">--%>
-<%--                        <c:param name="username" value=""--%>
-<%--                    </c:url>--%>
                     <a href="${page_perso}" type="button"
                        class="btn btn-warning" id="btnRefreshResa">Valider mes choix</a>
                 </div>
