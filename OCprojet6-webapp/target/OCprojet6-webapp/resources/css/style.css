@@ -1,25 +1,4 @@
 @font-face {
-    font-family: 'girassolregular';
-    src: url('font/girassol/girassol-regular-webfont.eot');
-    src: url('font/girassol/girassol-regular-webfont.eot?#iefix') format('embedded-opentype'),
-    url('font/girassol/girassol-regular-webfont.woff') format('woff'),
-    url('font/girassol/girassol-regular-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: reqnad;
-    src: url('font/Reqnad/ReqnadGeometrikBeta0.1-Regular.otf');
-}
-
-@font-face {
-    font-family: yeong_sung;
-    src: url("font/Yeon_Sung/YeonSung-Regular.ttf") format('truetype');
-;
-}
-
-@font-face {
     font-family: cabin;
     src: url("font/Cabin/Cabin-Regular.ttf") format('truetype');
 ;
@@ -32,7 +11,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: cabin, yeong_sung, reqnad, Arial, serif;
+    font-family: cabin, Arial, serif;
 }
 
 /*div {*/

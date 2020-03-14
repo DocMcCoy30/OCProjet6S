@@ -40,4 +40,9 @@ public class TopoReservationManagerImpl extends AbstractManager implements TopoR
     public void deleteTopoReservation(int pId) {
         getDaoFactory().getTopoReservationDao().deleteTopoReservation(pId);
     }
+
+    @Override
+    public List<TopoReservation> getTopoReservationsByUsername(String pUserName) {
+        return getDaoFactory().getTopoReservationDao().getTopoReservationsByUsername(pUserName);
+    }
 }

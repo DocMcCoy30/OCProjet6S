@@ -1,5 +1,6 @@
 package org.dmc30.OCprojet6.consumer.impl.rowmapper;
 
+import org.dmc30.OCprojet6.consumer.contract.dao.StatutDao;
 import org.dmc30.OCprojet6.consumer.contract.dao.TopoDao;
 import org.dmc30.OCprojet6.consumer.contract.dao.UsersDao;
 import org.dmc30.OCprojet6.model.bean.TopoReservation;
@@ -19,6 +20,8 @@ public class TopoReservationRM implements RowMapper<TopoReservation> {
     TopoDao topoDao;
     @Inject
     UsersDao usersDao;
+    @Inject
+    StatutDao statutDao;
 
     @Override
     public TopoReservation mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -29,7 +32,7 @@ public class TopoReservationRM implements RowMapper<TopoReservation> {
                     resultSet.getDate("reservation_date"),
                     topoDao.getTopoById(resultSet.getInt("reservation_topo_id")),
                     usersDao.getUsersByName(resultSet.getString("username")),
-                    resultSet.getBoolean("valide"));
+                    statutDao.getStatutById(resultSet.getInt("statut_id")));
         } catch (TechnicalException e) {
             e.printStackTrace();
         }

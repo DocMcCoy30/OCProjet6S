@@ -37,6 +37,10 @@ public interface ManagerFactory {
 
     void setSiteManager(SiteManager siteManager);
 
+    StatutManager getStatutManager();
+
+    void setStatutManager(StatutManager statutManager);
+
     TopoManager getTopoManager();
 
     void setTopoManager(TopoManager topoManager);

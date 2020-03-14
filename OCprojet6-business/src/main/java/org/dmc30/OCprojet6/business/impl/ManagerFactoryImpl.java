@@ -28,6 +28,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Inject
     SiteManager siteManager;
     @Inject
+    StatutManager statutManager;
+    @Inject
     TopoManager topoManager;
     @Inject
     TopoReservationManager topoReservationManager;
@@ -130,6 +132,16 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public void setSiteManager(SiteManager siteManager) {
         this.siteManager = siteManager;
+    }
+
+    @Override
+    public StatutManager getStatutManager() {
+        return statutManager;
+    }
+
+    @Override
+    public void setStatutManager(StatutManager statutManager) {
+        this.statutManager = statutManager;
     }
 
     @Override

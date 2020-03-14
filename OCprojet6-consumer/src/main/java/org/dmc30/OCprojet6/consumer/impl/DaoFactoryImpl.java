@@ -28,6 +28,8 @@ public class DaoFactoryImpl implements DaoFactory {
     @Inject
     SiteDao siteDao;
     @Inject
+    StatutDao statutDao;
+    @Inject
     TopoDao topoDao;
     @Inject
     TopoReservationDao topoReservationDao;
@@ -130,6 +132,16 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setSiteDao(SiteDao siteDao) {
         this.siteDao = siteDao;
+    }
+
+    @Override
+    public StatutDao getStatutDao() {
+        return statutDao;
+    }
+
+    @Override
+    public void setStatutDao(StatutDao statutDao) {
+        this.statutDao = statutDao;
     }
 
     @Override

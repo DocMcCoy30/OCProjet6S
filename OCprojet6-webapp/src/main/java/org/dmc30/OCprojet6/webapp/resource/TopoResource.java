@@ -1,5 +1,6 @@
 package org.dmc30.OCprojet6.webapp.resource;
 
+import org.dmc30.OCprojet6.model.bean.Statut;
 import org.dmc30.OCprojet6.model.bean.Topo;
 import org.dmc30.OCprojet6.model.bean.TopoReservation;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
@@ -44,5 +45,13 @@ public class TopoResource extends AbstractResource{
 
     public void deleteTopoReservation(Integer pReservationId) {
         getManagerFactory().getTopoReservationManager().deleteTopoReservation(pReservationId);
+    }
+
+    public Statut getStatutById(int pId) {
+        return getManagerFactory().getStatutManager().getStatutById(pId);
+    }
+
+    public List<TopoReservation> getReservationsByUsername(String pUserName) {
+        return getManagerFactory().getTopoReservationManager().getTopoReservationsByUsername(pUserName);
     }
 }

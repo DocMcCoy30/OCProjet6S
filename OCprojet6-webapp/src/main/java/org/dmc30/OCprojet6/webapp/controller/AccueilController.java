@@ -87,20 +87,24 @@ public class AccueilController extends AbstractController {
         //Lister les sites enregistrés, topos, réservations liés à l'utilisateur
         logger.debug("Page perso du User : " + pUserName);
         vListTopos = topoResource.getTopoByUser(pUserName);
-        for (Topo vTopo:vListTopos
-             ) {
-            List<TopoReservation> vTopoReservations = topoResource.getTopoReservationsByTopoId(vTopo.getId());
-            vTopo.setListReservations(vTopoReservations);
-            for (TopoReservation vReservation:vTopoReservations
-                 ) {
-                if (!vReservation.isValide()) {
-                    reservationMarker ++;
+        if (vListTopos.size()>0) {
+            for (Topo vTopo : vListTopos
+            ) {
+                List<TopoReservation> vTopoReservations = topoResource.getTopoReservationsByTopoId(vTopo.getId());
+                vTopo.setListReservations(vTopoReservations);
+                for (TopoReservation vReservation : vTopoReservations
+                ) {
+                    if (vReservation.getStatut().getId() == 2) {
+                        reservationMarker++;
+                    }
                 }
             }
+            if (reservationMarker > 0) {
+                vValidationEnAttente = true;
+            }
         }
-        if (reservationMarker>0) {
-            vValidationEnAttente = true;
-        }
+        //recupérer la liste des réservations du user
+        List<TopoReservation> vMesReservations = topoResource.getReservationsByUsername(pUserName);
         //récupérer la liste des commentaires non validés
         vListCommentaire = commentaireResource.getNonValidatedCommentaires();
         //récupérer la liste des utilisateurs et leur role
@@ -115,6 +119,7 @@ public class AccueilController extends AbstractController {
         vMaV.addObject("topos", vListTopos);
         vMaV.addObject("users", vListUsers);
         vMaV.addObject("commentaires", vListCommentaire);
+        vMaV.addObject("mesReservations", vMesReservations);
         vMaV.setViewName("page-perso");
         return vMaV;
     }

@@ -40,6 +40,10 @@ public interface DaoFactory {
 
     void setSiteDao(SiteDao siteDao);
 
+    StatutDao getStatutDao();
+
+    void setStatutDao(StatutDao statutDao);
+
     TopoDao getTopoDao();
 
     void setTopoDao(TopoDao topoDao);

@@ -14,4 +14,5 @@ public interface TopoReservationDao {
     List<TopoReservation> getAllTopoReservations();
     void updateTopoReservation(TopoReservation pTopoReservation) throws TechnicalException;
     void deleteTopoReservation(int pId);
+    List<TopoReservation> getTopoReservationsByUsername(String pUserName);
 }

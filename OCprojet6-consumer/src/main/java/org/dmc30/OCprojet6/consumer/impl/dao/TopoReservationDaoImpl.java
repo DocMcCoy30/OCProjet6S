@@ -27,12 +27,12 @@ public class TopoReservationDaoImpl extends AbstractDao implements TopoReservati
 
     @Override
     public void createTopoReservation(TopoReservation pTopoReservation) throws TechnicalException {
-        String vSQL = "INSERT INTO topo_reservation (reservation_date, reservation_topo_id, username, valide) VALUES (:vDate, :vTopoId, :vUsername, :vValide)";
+        String vSQL = "INSERT INTO topo_reservation (reservation_date, reservation_topo_id, username, statut_id) VALUES (:vDate, :vTopoId, :vUsername, :vStatutId)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("vDate", pTopoReservation.getDateReservation());
         vParams.addValue("vTopoId", pTopoReservation.getTopo().getId());
         vParams.addValue("vUsername", pTopoReservation.getUser().getUsername());
-        vParams.addValue("vValide", pTopoReservation.isValide());
+        vParams.addValue("vValide", pTopoReservation.getStatut().getId());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         try {
             vJdbcTemplate.update(vSQL, vParams);
@@ -74,12 +74,12 @@ public class TopoReservationDaoImpl extends AbstractDao implements TopoReservati
 
     @Override
     public void updateTopoReservation (TopoReservation pTopoReservation) throws TechnicalException {
-        String vSQL ="UPDATE topo_reservation SET reservation_date= :date, reservation_topo_id= :topoId, username= :username, valide= :valide WHERE reservation_id="+pTopoReservation.getId();
+        String vSQL ="UPDATE topo_reservation SET reservation_date= :date, reservation_topo_id= :topoId, username= :username, statut_id= :statutId WHERE reservation_id="+pTopoReservation.getId();
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("date", pTopoReservation.getDateReservation());
         vParams.addValue("topoId", pTopoReservation.getTopo().getId());
         vParams.addValue("username", pTopoReservation.getUser().getUsername());
-        vParams.addValue("valide", pTopoReservation.isValide());
+        vParams.addValue("statutId", pTopoReservation.getStatut().getId());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         try {
             vJdbcTemplate.update(vSQL, vParams);
@@ -102,6 +102,13 @@ public class TopoReservationDaoImpl extends AbstractDao implements TopoReservati
         String vSQL ="DELETE FROM topo_reservation WHERE reservation_id="+pId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL);
+    }
+
+    @Override
+    public List<TopoReservation> getTopoReservationsByUsername(String pUserName) {
+        String vSQL = "SELECT * FROM topo_reservation WHERE username='" + pUserName + "'" + " ORDER BY reservation_date";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        return vJdbcTemplate.query(vSQL, topoReservationRM);
     }
 
 }

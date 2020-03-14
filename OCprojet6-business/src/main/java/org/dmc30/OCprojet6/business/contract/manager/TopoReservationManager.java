@@ -44,5 +44,10 @@ public interface TopoReservationManager {
      */
     void deleteTopoReservation(int pId);
 
-
+    /**
+     * Cherche et renvoie les reservations d'un utilisateur.
+     * @param pUserName Le username de l'utilisateur.
+     * @return La liste des réservations pour cet utilisateur.
+     */
+    List<TopoReservation> getTopoReservationsByUsername(String pUserName);
 }
