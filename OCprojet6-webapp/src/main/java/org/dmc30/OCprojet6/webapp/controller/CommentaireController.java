@@ -78,23 +78,37 @@ public class CommentaireController {
 
     @PostMapping("/updateCommentaire")
     public ModelAndView updateCommentaire(@RequestParam(value = "commentaireId") Integer pCommentaireId,
-                                  @RequestParam(value = "action", required = false) String pAction,
-                                  @RequestParam(value = "commentaire", required = false) String pCommentaire,
-                                  @RequestParam(value = "username") String pUsername) throws TechnicalException {
+                                          @RequestParam(value = "action", required = false) String pAction,
+                                          @RequestParam(value = "commentaire", required = false) String pCommentaire,
+                                          @RequestParam(value = "username", required = false) String pUsername,
+                                          @RequestParam(value = "page") String pPage,
+                                          @RequestParam(value = "siteId", required = false) Integer pSiteId) throws TechnicalException {
 
         Commentaire vCommentaire = new Commentaire();
+        ModelAndView vMav = new ModelAndView();
+        String vMessageSucces = "";
+        logger.debug("Update du commentaire dans la page "+pPage);
 
         switch (pAction) {
             case "update":
                 vCommentaire = commentaireResource.getCommentaireById(pCommentaireId);
                 vCommentaire.setCommentaire(pCommentaire);
                 commentaireResource.updateCommentaire(vCommentaire);
+                vMessageSucces = "Le commentaire a été modifié.";
                 break;
             case "delete":
                 commentaireResource.deleteCommentaire(pCommentaireId);
+                vMessageSucces = "Le commentaire a été supprimé.";
+
                 break;
         }
-        return accueilController.showPagePerso(pUsername);
+        if (pPage.equals("page-perso")) {
+            vMav = accueilController.showPagePerso(pUsername);
+        }
+        if (pPage.equals("page-site")) {
+            vMav = siteController.showSitePage(pSiteId, vMessageSucces, "");
+        }
+        return vMav;
     }
 
 }

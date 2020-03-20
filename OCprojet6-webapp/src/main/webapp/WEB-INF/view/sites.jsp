@@ -33,23 +33,23 @@
             <div class="card-header" id="siteCardHeader">
                 <div class="row">
                     <div class="col">
-<%--                        <div class="row">--%>
-                            <h2 class="card-title col-md-5">${site.nom}</h2>
-                            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                <div class="col-md-3">
-                                    <c:if test="${site.officiel}">
-                                        <input type="checkbox" name="siteId" value="${site.id}" id="officiel" checked/>
-                                    </c:if>
-                                    <c:if test="${! site.officiel}">
-                                        <input type="checkbox" name="siteId" value="${site.id}" id="officiel"/>
-                                    </c:if>
-                                    <label class="form-check-label" for="officiel">
-                                        <h5>Site Officiel</h5>
-                                    </label>
-                                </div>
-                            </sec:authorize>
-                        </div>
-<%--                    </div>--%>
+                        <%--                        <div class="row">--%>
+                        <h2 class="card-title col-md-5">${site.nom}</h2>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <div class="col-md-3">
+                                <c:if test="${site.officiel}">
+                                    <input type="checkbox" name="siteId" value="${site.id}" id="officiel" checked/>
+                                </c:if>
+                                <c:if test="${! site.officiel}">
+                                    <input type="checkbox" name="siteId" value="${site.id}" id="officiel"/>
+                                </c:if>
+                                <label class="form-check-label" for="officiel">
+                                    <h5>Site Officiel</h5>
+                                </label>
+                            </div>
+                        </sec:authorize>
+                    </div>
+                    <%--                    </div>--%>
                     <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
                         <c:url var="modifierSite" value="/showSiteForm">
                             <c:param name="siteId" value="${site.id}"/>
@@ -85,9 +85,9 @@
                         </c:if>
                     </div>
                 </div>
-                <%--                <img src="${pageContext.request.contextPath}/resources/img/officiel.png"--%>
-                <%--                     class="rounded mx-auto" alt="macaron-officiel" id="macaron-officiel">--%>
-                <span class="offset-2" id="attribut-officiel">Site officiel Les Amis de l'Escalade</span>
+                <img src="${pageContext.request.contextPath}/resources/img/Logo_Les_amis_de_l_escalade.png"
+                     class="rounded mx-auto" alt="macaron-officiel" id="attribut-officiel">
+                <%--                <span class="offset-2" id="attribut-officiel">Site officiel Les Amis de l'Escalade</span>--%>
             </div>
             <div id="descriptionBlock">
                 <p>Description :</p>
@@ -170,35 +170,45 @@
                 <h2 class="card-title">Commentaires</h2>
             </div>
             <div class="card-body">
-                <ul class="list-unstyled">
-                    <c:if test="${empty site.listCommentaires}">
-                        <h5 style="color: red">Il n'y a aucun commentaire enregistré pour ce site.</h5>
-                    </c:if>
-                    <c:if test="${! empty site.listCommentaires}">
-                        <c:forEach var="commentaire" items="${site.listCommentaires}">
-                            <li class="media">
-                                <div class="media-body" id="commentaire-div">
+                <form action="updateCommentaire" method="post">
+                    <input type="hidden" name="page" value="page-site">
+                    <ul class="list-unstyled">
+                        <c:if test="${empty site.listCommentaires}">
+                            <h5 style="color: red">Il n'y a aucun commentaire enregistré pour ce site.</h5>
+                        </c:if>
+                        <c:if test="${! empty site.listCommentaires}">
+                            <c:forEach var="commentaire" items="${site.listCommentaires}">
+                                <input type="hidden" name="siteId" value="${site.id}">
+                                <input type="hidden" name="commentaireId" value="${commentaire.id}">
+                                <li class="media">
+                                    <div class="media-body" id="commentaire-div">
                                     <span style="color: brown; font-size: larger">
                                         Posté par ${commentaire.users.username} le ${commentaire.date}
                                     </span>
-                                    <div>${commentaire.commentaire}</div>
-                                </div>
-                                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                    <div id="adminCommentBtn">
-                                        <div>
-                                            <button type="button" id="admin-update" class="btn btn-danger">Modifier
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <button type="button" id="admin-delete" class="btn btn-danger">Supprimer
-                                            </button>
-                                        </div>
+                                        <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                                            <div>
+                                                <textarea class="col-md-12" name="commentaire">${commentaire.commentaire}</textarea>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${!pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                                            <div>${commentaire.commentaire}</div>
+                                        </c:if>
                                     </div>
-                                </sec:authorize>
-                            </li>
-                        </c:forEach>
-                    </c:if>
-                </ul>
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                        <div id="adminCommentBtn">
+                                            <button type="submit" class="btn btn-warning" name="action" value="update"
+                                            >Modifier
+                                            </button>
+                                            <button type="submit" class="btn btn-warning" name="action" value="delete"
+                                            >Supprimer
+                                            </button>
+                                        </div>
+                                    </sec:authorize>
+                                </li>
+                            </c:forEach>
+                        </c:if>
+                    </ul>
+                </form>
                 <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
                     <div class="text-right">
                         <button type="button" id="btnAjoutCommentaire" class="btn btn-primary"
@@ -217,14 +227,14 @@
                 </div>
                 <div class="card-body">
                     <div class="row no-gutters">
-<%--                        <div class="input-group">--%>
-<%--                            <div class="input-group-prepend">--%>
-<%--                                <span class="input-group-text" id="commentaireTitre">Titre : </span>--%>
-<%--                            </div>--%>
-<%--                            <input type="text" name="commentaireTitre" class="form-control"--%>
-<%--                                   aria-label="commentaireTitre"--%>
-<%--                                   aria-describedby="Titre du commentaire" required>--%>
-<%--                        </div>--%>
+                        <%--                        <div class="input-group">--%>
+                        <%--                            <div class="input-group-prepend">--%>
+                        <%--                                <span class="input-group-text" id="commentaireTitre">Titre : </span>--%>
+                        <%--                            </div>--%>
+                        <%--                            <input type="text" name="commentaireTitre" class="form-control"--%>
+                        <%--                                   aria-label="commentaireTitre"--%>
+                        <%--                                   aria-describedby="Titre du commentaire" required>--%>
+                        <%--                        </div>--%>
                         <div class="input-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">

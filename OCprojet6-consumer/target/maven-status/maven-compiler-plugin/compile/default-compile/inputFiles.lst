@@ -4,6 +4,7 @@ C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCpro
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\rowmapper\TypeRocheRM.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\rowmapper\CommentaireRM.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\contract\dao\UserRoleDao.java
+C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\rowmapper\StatutRM.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\RegionDaoImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\contract\dao\DepartementDao.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\SecteurDaoImpl.java
@@ -12,6 +13,7 @@ C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCpro
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\TypeRocheDaoImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\VilleDaoImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\contract\dao\CaracteristiqueDao.java
+C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\StatutDaoImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\TopoReservationDaoImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\contract\dao\SecteurDao.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\VoieDaoImpl.java
@@ -33,6 +35,7 @@ C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCpro
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\UserRoleDaoImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\rowmapper\CotationRM.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\contract\dao\UsersDao.java
+C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\contract\dao\StatutDao.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\AbstractDao.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\impl\dao\CaracteristiqueDaoImpl.java
 C:\Users\thoma\OneDrive\Bureau\Workplace\IntelliJ\OpenClassrooms - Projets\OCprojet6S\OCprojet6-consumer\src\main\java\org\dmc30\OCprojet6\consumer\contract\dao\VilleDao.java

@@ -10,6 +10,7 @@ org\dmc30\OCprojet6\model\bean\TypeRoche.class
 org\dmc30\OCprojet6\model\bean\Region.class
 org\dmc30\OCprojet6\model\bean\Topo.class
 org\dmc30\OCprojet6\model\bean\Cotation.class
+org\dmc30\OCprojet6\model\bean\Statut.class
 org\dmc30\OCprojet6\model\bean\Photo.class
 org\dmc30\OCprojet6\model\bean\TopoReservation.class
 org\dmc30\OCprojet6\model\bean\Caracteristique.class

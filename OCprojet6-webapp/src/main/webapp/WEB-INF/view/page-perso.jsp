@@ -24,6 +24,7 @@
     <div class="container">
         <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
         <form action="updateCommentaire" method="post">
+            <input type="hidden" name="page" value="page-perso">
             <div id="commentaire-panel">
                 <h2>Liste des commentaires à valider :</h2>
                 <ul class="list-unstyled">
@@ -152,21 +153,23 @@
                                 </thead>
                                 <tbody>
                                 <c:forEach var="reservation" items="${topo.listReservations}">
+                                    <form method="post" action="annulerReservation">
                                     <tr>
                                         <td>${reservation.dateReservation}</td>
                                         <td>${reservation.user.username}</td>
                                         <td>${reservation.user.email}</td>
                                         <td>${reservation.statut.etat}</td>
-
                                         <td>
                                             <c:if test="${reservation.statut.id<3}">
-                                                <button type="submit" name="reservationTopoId" value="${topo.id}"
+                                                <input type="hidden" name="username" value="${pageContext.request.userPrincipal.name}">
+                                                <button type="submit" name="reservation-id" value="${reservation.id}"
                                                         class="btn btn-warning" id="btnReservationTopo">
                                                     Annuler
                                                 </button>
                                             </c:if>
                                         </td>
                                     </tr>
+                                    </form>
                                 </c:forEach>
                                 </tbody>
                             </table>

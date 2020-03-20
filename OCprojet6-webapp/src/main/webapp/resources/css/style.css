@@ -242,13 +242,9 @@ a:hover {
     background-color: #F2E8C9;
 }
 
-#macaron-officiel {
-    width: 9em;
-    height: auto;
-}
-
 #attribut-officiel {
-    font-size: larger;
+    width: 12em;
+    height: auto;
 }
 
 #topoForm {

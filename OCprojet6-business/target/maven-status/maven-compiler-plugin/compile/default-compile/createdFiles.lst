@@ -1,3 +1,4 @@
+org\dmc30\OCprojet6\business\contract\manager\StatutManager.class
 org\dmc30\OCprojet6\business\impl\manager\CommentaireManagerImpl.class
 org\dmc30\OCprojet6\business\impl\manager\TypeRocheManagerImpl.class
 org\dmc30\OCprojet6\business\contract\manager\CommentaireManager.class
@@ -7,6 +8,7 @@ org\dmc30\OCprojet6\business\impl\manager\SiteManagerImpl.class
 org\dmc30\OCprojet6\business\impl\manager\TopoManagerImpl.class
 org\dmc30\OCprojet6\business\impl\manager\UserRolesManagerImpl.class
 org\dmc30\OCprojet6\business\contract\manager\SecteurManager.class
+org\dmc30\OCprojet6\business\impl\manager\StatutManagerImpl.class
 org\dmc30\OCprojet6\business\impl\manager\UsersManagerImpl.class
 org\dmc30\OCprojet6\business\impl\manager\TopoReservationManagerImpl.class
 org\dmc30\OCprojet6\business\contract\manager\RegionManager.class

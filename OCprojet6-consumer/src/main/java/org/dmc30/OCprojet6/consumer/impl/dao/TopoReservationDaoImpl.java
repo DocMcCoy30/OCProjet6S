@@ -32,7 +32,7 @@ public class TopoReservationDaoImpl extends AbstractDao implements TopoReservati
         vParams.addValue("vDate", pTopoReservation.getDateReservation());
         vParams.addValue("vTopoId", pTopoReservation.getTopo().getId());
         vParams.addValue("vUsername", pTopoReservation.getUser().getUsername());
-        vParams.addValue("vValide", pTopoReservation.getStatut().getId());
+        vParams.addValue("vStatutId", pTopoReservation.getStatut().getId());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         try {
             vJdbcTemplate.update(vSQL, vParams);

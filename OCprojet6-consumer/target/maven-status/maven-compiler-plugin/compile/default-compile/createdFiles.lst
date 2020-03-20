@@ -1,5 +1,6 @@
 org\dmc30\OCprojet6\consumer\contract\dao\SecteurDao.class
 org\dmc30\OCprojet6\consumer\impl\dao\CommentaireDaoImpl.class
+org\dmc30\OCprojet6\consumer\impl\dao\StatutDaoImpl.class
 org\dmc30\OCprojet6\consumer\impl\rowmapper\TypeRocheRM.class
 org\dmc30\OCprojet6\consumer\impl\dao\TopoReservationDaoImpl.class
 org\dmc30\OCprojet6\consumer\impl\rowmapper\UserRolesRM.class
@@ -28,6 +29,7 @@ org\dmc30\OCprojet6\consumer\impl\rowmapper\RegionRM.class
 org\dmc30\OCprojet6\consumer\impl\dao\UserRoleDaoImpl.class
 org\dmc30\OCprojet6\consumer\impl\rowmapper\VoieRM.class
 org\dmc30\OCprojet6\consumer\contract\dao\CaracteristiqueDao.class
+org\dmc30\OCprojet6\consumer\impl\rowmapper\StatutRM.class
 org\dmc30\OCprojet6\consumer\impl\dao\VoieDaoImpl.class
 org\dmc30\OCprojet6\consumer\contract\dao\PhotoDao.class
 org\dmc30\OCprojet6\consumer\impl\rowmapper\CommentaireRM.class
@@ -35,6 +37,7 @@ org\dmc30\OCprojet6\consumer\impl\rowmapper\CotationRM.class
 org\dmc30\OCprojet6\consumer\impl\rowmapper\DescriptionRM.class
 org\dmc30\OCprojet6\consumer\impl\rowmapper\SiteRM.class
 org\dmc30\OCprojet6\consumer\impl\DaoFactoryImpl.class
+org\dmc30\OCprojet6\consumer\contract\dao\StatutDao.class
 org\dmc30\OCprojet6\consumer\impl\dao\TopoDaoImpl.class
 org\dmc30\OCprojet6\consumer\contract\dao\TopoDao.class
 org\dmc30\OCprojet6\consumer\contract\DaoFactory.class

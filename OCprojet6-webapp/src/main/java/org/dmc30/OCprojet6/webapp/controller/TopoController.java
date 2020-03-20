@@ -35,6 +35,8 @@ public class TopoController {
     TopoResource topoResource;
     @Inject
     UserResource userResource;
+    @Inject
+    AccueilController accueilController;
 
 
     @GetMapping("/showTopoPage")
@@ -80,7 +82,6 @@ public class TopoController {
                                    @RequestParam(value = "topoNom") String vTopoNom,
                                    @RequestParam(value = "dateParution") String vDateParution,
                                    @RequestParam(value = "username") String pUsername) throws TechnicalException {
-//        ModelAndView vMaV = new ModelAndView();
         String vMessageSucces = "";
         String vMessageAlert = "";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -215,5 +216,14 @@ public class TopoController {
         String vJSONCommentaire = new Gson().toJson("done");
         logger.debug("vJSONCommentaire = " + vJSONCommentaire);
         response.getWriter().write(vJSONCommentaire);
+    }
+
+    @PostMapping("/annulerReservation")
+    public ModelAndView annulerReservation (@RequestParam(value = "reservation-id") Integer pReservationId,
+                                            @RequestParam(value = "username") String pUsername) throws TechnicalException {
+        TopoReservation vTopoReservation = topoResource.getTopoReservationById(pReservationId);
+        vTopoReservation.setStatut(topoResource.getStatutById(3));
+        topoResource.updateTopoReservation(vTopoReservation);
+        return accueilController.showPagePerso(pUsername);
     }
 }
