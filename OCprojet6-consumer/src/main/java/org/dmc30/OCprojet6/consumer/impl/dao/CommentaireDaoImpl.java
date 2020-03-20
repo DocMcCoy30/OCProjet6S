@@ -98,7 +98,21 @@ public class CommentaireDaoImpl extends AbstractDao implements CommentaireDao {
     }
 
     @Override
-    public void deleteCommentaire(int pId) {
+    public void deleteCommentaire(int pId) throws TechnicalException {
+        String vSQL = "DELETE  FROM commentaire WHERE commentaire_id="+pId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        try {
+            vJdbcTemplate.execute(vSQL);
+        }
+        catch (BadSqlGrammarException e) {
+            throw new TechnicalException(ErrorMessages.SQL_SYNTAX_ERROR.getErrorMessage());
+        }
+        catch (DataAccessException e) {
+            throw new TechnicalException(ErrorMessages.SQL_DELETE_ERROR.getErrorMessage());
+        }
+        catch (Exception e) {
+            throw new TechnicalException(ErrorMessages.TECHNICAL_ERROR.getErrorMessage());
+        }
 
     }
 

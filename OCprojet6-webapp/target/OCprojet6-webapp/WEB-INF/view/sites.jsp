@@ -163,7 +163,6 @@
                 </div>
             </form>
             <br>
-
         </div>
         <br><br>
         <div class="card" id="commentaire-card">
@@ -187,7 +186,11 @@
                                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                                     <div id="adminCommentBtn">
                                         <div>
-                                            <button type="button" id="admin-supp" class="btn btn-danger">Supprimer
+                                            <button type="button" id="admin-update" class="btn btn-danger">Modifier
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" id="admin-delete" class="btn btn-danger">Supprimer
                                             </button>
                                         </div>
                                     </div>

@@ -23,41 +23,53 @@
 <div id="body">
     <div class="container">
         <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
-        <div id="commentaire-panel">
-            <h2>Liste des commentaires à valider :</h2>
-            <ul class="list-unstyled">
-                <c:if test="${empty commentaires}">
-                    <h5 style="color: red">Il n'y a aucun commentaire à valider.</h5>
-                </c:if>
-                <c:if test="${! empty commentaires}">
-                    <c:forEach var="commentaire" items="${commentaires}">
-                        <li class="media">
-                            <div class="media-body" id="commentaire-div">
-                                <div class="row">
-                                    <div class="col" style="color: yellow; font-size: larger">
-                                        Posté par ${commentaire.users.username} le ${commentaire.date}
+        <form action="updateCommentaire" method="post">
+            <div id="commentaire-panel">
+                <h2>Liste des commentaires à valider :</h2>
+                <ul class="list-unstyled">
+                    <c:if test="${empty commentaires}">
+                        <h5 style="color: red">Il n'y a aucun commentaire à valider.</h5>
+                    </c:if>
+                    <c:if test="${! empty commentaires}">
+                        <c:forEach var="commentaire" items="${commentaires}">
+                            <li class="media">
+                                <div class="media-body" id="commentaire-div">
+                                    <div class="row">
+                                        <input type="hidden" value="${commentaire.id}" name="commentaireId">
+                                        <input type="hidden" name="username"
+                                               value="${pageContext.request.userPrincipal.name}">
+                                        <div class="col" style="color: yellow; font-size: larger">
+                                            Posté par ${commentaire.users.username} le ${commentaire.date}
+                                        </div>
+                                        <div class="form-check form-check-inline pull-right">
+                                            <input class="form-check-input" type="checkbox" id="validation"
+                                                   name="commentaireId"
+                                                   value="${commentaire.id}">
+                                            <label class="form-check-label" style="color: white"
+                                                   for="validation">Publier</label>
+                                        </div>
+
                                     </div>
-                                    <div class="form-check form-check-inline pull-right">
-                                        <input class="form-check-input" type="checkbox" id="validation"
-                                               name="commentaireId"
-                                               value="${commentaire.id}">
-                                        <label class="form-check-label" style="color: white"
-                                               for="validation">Publier</label>
+                                    <div class="row">
+                                        <textarea class=" col-md-12" name="commentaire">${commentaire.commentaire}</textarea>
                                     </div>
+                                    <button type="submit" class="btn btn-warning" name="action" value="update"
+                                    >Modifier
+                                    </button>
+                                    <button type="submit" class="btn btn-warning" name="action" value="delete"
+                                    >Supprimer
+                                    </button>
                                 </div>
-                                <div style="color: #F2E8C9">${commentaire.commentaire}</div>
-                                <div class="btn btn-warning">Modifier</div>
-                                <div class="btn btn-warning">Supprimer</div>
-                            </div>
-                        </li>
-                    </c:forEach>
-                </c:if>
-            </ul>
-            <div class="text-center">
-                <a href="${page_perso}" type="button"
-                   class="btn btn-warning" id="btnRefresh">Rafraichir</a>
+                            </li>
+                        </c:forEach>
+                    </c:if>
+                </ul>
+                <div class="text-center">
+                    <a href="${page_perso}" type="button"
+                       class="btn btn-warning" id="btnRefresh">Rafraichir</a>
+                </div>
             </div>
-        </div>
+        </form>
         </c:if>
 
         <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
@@ -230,23 +242,23 @@
                 <tbody>
                 <c:forEach var="maReservation" items="${mesReservations}">
                     <tr>
-                    <td>${maReservation.topo.nom}</td>
-                    <td>
-                        <table class="table table-borderless">
-                            <tr>
-                                <td>${maReservation.topo.user.username}</td>
-                                <td>${maReservation.topo.user.email}</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table class="table table-borderless">
-                            <tr>
-                                <td>${maReservation.dateReservation}</td>
-                                <td>${maReservation.statut.etat}</td>
-                            </tr>
-                        </table>
-                    </td>
+                        <td>${maReservation.topo.nom}</td>
+                        <td>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td>${maReservation.topo.user.username}</td>
+                                    <td>${maReservation.topo.user.email}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td>${maReservation.dateReservation}</td>
+                                    <td>${maReservation.statut.etat}</td>
+                                </tr>
+                            </table>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

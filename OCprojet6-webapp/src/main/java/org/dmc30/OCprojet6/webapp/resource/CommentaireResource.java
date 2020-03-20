@@ -28,4 +28,8 @@ public class CommentaireResource extends AbstractResource {
     public Commentaire getCommentaireById(Integer pCommentaireId) {
         return getManagerFactory().getCommentaireManager().getCommentaireById(pCommentaireId);
     }
+
+    public void deleteCommentaire(Integer pCommentaireId) throws TechnicalException {
+        getManagerFactory().getCommentaireManager().deleteCommentaire(pCommentaireId);
+    }
 }

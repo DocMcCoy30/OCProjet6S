@@ -35,7 +35,7 @@ public interface CommentaireManager {
      * Supprimer un objet de type Commentaire.
      * @param pId : l'identifiant de l'objet à supprimer.
      */
-    void deleteCommentaire(int pId);
+    void deleteCommentaire(int pId) throws TechnicalException;
 
     /**
      * Cherche et renvoie la liste des commentaires validés correspondants à un site, un secteur ou une voie.

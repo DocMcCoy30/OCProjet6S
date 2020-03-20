@@ -86,7 +86,8 @@
                             </div>
                             <div class="card-footer">
                                 <div class="btn-toolbar" role="toolbar">
-                                    <div class="btn-group ml-auto" role="group">                                        <c:url var="showVoiePage" value="/showVoiePage">
+                                    <div class="btn-group ml-auto" role="group">
+                                        <c:url var="showVoiePage" value="/showVoiePage">
                                             <c:param name="secteurId" value="${secteur.id}"/>
                                             <c:param name="siteId" value="${site.id}"/>
                                         </c:url>
@@ -94,7 +95,8 @@
                                             voies</a>
                                     </div>
                                     &nbsp
-                                    <div class="btn-group mr-auto" role="group">                                        <c:url var="showPhotoSecteurPage" value="/showPhotoSecteurPage">
+                                    <div class="btn-group mr-auto" role="group">
+                                        <c:url var="showPhotoSecteurPage" value="/showPhotoSecteurPage">
                                             <c:param name="secteurId" value="${secteur.id}"/>
                                         </c:url>
                                         <a href="${showPhotoSecteurPage}" type="button" class="btn btn-warning">Voir les

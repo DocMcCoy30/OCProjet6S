@@ -64,7 +64,7 @@ $('#commentaire-panel input[type="checkbox"]').click(function () {
     let commentaireId = $(this).val();
     let checked = $(this).is(':checked');
     $.ajax({
-        url: 'updateCommentaire',
+        url: 'publierCommentaire',
         type: 'POST',
         data: {'commentaireId': commentaireId, 'checked': checked},
         dataType: "json",

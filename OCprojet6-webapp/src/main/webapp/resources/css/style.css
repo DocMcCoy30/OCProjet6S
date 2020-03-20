@@ -267,6 +267,10 @@ a:hover {
     display: none;
 }
 
+#commentaire-update-form {
+    display: none;
+}
+
 #messageInfoRecherche {
     margin-bottom: 1em;
     text-align: center;

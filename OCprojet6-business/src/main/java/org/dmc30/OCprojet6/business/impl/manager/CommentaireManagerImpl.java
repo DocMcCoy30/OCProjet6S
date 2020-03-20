@@ -32,7 +32,7 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
     }
 
     @Override
-    public void deleteCommentaire(int pId) {
+    public void deleteCommentaire(int pId) throws TechnicalException {
         getDaoFactory().getCommentaireDao().deleteCommentaire(pId);
     }
 

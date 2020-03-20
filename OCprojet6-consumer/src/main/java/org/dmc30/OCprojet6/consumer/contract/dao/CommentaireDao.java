@@ -11,7 +11,7 @@ public interface CommentaireDao {
     Commentaire getCommentaireById(int pId);
     List<Commentaire> getAllCommentaires();
     void updateCommentaire (Commentaire pCommentaire) throws TechnicalException;
-    void deleteCommentaire(int pId);
+    void deleteCommentaire(int pId) throws TechnicalException;
     List<Commentaire> getValidatedCommentairesByReference(int pRefererenceId, int pRefId);
     List<Commentaire> getNonValidatedCommentaires();
 }

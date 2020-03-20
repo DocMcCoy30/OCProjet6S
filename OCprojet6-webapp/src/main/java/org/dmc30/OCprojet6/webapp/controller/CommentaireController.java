@@ -28,6 +28,8 @@ public class CommentaireController {
     UserResource userResource;
     @Inject
     SiteController siteController;
+    @Inject
+    AccueilController accueilController;
 
     @PostMapping("/createCommentaire")
     public ModelAndView createCommentaire(@RequestParam(value = "siteId") Integer pSiteId,
@@ -55,14 +57,14 @@ public class CommentaireController {
         return siteController.showSitePage(pSiteId, vMessageSucces, vMessageAlert);
     }
 
-    @PostMapping("/updateCommentaire")
-    public void updateCommentaire (@RequestParam(value = "commentaireId") Integer pCommentaireId,
+    @PostMapping("/publierCommentaire")
+    public void publierCommentaire(@RequestParam(value = "commentaireId") Integer pCommentaireId,
                                    @RequestParam(value = "checked") Boolean pChecked,
                                    HttpServletResponse response) throws TechnicalException, IOException {
         Commentaire vCommentaire = commentaireResource.getCommentaireById(pCommentaireId);
         if (pChecked) {
             vCommentaire.setValide(true);
-        } else if (!pChecked){
+        } else if (!pChecked) {
             vCommentaire.setValide(false);
         }
         commentaireResource.updateCommentaire(vCommentaire);
@@ -72,6 +74,27 @@ public class CommentaireController {
         String vJSONCommentaire = new Gson().toJson(vCommentaire);
         logger.debug("vJSONCommentaire = " + vJSONCommentaire);
         response.getWriter().write(vJSONCommentaire);
+    }
+
+    @PostMapping("/updateCommentaire")
+    public ModelAndView updateCommentaire(@RequestParam(value = "commentaireId") Integer pCommentaireId,
+                                  @RequestParam(value = "action", required = false) String pAction,
+                                  @RequestParam(value = "commentaire", required = false) String pCommentaire,
+                                  @RequestParam(value = "username") String pUsername) throws TechnicalException {
+
+        Commentaire vCommentaire = new Commentaire();
+
+        switch (pAction) {
+            case "update":
+                vCommentaire = commentaireResource.getCommentaireById(pCommentaireId);
+                vCommentaire.setCommentaire(pCommentaire);
+                commentaireResource.updateCommentaire(vCommentaire);
+                break;
+            case "delete":
+                commentaireResource.deleteCommentaire(pCommentaireId);
+                break;
+        }
+        return accueilController.showPagePerso(pUsername);
     }
 
 }
