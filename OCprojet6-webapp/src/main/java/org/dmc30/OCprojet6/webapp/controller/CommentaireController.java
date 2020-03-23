@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
@@ -78,28 +79,32 @@ public class CommentaireController {
 
     @PostMapping("/updateCommentaire")
     public ModelAndView updateCommentaire(@RequestParam(value = "commentaireId") Integer pCommentaireId,
-                                          @RequestParam(value = "action", required = false) String pAction,
-                                          @RequestParam(value = "commentaire", required = false) String pCommentaire,
+                                          @RequestParam(value = "action", required = false) String [] pAction,
+                                          @RequestParam(value = "commentaire", required = false) String [] pCommentaire,
+                                          @RequestParam(value = "line", required = false) Integer pLine,
                                           @RequestParam(value = "username", required = false) String pUsername,
                                           @RequestParam(value = "page") String pPage,
-                                          @RequestParam(value = "siteId", required = false) Integer pSiteId) throws TechnicalException {
+                                          @RequestParam(value = "siteId", required = false) Integer pSiteId,
+                                          HttpServletRequest request) throws TechnicalException {
 
         Commentaire vCommentaire = new Commentaire();
         ModelAndView vMav = new ModelAndView();
         String vMessageSucces = "";
-        logger.debug("Update du commentaire dans la page "+pPage);
 
-        switch (pAction) {
+        switch (pAction[1]) {
             case "update":
-                vCommentaire = commentaireResource.getCommentaireById(pCommentaireId);
-                vCommentaire.setCommentaire(pCommentaire);
+                logger.debug("CommentaireId = " + pAction[2]);
+                vCommentaire = commentaireResource.getCommentaireById(Integer.parseInt(pAction[2]));
+                logger.debug("Commentaire à updater = " + vCommentaire.getCommentaire());
+                logger.debug("Nouveau commentaire = "+ pCommentaire[Integer.parseInt(pAction[0])]);
+                vCommentaire.setCommentaire(pCommentaire[Integer.parseInt(pAction[0])]);
+                logger.debug("Commentaire updater = commentaire n°"+vCommentaire.getId() + " : "+vCommentaire.getCommentaire());
                 commentaireResource.updateCommentaire(vCommentaire);
                 vMessageSucces = "Le commentaire a été modifié.";
                 break;
             case "delete":
-                commentaireResource.deleteCommentaire(pCommentaireId);
+                commentaireResource.deleteCommentaire(Integer.parseInt(pAction[2]));
                 vMessageSucces = "Le commentaire a été supprimé.";
-
                 break;
         }
         if (pPage.equals("page-perso")) {

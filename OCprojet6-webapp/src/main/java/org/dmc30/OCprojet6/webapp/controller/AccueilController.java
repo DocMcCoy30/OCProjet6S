@@ -85,7 +85,7 @@ public class AccueilController extends AbstractController {
         boolean vValidationEnAttente = false;
 
         //Lister les sites enregistrés, topos, réservations liés à l'utilisateur
-        logger.debug("Page perso du User : " + pUserName);
+//        logger.debug("Page perso du User : " + pUserName);
         vListTopos = topoResource.getTopoByUser(pUserName);
         if (vListTopos.size()>0) {
             for (Topo vTopo : vListTopos

@@ -32,7 +32,7 @@
                         <h5 style="color: red">Il n'y a aucun commentaire à valider.</h5>
                     </c:if>
                     <c:if test="${! empty commentaires}">
-                        <c:forEach var="commentaire" items="${commentaires}">
+                        <c:forEach var="commentaire" items="${commentaires}" varStatus="line">
                             <li class="media">
                                 <div class="media-body" id="commentaire-div">
                                     <div class="row">
@@ -53,10 +53,10 @@
                                     <div class="row">
                                         <textarea class=" col-md-12" name="commentaire">${commentaire.commentaire}</textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-warning" name="action" value="update"
+                                    <button type="submit" class="btn btn-warning" name="action" value="${line.index},update,${commentaire.id}"
                                     >Modifier
                                     </button>
-                                    <button type="submit" class="btn btn-warning" name="action" value="delete"
+                                    <button type="submit" class="btn btn-warning" name="action" value="${line.index},delete,${commentaire.id}"
                                     >Supprimer
                                     </button>
                                 </div>

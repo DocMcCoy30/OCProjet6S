@@ -74,9 +74,6 @@
                                             à ${secteur.cotationMinMax[1]}</th>
                                     </tr>
                                 </table>
-                                <div>
-                                    <img src="..." class="card-img-top" alt="...">
-                                </div>
                                 <div id="descriptionBlock">
                                     <p>Description :</p>
                                     <div id="descriptionText">

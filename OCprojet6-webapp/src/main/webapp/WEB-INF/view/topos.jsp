@@ -36,7 +36,10 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Liste des topos du site <c:out value="${site.nom}"/></h2>
+                <c:url var="sitePage" value="/showSitePage">
+                    <c:param name="siteId" value="${site.id}"/>
+                </c:url>
+                <h2 class="card-title">Liste des topos du site <a href="${sitePage}">${site.nom}</a></h2>
             </div>
             <div class="card-body>">
                 <form action="reserveTopo" method="post">
