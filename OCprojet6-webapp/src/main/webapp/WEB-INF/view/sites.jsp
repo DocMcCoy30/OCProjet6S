@@ -177,7 +177,7 @@
                             <h5 style="color: red">Il n'y a aucun commentaire enregistré pour ce site.</h5>
                         </c:if>
                         <c:if test="${! empty site.listCommentaires}">
-                            <c:forEach var="commentaire" items="${site.listCommentaires}">
+                            <c:forEach var="commentaire" items="${site.listCommentaires}" varStatus="line">
                                 <input type="hidden" name="siteId" value="${site.id}">
                                 <input type="hidden" name="commentaireId" value="${commentaire.id}">
                                 <li class="media">
@@ -196,10 +196,10 @@
                                     </div>
                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                                         <div id="adminCommentBtn">
-                                            <button type="submit" class="btn btn-warning" name="action" value="update"
+                                            <button type="submit" class="btn btn-warning" name="action" value="${line.index},update,${commentaire.id}"
                                             >Modifier
                                             </button>
-                                            <button type="submit" class="btn btn-warning" name="action" value="delete"
+                                            <button type="submit" class="btn btn-warning" name="action" value="${line.index},delete,${commentaire.id}"
                                             >Supprimer
                                             </button>
                                         </div>
