@@ -49,7 +49,6 @@
                                             <label class="form-check-label" style="color: white"
                                                    for="validation">Publier</label>
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <textarea class=" col-md-12" name="commentaire">${commentaire.commentaire}</textarea>

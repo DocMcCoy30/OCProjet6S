@@ -10,8 +10,6 @@ public class Statut {
         this.etat = etat;
     }
 
-
-
     public int getId() {
         return id;
     }

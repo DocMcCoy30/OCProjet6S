@@ -37,6 +37,8 @@
                 <form action="createUpdateVoie" method="post">
                     <input id="siteId" name="siteId" type="hidden" value="${siteId}">
                     <input id="secteurId" name="secteurId" type="hidden" value="${secteur.id}">
+                    <input type="hidden" name="voieId" value="${voie.id}">
+
                     <div class="row no-gutters">
                         <div class="input-group mb-1">
                             <div class="input-group-prepend">
@@ -55,7 +57,7 @@
                         </div>
                     </div>
                     <div class="row no-gutters">
-                        <div class="input-group mx-auto">
+                        <div class="input-group col-md-3 mr-5">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="description">Hauteur : </span>
                             </div>
@@ -72,75 +74,69 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
-                        <div class="input-group col-md-5 mr-5">
+                        <div class="input-group col-md-3 mr-5">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="cotation">Cotation : </span>
                             </div>
                             <c:choose>
-                            <c:when test="${! empty voie}">
-                            <select class="custom-select" name="cotationId" id="cotations"
-                                    aria-label="Cotation de la voie"
-                                    aria-describedby="Cotation de la voie">
-                                <option selected value="${voie.cotation.id}">${voie.cotation.valeur}</option>
-                                <c:forEach var="cotation" items="${cotations}">
-                                <option value="${cotation.id}">${cotation.valeur}</option>
-                                </c:forEach>
+                                <c:when test="${! empty voie}">
+                                    <select class="custom-select" name="cotationId" id="cotations"
+                                            aria-label="Cotation de la voie"
+                                            aria-describedby="Cotation de la voie">
+                                        <option selected value="${voie.cotation.id}">${voie.cotation.valeur}</option>
+                                        <c:forEach var="cotation" items="${cotations}">
+                                            <option value="${cotation.id}">${cotation.valeur}</option>
+                                        </c:forEach>
+                                    </select>
                                 </c:when>
                                 <c:otherwise>
-                                <select class="custom-select" name="cotationId" id="cotations"
-                                        aria-label="Cotation de la voie"
-                                        aria-describedby="Cotation de la voie">
-                                    <option selected disabled></option>
-                                    <c:forEach var="cotation" items="${cotations}">
-                                        <option value="${cotation.id}">${cotation.valeur}</option>
-                                    </c:forEach>
-                                </select>
+                                    <select class="custom-select" name="cotationId" id="cotations"
+                                            aria-label="Cotation de la voie"
+                                            aria-describedby="Cotation de la voie">
+                                        <option selected></option>
+                                        <c:forEach var="cotation" items="${cotations}">
+                                            <option value="${cotation.id}">${cotation.valeur}</option>
+                                        </c:forEach>
+                                    </select>
                                 </c:otherwise>
-                                </c:choose>
+                            </c:choose>
                         </div>
                     </div>
-                    <br><br>
-
-                    <c:choose>
-                    <c:when test="${! empty voie}">
-                    <div class="text-right">
-                        <input type="hidden" name="voieId" value="${voie.id}">
-                        <input type="hidden" name="siteId" value="${siteId}">
-                        <input type="hidden" name="secteurId" value="${secteur.id}">
-                        <button type="submit" class="btn btn-warning" name="action" value="update">Modifier
-                        </button>
+                    <div class="row no-gutters">
+                        <c:choose>
+                            <c:when test="${!empty voie}">
+                                <button type="submit" class="btn btn-warning" name="action" value="update">
+                                    Modifier
+                                </button>
+                            </c:when>
+                            <c:otherwise>
+                                <button type="submit" class="btn btn-warning" name="action" value="create">
+                                    Ajouter
+                                </button>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
-                    </c:when>
-                    <c:otherwise>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-warning" name="action" value="create">
-                            Ajouter
-                        </button>
-                    </div>
-                    </c:otherwise>
-                    </c:choose>
+                </form>
             </div>
-            </form>
         </div>
     </div>
-</div>
-<!-- FOOTER -->
-<footer id="footer" class="page-footer">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-    </p>
-</footer>
+    <!-- FOOTER -->
+    <footer id="footer" class="page-footer">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2020 - Les amis de l'escalade &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+        </p>
+    </footer>
 
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-<script rel="script" src="${pageContext.request.contextPath}/resources/js/webappJsFunctions.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script rel="script" src="${pageContext.request.contextPath}/resources/js/webappJsFunctions.js"></script>
 
 </html>
 >
