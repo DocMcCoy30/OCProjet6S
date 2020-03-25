@@ -89,22 +89,42 @@
                     <h5 style="color: red">Il n'y a aucun utilisateur.</h5>
                 </c:if>
                 <c:if test="${! empty users}">
-                    <c:forEach var="user" items="${users}">
+                    <c:forEach var="user" items="${users}" varStatus="line">
                         <tr>
                             <td>${user.username}</td>
                             <td>${user.email}</td>
                             <td>${user.userRole}</td>
                             <td>
                                 <div class="form-check form-check-inline">
+                                    <c:if test="${user.userRole == 'ROLE_USER'}">
                                     <input class="form-check-input" type="radio" id="ROLE_USER"
-                                           name="user_role"
-                                           value="${user.username}">
+                                           name="user_role${line.index}"
+                                           value="${user.username}" checked>
                                     <label class="form-check-label" for="ROLE_USER">User</label>
+                                    </c:if>
+                                    <c:if test="${user.userRole != 'ROLE_USER'}">
+                                        <input class="form-check-input" type="radio" id="ROLE_USER"
+                                               name="user_role${line.index}"
+                                               value="${user.username}" checked>
+                                        <label class="form-check-label" for="ROLE_USER">User</label>
+                                    </c:if>
                                     &nbsp&nbsp
-                                    <input class="form-check-input" type="radio" id="ROLE_ADMIN"
-                                           name="user_role"
-                                           value="${user.username}">
-                                    <label class="form-check-label" for="ROLE_ADMIN">Admin</label>
+                                    <c:if test="${user.userRole == 'ROLE_ADMIN'}">
+                                        <input class="form-check-input" type="radio" id="ROLE_ADMIN"
+                                               name="user_role${line.index}"
+                                               value="${user.username}" checked>
+                                        <label class="form-check-label" for="ROLE_ADMIN">Admin</label>
+                                    </c:if>
+                                    <c:if test="${user.userRole != 'ROLE_ADMIN'}">
+                                        <input class="form-check-input" type="radio" id="ROLE_ADMIN"
+                                               name="user_role${line.index}"
+                                               value="${user.username}">
+                                        <label class="form-check-label" for="ROLE_ADMIN">Admin</label>
+                                    </c:if>
+<%--                                    <input class="form-check-input" type="radio" id="ROLE_ADMIN"--%>
+<%--                                           name="user_role${line.index}"--%>
+<%--                                           value="${user.username}">--%>
+<%--                                    <label class="form-check-label" for="ROLE_ADMIN">Admin</label>--%>
                                 </div>
                             </td>
                         </tr>

@@ -65,8 +65,6 @@
         <div class="card-body" id="siteCardBody">
             <div class="form-inline">
                 <input type="hidden" name="macaron-officiel" value="${site.officiel}" id="var-macaron">
-                <%--                <img id="banniereSite" src="${pageContext.request.contextPath}/resources/img/${site.listPhotos[0].nom}"--%>
-                <%--                     class="rounded" alt="${site.listPhotos[0].nom}">--%>
                 <div id="carouselAccueil" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -87,7 +85,6 @@
                 </div>
                 <img src="${pageContext.request.contextPath}/resources/img/Logo_Les_amis_de_l_escalade.png"
                      class="rounded mx-auto" alt="macaron-officiel" id="attribut-officiel">
-                <%--                <span class="offset-2" id="attribut-officiel">Site officiel Les Amis de l'Escalade</span>--%>
             </div>
             <div id="descriptionBlock">
                 <p>Description :</p>
@@ -111,18 +108,8 @@
                     <a class="btn btn-warning" href="${topoPage}">Voir les topos</a>
                 </div>
                 <div class="btn-group mx-auto" role="group">
-                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Voir les photos</a>
-                </div>
-                <div class="btn-group mx-auto" role="group">
-                    <input class="btn btn-warning" type="submit" onclick="showFormUpload(1)"
-                           value="Ajouter une photo"><br/>
-                </div>
-                <div class="btn-group mx-auto" role="group">
                     <input class="btn btn-warning" type="submit" onclick="showCommentPanel(1)"
                            value="Commentaires"><br/>
-                </div>
-                <div class="btn-group mx-auto" role="group">
-                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/#">Enregistrer</a>
                 </div>
             </div>
             <div>
@@ -137,32 +124,32 @@
                     </div>
                 </c:if>
             </div>
-            <form class="row" method="POST" action="uploadFile" id="formUpload" enctype="multipart/form-data">
-                <input type="hidden" value="${site.id}" name="siteId">
-                <div class="row col-md-12 no-gutters">
-                    <div class="input-group col-md-7">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupFileAddon">Image</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="file " id="inputGroupFile"
-                                   aria-describedby="inputGroupFileAddon">
-                            <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>
-                        </div>
-                    </div>
-                    <div class="input-group col-md-5">
-                        <div class="input-group-prepend offset-1">
-                            <span class="input-group-text form-control" id="nameLabel">Nom : </span>
-                        </div>
-                        <input type="text" class="form-control" name="nomPhoto" aria-label="nomPhoto"
-                               aria-describedby="nameLabel">
-                    </div>
-                    <button class="btn btn-warning offset-10" id="btnUpload" type="submit"
-                            onclick="showFormUpload(0)">Ajouter
-                    </button>
-                </div>
-            </form>
-            <br>
+<%--            <form class="row" method="POST" action="uploadFile" id="formUpload" enctype="multipart/form-data">--%>
+<%--                <input type="hidden" value="${site.id}" name="siteId">--%>
+<%--                <div class="row col-md-12 no-gutters">--%>
+<%--                    <div class="input-group col-md-7">--%>
+<%--                        <div class="input-group-prepend">--%>
+<%--                            <span class="input-group-text" id="inputGroupFileAddon">Image</span>--%>
+<%--                        </div>--%>
+<%--                        <div class="custom-file">--%>
+<%--                            <input type="file" class="custom-file-input" name="file " id="inputGroupFile"--%>
+<%--                                   aria-describedby="inputGroupFileAddon">--%>
+<%--                            <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="input-group col-md-5">--%>
+<%--                        <div class="input-group-prepend offset-1">--%>
+<%--                            <span class="input-group-text form-control" id="nameLabel">Nom : </span>--%>
+<%--                        </div>--%>
+<%--                        <input type="text" class="form-control" name="nomPhoto" aria-label="nomPhoto"--%>
+<%--                               aria-describedby="nameLabel">--%>
+<%--                    </div>--%>
+<%--                    <button class="btn btn-warning offset-10" id="btnUpload" type="submit"--%>
+<%--                            onclick="showFormUpload(0)">Ajouter--%>
+<%--                    </button>--%>
+<%--                </div>--%>
+<%--            </form>--%>
+<%--            <br>--%>
         </div>
         <br><br>
         <div class="card" id="commentaire-card">

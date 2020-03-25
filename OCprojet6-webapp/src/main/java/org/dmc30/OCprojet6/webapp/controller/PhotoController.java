@@ -50,7 +50,7 @@ public class PhotoController extends AbstractController {
         List<Photo> vListPhotos = new ArrayList<>();
         int vReferenceId = 1;
         String vNomPhoto = "";
-        String vMessageSuccess = "";
+        String vMessageSucces = "";
         String vMessageAlert = "";
         ModelAndView vMaV = new ModelAndView();
 
@@ -87,7 +87,7 @@ public class PhotoController extends AbstractController {
                 catch (TechnicalException e) {
                     vMessageAlert = e.getMessage();
                 }
-                vMessageSuccess = "L'image " + pNomPhoto + " a été chargée !";
+                vMessageSucces = "L'image " + pNomPhoto + " a été chargée !";
             } catch (Exception e) {
                 vMessageAlert = "Echec du chargement de l'image " + pNomPhoto + " => " + e.getMessage();
             }
@@ -107,8 +107,8 @@ public class PhotoController extends AbstractController {
         }
         vSite.setListPhotos(vListPhotos);
         vMaV.addObject("site", vSite);
-        vMaV.addObject("messageSuccess", vMessageSuccess);
-        vMaV.addObject("messageAlert", vMessageAlert);
+        vMaV.addObject("message_succes", vMessageSucces);
+        vMaV.addObject("message_alert", vMessageAlert);
         vMaV.setViewName("sites");
         return vMaV;
     }

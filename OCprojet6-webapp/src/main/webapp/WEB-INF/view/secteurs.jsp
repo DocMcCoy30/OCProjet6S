@@ -47,75 +47,68 @@
             </div>
             <div class="card-body">
                 <c:if test="${ !empty secteurss}">
-                    <c:forEach var="secteur" items="${secteurss}">
-                        <div class="card" id="secteurCard">
-                            <div class="card-header" id="secteurCardHeader">
-                                <div class="row">
-                                    <div class="col">
-                                        <h2 class="card-title">${secteur.nom}</h2>
-                                    </div>
-                                    <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
-                                    <c:url var="modifierSecteur" value="/showSecteurForm">
-                                        <c:param name="secteurId" value="${secteur.id}"/>
-                                        <c:param name="siteId" value="${site.id}"/>
-                                    </c:url>
-                                    <div class="col-auto pull-right">
-                                        <a class="btn btn-warning" href="${modifierSecteur}">Modifier</a>
-                                    </div>
-                                    </sec:authorize>
-                                </div>
+                <c:forEach var="secteur" items="${secteurss}">
+                <div class="card" id="secteurCard">
+                    <div class="card-header" id="secteurCardHeader">
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="card-title">${secteur.nom}</h2>
                             </div>
-                            <div class="card-body">
-                                <table class="table" id="infoSecteur">
-                                    <tr>
-                                        <th>Nombre de voies : ${secteur.nbDeVoies}</th>
-                                        <th>Hauteur max : ${secteur.hauteurMax} m</th>
-                                        <th>Cotation : de ${secteur.cotationMinMax[0]}
-                                            à ${secteur.cotationMinMax[1]}</th>
-                                    </tr>
-                                </table>
-                                <div id="descriptionBlock">
-                                    <p>Description :</p>
-                                    <div id="descriptionText">
-                                            ${secteur.description}
-                                    </div>
+                            <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
+                                <c:url var="modifierSecteur" value="/showSecteurForm">
+                                    <c:param name="secteurId" value="${secteur.id}"/>
+                                    <c:param name="siteId" value="${site.id}"/>
+                                </c:url>
+                                <div class="col-auto pull-right">
+                                    <a class="btn btn-warning" href="${modifierSecteur}">Modifier</a>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="btn-toolbar" role="toolbar">
-                                    <div class="btn-group ml-auto" role="group">
-                                        <c:url var="showVoiePage" value="/showVoiePage">
-                                            <c:param name="secteurId" value="${secteur.id}"/>
-                                            <c:param name="siteId" value="${site.id}"/>
-                                        </c:url>
-                                        <a href="${showVoiePage}" type="button" class="btn btn-warning">Voir les
-                                            voies</a>
-                                    </div>
-                                    &nbsp
-                                    <div class="btn-group mr-auto" role="group">
-                                        <c:url var="showPhotoSecteurPage" value="/showPhotoSecteurPage">
-                                            <c:param name="secteurId" value="${secteur.id}"/>
-                                        </c:url>
-                                        <a href="${showPhotoSecteurPage}" type="button" class="btn btn-warning">Voir les
-                                            photos</a>
-                                    </div>
-                                </div>
+                            </sec:authorize>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table" id="infoSecteur">
+                            <tr>
+                                <th>Nombre de voies : ${secteur.nbDeVoies}</th>
+                                <th>Hauteur max : ${secteur.hauteurMax} m</th>
+                                <th>Cotation : de ${secteur.cotationMinMax[0]}
+                                    à ${secteur.cotationMinMax[1]}</th>
+                            </tr>
+                        </table>
+                        <div id="descriptionBlock">
+                            <p>Description :</p>
+                            <div id="descriptionText">
+                                    ${secteur.description}
                             </div>
                         </div>
-                    </c:forEach>
-                </c:if>
-            </div>
-            <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-                <div class="text-left">
-                    <c:url var="ajouterSecteur" value="/showSecteurForm">
-                        <c:param name="siteId" value="${site.id}"/>
-                    </c:url>
-                    <a href="${ajouterSecteur}" type="button" id="btnAjoutSecteur" class="btn btn-warning">Ajouter
-                        un secteur</a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group ml-auto" role="group">
+                                <c:url var="showVoiePage" value="/showVoiePage">
+                                    <c:param name="secteurId" value="${secteur.id}"/>
+                                    <c:param name="siteId" value="${site.id}"/>
+                                </c:url>
+                                <a href="${showVoiePage}" type="button" class="btn btn-warning">Voir les
+                                    voies</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </sec:authorize>
+            </div>
+            </c:forEach>
+            </c:if>
         </div>
+        <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+            <div class="text-left">
+                <c:url var="ajouterSecteur" value="/showSecteurForm">
+                    <c:param name="siteId" value="${site.id}"/>
+                </c:url>
+                <a href="${ajouterSecteur}" type="button" id="btnAjoutSecteur" class="btn btn-warning">Ajouter
+                    un secteur</a>
+            </div>
+        </sec:authorize>
     </div>
+</div>
 </div>
 
 <!-- FOOTER -->

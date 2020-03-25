@@ -61,6 +61,11 @@ public class AccueilController extends AbstractController {
         return vMaV;
     }
 
+    /**
+     * test
+     * @param pModel
+     * @return
+     */
     @GetMapping("/jsTestPage")
     public ModelAndView jsTestPage(Model pModel) {
         ModelAndView vMav = new ModelAndView();

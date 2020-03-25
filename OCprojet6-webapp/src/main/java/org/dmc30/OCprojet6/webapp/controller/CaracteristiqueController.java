@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ *  !utilisation pour le moment : à implementer !
+ */
 @Controller
 @RequestMapping("/caracteristique")
 public class CaracteristiqueController {

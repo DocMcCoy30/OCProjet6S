@@ -193,7 +193,7 @@ function showTopoForm(b) {
 }
 
 /**
- * Affiche le panneau des commentaires de commentaire lorsque le bouton "ajouter" est cliqué.
+ * Affiche le panneau des commentaires lorsque le bouton "commentaire" est cliqué.
  * @param c
  */
 function showCommentPanel(c) {

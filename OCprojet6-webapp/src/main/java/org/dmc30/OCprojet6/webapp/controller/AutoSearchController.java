@@ -90,7 +90,7 @@ public class AutoSearchController extends AbstractController {
     }
 
     /**
-     * Recherche les sites concernés par la recherche.
+     * La barre de recherche.
      *
      * @param pModel  Alimente en données les listes déroulantes.
      * @param pMotCle Le mot clé renseigné dans la barre de recherche.

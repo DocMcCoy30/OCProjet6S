@@ -23,8 +23,18 @@
 <div id="body">
     <div class="container">
         <div class="card">
+            <c:url var="sitePage" value="/showSitePage">
+                <c:param name="siteId" value="${site.id}"/>
+            </c:url>
             <div class="card-header">
-                <div class="card-title"><h2>Ajouter/modifier un site</h2></div>
+                <c:choose>
+                    <c:when test="${! empty site}">
+                        <h2 class="card-title"><a href="${sitePage}">${site.nom}</a></h2>
+                    </c:when>
+                    <c:otherwise>
+                        <h2 class="card-title">Ajouter un site</h2>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="card-body">
                 <form action="createUpdateSite" method="post">
@@ -99,7 +109,8 @@
                             <c:choose>
                                 <c:when test="${! empty site}">
                                     <select class="custom-select" name="departement" id="departement" required>
-                                        <option selected value="${site.departement.code}">${site.departement.nom}</option>
+                                        <option selected
+                                                value="${site.departement.code}">${site.departement.nom}</option>
                                         <c:forEach var="departement" items="${departements}">
                                             <option value="${departement.code}">${departement.nom}</option>
                                         </c:forEach>
@@ -148,21 +159,59 @@
                             </c:choose>
                         </div>
                     </div>
-                    <c:choose>
-                        <c:when test="${! empty site}">
-                            <div class="text-right">
-                                <input hidden name="siteId" value="${site.id}">
-                                <input hidden name="descriptionId" value="${site.description.id}">
-                                <input hidden name="villeId" value="${site.ville.id}">
-                                <button type="submit" class="btn btn-warning" name="action" value="update" id="btnModificationSite">Modifier</button>
+
+                    <div class="btn-toolbar" role="toolbar" id="buttonLinkBar">
+                        <%--                        <c:if test="${! empty site}">--%>
+                        <div class="btn-group mx-auto" role="group">
+                            <input class="btn btn-warning" type="button" onclick="showFormUpload(1)"
+                                   value="Ajouter une photo">
+                        </div>
+                        <%--                        </c:if>--%>
+                        <c:choose>
+                            <c:when test="${! empty site}">
+                                <div class="btn-group mx-auto" role="group">
+                                    <input hidden name="siteId" value="${site.id}">
+                                    <input hidden name="descriptionId" value="${site.description.id}">
+                                    <input hidden name="villeId" value="${site.ville.id}">
+                                    <button type="submit" class="btn btn-warning" name="action" value="update"
+                                            id="btnModificationSite">Modifier
+                                    </button>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="btn-group mx-auto" role="group">
+                                    <button type="submit" class="btn btn-warning" name="action" value="create"
+                                            id="btnAjoutSite">Ajouter
+                                    </button>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </form>
+                <form class="row" method="POST" action="uploadFile" id="formUpload" enctype="multipart/form-data">
+                    <input type="hidden" value="${site.id}" name="siteId">
+                    <div class="row col-md-12 no-gutters">
+                        <div class="input-group col-md-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon">Image</span>
                             </div>
-                        </c:when>
-                        <c:otherwise>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-warning" name="action" value="create" id="btnAjoutSite">Ajouter</button>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="file " id="inputGroupFile"
+                                       aria-describedby="inputGroupFileAddon">
+                                <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>
                             </div>
-                        </c:otherwise>
-                    </c:choose>
+                        </div>
+                        <div class="input-group col-md-5">
+                            <div class="input-group-prepend offset-1">
+                                <span class="input-group-text form-control" id="nameLabel">Nom : </span>
+                            </div>
+                            <input type="text" class="form-control" name="nomPhoto" aria-label="nomPhoto"
+                                   aria-describedby="nameLabel">
+                        </div>
+                        <button class="btn btn-warning offset-10" id="btnUpload" type="submit"
+                                onclick="showFormUpload(0)">Ajouter
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

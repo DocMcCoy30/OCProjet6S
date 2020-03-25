@@ -64,7 +64,7 @@ public class SiteController extends AbstractController {
             vListPhotos = photoResource.getPhotoByRefId(1, pSiteId);
             vSite.setListPhotos(vListPhotos);
         } else {
-            vListPhotos = photoResource.getPhotoByRefId(4,0);
+            vListPhotos = photoResource.getPhotoByRefId(4, 0);
             vSite.setListPhotos(vListPhotos);
             logger.debug("Logo = " + vListPhotos.get(0).getNom());
         }
@@ -83,7 +83,7 @@ public class SiteController extends AbstractController {
 
 
     /**
-     * Afficher le formulaire de création de site.
+     * Affiche le formulaire de création de site.
      *
      * @param pModel Les données de listes déroulantes.
      * @return La page de création de site.
@@ -191,14 +191,14 @@ public class SiteController extends AbstractController {
 
     @PostMapping("/rendreOfficiel")
     public void rendreOfficiel(@RequestParam(value = "siteId") Integer pSiteId,
-                                       @RequestParam(value = "checked") Boolean pChecked,
-                                       HttpServletResponse response) throws TechnicalException, IOException {
+                               @RequestParam(value = "checked") Boolean pChecked,
+                               HttpServletResponse response) throws TechnicalException, IOException {
         logger.debug(pSiteId);
         Site vSite = siteResource.getSiteById(pSiteId);
         logger.debug(pChecked);
         if (pChecked) {
             vSite.setOfficiel(true);
-        } else if (!pChecked){
+        } else if (!pChecked) {
             vSite.setOfficiel(false);
         }
         vSite = siteResource.updateSite(vSite);
@@ -392,7 +392,7 @@ public class SiteController extends AbstractController {
                 logger.info("La liste de photos pour " + vSite.getNom() + " contient " + vListPhotos.size() + " photos");
                 vSite.setListPhotos(vListPhotos);
             } else {
-                vListPhotos = photoResource.getPhotoByRefId(4,0);
+                vListPhotos = photoResource.getPhotoByRefId(4, 0);
                 logger.info("La liste de photo pour " + vSite.getNom() + " est vide");
                 vSite.setListPhotos(vListPhotos);
             }
