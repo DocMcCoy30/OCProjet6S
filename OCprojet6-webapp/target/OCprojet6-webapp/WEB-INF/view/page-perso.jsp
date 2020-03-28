@@ -121,10 +121,6 @@
                                                value="${user.username}">
                                         <label class="form-check-label" for="ROLE_ADMIN">Admin</label>
                                     </c:if>
-<%--                                    <input class="form-check-input" type="radio" id="ROLE_ADMIN"--%>
-<%--                                           name="user_role${line.index}"--%>
-<%--                                           value="${user.username}">--%>
-<%--                                    <label class="form-check-label" for="ROLE_ADMIN">Admin</label>--%>
                                 </div>
                             </td>
                         </tr>
