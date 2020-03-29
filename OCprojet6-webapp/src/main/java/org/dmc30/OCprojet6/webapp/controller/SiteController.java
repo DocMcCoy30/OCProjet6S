@@ -321,7 +321,7 @@ public class SiteController extends AbstractController {
         }
         //option de recherche par département
         //dans ce cas, on renvoie toutes les régions et tous les départements + la listes des villes et sites correspondants au département choisi
-        else if (((pOptionRef != null) && (pOptionRef == 3))) {
+        else if ((pOptionRef != null) && (pOptionRef == 3)) {
             //renvoyer la region correspondant au département à la jsp
 //            Departement vDepartement = geographicResource.getDepartementByCode(pDepartementCode);
 //            logger.debug("Departement choisi = "+vDepartement.getNom());

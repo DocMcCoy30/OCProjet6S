@@ -94,7 +94,7 @@
                         <div class="text-right">
                             <input hidden name="siteId" value="${site.id}">
                             <button type="button" class="btn btn-warning"
-                                    id="btnCreationSecteur" onclick="showTopoForm(1)">Créer un topo
+                                    id="btnCreationSecteur" onclick="showTopoForm(1)">Ajouter un topo
                             </button>
                         </div>
                     </sec:authorize>
@@ -108,7 +108,7 @@
                     <h2 class="card-title">Créer un topo pour le site ${site.nom}</h2>
                 </div>
                 <div class="card-body">
-                    <h5>Ajouter/modifier un topo :</h5>
+                    <h5>Ajouter un topo :</h5>
                     <div class="row col-md-12 no-gutters">
                         <div class="input-group">
                             <div class="input-group-prepend">
