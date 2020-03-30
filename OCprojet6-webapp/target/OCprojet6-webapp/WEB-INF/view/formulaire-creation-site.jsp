@@ -159,14 +159,13 @@
                             </c:choose>
                         </div>
                     </div>
-
                     <div class="btn-toolbar" role="toolbar" id="buttonLinkBar">
-                        <div class="btn-group mx-auto" role="group">
-                            <input class="btn btn-warning" type="button" onclick="showFormUpload(1)"
-                                   value="Ajouter une photo">
-                        </div>
                         <c:choose>
                             <c:when test="${! empty site}">
+                                <div class="btn-group mx-auto" role="group">
+                                    <input class="btn btn-warning" type="button" onclick="showFormUpload(1)"
+                                           value="Ajouter une photo">
+                                </div>
                                 <div class="btn-group mx-auto" role="group">
                                     <input hidden name="siteId" value="${site.id}">
                                     <input hidden name="descriptionId" value="${site.description.id}">

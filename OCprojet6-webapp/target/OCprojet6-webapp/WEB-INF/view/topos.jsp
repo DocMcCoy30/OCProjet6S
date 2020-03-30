@@ -21,7 +21,7 @@
 <%@include file="header.jsp" %>
 
 <div id="body">
-    <div class="container-fluid">
+    <div class="container">
         <div>
             <c:if test="${ !empty messageSuccess}">
                 <div class="alert alert-success" role="alert">
@@ -34,6 +34,8 @@
                 </div>
             </c:if>
         </div>
+    </div>
+    <div class="container-fluid">
         <div class="card">
             <div class="card-header">
                 <c:url var="sitePage" value="/showSitePage">
@@ -133,7 +135,7 @@
                         <div class="row col-md-12 no-gutters">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Description (200 char max) : </span>
+                                    <span class="input-group-text">Description :</span>
                                 </div>
                                 <textarea class="form-control" name="description" aria-label="description"
                                           aria-describedby="Description du topo" maxlength="200"></textarea>

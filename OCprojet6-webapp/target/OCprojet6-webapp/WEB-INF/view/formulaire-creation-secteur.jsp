@@ -59,8 +59,7 @@
                             <c:choose>
                                 <c:when test="${! empty secteur}">
                                     <textarea class="form-control" name="description" aria-label="With textarea"
-                                              aria-describedby="Description du secteur">
-                                            ${secteur.description}</textarea>
+                                              aria-describedby="Description du secteur">${secteur.description}</textarea>
                                 </c:when>
                                 <c:otherwise>
                                     <textarea class="form-control" name="description" aria-label="With textarea"
