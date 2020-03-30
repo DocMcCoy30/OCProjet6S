@@ -80,25 +80,30 @@ public class TopoController {
     @PostMapping("/createTopo")
     public ModelAndView createTopo(@RequestParam(value = "siteId") Integer pSiteId,
                                    @RequestParam(value = "topoNom") String vTopoNom,
-                                   @RequestParam(value = "dateParution") String vDateParution,
+                                   @RequestParam(value = "dateParution") int vDateParution,
+                                   @RequestParam(value = "description") String vDescription,
                                    @RequestParam(value = "username") String pUsername) throws TechnicalException {
         String vMessageSucces = "";
         String vMessageAlert = "";
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date vDate = null;
         Site vSite = siteResource.getSiteById(pSiteId);
         Users vUser = userResource.getUserByName(pUsername);
-        try {
-            vDate = formatter.parse(vDateParution);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        Topo vTopo;
+
+        if (String.valueOf(vDateParution).matches("\\d{4}")) {
+            if (vDescription.isEmpty()) {
+                vDescription = "Aucune description pour ce topo";
+            }
+            vTopo = new Topo(vTopoNom, vDateParution, vDescription, vSite, vUser);
+            try {
+                    topoResource.createTopo(vTopo);
+                    vMessageSucces = "Le topo " + vTopoNom + " a été ajouté.";
+                } catch (TechnicalException e) {
+                    vMessageAlert = e.getMessage();
+                }
+
         }
-        Topo vTopo = new Topo(vTopoNom, vDate, vSite, vUser);
-        try {
-            topoResource.createTopo(vTopo);
-            vMessageSucces = "Le topo " + vTopoNom + " a été ajouté.";
-        } catch (TechnicalException e) {
-            vMessageAlert = e.getMessage();
+        else {
+            vMessageAlert = "L'année de publication n'est pas valide";
         }
         return showTopoPage(pSiteId, vMessageSucces, vMessageAlert);
     }

@@ -161,12 +161,10 @@
                     </div>
 
                     <div class="btn-toolbar" role="toolbar" id="buttonLinkBar">
-                        <%--                        <c:if test="${! empty site}">--%>
                         <div class="btn-group mx-auto" role="group">
                             <input class="btn btn-warning" type="button" onclick="showFormUpload(1)"
                                    value="Ajouter une photo">
                         </div>
-                        <%--                        </c:if>--%>
                         <c:choose>
                             <c:when test="${! empty site}">
                                 <div class="btn-group mx-auto" role="group">

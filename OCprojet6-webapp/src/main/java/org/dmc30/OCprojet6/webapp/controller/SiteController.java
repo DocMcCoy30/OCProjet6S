@@ -145,7 +145,7 @@ public class SiteController extends AbstractController {
             pDescription = "Ajouter une description pour ce site.";
         }
         vNewDescription.setDescription(pDescription);
-        String vInfo = pNomSite + " est un site d'escalade de type " + vSite.getTypeRoche().getNom() + ", situé à " + pNomSite +
+        String vInfo = pNomSite + " est un site d'escalade de type " + vSite.getTypeRoche().getNom() + ", situé à " + vSite.getVille().getNom() +
                 ", dans le département " + vSite.getDepartement().getNom() + " (" + vSite.getRegion().getNom() + ").";
         vNewDescription.setInfo(vInfo);
         vSite.setDescription(vNewDescription);

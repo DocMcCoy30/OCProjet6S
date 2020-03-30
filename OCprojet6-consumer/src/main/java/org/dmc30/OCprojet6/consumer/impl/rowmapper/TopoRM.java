@@ -26,7 +26,8 @@ public class TopoRM implements RowMapper<Topo> {
         try {
             vTopo = new Topo(resultSet.getInt("topo_id"),
                     resultSet.getString("nom"),
-                    resultSet.getDate("date_parution"),
+                    resultSet.getInt("date_parution"),
+                    resultSet.getString("description"),
                     siteDao.getSiteById(resultSet.getInt("site_id")),
                     usersDao.getUsersByName(resultSet.getString("username"))
                     );

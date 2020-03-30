@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-03-24 19:07:27
+-- Started on 2020-03-30 14:19:21
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,7 +21,7 @@ SET row_security = off;
 SET default_tablespace = '';
 
 --
--- TOC entry 228 (class 1259 OID 25609)
+-- TOC entry 228 (class 1259 OID 27419)
 -- Name: caracteristique; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -35,7 +35,7 @@ CREATE TABLE public.caracteristique (
 ALTER TABLE public.caracteristique OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 25607)
+-- TOC entry 227 (class 1259 OID 27417)
 -- Name: caracteristique_caracteristique_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -59,7 +59,7 @@ ALTER SEQUENCE public.caracteristique_caracteristique_id_seq OWNED BY public.car
 
 
 --
--- TOC entry 229 (class 1259 OID 25618)
+-- TOC entry 229 (class 1259 OID 27428)
 -- Name: caracteristique_voie; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -72,14 +72,14 @@ CREATE TABLE public.caracteristique_voie (
 ALTER TABLE public.caracteristique_voie OWNER TO postgres;
 
 --
--- TOC entry 204 (class 1259 OID 25472)
+-- TOC entry 204 (class 1259 OID 27282)
 -- Name: commentaire; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.commentaire (
     commentaire_id integer NOT NULL,
     commentaire character varying NOT NULL,
-    users_username character varying NOT NULL,
+    username character varying NOT NULL,
     reference_id integer NOT NULL,
     date_publication date NOT NULL,
     ref_id integer NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE public.commentaire (
 ALTER TABLE public.commentaire OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 25470)
+-- TOC entry 203 (class 1259 OID 27280)
 -- Name: commentaire_commentaire_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -114,7 +114,7 @@ ALTER SEQUENCE public.commentaire_commentaire_id_seq OWNED BY public.commentaire
 
 
 --
--- TOC entry 224 (class 1259 OID 25587)
+-- TOC entry 224 (class 1259 OID 27397)
 -- Name: cotation; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -127,7 +127,7 @@ CREATE TABLE public.cotation (
 ALTER TABLE public.cotation OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 25585)
+-- TOC entry 223 (class 1259 OID 27395)
 -- Name: cotation_cotation_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -151,7 +151,7 @@ ALTER SEQUENCE public.cotation_cotation_id_seq OWNED BY public.cotation.cotation
 
 
 --
--- TOC entry 210 (class 1259 OID 25511)
+-- TOC entry 210 (class 1259 OID 27321)
 -- Name: departement; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -165,7 +165,7 @@ CREATE TABLE public.departement (
 ALTER TABLE public.departement OWNER TO postgres;
 
 --
--- TOC entry 208 (class 1259 OID 25494)
+-- TOC entry 208 (class 1259 OID 27304)
 -- Name: description; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -179,7 +179,7 @@ CREATE TABLE public.description (
 ALTER TABLE public.description OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 25492)
+-- TOC entry 207 (class 1259 OID 27302)
 -- Name: description_description_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -203,7 +203,7 @@ ALTER SEQUENCE public.description_description_id_seq OWNED BY public.description
 
 
 --
--- TOC entry 201 (class 1259 OID 25453)
+-- TOC entry 201 (class 1259 OID 27263)
 -- Name: photo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -218,7 +218,7 @@ CREATE TABLE public.photo (
 ALTER TABLE public.photo OWNER TO postgres;
 
 --
--- TOC entry 200 (class 1259 OID 25451)
+-- TOC entry 200 (class 1259 OID 27261)
 -- Name: photo_photo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -242,7 +242,7 @@ ALTER SEQUENCE public.photo_photo_id_seq OWNED BY public.photo.photo_id;
 
 
 --
--- TOC entry 199 (class 1259 OID 25442)
+-- TOC entry 199 (class 1259 OID 27252)
 -- Name: reference; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -255,7 +255,7 @@ CREATE TABLE public.reference (
 ALTER TABLE public.reference OWNER TO postgres;
 
 --
--- TOC entry 198 (class 1259 OID 25440)
+-- TOC entry 198 (class 1259 OID 27250)
 -- Name: reference_reference_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -279,7 +279,7 @@ ALTER SEQUENCE public.reference_reference_id_seq OWNED BY public.reference.refer
 
 
 --
--- TOC entry 209 (class 1259 OID 25503)
+-- TOC entry 209 (class 1259 OID 27313)
 -- Name: region; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -292,7 +292,7 @@ CREATE TABLE public.region (
 ALTER TABLE public.region OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 25576)
+-- TOC entry 222 (class 1259 OID 27386)
 -- Name: secteur; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -307,7 +307,7 @@ CREATE TABLE public.secteur (
 ALTER TABLE public.secteur OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 25574)
+-- TOC entry 221 (class 1259 OID 27384)
 -- Name: secteur_secteur_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -331,7 +331,7 @@ ALTER SEQUENCE public.secteur_secteur_id_seq OWNED BY public.secteur.secteur_id;
 
 
 --
--- TOC entry 216 (class 1259 OID 25543)
+-- TOC entry 216 (class 1259 OID 27353)
 -- Name: site; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -350,7 +350,7 @@ CREATE TABLE public.site (
 ALTER TABLE public.site OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 25541)
+-- TOC entry 215 (class 1259 OID 27351)
 -- Name: site_site_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -374,7 +374,7 @@ ALTER SEQUENCE public.site_site_id_seq OWNED BY public.site.site_id;
 
 
 --
--- TOC entry 197 (class 1259 OID 25431)
+-- TOC entry 197 (class 1259 OID 27241)
 -- Name: statut; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -387,7 +387,7 @@ CREATE TABLE public.statut (
 ALTER TABLE public.statut OWNER TO postgres;
 
 --
--- TOC entry 196 (class 1259 OID 25429)
+-- TOC entry 196 (class 1259 OID 27239)
 -- Name: statut_statut_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -411,23 +411,24 @@ ALTER SEQUENCE public.statut_statut_id_seq OWNED BY public.statut.id;
 
 
 --
--- TOC entry 218 (class 1259 OID 25554)
+-- TOC entry 218 (class 1259 OID 27364)
 -- Name: topo; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.topo (
     topo_id integer NOT NULL,
     nom character varying NOT NULL,
-    date_parution date NOT NULL,
+    date_parution integer NOT NULL,
     site_id integer NOT NULL,
-    username character varying NOT NULL
+    username character varying NOT NULL,
+    description character varying NOT NULL
 );
 
 
 ALTER TABLE public.topo OWNER TO postgres;
 
 --
--- TOC entry 220 (class 1259 OID 25565)
+-- TOC entry 220 (class 1259 OID 27375)
 -- Name: topo_reservation; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -436,14 +437,14 @@ CREATE TABLE public.topo_reservation (
     reservation_date date NOT NULL,
     reservation_topo_id integer NOT NULL,
     username character varying NOT NULL,
-    statut_id integer NOT NULL
+    id integer NOT NULL
 );
 
 
 ALTER TABLE public.topo_reservation OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 25563)
+-- TOC entry 219 (class 1259 OID 27373)
 -- Name: topo_reservation_reservation_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -467,7 +468,7 @@ ALTER SEQUENCE public.topo_reservation_reservation_id_seq OWNED BY public.topo_r
 
 
 --
--- TOC entry 217 (class 1259 OID 25552)
+-- TOC entry 217 (class 1259 OID 27362)
 -- Name: topo_topo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -491,7 +492,7 @@ ALTER SEQUENCE public.topo_topo_id_seq OWNED BY public.topo.topo_id;
 
 
 --
--- TOC entry 214 (class 1259 OID 25532)
+-- TOC entry 214 (class 1259 OID 27342)
 -- Name: type_roche; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -504,7 +505,7 @@ CREATE TABLE public.type_roche (
 ALTER TABLE public.type_roche OWNER TO postgres;
 
 --
--- TOC entry 213 (class 1259 OID 25530)
+-- TOC entry 213 (class 1259 OID 27340)
 -- Name: type_roche_type_roche_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -528,7 +529,7 @@ ALTER SEQUENCE public.type_roche_type_roche_id_seq OWNED BY public.type_roche.ty
 
 
 --
--- TOC entry 206 (class 1259 OID 25483)
+-- TOC entry 206 (class 1259 OID 27293)
 -- Name: user_roles; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -542,11 +543,11 @@ CREATE TABLE public.user_roles (
 ALTER TABLE public.user_roles OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 25481)
--- Name: user_role_user_role_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- TOC entry 205 (class 1259 OID 27291)
+-- Name: user_roles_user_role_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.user_role_user_role_id_seq
+CREATE SEQUENCE public.user_roles_user_role_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -554,19 +555,19 @@ CREATE SEQUENCE public.user_role_user_role_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.user_role_user_role_id_seq OWNER TO postgres;
+ALTER TABLE public.user_roles_user_role_id_seq OWNER TO postgres;
 
 --
 -- TOC entry 3043 (class 0 OID 0)
 -- Dependencies: 205
--- Name: user_role_user_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: user_roles_user_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.user_role_user_role_id_seq OWNED BY public.user_roles.user_role_id;
+ALTER SEQUENCE public.user_roles_user_role_id_seq OWNED BY public.user_roles.user_role_id;
 
 
 --
--- TOC entry 202 (class 1259 OID 25462)
+-- TOC entry 202 (class 1259 OID 27272)
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -581,7 +582,7 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- TOC entry 212 (class 1259 OID 25521)
+-- TOC entry 212 (class 1259 OID 27331)
 -- Name: ville; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -595,7 +596,7 @@ CREATE TABLE public.ville (
 ALTER TABLE public.ville OWNER TO postgres;
 
 --
--- TOC entry 211 (class 1259 OID 25519)
+-- TOC entry 211 (class 1259 OID 27329)
 -- Name: ville_ville_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -619,7 +620,7 @@ ALTER SEQUENCE public.ville_ville_id_seq OWNED BY public.ville.ville_id;
 
 
 --
--- TOC entry 226 (class 1259 OID 25598)
+-- TOC entry 226 (class 1259 OID 27408)
 -- Name: voie; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -635,7 +636,7 @@ CREATE TABLE public.voie (
 ALTER TABLE public.voie OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 25596)
+-- TOC entry 225 (class 1259 OID 27406)
 -- Name: voie_voie_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -659,7 +660,7 @@ ALTER SEQUENCE public.voie_voie_id_seq OWNED BY public.voie.voie_id;
 
 
 --
--- TOC entry 2817 (class 2604 OID 25612)
+-- TOC entry 2817 (class 2604 OID 27422)
 -- Name: caracteristique caracteristique_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -667,7 +668,7 @@ ALTER TABLE ONLY public.caracteristique ALTER COLUMN caracteristique_id SET DEFA
 
 
 --
--- TOC entry 2806 (class 2604 OID 25475)
+-- TOC entry 2806 (class 2604 OID 27285)
 -- Name: commentaire commentaire_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -675,7 +676,7 @@ ALTER TABLE ONLY public.commentaire ALTER COLUMN commentaire_id SET DEFAULT next
 
 
 --
--- TOC entry 2815 (class 2604 OID 25590)
+-- TOC entry 2815 (class 2604 OID 27400)
 -- Name: cotation cotation_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -683,7 +684,7 @@ ALTER TABLE ONLY public.cotation ALTER COLUMN cotation_id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 2808 (class 2604 OID 25497)
+-- TOC entry 2808 (class 2604 OID 27307)
 -- Name: description description_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -691,7 +692,7 @@ ALTER TABLE ONLY public.description ALTER COLUMN description_id SET DEFAULT next
 
 
 --
--- TOC entry 2805 (class 2604 OID 25456)
+-- TOC entry 2805 (class 2604 OID 27266)
 -- Name: photo photo_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -699,7 +700,7 @@ ALTER TABLE ONLY public.photo ALTER COLUMN photo_id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2804 (class 2604 OID 25445)
+-- TOC entry 2804 (class 2604 OID 27255)
 -- Name: reference reference_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -707,7 +708,7 @@ ALTER TABLE ONLY public.reference ALTER COLUMN reference_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 2814 (class 2604 OID 25579)
+-- TOC entry 2814 (class 2604 OID 27389)
 -- Name: secteur secteur_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -715,7 +716,7 @@ ALTER TABLE ONLY public.secteur ALTER COLUMN secteur_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 2811 (class 2604 OID 25546)
+-- TOC entry 2811 (class 2604 OID 27356)
 -- Name: site site_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -723,7 +724,7 @@ ALTER TABLE ONLY public.site ALTER COLUMN site_id SET DEFAULT nextval('public.si
 
 
 --
--- TOC entry 2803 (class 2604 OID 25434)
+-- TOC entry 2803 (class 2604 OID 27244)
 -- Name: statut id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -731,7 +732,7 @@ ALTER TABLE ONLY public.statut ALTER COLUMN id SET DEFAULT nextval('public.statu
 
 
 --
--- TOC entry 2812 (class 2604 OID 25557)
+-- TOC entry 2812 (class 2604 OID 27367)
 -- Name: topo topo_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -739,7 +740,7 @@ ALTER TABLE ONLY public.topo ALTER COLUMN topo_id SET DEFAULT nextval('public.to
 
 
 --
--- TOC entry 2813 (class 2604 OID 25568)
+-- TOC entry 2813 (class 2604 OID 27378)
 -- Name: topo_reservation reservation_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -747,7 +748,7 @@ ALTER TABLE ONLY public.topo_reservation ALTER COLUMN reservation_id SET DEFAULT
 
 
 --
--- TOC entry 2810 (class 2604 OID 25535)
+-- TOC entry 2810 (class 2604 OID 27345)
 -- Name: type_roche type_roche_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -755,15 +756,15 @@ ALTER TABLE ONLY public.type_roche ALTER COLUMN type_roche_id SET DEFAULT nextva
 
 
 --
--- TOC entry 2807 (class 2604 OID 25486)
+-- TOC entry 2807 (class 2604 OID 27296)
 -- Name: user_roles user_role_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.user_roles ALTER COLUMN user_role_id SET DEFAULT nextval('public.user_role_user_role_id_seq'::regclass);
+ALTER TABLE ONLY public.user_roles ALTER COLUMN user_role_id SET DEFAULT nextval('public.user_roles_user_role_id_seq'::regclass);
 
 
 --
--- TOC entry 2809 (class 2604 OID 25524)
+-- TOC entry 2809 (class 2604 OID 27334)
 -- Name: ville ville_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -771,7 +772,7 @@ ALTER TABLE ONLY public.ville ALTER COLUMN ville_id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2816 (class 2604 OID 25601)
+-- TOC entry 2816 (class 2604 OID 27411)
 -- Name: voie voie_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -779,7 +780,7 @@ ALTER TABLE ONLY public.voie ALTER COLUMN voie_id SET DEFAULT nextval('public.vo
 
 
 --
--- TOC entry 2853 (class 2606 OID 25617)
+-- TOC entry 2853 (class 2606 OID 27427)
 -- Name: caracteristique caracteristique_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -788,7 +789,7 @@ ALTER TABLE ONLY public.caracteristique
 
 
 --
--- TOC entry 2855 (class 2606 OID 25622)
+-- TOC entry 2855 (class 2606 OID 27432)
 -- Name: caracteristique_voie caracteristique_voie_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -797,7 +798,7 @@ ALTER TABLE ONLY public.caracteristique_voie
 
 
 --
--- TOC entry 2827 (class 2606 OID 25480)
+-- TOC entry 2827 (class 2606 OID 27290)
 -- Name: commentaire commentaire_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -806,7 +807,7 @@ ALTER TABLE ONLY public.commentaire
 
 
 --
--- TOC entry 2849 (class 2606 OID 25595)
+-- TOC entry 2849 (class 2606 OID 27405)
 -- Name: cotation cotation_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -815,7 +816,7 @@ ALTER TABLE ONLY public.cotation
 
 
 --
--- TOC entry 2835 (class 2606 OID 25518)
+-- TOC entry 2835 (class 2606 OID 27328)
 -- Name: departement departement_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -824,7 +825,7 @@ ALTER TABLE ONLY public.departement
 
 
 --
--- TOC entry 2831 (class 2606 OID 25502)
+-- TOC entry 2831 (class 2606 OID 27312)
 -- Name: description description_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -833,7 +834,7 @@ ALTER TABLE ONLY public.description
 
 
 --
--- TOC entry 2823 (class 2606 OID 25461)
+-- TOC entry 2823 (class 2606 OID 27271)
 -- Name: photo photo_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -842,7 +843,7 @@ ALTER TABLE ONLY public.photo
 
 
 --
--- TOC entry 2821 (class 2606 OID 25450)
+-- TOC entry 2821 (class 2606 OID 27260)
 -- Name: reference reference_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -851,7 +852,7 @@ ALTER TABLE ONLY public.reference
 
 
 --
--- TOC entry 2833 (class 2606 OID 25510)
+-- TOC entry 2833 (class 2606 OID 27320)
 -- Name: region region_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -860,7 +861,7 @@ ALTER TABLE ONLY public.region
 
 
 --
--- TOC entry 2847 (class 2606 OID 25584)
+-- TOC entry 2847 (class 2606 OID 27394)
 -- Name: secteur secteur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -869,7 +870,7 @@ ALTER TABLE ONLY public.secteur
 
 
 --
--- TOC entry 2841 (class 2606 OID 25551)
+-- TOC entry 2841 (class 2606 OID 27361)
 -- Name: site site_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -878,7 +879,7 @@ ALTER TABLE ONLY public.site
 
 
 --
--- TOC entry 2819 (class 2606 OID 25439)
+-- TOC entry 2819 (class 2606 OID 27249)
 -- Name: statut statut_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -887,7 +888,7 @@ ALTER TABLE ONLY public.statut
 
 
 --
--- TOC entry 2843 (class 2606 OID 25562)
+-- TOC entry 2843 (class 2606 OID 27372)
 -- Name: topo topo_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -896,7 +897,7 @@ ALTER TABLE ONLY public.topo
 
 
 --
--- TOC entry 2845 (class 2606 OID 25573)
+-- TOC entry 2845 (class 2606 OID 27383)
 -- Name: topo_reservation topo_reservation_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -905,7 +906,7 @@ ALTER TABLE ONLY public.topo_reservation
 
 
 --
--- TOC entry 2839 (class 2606 OID 25540)
+-- TOC entry 2839 (class 2606 OID 27350)
 -- Name: type_roche type_roche_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -914,16 +915,16 @@ ALTER TABLE ONLY public.type_roche
 
 
 --
--- TOC entry 2829 (class 2606 OID 25491)
--- Name: user_roles user_role_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2829 (class 2606 OID 27301)
+-- Name: user_roles user_roles_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_roles
-    ADD CONSTRAINT user_role_pk PRIMARY KEY (user_role_id);
+    ADD CONSTRAINT user_roles_pk PRIMARY KEY (user_role_id);
 
 
 --
--- TOC entry 2825 (class 2606 OID 25469)
+-- TOC entry 2825 (class 2606 OID 27279)
 -- Name: users users_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -932,7 +933,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 2837 (class 2606 OID 25529)
+-- TOC entry 2837 (class 2606 OID 27339)
 -- Name: ville ville_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -941,7 +942,7 @@ ALTER TABLE ONLY public.ville
 
 
 --
--- TOC entry 2851 (class 2606 OID 25606)
+-- TOC entry 2851 (class 2606 OID 27416)
 -- Name: voie voie_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -950,7 +951,7 @@ ALTER TABLE ONLY public.voie
 
 
 --
--- TOC entry 2876 (class 2606 OID 25723)
+-- TOC entry 2876 (class 2606 OID 27533)
 -- Name: caracteristique_voie caracteristique_caracteristique_voie_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -959,7 +960,7 @@ ALTER TABLE ONLY public.caracteristique_voie
 
 
 --
--- TOC entry 2874 (class 2606 OID 25713)
+-- TOC entry 2874 (class 2606 OID 27523)
 -- Name: voie cotation_voie_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -968,7 +969,7 @@ ALTER TABLE ONLY public.voie
 
 
 --
--- TOC entry 2864 (class 2606 OID 25673)
+-- TOC entry 2864 (class 2606 OID 27483)
 -- Name: site departement_site_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -977,7 +978,7 @@ ALTER TABLE ONLY public.site
 
 
 --
--- TOC entry 2861 (class 2606 OID 25678)
+-- TOC entry 2861 (class 2606 OID 27488)
 -- Name: ville departement_ville_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -986,7 +987,7 @@ ALTER TABLE ONLY public.ville
 
 
 --
--- TOC entry 2862 (class 2606 OID 25658)
+-- TOC entry 2862 (class 2606 OID 27468)
 -- Name: site description_site_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -995,7 +996,7 @@ ALTER TABLE ONLY public.site
 
 
 --
--- TOC entry 2857 (class 2606 OID 25633)
+-- TOC entry 2857 (class 2606 OID 27443)
 -- Name: commentaire reference_commentaire_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1004,7 +1005,7 @@ ALTER TABLE ONLY public.commentaire
 
 
 --
--- TOC entry 2856 (class 2606 OID 25628)
+-- TOC entry 2856 (class 2606 OID 27438)
 -- Name: photo reference_photo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1013,7 +1014,7 @@ ALTER TABLE ONLY public.photo
 
 
 --
--- TOC entry 2860 (class 2606 OID 25668)
+-- TOC entry 2860 (class 2606 OID 27478)
 -- Name: departement region_departement_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1022,7 +1023,7 @@ ALTER TABLE ONLY public.departement
 
 
 --
--- TOC entry 2863 (class 2606 OID 25663)
+-- TOC entry 2863 (class 2606 OID 27473)
 -- Name: site region_site_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1031,7 +1032,7 @@ ALTER TABLE ONLY public.site
 
 
 --
--- TOC entry 2873 (class 2606 OID 25708)
+-- TOC entry 2873 (class 2606 OID 27518)
 -- Name: voie secteur_voie_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1040,7 +1041,7 @@ ALTER TABLE ONLY public.voie
 
 
 --
--- TOC entry 2872 (class 2606 OID 25693)
+-- TOC entry 2872 (class 2606 OID 27503)
 -- Name: secteur site_secteur_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1049,7 +1050,7 @@ ALTER TABLE ONLY public.secteur
 
 
 --
--- TOC entry 2868 (class 2606 OID 25698)
+-- TOC entry 2868 (class 2606 OID 27508)
 -- Name: topo site_topo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1058,16 +1059,16 @@ ALTER TABLE ONLY public.topo
 
 
 --
--- TOC entry 2869 (class 2606 OID 25623)
+-- TOC entry 2869 (class 2606 OID 27433)
 -- Name: topo_reservation statut_topo_reservation_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.topo_reservation
-    ADD CONSTRAINT statut_topo_reservation_fk FOREIGN KEY (statut_id) REFERENCES public.statut(id);
+    ADD CONSTRAINT statut_topo_reservation_fk FOREIGN KEY (id) REFERENCES public.statut(id);
 
 
 --
--- TOC entry 2871 (class 2606 OID 25703)
+-- TOC entry 2871 (class 2606 OID 27513)
 -- Name: topo_reservation topo_topo_reservation_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1076,7 +1077,7 @@ ALTER TABLE ONLY public.topo_reservation
 
 
 --
--- TOC entry 2866 (class 2606 OID 25688)
+-- TOC entry 2866 (class 2606 OID 27498)
 -- Name: site type_roche_site_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1085,16 +1086,16 @@ ALTER TABLE ONLY public.site
 
 
 --
--- TOC entry 2858 (class 2606 OID 25643)
+-- TOC entry 2858 (class 2606 OID 27453)
 -- Name: commentaire users_commentaire_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.commentaire
-    ADD CONSTRAINT users_commentaire_fk FOREIGN KEY (users_username) REFERENCES public.users(username);
+    ADD CONSTRAINT users_commentaire_fk FOREIGN KEY (username) REFERENCES public.users(username);
 
 
 --
--- TOC entry 2867 (class 2606 OID 25648)
+-- TOC entry 2867 (class 2606 OID 27458)
 -- Name: topo users_topo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1103,7 +1104,7 @@ ALTER TABLE ONLY public.topo
 
 
 --
--- TOC entry 2870 (class 2606 OID 25653)
+-- TOC entry 2870 (class 2606 OID 27463)
 -- Name: topo_reservation users_topo_reservation_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1112,7 +1113,7 @@ ALTER TABLE ONLY public.topo_reservation
 
 
 --
--- TOC entry 2859 (class 2606 OID 25638)
+-- TOC entry 2859 (class 2606 OID 27448)
 -- Name: user_roles users_user_role_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1121,7 +1122,7 @@ ALTER TABLE ONLY public.user_roles
 
 
 --
--- TOC entry 2865 (class 2606 OID 25683)
+-- TOC entry 2865 (class 2606 OID 27493)
 -- Name: site ville_site_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1130,7 +1131,7 @@ ALTER TABLE ONLY public.site
 
 
 --
--- TOC entry 2875 (class 2606 OID 25718)
+-- TOC entry 2875 (class 2606 OID 27528)
 -- Name: caracteristique_voie voie_caracteristique_voie_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1393,10 +1394,10 @@ GRANT ALL ON TABLE public.user_roles TO dmc30;
 --
 -- TOC entry 3044 (class 0 OID 0)
 -- Dependencies: 205
--- Name: SEQUENCE user_role_user_role_id_seq; Type: ACL; Schema: public; Owner: postgres
+-- Name: SEQUENCE user_roles_user_role_id_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON SEQUENCE public.user_role_user_role_id_seq TO dmc30;
+GRANT ALL ON SEQUENCE public.user_roles_user_role_id_seq TO dmc30;
 
 
 --
@@ -1444,7 +1445,7 @@ GRANT ALL ON TABLE public.voie TO dmc30;
 GRANT ALL ON SEQUENCE public.voie_voie_id_seq TO dmc30;
 
 
--- Completed on 2020-03-24 19:07:28
+-- Completed on 2020-03-30 14:19:21
 
 --
 -- PostgreSQL database dump complete

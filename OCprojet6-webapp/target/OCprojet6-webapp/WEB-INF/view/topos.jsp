@@ -21,7 +21,7 @@
 <%@include file="header.jsp" %>
 
 <div id="body">
-    <div class="container">
+    <div class="container-fluid">
         <div>
             <c:if test="${ !empty messageSuccess}">
                 <div class="alert alert-success" role="alert">
@@ -48,6 +48,7 @@
                         <tr>
                             <th>Nom</th>
                             <th>Date de parution</th>
+                            <th>Description</th>
                             <th>Réservé le :</th>
                             <th>Réserver pour le :</th>
                             <th></th>
@@ -61,6 +62,7 @@
                             <tr>
                                 <td>${topo.nom}</td>
                                 <td>${topo.dateParution}</td>
+                                <td>${topo.description}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button"
@@ -101,46 +103,56 @@
                 </div>
             </div>
         </div>
-        <form action="createTopo" method="post">
-            <div class="card" id="topoForm">
-                <div class="card-header">
-                    <input id="secteurId" name="secteurId" type="hidden" value="${secteur.id}">
-                    <h2 class="card-title">Créer un topo pour le site ${site.nom}</h2>
-                </div>
-                <div class="card-body">
-                    <h5>Ajouter un topo :</h5>
-                    <div class="row col-md-12 no-gutters">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="topoNom">Nom du topo : </span>
-                            </div>
-                            <input type="text" name="topoNom" class="form-control" aria-label="topoNom"
-                                   aria-describedby="Nom du Topo" required>
-                        </div>
+        <div class="container">
+            <form action="createTopo" method="post">
+                <div class="card" id="topoForm">
+                    <div class="card-header">
+                        <input id="secteurId" name="secteurId" type="hidden" value="${secteur.id}">
+                        <h2 class="card-title">Créer un topo pour le site ${site.nom}</h2>
                     </div>
-                    <div class="row col-md-12 no-gutters">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="dateParution">Date de parution : </span>
-                                <input type="date" name="dateParution" class="form-control"
-                                       aria-label="dateParution"
+                    <div class="card-body">
+                        <h5>Ajouter un topo :</h5>
+                        <div class="row col-md-12 no-gutters">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="topoNom">Nom du topo : </span>
+                                </div>
+                                <input type="text" name="topoNom" class="form-control" aria-label="topoNom"
+                                       aria-describedby="Nom du Topo" required>
+                            </div>
+                        </div>
+                        <div class="row col-md-12 no-gutters">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="dateParution">Date de parution :</span>
+                                </div>
+                                <input type="text" name="dateParution" class="form-control" aria-label="dateParution"
                                        aria-describedby="Date de parution" required>
                             </div>
                         </div>
+                        <div class="row col-md-12 no-gutters">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Description (200 char max) : </span>
+                                </div>
+                                <textarea class="form-control" name="description" aria-label="description"
+                                          aria-describedby="Description du topo" maxlength="200"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-right">
+                            <input type="hidden" name="siteId" value="${site.id}">
+                            <input type="hidden" name="username" value="${pageContext.request.userPrincipal.name}">
+                            <button type="submit" class="btn btn-warning" id="btnAjoutTopo"
+                                    onclick="showTopoForm(0)">
+                                Ajouter
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="text-right">
-                        <input type="hidden" name="siteId" value="${site.id}">
-                        <input type="hidden" name="username" value="${pageContext.request.userPrincipal.name}">
-                        <button type="submit" class="btn btn-warning" id="btnAjoutTopo"
-                                onclick="showTopoForm(0)">
-                            Ajouter
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     </form>
 </div>

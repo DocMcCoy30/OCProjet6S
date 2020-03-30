@@ -124,32 +124,6 @@
                     </div>
                 </c:if>
             </div>
-<%--            <form class="row" method="POST" action="uploadFile" id="formUpload" enctype="multipart/form-data">--%>
-<%--                <input type="hidden" value="${site.id}" name="siteId">--%>
-<%--                <div class="row col-md-12 no-gutters">--%>
-<%--                    <div class="input-group col-md-7">--%>
-<%--                        <div class="input-group-prepend">--%>
-<%--                            <span class="input-group-text" id="inputGroupFileAddon">Image</span>--%>
-<%--                        </div>--%>
-<%--                        <div class="custom-file">--%>
-<%--                            <input type="file" class="custom-file-input" name="file " id="inputGroupFile"--%>
-<%--                                   aria-describedby="inputGroupFileAddon">--%>
-<%--                            <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="input-group col-md-5">--%>
-<%--                        <div class="input-group-prepend offset-1">--%>
-<%--                            <span class="input-group-text form-control" id="nameLabel">Nom : </span>--%>
-<%--                        </div>--%>
-<%--                        <input type="text" class="form-control" name="nomPhoto" aria-label="nomPhoto"--%>
-<%--                               aria-describedby="nameLabel">--%>
-<%--                    </div>--%>
-<%--                    <button class="btn btn-warning offset-10" id="btnUpload" type="submit"--%>
-<%--                            onclick="showFormUpload(0)">Ajouter--%>
-<%--                    </button>--%>
-<%--                </div>--%>
-<%--            </form>--%>
-<%--            <br>--%>
         </div>
         <br><br>
         <div class="card" id="commentaire-card">
@@ -214,14 +188,6 @@
                 </div>
                 <div class="card-body">
                     <div class="row no-gutters">
-                        <%--                        <div class="input-group">--%>
-                        <%--                            <div class="input-group-prepend">--%>
-                        <%--                                <span class="input-group-text" id="commentaireTitre">Titre : </span>--%>
-                        <%--                            </div>--%>
-                        <%--                            <input type="text" name="commentaireTitre" class="form-control"--%>
-                        <%--                                   aria-label="commentaireTitre"--%>
-                        <%--                                   aria-describedby="Titre du commentaire" required>--%>
-                        <%--                        </div>--%>
                         <div class="input-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">

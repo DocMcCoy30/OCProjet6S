@@ -4,7 +4,7 @@
               auth="Container"
               type="javax.sql.DataSource"
 
-              url="jdbc:postgresql://localhost:5432/DB_OCP6"
+              url="jdbc:postgresql://localhost:5432/DB_OCEscalade"
               driverClassName="org.postgresql.Driver"
               username="dmc30"
               password="dmcTr3nt3"

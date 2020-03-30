@@ -7,7 +7,8 @@ public class Topo {
 
     private int id;
     private String nom;
-    private Date dateParution;
+    private int dateParution;
+    private String description;
     private Site site;
     private Users user;
     List<TopoReservation> listReservations;
@@ -15,17 +16,19 @@ public class Topo {
     public Topo() {
     }
 
-    public Topo(int id, String nom, Date dateParution, Site site, Users user) {
+    public Topo(int id, String nom, int dateParution, String description , Site site, Users user) {
         this.id = id;
         this.nom = nom;
         this.dateParution = dateParution;
+        this.description = description;
         this.site = site;
         this.user = user;
     }
 
-    public Topo(String nom, Date dateParution, Site site, Users user) {
+    public Topo(String nom, int dateParution, String description, Site site, Users user) {
         this.nom = nom;
         this.dateParution = dateParution;
+        this.description = description;
         this.site = site;
         this.user = user;
     }
@@ -46,12 +49,20 @@ public class Topo {
         this.nom = nom;
     }
 
-    public Date getDateParution() {
+    public int getDateParution() {
         return dateParution;
     }
 
-    public void setDateParution(Date dateParution) {
+    public void setDateParution(int dateParution) {
         this.dateParution = dateParution;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Site getSite() {
