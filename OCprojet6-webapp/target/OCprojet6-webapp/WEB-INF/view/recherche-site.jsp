@@ -22,7 +22,6 @@
 
 <div id="body">
     <div class="container" id="recherche-multicritere">
-        <span style="color: red">La valeur de chosen est ${chosen}</span>
         <form action="searchSites" method="post" id="searchSitesForm">
             <input type="hidden" id="chosen" value="${chosen}">
             <div class="row col-lg-12 no-gutters" id="SearchSiteBar">

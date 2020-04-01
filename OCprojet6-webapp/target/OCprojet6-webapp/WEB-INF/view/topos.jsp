@@ -53,7 +53,7 @@
                             <th>Description</th>
                             <th>Réservé le :</th>
                             <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
-                                <th>Réserver pour le :</th>
+                                <th>Réserver pour le</th>
                                 <th></th>
                             </sec:authorize>
                         </tr>
@@ -158,8 +158,6 @@
             </form>
         </div>
     </div>
-    </form>
-</div>
 </div>
 
 

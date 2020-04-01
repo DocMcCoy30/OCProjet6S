@@ -186,7 +186,6 @@ public class SiteController extends AbstractController {
         String vJSONSearchResult = new Gson().toJson(vListDepartement);
         logger.debug("JSON searchList = " + vJSONSearchResult);
         response.getWriter().write(vJSONSearchResult);
-
     }
 
     @PostMapping("/rendreOfficiel")
@@ -269,7 +268,6 @@ public class SiteController extends AbstractController {
         List<Ville> vListVilles = new ArrayList<>();
         List<Photo> vListPhotos = new ArrayList<>();
         String vInfoDeRecherche = "";
-        int chosen = 0;
 
         //option de recherche par nom de site
         if ((pOptionRef != null) && (pOptionRef == 1)) {
@@ -310,8 +308,6 @@ public class SiteController extends AbstractController {
             pModel.addAttribute("sites", vListSites);
             //renvoyer les infos de recherche
             vInfoDeRecherche = "Région recherchée : " + geographicResource.getRegionById(pRegionId).getNom() + ".";
-            //definir le paramètre "chosen"
-            chosen = 1;
             //renvoyer la jsp
             vMaV.setViewName("recherche-site");
         }
@@ -368,16 +364,14 @@ public class SiteController extends AbstractController {
             vListPhotos = photoResource.getPhotoByRefId(1, vSite.getId());
             if (!vListPhotos.isEmpty()) {
                 logger.info("La liste de photos pour " + vSite.getNom() + " contient " + vListPhotos.size() + " photos");
-                vSite.setListPhotos(vListPhotos);
             } else {
                 vListPhotos = photoResource.getPhotoByRefId(4, 0);
                 logger.info("La liste de photo pour " + vSite.getNom() + " est vide");
-                vSite.setListPhotos(vListPhotos);
             }
+            vSite.setListPhotos(vListPhotos);
         }
         vMaV.addObject("listSites", vListSites);
         vMaV.addObject("messageInfoRecherche", vInfoDeRecherche);
-        vMaV.addObject("chosen", chosen);
         return vMaV;
     }
 }

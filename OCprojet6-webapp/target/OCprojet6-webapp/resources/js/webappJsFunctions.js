@@ -86,7 +86,7 @@ $('#commentaire-panel input[type="checkbox"]').click(function () {
  * Gestion de l'acceptation ou le refus des demandes de reservation de topos
  */
 $('#reservation-panel input[type="radio"]').click(function () {
-    let action= $(this).attr('id');
+    let action = $(this).attr('id');
     console.log("reservationId = " + action);
     let reservationId = $(this).val();
     console.log("action = " + reservationId);
@@ -112,34 +112,18 @@ $('#reservation-panel input[type="radio"]').click(function () {
 $('#userTable input[type="radio"]').click(function () {
     let username = $(this).val();
     let newRole = $(this).attr('id');
-    console.log('User selectionné = '+username);
+    console.log('User selectionné = ' + username);
     console.log('newRole = ' + newRole);
     // if (newRole === 'ROLE_USER') {
-        $.ajax({
-            url: 'updateUserRole',
-            method: 'POST',
-            data: {'username': username, 'newRole': newRole},
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-            }
-        })
-    // } else if (checkboxName === 'administrateur') {
-    //     newRole = 'ROLE_ADMIN';
-    //     // console.log('Uncheck de #utilisateur demandée');
-    //     // $('#utilisateur').attr('checked', false);
-    //     $.ajax({
-    //         url: 'updateUserRole',
-    //         method: 'POST',
-    //         data: {'username': username, 'newRole': newRole},
-    //         dataType: 'json',
-    //         success: function (data) {
-    //             console.log(data);
-    //             $('#utilisateur').prop('checked', false);
-    //
-    //         }
-    //     })
-    // }
+    $.ajax({
+        url: 'updateUserRole',
+        method: 'POST',
+        data: {'username': username, 'newRole': newRole},
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+        }
+    })
 });
 
 /**
@@ -150,17 +134,6 @@ function searchSitePopulate(optionRef) {
     document.getElementById('optionRef').value = optionRef;
     document.getElementById('searchSitesForm').submit();
 }
-//
-// function selectOptions() {
-//     let chosen = $('#chosen').val();
-//     console.log("la valeur de chosen est " + chosen);
-//     let chosen2;
-//     document.getElementById('chosen').value = chosen2;
-//     console.log("la valeur de chosen2 est " + chosen2);
-// }
-//
-// document.getElementById('searchSitesForm').addEventListener("load", selectOptions);
-
 
 /**
  * Gère la liste des départements en fonction de la région choisie dans le formulaire de création de site
