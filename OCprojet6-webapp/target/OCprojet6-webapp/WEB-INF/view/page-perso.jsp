@@ -212,7 +212,7 @@
                 </thead>
                 <tbody>
                 <c:forEach var="topo" items="${topos}">
-                    <c:forEach var="reservation" items="${topo.listReservations}">
+                    <c:forEach var="reservation" items="${topo.listReservations}" varStatus="line">
                         <c:if test="${reservation.statut.id == 2}">
                             <tr>
                                 <td>${topo.nom}</td>
@@ -222,13 +222,13 @@
                                 <td>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" id="accepter"
-                                               name="reservation"
+                                               name="reservation${line.index}"
                                                value="${reservation.id}">
                                         <label class="form-check-label" for="accepter">accepter</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" id="refuser"
-                                               name="reservation"
+                                               name="reservation${line.index}"
                                                value="${reservation.id}">
                                         <label class="form-check-label" for="refuser">refuser</label>
                                     </div>

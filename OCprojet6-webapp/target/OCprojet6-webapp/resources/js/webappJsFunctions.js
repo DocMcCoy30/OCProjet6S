@@ -24,15 +24,6 @@ $("#searchInput").autocomplete({
     },
 });
 
-$('#site-container').ready(function () {
-    let officiel = $('#var-macaron').val();
-    if (officiel === 'false') {
-        $('#attribut-officiel').css('display', 'none');
-    } else {
-        $('#attribut-officiel').css('display', 'block');
-    }
-});
-
 /**
  * Gestion de l'option pour rendre un site officiel : modifie la valeur officiel dans la base de données selon
  * que la checkbox est cochée ou non.
@@ -54,6 +45,18 @@ $('#officiel').click(function () {
             }
         }
     });
+});
+
+/**
+ * Gère l'affichage du macaron officiel
+ */
+$('#site-container').ready(function () {
+    let officiel = $('#var-macaron').val();
+    if (officiel === 'false') {
+        $('#attribut-officiel').css('display', 'none');
+    } else {
+        $('#attribut-officiel').css('display', 'block');
+    }
 });
 
 /**
@@ -147,6 +150,17 @@ function searchSitePopulate(optionRef) {
     document.getElementById('optionRef').value = optionRef;
     document.getElementById('searchSitesForm').submit();
 }
+//
+// function selectOptions() {
+//     let chosen = $('#chosen').val();
+//     console.log("la valeur de chosen est " + chosen);
+//     let chosen2;
+//     document.getElementById('chosen').value = chosen2;
+//     console.log("la valeur de chosen2 est " + chosen2);
+// }
+//
+// document.getElementById('searchSitesForm').addEventListener("load", selectOptions);
+
 
 /**
  * Gère la liste des départements en fonction de la région choisie dans le formulaire de création de site

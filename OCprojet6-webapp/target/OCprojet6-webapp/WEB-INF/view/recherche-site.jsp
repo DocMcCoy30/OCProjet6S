@@ -21,23 +21,21 @@
 <%@include file="header.jsp" %>
 
 <div id="body">
-    <div class="container">
+    <div class="container" id="recherche-multicritere">
+        <span style="color: red">La valeur de chosen est ${chosen}</span>
         <form action="searchSites" method="post" id="searchSitesForm">
+            <input type="hidden" id="chosen" value="${chosen}">
             <div class="row col-lg-12 no-gutters" id="SearchSiteBar">
                 <div class="input-group col-lg">
-                    <select class="custom-select" name="site" id="site" onchange="searchSitePopulate(1)">
-                        <option selected disabled>Site</option>
-                        <c:forEach var="site" items="${sites}">
-                            <option value="${site.id}">${site.nom}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                &nbsp
-                <div class="input-group col-lg">
                     <select class="custom-select" name="region" id="region" onchange="searchSitePopulate(2)">
-                        <option selected disabled>Région</option>
+                        <option id="region-recherche_default" selected disabled>Région</option>
                         <c:forEach var="region" items="${regions}">
-                            <option value="${region.id}" name="refId">${region.nom}</option>
+                            <c:if test="${regions.size()==1}">
+                            <option value="${region.id}" name="refId" id="region-recherche" selected>${region.nom}</option>
+                            </c:if>
+                            <c:if test="${regions.size()>1}">
+                                <option value="${region.id}" name="refId" id="region-recherche">${region.nom}</option>
+                            </c:if>
                         </c:forEach>
                     </select>
                 </div>
@@ -46,7 +44,12 @@
                     <select class="custom-select" name="departement" id="departement" onchange="searchSitePopulate(3)">
                         <option selected disabled>Département</option>
                         <c:forEach var="departement" items="${departements}">
-                            <option value="${departement.code}">${departement.nom}</option>
+                            <c:if test="${departements.size()==1}">
+                                <option value="${departement.code}" name="refId" id="region-recherche" selected>${departement.nom}</option>
+                            </c:if>
+                            <c:if test="${departements.size()>1}">
+                                <option value="${departement.code}" name="refId" id="region-recherche">${departement.nom}</option>
+                            </c:if>
                         </c:forEach>
                     </select>
                 </div>
@@ -55,10 +58,31 @@
                     <select class="custom-select" name="ville" id="ville" onchange="searchSitePopulate(4)">
                         <option selected disabled>Villes</option>
                         <c:forEach var="ville" items="${villes}">
-                            <option value="${ville.id}">${ville.nom}</option>
+                            <c:if test="${villes.size()==1}">
+                            <option value="${ville.id}" id="ville-recherche" selected>${ville.nom}</option>
+                            </c:if>
+                            <c:if test="${villes.size()>1}">
+                                <option value="${ville.id}" id="ville-recherche">${ville.nom}</option>
+                            </c:if>
                         </c:forEach>
                     </select>
                 </div>
+                &nbsp
+                <div class="input-group col-lg">
+                    <select class="custom-select" name="site" id="site" onchange="searchSitePopulate(1)">
+                        <option selected disabled>Site</option>
+                        <c:forEach var="site" items="${sites}">
+                            <c:if test="${sites.size()==1}">
+                            <option value="${site.id}" id="site-recherche" selected>${site.nom}</option>
+                            </c:if>
+                            <c:if test="${sites.size()>1}">
+                                <option value="${site.id}" id="site-recherche">${site.nom}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
+                </div>
+                &nbsp
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/showSearchSitePage">Réinitialiser</a>
                 <input type="hidden" id="optionRef" name="optionRef" value=""/>
             </div>
         </form>

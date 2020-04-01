@@ -269,6 +269,7 @@ public class SiteController extends AbstractController {
         List<Ville> vListVilles = new ArrayList<>();
         List<Photo> vListPhotos = new ArrayList<>();
         String vInfoDeRecherche = "";
+        int chosen = 0;
 
         //option de recherche par nom de site
         if ((pOptionRef != null) && (pOptionRef == 1)) {
@@ -277,30 +278,23 @@ public class SiteController extends AbstractController {
             vListSites.add(siteResource.getSiteById(pSiteId));
             //renvoyer les infos de recherche
             vInfoDeRecherche = "Site recherché : " + vSite.getNom() + ".";
-
-//            pModel.addAttribute("sites", vListSites);
-//            //renvoyer les données géographique correspondant au site choisi à la jsp
-//            //region
-//            vListRegions.add(geographicResource.getRegionById(vSite.getRegion().getId()));
-//            pModel.addAttribute("regions", vListRegions);
-//            //departement
-//            vListDepartements.add(geographicResource.getDepartementByCode(vSite.getDepartement().getCode()));
-//            pModel.addAttribute("departements", vListDepartements);
-//            //ville
-//            vListVilles.add(geographicResource.getVilleById(vSite.getVille().getId()));
-//            pModel.addAttribute("villes", vListVilles);
-            //Dans ce cas, renvoie de toutes les données pour les listes déroulantes
-            afficherListe(pModel);
+            pModel.addAttribute("sites", vListSites);
+            //renvoyer les données géographique correspondant au site choisi à la jsp
+            //region
+            vListRegions.add(geographicResource.getRegionById(vSite.getRegion().getId()));
+            pModel.addAttribute("regions", vListRegions);
+            //departement
+            vListDepartements.add(geographicResource.getDepartementByCode(vSite.getDepartement().getCode()));
+            pModel.addAttribute("departements", vListDepartements);
+            //ville
+            vListVilles.add(geographicResource.getVilleById(vSite.getVille().getId()));
+            pModel.addAttribute("villes", vListVilles);
             vMaV.setViewName("recherche-site");
         }
         //option de recherche par région
-        //dans ce cas, on renvoie les données correspondantes à la région choisie (sites, départements, villes) + toutes les régions
         else if ((pOptionRef != null) && (pOptionRef == 2)) {
             //renvoyer la region selectionnée à la jsp
-//            vListRegions.add(geographicResource.getRegionById(pRegionId));
-//            pModel.addAttribute("regions", vListRegions);
-            //renvoyer toutes les régions
-            vListRegions = geographicResource.getListRegions();
+            vListRegions.add(geographicResource.getRegionById(pRegionId));
             pModel.addAttribute("regions", vListRegions);
             //renvoyer la liste des departements correspondants à la région choisie à la jsp
             vListDepartements = geographicResource.getDepartementsByRegion(pRegionId);
@@ -316,30 +310,24 @@ public class SiteController extends AbstractController {
             pModel.addAttribute("sites", vListSites);
             //renvoyer les infos de recherche
             vInfoDeRecherche = "Région recherchée : " + geographicResource.getRegionById(pRegionId).getNom() + ".";
+            //definir le paramètre "chosen"
+            chosen = 1;
             //renvoyer la jsp
             vMaV.setViewName("recherche-site");
         }
         //option de recherche par département
-        //dans ce cas, on renvoie toutes les régions et tous les départements + la listes des villes et sites correspondants au département choisi
         else if ((pOptionRef != null) && (pOptionRef == 3)) {
             //renvoyer la region correspondant au département à la jsp
-//            Departement vDepartement = geographicResource.getDepartementByCode(pDepartementCode);
-//            logger.debug("Departement choisi = "+vDepartement.getNom());
-//            Region vRegion = geographicResource.getRegionById(vDepartement.getRegion().getId());
-//            logger.debug("Région correspondante = "+vRegion.getNom());
-//            vListRegions.add(vRegion);
-//            logger.debug("Taille de la liste des régions pour le département "+vDepartement.getNom()+" = "+vListRegions.size());
-//            pModel.addAttribute("regions", vListRegions);
-            //renvoyer toutes les régions
-            vListRegions = geographicResource.getListRegions();
+            Departement vDepartement = geographicResource.getDepartementByCode(pDepartementCode);
+            logger.debug("Departement choisi = "+vDepartement.getNom());
+            Region vRegion = geographicResource.getRegionById(vDepartement.getRegion().getId());
+            logger.debug("Région correspondante = "+vRegion.getNom());
+            vListRegions.add(vRegion);
+            logger.debug("Taille de la liste des régions pour le département "+vDepartement.getNom()+" = "+vListRegions.size());
             pModel.addAttribute("regions", vListRegions);
             //renvoyer le departement selectionné à la jsp
-//            vListDepartements.add(geographicResource.getDepartementByCode(pDepartementCode));
-//            pModel.addAttribute("departements", vListDepartements);
-            //renvoyer tous les département
-            vListDepartements = geographicResource.getListDepartements();
+            vListDepartements.add(geographicResource.getDepartementByCode(pDepartementCode));
             pModel.addAttribute("departements", vListDepartements);
-            //renvoyer la liste de sites correspondant au département choisi à la jsp
             vListSites = siteResource.getSitesByDepartement(pDepartementCode);
             logger.debug("Taille de la liste des sites pour le département " + geographicResource.getDepartementByCode(pDepartementCode).getNom() + " = " + vListSites.size());
             pModel.addAttribute("sites", vListSites);
@@ -352,31 +340,21 @@ public class SiteController extends AbstractController {
             vMaV.setViewName("recherche-site");
         }
         //option de recherche par ville
-        //dans ce cas, on renvoie la liste des sites correspondants à la ville + toutes les régions, département, villes
         else if (((pOptionRef != null) && (pOptionRef == 4))) {
             //renvoyer la liste de sites correspondants à la ville choisie à la jsp
             vListSites = (siteResource.getSitesByVille(pVilleId));
             pModel.addAttribute("sites", vListSites);
             //renvoyer la région correspondante à la ville choisie à la jsp
-//            Ville vVille = geographicResource.getVilleById(pVilleId);
-//            Departement vDepartement = geographicResource.getDepartementByCode(vVille.getDepartement().getCode());
-//            Region vRegion = geographicResource.getRegionById(vDepartement.getRegion().getId());
-//            vListRegions.add(vRegion);
-//            pModel.addAttribute("regions", vListRegions);
-            //renvoyer toutes les régions
-            vListRegions = geographicResource.getListRegions();
+            Ville vVille = geographicResource.getVilleById(pVilleId);
+            Departement vDepartement = geographicResource.getDepartementByCode(vVille.getDepartement().getCode());
+            Region vRegion = geographicResource.getRegionById(vDepartement.getRegion().getId());
+            vListRegions.add(vRegion);
             pModel.addAttribute("regions", vListRegions);
             //renvoyer le departement correspondant à la ville choisie à la jsp
-//            vListDepartements.add(geographicResource.getDepartementByCode(geographicResource.getVilleById(pVilleId).getDepartement().getCode()));
-//            pModel.addAttribute("departements", vListDepartements);
-            //renvoyer tous les départements
-            vListDepartements = geographicResource.getListDepartements();
+            vListDepartements.add(geographicResource.getDepartementByCode(geographicResource.getVilleById(pVilleId).getDepartement().getCode()));
             pModel.addAttribute("departements", vListDepartements);
             //renvoyer la ville choisie à la jsp
-//            vListVilles.add(geographicResource.getVilleById(pVilleId));
-//            pModel.addAttribute("villes", vListVilles);
-            //renvoyer toutes les villes
-            vListVilles = geographicResource.getListVilles();
+            vListVilles.add(geographicResource.getVilleById(pVilleId));
             pModel.addAttribute("villes", vListVilles);
             //renvoyer les infos de recherche
             vInfoDeRecherche = "Ville recherchée : " + geographicResource.getVilleById(pVilleId).getNom() + ".";
@@ -399,6 +377,7 @@ public class SiteController extends AbstractController {
         }
         vMaV.addObject("listSites", vListSites);
         vMaV.addObject("messageInfoRecherche", vInfoDeRecherche);
+        vMaV.addObject("chosen", chosen);
         return vMaV;
     }
 }

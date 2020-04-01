@@ -24,15 +24,6 @@ $("#searchInput").autocomplete({
     },
 });
 
-$('#site-container').ready(function () {
-    let officiel = $('#var-macaron').val();
-    if (officiel === 'false') {
-        $('#attribut-officiel').css('display', 'none');
-    } else {
-        $('#attribut-officiel').css('display', 'block');
-    }
-});
-
 /**
  * Gestion de l'option pour rendre un site officiel : modifie la valeur officiel dans la base de données selon
  * que la checkbox est cochée ou non.
@@ -54,6 +45,18 @@ $('#officiel').click(function () {
             }
         }
     });
+});
+
+/**
+ * Gère l'affichage du macaron officiel
+ */
+$('#site-container').ready(function () {
+    let officiel = $('#var-macaron').val();
+    if (officiel === 'false') {
+        $('#attribut-officiel').css('display', 'none');
+    } else {
+        $('#attribut-officiel').css('display', 'block');
+    }
 });
 
 /**
@@ -83,7 +86,7 @@ $('#commentaire-panel input[type="checkbox"]').click(function () {
  * Gestion de l'acceptation ou le refus des demandes de reservation de topos
  */
 $('#reservation-panel input[type="radio"]').click(function () {
-    let action= $(this).attr('id');
+    let action = $(this).attr('id');
     console.log("reservationId = " + action);
     let reservationId = $(this).val();
     console.log("action = " + reservationId);
@@ -109,34 +112,18 @@ $('#reservation-panel input[type="radio"]').click(function () {
 $('#userTable input[type="radio"]').click(function () {
     let username = $(this).val();
     let newRole = $(this).attr('id');
-    console.log('User selectionné = '+username);
+    console.log('User selectionné = ' + username);
     console.log('newRole = ' + newRole);
     // if (newRole === 'ROLE_USER') {
-        $.ajax({
-            url: 'updateUserRole',
-            method: 'POST',
-            data: {'username': username, 'newRole': newRole},
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-            }
-        })
-    // } else if (checkboxName === 'administrateur') {
-    //     newRole = 'ROLE_ADMIN';
-    //     // console.log('Uncheck de #utilisateur demandée');
-    //     // $('#utilisateur').attr('checked', false);
-    //     $.ajax({
-    //         url: 'updateUserRole',
-    //         method: 'POST',
-    //         data: {'username': username, 'newRole': newRole},
-    //         dataType: 'json',
-    //         success: function (data) {
-    //             console.log(data);
-    //             $('#utilisateur').prop('checked', false);
-    //
-    //         }
-    //     })
-    // }
+    $.ajax({
+        url: 'updateUserRole',
+        method: 'POST',
+        data: {'username': username, 'newRole': newRole},
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+        }
+    })
 });
 
 /**

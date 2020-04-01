@@ -179,7 +179,7 @@ public class TopoController {
         List<TopoReservation> vListReservations = topoResource.getTopoReservationsByTopoId(pTopoId);
         for (TopoReservation vReservation : vListReservations
         ) {
-            if (pDate.equals(vReservation.getDateReservation())) {
+            if (pDate.equals(vReservation.getDateReservation()) && (vReservation.getStatut().getId()<3)) {
                 i++;
             }
         }
