@@ -35,7 +35,7 @@
             </c:if>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container" id="topos-container">
         <div class="card">
             <div class="card-header">
                 <c:url var="sitePage" value="/showSitePage">
@@ -52,8 +52,10 @@
                             <th>Date de parution</th>
                             <th>Description</th>
                             <th>Réservé le :</th>
-                            <th>Réserver pour le :</th>
-                            <th></th>
+                            <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
+                                <th>Réserver pour le :</th>
+                                <th></th>
+                            </sec:authorize>
                         </tr>
                         </thead>
                         <tbody>
@@ -79,8 +81,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td><input type="date" name="dateReservation"></td>
                                 <sec:authorize access="hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})">
+                                <td><input type="date" name="dateReservation"></td>
                                     <td>
                                         <button type="submit" name="reservationTopoId" value="${topo.id}"
                                                 class="btn btn-warning" id="btnReservationTopo">

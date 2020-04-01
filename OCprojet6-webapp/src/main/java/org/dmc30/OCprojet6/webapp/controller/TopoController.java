@@ -44,6 +44,7 @@ public class TopoController {
                                      String pMessageSucces, String pMessageAlert) {
         ModelAndView vMaV = new ModelAndView();
         String vMessageSuccess, vMessageAlert;
+        List <TopoReservation> vListReservationsValidées = new ArrayList<>();
         if (pMessageSucces == null) {
             vMessageSuccess = "";
         } else {
@@ -65,7 +66,8 @@ public class TopoController {
             for (TopoReservation vTopoReservation:vListReservations
                  ) {
                 if (vTopoReservation.getStatut().getId()<3) {
-                    vTopo.setListReservations(vListReservations);
+                    vListReservationsValidées.add(vTopoReservation);
+                    vTopo.setListReservations(vListReservationsValidées);
                 }
             }
         }

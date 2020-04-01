@@ -27,7 +27,7 @@ public class TopoReservationDaoImpl extends AbstractDao implements TopoReservati
 
     @Override
     public void createTopoReservation(TopoReservation pTopoReservation) throws TechnicalException {
-        String vSQL = "INSERT INTO topo_reservation (reservation_date, reservation_topo_id, username, statut_id) VALUES (:vDate, :vTopoId, :vUsername, :vStatutId)";
+        String vSQL = "INSERT INTO topo_reservation (reservation_date, reservation_topo_id, username, id) VALUES (:vDate, :vTopoId, :vUsername, :vStatutId)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("vDate", pTopoReservation.getDateReservation());
         vParams.addValue("vTopoId", pTopoReservation.getTopo().getId());
@@ -74,7 +74,7 @@ public class TopoReservationDaoImpl extends AbstractDao implements TopoReservati
 
     @Override
     public void updateTopoReservation (TopoReservation pTopoReservation) throws TechnicalException {
-        String vSQL ="UPDATE topo_reservation SET reservation_date= :date, reservation_topo_id= :topoId, username= :username, statut_id= :statutId WHERE reservation_id="+pTopoReservation.getId();
+        String vSQL ="UPDATE topo_reservation SET reservation_date= :date, reservation_topo_id= :topoId, username= :username, id= :statutId WHERE reservation_id="+pTopoReservation.getId();
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("date", pTopoReservation.getDateReservation());
         vParams.addValue("topoId", pTopoReservation.getTopo().getId());

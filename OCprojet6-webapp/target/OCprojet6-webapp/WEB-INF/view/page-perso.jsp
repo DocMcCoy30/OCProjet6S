@@ -229,7 +229,7 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" id="refuser"
                                                name="reservation"
-                                               value="refuser">
+                                               value="${reservation.id}">
                                         <label class="form-check-label" for="refuser">refuser</label>
                                     </div>
                                 </td>

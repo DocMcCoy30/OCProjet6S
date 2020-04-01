@@ -32,7 +32,7 @@ public class TopoReservationRM implements RowMapper<TopoReservation> {
                     resultSet.getDate("reservation_date"),
                     topoDao.getTopoById(resultSet.getInt("reservation_topo_id")),
                     usersDao.getUsersByName(resultSet.getString("username")),
-                    statutDao.getStatutById(resultSet.getInt("statut_id")));
+                    statutDao.getStatutById(resultSet.getInt("id")));
         } catch (TechnicalException e) {
             e.printStackTrace();
         }
