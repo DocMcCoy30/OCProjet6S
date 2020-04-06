@@ -188,15 +188,16 @@
                 <form class="row" method="POST" action="uploadFile" id="formUpload" enctype="multipart/form-data">
                     <input type="hidden" value="${site.id}" name="siteId">
                     <div class="row col-md-12 no-gutters">
-                        <div class="input-group col-md-7">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon">Image</span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="file " id="inputGroupFile"
-                                       aria-describedby="inputGroupFileAddon">
-                                <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>
-                            </div>
+                        <div class="input-group col-md-4">
+                            <%--                            <div class="input-group-prepend">--%>
+                            <%--                                <span class="input-group-text" id="inputGroupFileAddon">Image</span>--%>
+                            <%--                            </div>--%>
+                            <%--                            <div class="custom-file">--%>
+                            <label class="control-box" for="inputGroupFile">Choisir une image</label>
+                            <input type="file" class="form-control-file" name="file " id="inputGroupFile"
+                                   aria-describedby="Choisir une image">
+                            <%--                                <label class="custom-file-label" for="inputGroupFile">Choisir une image</label>--%>
+                            <%--                            </div>--%>
                         </div>
                         <div class="input-group col-md-5">
                             <div class="input-group-prepend offset-1">

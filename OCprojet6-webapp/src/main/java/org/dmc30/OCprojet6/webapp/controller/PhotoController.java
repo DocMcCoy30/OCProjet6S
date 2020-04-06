@@ -60,8 +60,9 @@ public class PhotoController extends AbstractController {
                 // Crée le repertoire de stockage des images
                 String rootPath = request.getSession().getServletContext().getRealPath("/");
                 File dir = new File(rootPath + File.separator + "resources/img");
-                if (!dir.exists())
+                if (!dir.exists()) {
                     dir.mkdirs();
+                }
                 // crée le nom du fichier (avec une référence aléatoire pour diminuer
                 // le risque de non concordance entre la BD et le répertoire
                 Random rand = new Random();

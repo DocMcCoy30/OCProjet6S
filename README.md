@@ -22,6 +22,12 @@ Auteur : DocMcCoy30 le 28/03/2020
 
 ![](README_images/context_settings.png)
 
+- Par défault, le premier utilisateur créé est toujours un administrateur. Néanmoins, 2 utilisateurs sont
+  déjà présents dans le jeu de données :
+  - Identifiant : admin  /  Mot de passe : admin  => administrateur
+  - Identifiant : user  / Mot de passe : user  => utilisateur
+
+
 ## Paramétrage du projet
 
 ![](README_images/settings_project.png)

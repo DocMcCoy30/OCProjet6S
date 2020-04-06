@@ -33,8 +33,7 @@ public class AutoSearchController extends AbstractController {
     PhotoResource photoResource;
 
     /**
-     * Recherche dans les tables site, region, departement et ville, les entrées corespondantes aux caractères renseignés
-     * dans la barre de recherche et l'autocomplète.
+     * Gère la barre de recherche.
      *
      * @param pMotCle  Les caractères de recherche renseignés dans la barre.
      * @param response La réponse à retourner sous forme d'objet JSON.

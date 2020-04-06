@@ -7,16 +7,11 @@
 body {
     background: url('../img/freesolo.jpg') no-repeat center fixed;
     background-size: cover;
-    /*color: #f0ad4e;*/
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: cabin, Arial, serif;
 }
-
-/*div {*/
-/*    border: black 1px solid;*/
-/*}*/
 
 h1 {
     font-weight: bold;
@@ -253,6 +248,7 @@ a:hover {
 }
 
 #formUpload {
+    margin-top: 2em;
     display: none;
 }
 
