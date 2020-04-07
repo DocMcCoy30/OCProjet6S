@@ -95,20 +95,28 @@ public class UserController {
     }
 
     @PostMapping("/updateUserMail")
-    public ModelAndView updateUserMail (@RequestParam(value = "username") String pUsername,
-                                    @RequestParam(value = "email") String pEmail) throws TechnicalException {
+    public ModelAndView updateUserMail(@RequestParam(value = "username") String pUsername,
+                                       @RequestParam(value = "email") String pEmail,
+                                       @RequestParam(value = "password", required = false) String pPassword) throws TechnicalException {
         ModelAndView vMaV = new ModelAndView();
         Users vUser = new Users();
+        String vMessageSucces = "";
+        String vMessageAlert = "";
         try {
             vUser = userResource.getUserByName(pUsername);
             vUser.setEmail(pEmail);
+            if (!pPassword.isEmpty()) {
+                vUser.setPassword(pPassword);
+            } else if (pPassword.isEmpty()) {
+                vUser.setPassword("AucuneModificationDemandee");
+            }
             userResource.updateUser(vUser);
-
+            vMessageSucces = "Vos données ont été modifiées";
         } catch (TechnicalException e) {
-
+            vMessageAlert = e.getMessage();
         }
 
-        return accueilController.showPagePerso(vUser.getUsername());
+        return accueilController.showPagePerso(vUser.getUsername(), vMessageSucces, vMessageAlert);
     }
 
 }

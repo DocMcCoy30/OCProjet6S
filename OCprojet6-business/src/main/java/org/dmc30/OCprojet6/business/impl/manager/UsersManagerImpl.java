@@ -78,7 +78,7 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
     }
 
     @Override
-    public void updateUsers(Users pUsers) {
+    public void updateUsers(Users pUsers) throws TechnicalException {
         getDaoFactory().getUsersDao().updateUsers(pUsers);
     }
 

@@ -10,7 +10,7 @@ public interface UsersDao {
     void createUsers (Users pUsers) throws TechnicalException;
     Users getUsersByName(String pUsername) throws TechnicalException;
     List<Users> getAllUsers() throws TechnicalException;
-    void updateUsers (Users pUsers);
+    void updateUsers (Users pUsers) throws TechnicalException;
     void deleteUsers(Users pUsers);
 }
 

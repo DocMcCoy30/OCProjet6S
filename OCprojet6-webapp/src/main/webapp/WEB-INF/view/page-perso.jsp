@@ -22,7 +22,18 @@
 
 <div id="body">
     <div class="container">
-
+        <div>
+            <c:if test="${ !empty message_succes}">
+                <div class="alert alert-success" role="alert">
+                    <c:out value="${message_succes}"/>
+                </div>
+            </c:if>
+            <c:if test="${ !empty message_alert}">
+                <div class="alert alert-danger" role="alert">
+                    <c:out value="${message_alert}"/>
+                </div>
+            </c:if>
+        </div>
         <div id="connected-user-panel">
             <form action="updateUserMail" method="post">
                 <input type="hidden" name="username" value="${connectedUser.username}">
@@ -43,6 +54,16 @@
                         </div>
                         <input type="email" name="email" class="form-control" aria-label="email"
                                aria-describedby="email" value="${connectedUser.email}">
+                    </div>
+                </div>
+                <div class="row col-md-12 no-gutters">
+                    <div class="input-group col-lg-7">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="password">Mot de passe</span>
+                        </div>
+                        <input type="text" name="password" class="form-control" id="update-password"
+                               aria-label="password" aria-describedby="password"
+                               placeholder="Modifier le mot de passe ?">
                     </div>
                 </div>
                 <div class="text-center">

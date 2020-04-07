@@ -84,15 +84,22 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
     }
 
     @Override
-    public void updateUsers(Users pUsers) {
-        String vSQL = "UPDATE users SET password= :password, email= :email, enabled = :enabled WHERE username = :username";
+    public void updateUsers(Users pUsers) throws TechnicalException {
+        String vSQL1 = "UPDATE users SET password= :password, email= :email, enabled = :enabled WHERE username = :username";
+        String vSQL2 = "UPDATE users SET email= :email, enabled = :enabled WHERE username = :username";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("username", pUsers.getUsername());
-        vParams.addValue("password", pUsers.getPassword());
         vParams.addValue("email", pUsers.getEmail());
         vParams.addValue("enabled", pUsers.isEnabled());
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        vJdbcTemplate.update(vSQL,vParams);
+        if (pUsers.getPassword()=="AucuneModificationDemandee") {
+            vJdbcTemplate.update(vSQL2,vParams);
+        } else {
+            String vPassword = encoder.passwordEncoder(pUsers.getPassword());
+            logger.debug("Encodage du nouveau mot de passe : " + pUsers.getPassword());
+            vParams.addValue("password", vPassword);
+            vJdbcTemplate.update(vSQL1, vParams);
+        }
     }
 
     @Override

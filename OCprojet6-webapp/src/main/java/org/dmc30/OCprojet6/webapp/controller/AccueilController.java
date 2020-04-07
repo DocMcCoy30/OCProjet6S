@@ -81,7 +81,8 @@ public class AccueilController extends AbstractController {
      * Pour les administrateurs : la lsite des commentaires à valider, la liste des utilisateurs et leur rôle pour modification
      */
     @GetMapping("/showPagePerso")
-    public ModelAndView showPagePerso(@RequestParam(value = "userName") String pUserName) throws TechnicalException {
+    public ModelAndView showPagePerso(@RequestParam(value = "userName") String pUserName,
+                                      String pMessageSucces, String pMessageAlert) throws TechnicalException {
         ModelAndView vMaV = new ModelAndView();
         List<Commentaire> vListCommentaire;
         List<Users> vListUsers;
@@ -89,6 +90,18 @@ public class AccueilController extends AbstractController {
         Users vConnectedUser;
         int reservationMarker = 0;
         boolean vValidationEnAttente = false;
+        String vMessageSucces, vMessageAlert;
+
+        if (pMessageSucces == null) {
+            vMessageSucces = "";
+        } else {
+            vMessageSucces = pMessageSucces;
+        }
+        if (pMessageAlert == null) {
+            vMessageAlert = "";
+        } else {
+            vMessageAlert = pMessageAlert;
+        }
 
         // récupérer les données de l'utilisteur
         vConnectedUser = userResource.getUserByName(pUserName);
@@ -130,6 +143,8 @@ public class AccueilController extends AbstractController {
         vMaV.addObject("users", vListUsers);
         vMaV.addObject("commentaires", vListCommentaire);
         vMaV.addObject("mesReservations", vMesReservations);
+        vMaV.addObject("message_succes", vMessageSucces);
+        vMaV.addObject("message_alert", vMessageAlert);
         vMaV.setViewName("page-perso");
         return vMaV;
     }

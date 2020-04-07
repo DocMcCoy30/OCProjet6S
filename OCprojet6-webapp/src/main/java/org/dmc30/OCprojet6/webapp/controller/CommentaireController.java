@@ -90,6 +90,7 @@ public class CommentaireController {
         Commentaire vCommentaire;
         ModelAndView vMav = new ModelAndView();
         String vMessageSucces = "";
+        String vMessageAlert = "";
 
         switch (pAction[1]) {
             case "update":
@@ -99,19 +100,27 @@ public class CommentaireController {
                 logger.debug("Nouveau commentaire = "+ pCommentaire[Integer.parseInt(pAction[0])]);
                 vCommentaire.setCommentaire(pCommentaire[Integer.parseInt(pAction[0])]);
                 logger.debug("Commentaire updater = commentaire n°"+vCommentaire.getId() + " : "+vCommentaire.getCommentaire());
-                commentaireResource.updateCommentaire(vCommentaire);
-                vMessageSucces = "Le commentaire a été modifié.";
+                try {
+                    commentaireResource.updateCommentaire(vCommentaire);
+                    vMessageSucces = "Le commentaire a été modifié.";
+                } catch (TechnicalException e) {
+                    vMessageAlert = e.getMessage();
+                }
                 break;
             case "delete":
-                commentaireResource.deleteCommentaire(Integer.parseInt(pAction[2]));
-                vMessageSucces = "Le commentaire a été supprimé.";
+                try {
+                    commentaireResource.deleteCommentaire(Integer.parseInt(pAction[2]));
+                    vMessageSucces = "Le commentaire a été supprimé.";
+                } catch (TechnicalException e) {
+                    vMessageAlert = e.getMessage();
+                }
                 break;
         }
         if (pPage.equals("page-perso")) {
-            vMav = accueilController.showPagePerso(pUsername);
+            vMav = accueilController.showPagePerso(pUsername, vMessageSucces, vMessageAlert);
         }
         if (pPage.equals("page-site")) {
-            vMav = siteController.showSitePage(pSiteId, vMessageSucces, "");
+            vMav = siteController.showSitePage(pSiteId, vMessageSucces, vMessageAlert);
         }
         return vMav;
     }

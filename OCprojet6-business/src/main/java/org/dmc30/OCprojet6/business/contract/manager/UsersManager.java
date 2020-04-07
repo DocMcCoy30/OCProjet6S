@@ -29,7 +29,7 @@ public interface UsersManager {
      * Modifie un utilisateur.
      * @param pUsers : l'objet à modifier
      */
-    void updateUsers (Users pUsers);
+    void updateUsers (Users pUsers) throws TechnicalException;
 
     /**
      * Supprime un utilisateur de la base de données.

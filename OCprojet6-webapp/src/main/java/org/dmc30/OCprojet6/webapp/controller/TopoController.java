@@ -227,10 +227,18 @@ public class TopoController {
 
     @PostMapping("/annulerReservation")
     public ModelAndView annulerReservation (@RequestParam(value = "reservation-id") Integer pReservationId,
-                                            @RequestParam(value = "username") String pUsername) throws TechnicalException {
+                                            @RequestParam(value = "username") String pUsername,
+                                            String pMessageSucces, String pMessageAlert) throws TechnicalException {
+        String vMessageSucces = "";
+        String vMessageAlert = "";
         TopoReservation vTopoReservation = topoResource.getTopoReservationById(pReservationId);
         vTopoReservation.setStatut(topoResource.getStatutById(3));
-        topoResource.updateTopoReservation(vTopoReservation);
-        return accueilController.showPagePerso(pUsername);
+        try {
+            topoResource.updateTopoReservation(vTopoReservation);
+            vMessageSucces = "La reservation a bien été annulée";
+        } catch (TechnicalException e) {
+            vMessageAlert = e.getMessage();
+        }
+        return accueilController.showPagePerso(pUsername, vMessageSucces, vMessageAlert);
     }
 }
