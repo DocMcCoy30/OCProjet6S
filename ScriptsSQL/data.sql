@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-04-06 13:19:54
+-- Started on 2020-04-07 20:00:05
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -221,13 +221,12 @@ INSERT INTO public.departement (code, nom, region_id) VALUES (201, 'Corse-du-Sud
 -- Data for Name: description; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.description (description_id, description, info) VALUES (1, 'Ablon, c’est la falaise d’alpages, nichée à l’écart, dans un recoin sauvage et préservé en plein cœur du massif des Bornes. On est loin de la montagne à touristes, il n’y a plus aucun bruit de moteur... Là, sur le plateau des Glières, lieu célèbre pour la page d’histoire qui s’y est écrite au cours de la dernière guerre mondiale, où les résistants ont fui les occupants allemands, se trouve le Val d’Ablon, un joyau de falaise haut-savoyard encore inconnu il y a une vingtaine d’années. Sur ses fantastiques dalles grises très sculptées, où le rocher est beau partout, l’escalade présente une variété de styles avec prédominance de grandes envolées en 6b, 6c ou 7a, tout en continuité. On doit plus des deux tiers de ces fabuleuses lignes à Robert Durieux, équipeur motivé et amoureux des lieux depuis au moins trente ans. Autre atout de poids : le pied des voies s’ancre dans un alpage ombragé, moelleux et confortable, idéal pour un assurage serein ou des bambins remuants. Ablon, c’est le site majeur de Haute Savoie pour le cadre, la qualité des lignes et du rocher. Ambiance épicéas, oxygène, clarines et reblochon !', 'Ablon est un site d''escalade de type calcaire, situé à Ablon, dans le département Haute-Savoie (Auvergne-Rhône-Alpes).');
 INSERT INTO public.description (description_id, description, info) VALUES (2, 'Ablon, c’est la falaise d’alpages, nichée à l’écart, dans un recoin sauvage et préservé en plein cœur du massif des Bornes. On est loin de la montagne à touristes, il n’y a plus aucun bruit de moteur... Là, sur le plateau des Glières, lieu célèbre pour la page d’histoire qui s’y est écrite au cours de la dernière guerre mondiale, où les résistants ont fui les occupants allemands, se trouve le Val d’Ablon, un joyau de falaise haut-savoyard encore inconnu il y a une vingtaine d’années. Sur ses fantastiques dalles grises très sculptées, où le rocher est beau partout, l’escalade présente une variété de styles avec prédominance de grandes envolées en 6b, 6c ou 7a, tout en continuité. On doit plus des deux tiers de ces fabuleuses lignes à Robert Durieux, équipeur motivé et amoureux des lieux depuis au moins trente ans. Autre atout de poids : le pied des voies s’ancre dans un alpage ombragé, moelleux et confortable, idéal pour un assurage serein ou des bambins remuants. Ablon, c’est le site majeur de Haute Savoie pour le cadre, la qualité des lignes et du rocher. Ambiance épicéas, oxygène, clarines et reblochon !', 'Ablon est un site d''escalade de type calcaire, situé à Aviernoz, dans le département Haute-Savoie (Auvergne-Rhône-Alpes).');
 INSERT INTO public.description (description_id, description, info) VALUES (4, 'Ajouter une description pour ce site.', 'Annot est un site d''escalade de type grès, situé à Annot, dans le département Alpes-de-Haute-Provence (Provence-Alpes-Côte d"Azur).');
 INSERT INTO public.description (description_id, description, info) VALUES (5, 'Un site incontournable pour l''initiation des enfants, ou la grimpe en famille. Les voies sont équipées spécialement pour l''initiation des enfants. On y trouve près de 140 voies réparties sur 13 rochers différents, avec une vraie diversité d''escalade, en dalles et murs, du 2 au 6b, et de 3 à 22m, dans un cadre magnifique. Le haut des rochers est facilement accessible pour l''installation de moulinettes. Pour la plupart des rochers, une corde de 45m est conseillée. Période idéale : printemps été et automne. L''accès depuis le parking se fait en 2mn pour le rocher le plus proche, et 20mn pour le plus éloigné.', 'Bachat Bouloud est un site d''escalade de type gneiss, situé à Chamrousse, dans le département Isère (Auvergne-Rhône-Alpes).');
 INSERT INTO public.description (description_id, description, info) VALUES (6, 'Ajouter une description pour ce site.', 'Ballon d''Alsace est un site d''escalade de type granite, situé à Saint-Maurice-sur-Moselle, dans le département Vosges (Grand-Est).');
 INSERT INTO public.description (description_id, description, info) VALUES (7, 'Ajouter une description pour ce site.', 'Mont Aiguille est un site d''escalade de type calcaire, situé à Saint-Michel-les-Portes, dans le département Isère (Auvergne-Rhône-Alpes).');
-INSERT INTO public.description (description_id, description, info) VALUES (8, 'Ailefroide est un site d''escalade de VoieGrande voieBloc de Granite, situé à Ailefroide dans le département Hautes-Alpes (fr)
+INSERT INTO public.description (description_id, description, info) VALUES (8, 'Ailefroide est un site d''escalade situé à Ailefroide dans le département Hautes-Alpes (fr).
 On y trouve 314 lignes allant de 2a à 8c.', 'Ailefroide est un site d''escalade de type granite, situé à Ailefroide, dans le département Hautes-Alpes (Provence-Alpes-Côte d"Azur).');
 INSERT INTO public.description (description_id, description, info) VALUES (3, 'Un grand cirque, avec une belle ambiance typique des calanques, qui offre une grimpe variée. Il est orienté Sud-Ouest et Ouest, bien ensoleillé, qui est très agréable en hiver ou à l''intersaison, mais qui se transforme vite en four en été (il est bien abrité du mistral).
 Il offre des voies pour la plupart équipées, mais certaines sont en terrain d''aventure, et d''autres n''ont pas été rééquipées et l''équipement est vieillissant, prudence donc.
@@ -283,7 +282,6 @@ INSERT INTO public.ville (ville_id, nom, departement_code) VALUES (12, 'Russan',
 -- Data for Name: site; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (2, 'Ablon', true, 2, 1, 74, 4, 2);
 INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (4, 'Annot', false, 6, 13, 4, 5, 4);
 INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (5, 'Bachat Bouloud', false, 4, 1, 38, 6, 5);
 INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (6, 'Ballon d''Alsace', true, 5, 6, 88, 7, 6);
@@ -292,7 +290,8 @@ INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, depar
 INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (10, 'Collias', false, 2, 11, 30, 11, 10);
 INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (11, 'Russan', false, 2, 11, 30, 12, 11);
 INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (9, 'Carrière Collot – Site d’escalade Philippe MENGIN', false, 6, 6, 88, 10, 9);
-INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (8, 'Ailefroide', true, 5, 13, 5, 9, 8);
+INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (2, 'Ablon', false, 2, 1, 74, 4, 2);
+INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, departement_code, ville_id, description_id) VALUES (8, 'Ailefroide', false, 5, 13, 5, 9, 8);
 
 
 --
@@ -304,7 +303,7 @@ INSERT INTO public.site (site_id, nom, officiel, type_roche_id, region_id, depar
 INSERT INTO public.secteur (secteur_id, nom, site_id, description) VALUES (1, 'Secteur 14 juillet', 3, '25 minutes d''approche, au soleil l''après-midi.');
 INSERT INTO public.secteur (secteur_id, nom, site_id, description) VALUES (2, 'Impact', 2, 'Ajouter une description pour ce secteur.');
 INSERT INTO public.secteur (secteur_id, nom, site_id, description) VALUES (4, 'Résistance et Liberté', 2, '50 minutes d''approche.');
-INSERT INTO public.secteur (secteur_id, nom, site_id, description) VALUES (3, 'La ligne du temps', 2, 'Ajouter une description pour ce secteur.');
+INSERT INTO public.secteur (secteur_id, nom, site_id, description) VALUES (3, 'La ligne du temps', 2, '                                                                                        Ajouter une description pour ce secteur.');
 INSERT INTO public.secteur (secteur_id, nom, site_id, description) VALUES (5, 'Dalle de la Bèïte', 4, 'Ajouter une description pour ce secteur.');
 INSERT INTO public.secteur (secteur_id, nom, site_id, description) VALUES (6, 'L''Airain', 4, 'Ajouter une description pour ce secteur.');
 INSERT INTO public.secteur (secteur_id, nom, site_id, description) VALUES (7, 'L''Etrave', 4, 'Ajouter une description pour ce secteur.');
@@ -567,6 +566,7 @@ INSERT INTO public.users (username, password, email, enabled) VALUES ('user', '$
 -- Data for Name: commentaire; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.commentaire (commentaire_id, commentaire, username, reference_id, date_publication, ref_id, valide) VALUES (2, 'Très beau site !', 'admin', 1, '2020-04-07', 8, true);
 
 
 --
@@ -664,7 +664,7 @@ SELECT pg_catalog.setval('public.caracteristique_caracteristique_id_seq', 1, fal
 -- Name: commentaire_commentaire_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.commentaire_commentaire_id_seq', 1, false);
+SELECT pg_catalog.setval('public.commentaire_commentaire_id_seq', 4, true);
 
 
 --
@@ -736,7 +736,7 @@ SELECT pg_catalog.setval('public.statut_statut_id_seq', 1, false);
 -- Name: topo_reservation_reservation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.topo_reservation_reservation_id_seq', 11, true);
+SELECT pg_catalog.setval('public.topo_reservation_reservation_id_seq', 16, true);
 
 
 --
@@ -763,7 +763,7 @@ SELECT pg_catalog.setval('public.type_roche_type_roche_id_seq', 1, false);
 -- Name: user_roles_user_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.user_roles_user_role_id_seq', 3, true);
+SELECT pg_catalog.setval('public.user_roles_user_role_id_seq', 9, true);
 
 
 --
@@ -784,7 +784,7 @@ SELECT pg_catalog.setval('public.ville_ville_id_seq', 12, true);
 SELECT pg_catalog.setval('public.voie_voie_id_seq', 185, true);
 
 
--- Completed on 2020-04-06 13:19:54
+-- Completed on 2020-04-07 20:00:05
 
 --
 -- PostgreSQL database dump complete
