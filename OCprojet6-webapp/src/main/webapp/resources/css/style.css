@@ -226,9 +226,10 @@ a:hover {
     padding: 1em;
 }
 
-#commentaire-panel, #user-panel, #topo-panel, #reservation-panel {
+#commentaire-panel, #user-panel, #topo-panel, #reservation-panel, #connected-user-panel {
     border: white 2px solid;
     margin-bottom: 1em;
+    padding: 1em;
 }
 
 #descriptionBlock {

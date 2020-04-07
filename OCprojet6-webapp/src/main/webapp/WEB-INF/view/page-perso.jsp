@@ -22,6 +22,39 @@
 
 <div id="body">
     <div class="container">
+
+        <div id="connected-user-panel">
+            <form action="updateUserMail" method="post">
+                <input type="hidden" name="username" value="${connectedUser.username}">
+                <h2>Données personnelles :</h2>
+                <div class="row col-md-12 no-gutters">
+                    <div class="input-group col-lg-7">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="nom">Username : </span>
+                        </div>
+                        <input type="text" name="username" class="form-control" aria-label="username"
+                               aria-describedby="username" value="${connectedUser.username}" disabled>
+                    </div>
+                </div>
+                <div class="row col-md-12 no-gutters">
+                    <div class="input-group col-lg-7">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="email">Email : </span>
+                        </div>
+                        <input type="email" name="email" class="form-control" aria-label="email"
+                               aria-describedby="email" value="${connectedUser.email}">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-warning" name="action"
+                            value="updateEmail"
+                    >Modifier
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
         <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
         <form action="updateCommentaire" method="post">
             <input type="hidden" name="page" value="page-perso">
@@ -51,12 +84,15 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <textarea class=" col-md-12" name="commentaire">${commentaire.commentaire}</textarea>
+                                        <textarea class=" col-md-12"
+                                                  name="commentaire">${commentaire.commentaire}</textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-warning" name="action" value="${line.index},update,${commentaire.id}"
+                                    <button type="submit" class="btn btn-warning" name="action"
+                                            value="${line.index},update,${commentaire.id}"
                                     >Modifier
                                     </button>
-                                    <button type="submit" class="btn btn-warning" name="action" value="${line.index},delete,${commentaire.id}"
+                                    <button type="submit" class="btn btn-warning" name="action"
+                                            value="${line.index},delete,${commentaire.id}"
                                     >Supprimer
                                     </button>
                                 </div>
@@ -97,10 +133,10 @@
                             <td>
                                 <div class="form-check form-check-inline">
                                     <c:if test="${user.userRole == 'ROLE_USER'}">
-                                    <input class="form-check-input" type="radio" id="ROLE_USER"
-                                           name="user_role${line.index}"
-                                           value="${user.username}" checked>
-                                    <label class="form-check-label" for="ROLE_USER">User</label>
+                                        <input class="form-check-input" type="radio" id="ROLE_USER"
+                                               name="user_role${line.index}"
+                                               value="${user.username}" checked>
+                                        <label class="form-check-label" for="ROLE_USER">User</label>
                                     </c:if>
                                     <c:if test="${user.userRole != 'ROLE_USER'}">
                                         <input class="form-check-input" type="radio" id="ROLE_USER"
@@ -169,21 +205,23 @@
                                 <tbody>
                                 <c:forEach var="reservation" items="${topo.listReservations}">
                                     <form method="post" action="annulerReservation">
-                                    <tr>
-                                        <td>${reservation.dateReservation}</td>
-                                        <td>${reservation.user.username}</td>
-                                        <td>${reservation.user.email}</td>
-                                        <td>${reservation.statut.etat}</td>
-                                        <td>
-                                            <c:if test="${reservation.statut.id<3}">
-                                                <input type="hidden" name="username" value="${pageContext.request.userPrincipal.name}">
-                                                <button type="submit" name="reservation-id" value="${reservation.id}"
-                                                        class="btn btn-warning" id="btnReservationTopo">
-                                                    Annuler
-                                                </button>
-                                            </c:if>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>${reservation.dateReservation}</td>
+                                            <td>${reservation.user.username}</td>
+                                            <td>${reservation.user.email}</td>
+                                            <td>${reservation.statut.etat}</td>
+                                            <td>
+                                                <c:if test="${reservation.statut.id<3}">
+                                                    <input type="hidden" name="username"
+                                                           value="${pageContext.request.userPrincipal.name}">
+                                                    <button type="submit" name="reservation-id"
+                                                            value="${reservation.id}"
+                                                            class="btn btn-warning" id="btnReservationTopo">
+                                                        Annuler
+                                                    </button>
+                                                </c:if>
+                                            </td>
+                                        </tr>
                                     </form>
                                 </c:forEach>
                                 </tbody>

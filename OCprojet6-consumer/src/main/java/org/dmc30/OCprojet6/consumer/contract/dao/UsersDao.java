@@ -11,6 +11,6 @@ public interface UsersDao {
     Users getUsersByName(String pUsername) throws TechnicalException;
     List<Users> getAllUsers() throws TechnicalException;
     void updateUsers (Users pUsers);
-    void deleteUsers(int pId);
+    void deleteUsers(Users pUsers);
 }
 

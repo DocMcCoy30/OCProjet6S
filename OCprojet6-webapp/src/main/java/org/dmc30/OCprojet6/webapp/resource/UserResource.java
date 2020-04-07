@@ -35,4 +35,8 @@ public class UserResource extends AbstractResource{
     public void updateUserRole (UserRoles pUserRoles) throws TechnicalException {
         getManagerFactory().getUserRolesManager().updateUserRole(pUserRoles);
     }
+
+    public void updateUser(Users pUser) {
+        getManagerFactory().getUsersManager().updateUsers(pUser);
+    }
 }

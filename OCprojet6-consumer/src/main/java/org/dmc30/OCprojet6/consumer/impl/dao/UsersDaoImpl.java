@@ -11,6 +11,8 @@ import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -83,11 +85,18 @@ public class UsersDaoImpl extends AbstractDao implements UsersDao {
 
     @Override
     public void updateUsers(Users pUsers) {
-
+        String vSQL = "UPDATE users SET password= :password, email= :email, enabled = :enabled WHERE username = :username";
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("username", pUsers.getUsername());
+        vParams.addValue("password", pUsers.getPassword());
+        vParams.addValue("email", pUsers.getEmail());
+        vParams.addValue("enabled", pUsers.isEnabled());
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL,vParams);
     }
 
     @Override
-    public void deleteUsers(int pId) {
+    public void deleteUsers(Users pUsers) {
 
     }
 

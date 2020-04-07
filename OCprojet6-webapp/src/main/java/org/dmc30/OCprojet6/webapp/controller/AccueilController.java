@@ -86,8 +86,12 @@ public class AccueilController extends AbstractController {
         List<Commentaire> vListCommentaire;
         List<Users> vListUsers;
         List<Topo> vListTopos;
+        Users vConnectedUser;
         int reservationMarker = 0;
         boolean vValidationEnAttente = false;
+
+        // récupérer les données de l'utilisteur
+        vConnectedUser = userResource.getUserByName(pUserName);
 
         //Lister les sites enregistrés, topos, réservations liés à l'utilisateur
 //        logger.debug("Page perso du User : " + pUserName);
@@ -120,6 +124,7 @@ public class AccueilController extends AbstractController {
             vUser.setUserRole(userRole.getUserRole());
         }
 
+        vMaV.addObject("connectedUser", vConnectedUser);
         vMaV.addObject("demande", vValidationEnAttente);
         vMaV.addObject("topos", vListTopos);
         vMaV.addObject("users", vListUsers);

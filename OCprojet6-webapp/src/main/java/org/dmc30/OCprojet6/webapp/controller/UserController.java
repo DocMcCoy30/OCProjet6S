@@ -22,6 +22,8 @@ public class UserController {
 
     @Inject
     private UserResource userResource;
+    @Inject
+    private AccueilController accueilController;
 
     /**
      * Affiche le formulaire de connexion.
@@ -90,6 +92,23 @@ public class UserController {
         String vJSONCommentaire = new Gson().toJson(vUserRoles);
         logger.debug("vJSONCommentaire = " + vJSONCommentaire);
         response.getWriter().write(vJSONCommentaire);
+    }
+
+    @PostMapping("/updateUserMail")
+    public ModelAndView updateUserMail (@RequestParam(value = "username") String pUsername,
+                                    @RequestParam(value = "email") String pEmail) throws TechnicalException {
+        ModelAndView vMaV = new ModelAndView();
+        Users vUser = new Users();
+        try {
+            vUser = userResource.getUserByName(pUsername);
+            vUser.setEmail(pEmail);
+            userResource.updateUser(vUser);
+
+        } catch (TechnicalException e) {
+
+        }
+
+        return accueilController.showPagePerso(vUser.getUsername());
     }
 
 }

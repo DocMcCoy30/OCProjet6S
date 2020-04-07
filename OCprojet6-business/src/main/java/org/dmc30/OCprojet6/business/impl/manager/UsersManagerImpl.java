@@ -79,7 +79,7 @@ public class UsersManagerImpl extends AbstractManager implements UsersManager {
 
     @Override
     public void updateUsers(Users pUsers) {
-
+        getDaoFactory().getUsersDao().updateUsers(pUsers);
     }
 
     @Override
