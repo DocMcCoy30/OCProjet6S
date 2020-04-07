@@ -18,7 +18,6 @@ public class Commentaire {
     public Commentaire(int id, String commentaire, Date date, int referenceId, int refId, boolean valide) {
         this.id = id;
         this.commentaire = commentaire;
-        this.users = users;
         this.date = date;
         this.referenceId = referenceId;
         this.refId = refId;

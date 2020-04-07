@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.consumer.contract.dao.DepartementDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.DepartementRM;
 import org.dmc30.OCprojet6.model.bean.Departement;
-import org.dmc30.OCprojet6.model.bean.Region;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

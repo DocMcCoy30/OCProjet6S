@@ -44,7 +44,7 @@ public class TopoController {
                                      String pMessageSucces, String pMessageAlert) {
         ModelAndView vMaV = new ModelAndView();
         String vMessageSuccess, vMessageAlert;
-        List <TopoReservation> vListReservationsValidées = new ArrayList<>();
+        List <TopoReservation> vListReservationsValidees = new ArrayList<>();
         if (pMessageSucces == null) {
             vMessageSuccess = "";
         } else {
@@ -66,8 +66,8 @@ public class TopoController {
             for (TopoReservation vTopoReservation:vListReservations
                  ) {
                 if (vTopoReservation.getStatut().getId()<3) {
-                    vListReservationsValidées.add(vTopoReservation);
-                    vTopo.setListReservations(vListReservationsValidées);
+                    vListReservationsValidees.add(vTopoReservation);
+                    vTopo.setListReservations(vListReservationsValidees);
                 }
             }
         }
@@ -120,7 +120,7 @@ public class TopoController {
         String vMessageSuccess = "";
         String vMessageAlert = "";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date vDateReservation = null;
+        Date vDateReservation;
         List<String> vDates = new ArrayList<>();
         String vDate = "";
         Boolean vReservation = false;

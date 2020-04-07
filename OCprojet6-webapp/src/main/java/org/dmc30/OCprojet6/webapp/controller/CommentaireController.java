@@ -87,7 +87,7 @@ public class CommentaireController {
                                           @RequestParam(value = "siteId", required = false) Integer pSiteId,
                                           HttpServletRequest request) throws TechnicalException {
 
-        Commentaire vCommentaire = new Commentaire();
+        Commentaire vCommentaire;
         ModelAndView vMav = new ModelAndView();
         String vMessageSucces = "";
 

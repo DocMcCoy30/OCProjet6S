@@ -4,7 +4,6 @@ import org.dmc30.OCprojet6.consumer.contract.dao.StatutDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.StatutRM;
 import org.dmc30.OCprojet6.model.bean.Statut;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
 import javax.inject.Named;

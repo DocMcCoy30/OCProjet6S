@@ -103,7 +103,7 @@ public class AutoSearchController extends AbstractController {
         List<Site> vListSitesFromRegions = new ArrayList<>();
         List<Site> vListSitesFromDepartements = new ArrayList<>();
         List<Site> vListSitesFromVilles = new ArrayList<>();
-        List<Photo> vListPhotos = new ArrayList<>();
+        List<Photo> vListPhotos;
 
         //Liste des sites recherchés
         List<Site> vListSitesFromSites = siteResource.getMatchingSites(pMotCle);

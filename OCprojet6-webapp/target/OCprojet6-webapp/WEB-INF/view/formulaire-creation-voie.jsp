@@ -120,6 +120,7 @@
             </div>
         </div>
     </div>
+</div>
     <!-- FOOTER -->
     <footer id="footer" class="page-footer">
         <p class="float-right"><a href="#">Back to top</a></p>

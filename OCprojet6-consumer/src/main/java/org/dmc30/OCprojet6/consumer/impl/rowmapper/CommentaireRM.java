@@ -1,9 +1,7 @@
 package org.dmc30.OCprojet6.consumer.impl.rowmapper;
 
-import org.dmc30.OCprojet6.consumer.contract.dao.SiteDao;
 import org.dmc30.OCprojet6.consumer.contract.dao.UsersDao;
 import org.dmc30.OCprojet6.model.bean.Commentaire;
-import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,8 +14,6 @@ import java.sql.SQLException;
 @Named
 public class CommentaireRM implements RowMapper<Commentaire> {
 
-    @Inject
-    SiteDao siteDao;
     @Inject
     UsersDao usersDao;
 
@@ -32,7 +28,7 @@ public class CommentaireRM implements RowMapper<Commentaire> {
         // utilisation de dao
         Users vUsers = null;
         try {
-            vUsers = usersDao.getUsersByName(resultSet.getString("users_username"));
+            vUsers = usersDao.getUsersByName(resultSet.getString("username"));
         } catch (TechnicalException e) {
             e.printStackTrace();
         }

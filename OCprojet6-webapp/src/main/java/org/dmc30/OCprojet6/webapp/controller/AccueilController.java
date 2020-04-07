@@ -83,9 +83,9 @@ public class AccueilController extends AbstractController {
     @GetMapping("/showPagePerso")
     public ModelAndView showPagePerso(@RequestParam(value = "userName") String pUserName) throws TechnicalException {
         ModelAndView vMaV = new ModelAndView();
-        List<Commentaire> vListCommentaire = new ArrayList<>();
-        List<Users> vListUsers = new ArrayList<>();
-        List<Topo> vListTopos = new ArrayList<>();
+        List<Commentaire> vListCommentaire;
+        List<Users> vListUsers;
+        List<Topo> vListTopos;
         int reservationMarker = 0;
         boolean vValidationEnAttente = false;
 

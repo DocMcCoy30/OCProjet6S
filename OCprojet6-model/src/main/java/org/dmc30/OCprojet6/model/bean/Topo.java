@@ -1,6 +1,5 @@
 package org.dmc30.OCprojet6.model.bean;
 
-import java.util.Date;
 import java.util.List;
 
 public class Topo {
@@ -38,7 +37,7 @@ public class Topo {
     }
 
     public void setId(int id) {
-        id = id;
+        this.id = id;
     }
 
     public String getNom() {

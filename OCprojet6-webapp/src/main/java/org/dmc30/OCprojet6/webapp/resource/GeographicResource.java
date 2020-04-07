@@ -2,7 +2,6 @@ package org.dmc30.OCprojet6.webapp.resource;
 
 import org.dmc30.OCprojet6.model.bean.Departement;
 import org.dmc30.OCprojet6.model.bean.Region;
-import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.model.bean.Ville;
 
 import javax.inject.Named;

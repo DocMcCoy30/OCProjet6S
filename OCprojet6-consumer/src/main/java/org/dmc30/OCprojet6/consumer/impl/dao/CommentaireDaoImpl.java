@@ -27,7 +27,7 @@ public class CommentaireDaoImpl extends AbstractDao implements CommentaireDao {
 
     @Override
     public void createCommentaire(Commentaire pCommentaire) throws TechnicalException {
-        String vSQL = "INSERT INTO commentaire ( commentaire, users_username, date_publication, reference_id, ref_id, valide) " +
+        String vSQL = "INSERT INTO commentaire (commentaire, username, date_publication, reference_id, ref_id, valide) " +
                 "VALUES (:commentaire, :username, :date, :referenceId, :refId, :valide)";
         MapSqlParameterSource vParams = new MapSqlParameterSource();
         vParams.addValue("commentaire", pCommentaire.getCommentaire());
@@ -70,7 +70,7 @@ public class CommentaireDaoImpl extends AbstractDao implements CommentaireDao {
 
     @Override
     public void updateCommentaire(Commentaire pCommentaire) throws TechnicalException {
-        String vSQL = "UPDATE commentaire SET commentaire= :commentaire, users_username= :username," +
+        String vSQL = "UPDATE commentaire SET commentaire= :commentaire, username= :username," +
                 " date_publication= :date, reference_id= :referenceId, ref_id =:refId, valide= :valide" +
                 " WHERE commentaire_id="+pCommentaire.getId();
         MapSqlParameterSource vParams = new MapSqlParameterSource();

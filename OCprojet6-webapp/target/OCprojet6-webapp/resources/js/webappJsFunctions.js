@@ -37,8 +37,7 @@ $('#officiel').click(function () {
         data: {'siteId': siteId, 'checked': checked},
         dataType: "json",
         success: function (data) {
-            let site = data;
-            if (site.officiel) {
+            if (data.officiel) {
                 $('#attribut-officiel').css('display', 'block')
             } else {
                 $('#attribut-officiel').css('display', 'none')
@@ -72,8 +71,7 @@ $('#commentaire-panel input[type="checkbox"]').click(function () {
         data: {'commentaireId': commentaireId, 'checked': checked},
         dataType: "json",
         success: function (data) {
-            let commentaire = data;
-            if (commentaire.valide) {
+            if (data.valide) {
                 console.log("commentaire validé");
             } else {
                 console.log("commentaire non validé");
@@ -96,8 +94,7 @@ $('#reservation-panel input[type="radio"]').click(function () {
         data: {'reservationId': reservationId, 'action': action},
         dataType: 'json',
         success: function (data) {
-            let reservation = data;
-            if (reservation.valide) {
+            if (data.valide) {
                 console.log("reservation validée");
             } else {
                 console.log("reservation validée");
@@ -138,7 +135,7 @@ function searchSitePopulate(optionRef) {
 /**
  * Gère la liste des départements en fonction de la région choisie dans le formulaire de création de site
  */
-$('#region').change(function (response) {
+$('#region').change(function () {
     $.ajax({
         url: 'autoPopulateDepartements',
         type: 'GET',
@@ -187,7 +184,7 @@ function showCommentPanel(c) {
     if (c !== 1) {
         $('#commentaire-card').css('display', 'none')
     } else {
-        showCommentaireForm(0)
+        showCommentaireForm(0);
         $('#commentaire-card').css('display', 'block')
     }
 }
@@ -200,7 +197,7 @@ function showCommentaireForm(d) {
     if (d !== 1) {
         $('#commentaire-form').css('display', 'none')
     } else {
-        showCommentPanel(0)
+        showCommentPanel(0);
         $('#commentaire-form').css('display', 'block')
     }
 }

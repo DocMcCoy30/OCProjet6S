@@ -2,7 +2,6 @@ package org.dmc30.OCprojet6.consumer.impl.rowmapper;
 
 import org.dmc30.OCprojet6.consumer.contract.dao.SiteDao;
 import org.dmc30.OCprojet6.consumer.contract.dao.UsersDao;
-import org.dmc30.OCprojet6.model.bean.Site;
 import org.dmc30.OCprojet6.model.bean.Topo;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.jdbc.core.RowMapper;

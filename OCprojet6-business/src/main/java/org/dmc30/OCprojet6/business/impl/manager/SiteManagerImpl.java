@@ -10,7 +10,6 @@ import org.dmc30.OCprojet6.model.bean.Ville;
 import org.dmc30.OCprojet6.model.exception.ErrorMessages;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;

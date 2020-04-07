@@ -5,13 +5,11 @@ import org.apache.logging.log4j.Logger;
 import org.dmc30.OCprojet6.consumer.contract.dao.UserRoleDao;
 import org.dmc30.OCprojet6.consumer.impl.rowmapper.UserRolesRM;
 import org.dmc30.OCprojet6.model.bean.UserRoles;
-import org.dmc30.OCprojet6.model.bean.Users;
 import org.dmc30.OCprojet6.model.exception.ErrorMessages;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -29,8 +27,8 @@ public class UserRoleDaoImpl extends AbstractDao implements UserRoleDao {
     public void createUserRole(String pUsername, String pRole) throws TechnicalException {
         String vSQL = "INSERT INTO user_roles (username, role) VALUES (?,?)";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        vJdbcTemplate.update(vSQL, pUsername, pRole);
         try {
+            vJdbcTemplate.update(vSQL, pUsername, pRole);
         } catch (
                 BadSqlGrammarException e) {
             logger.error("Problème de syntaxe dans la requète SQL");
@@ -49,8 +47,8 @@ public class UserRoleDaoImpl extends AbstractDao implements UserRoleDao {
     public void updateUserRole(UserRoles pUserRoles) throws TechnicalException {
         String vSQL = "UPDATE user_roles SET role=? WHERE user_role_id="+pUserRoles.getId();
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        vJdbcTemplate.update(vSQL, pUserRoles.getUserRole());
         try {
+            vJdbcTemplate.update(vSQL, pUserRoles.getUserRole());
         } catch (
                 BadSqlGrammarException e) {
             logger.error("Problème de syntaxe dans la requète SQL");

@@ -7,14 +7,12 @@ import org.dmc30.OCprojet6.consumer.contract.dao.SiteDao;
 import org.dmc30.OCprojet6.consumer.contract.dao.VoieDao;
 import org.dmc30.OCprojet6.model.bean.Secteur;
 import org.dmc30.OCprojet6.model.bean.Site;
-import org.dmc30.OCprojet6.model.bean.Voie;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 @Named
 public class SecteurRM implements RowMapper<Secteur> {

@@ -54,6 +54,7 @@
         <param-value>classpath:/bootstrapContext.xml</param-value>
     </context-param>
 
+    <!--indiquer dans le fichier src/main/webapp/WEF-INF/web.xml que j'ai besoin de la ressource JNDI jdbc/DB_OCprojet6-->
     <resource-ref>
         <res-ref-name>jdbc/DB_OCprojet6</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
@@ -88,8 +89,5 @@
         <filter-name>MultipartFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
-
 
 </web-app>

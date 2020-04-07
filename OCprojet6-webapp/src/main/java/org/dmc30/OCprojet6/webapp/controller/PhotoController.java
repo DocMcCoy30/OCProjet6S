@@ -46,10 +46,10 @@ public class PhotoController extends AbstractController {
                                     @RequestParam("siteId") int pSiteId,
                                     HttpServletRequest request) throws TechnicalException {
 
-        Photo vPhoto = new Photo();
-        List<Photo> vListPhotos = new ArrayList<>();
+        Photo vPhoto;
+        List<Photo> vListPhotos;
         int vReferenceId = 1;
-        String vNomPhoto = "";
+        String vNomPhoto;
         String vMessageSucces = "";
         String vMessageAlert = "";
         ModelAndView vMaV = new ModelAndView();

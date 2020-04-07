@@ -1,6 +1,5 @@
 package org.dmc30.OCprojet6.consumer.contract.dao;
 
-import org.dmc30.OCprojet6.model.bean.Topo;
 import org.dmc30.OCprojet6.model.bean.TopoReservation;
 import org.dmc30.OCprojet6.model.exception.TechnicalException;
 
